@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>&lt;no title&gt; &mdash; LinearAlgebra  documentation</title>
+  <title>Chapter 1.1 Vectors and Linear Combinations &mdash; LinearAlgebra  documentation</title>
   
 
   
@@ -90,8 +90,16 @@
             
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="index1.html">Chapter 1 Introduction to Vectors</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index1.html">Chapter 1 Introduction to Vectors</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 1.1 Vectors and Linear Combinations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#linear-combinations">Linear Combinations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vectors-in-three-dimensions">Vectors in Three Dimensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-important-questions">The Important Questions</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
 </ul>
 
@@ -143,7 +151,7 @@
         
           <li><a href="index1.html">Chapter 1 Introduction to Vectors</a> &raquo;</li>
         
-      <li>&lt;no title&gt;</li>
+      <li>Chapter 1.1 Vectors and Linear Combinations</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -175,6 +183,75 @@
 \newcommand{\w}{\boldsymbol{w}}
 \newcommand{\x}{\boldsymbol{x}}\\\newcommand{\bb}{\begin{bmatrix}}
 \newcommand{\eb}{\end{bmatrix}}\end{aligned}\end{align} \]</div>
+<div class="section" id="chapter-1-1-vectors-and-linear-combinations">
+<h1>Chapter 1.1 Vectors and Linear Combinations<a class="headerlink" href="#chapter-1-1-vectors-and-linear-combinations" title="Permalink to this headline">¶</a></h1>
+<p><strong>Column Vector</strong> <span class="math notranslate nohighlight">\(\bs{v}\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\v = \bb v_1 \\ v_2 \eb\end{split}\]</div>
+<p><strong>VECTOR ADDITION</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\v = \bb v_1 \\ v_2 \eb
+\;\mathrm{and}\;
+\w = \bb w_1 \\ w_2 \eb
+\;\mathrm{add}\;\mathrm{to}\;
+\v + \w = \bb v_1 + w_1 \\ v_2 + w_2 \eb\end{split}\]</div>
+<p><strong>SCALAR MULTIPLICATION</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}2\v = \bb 2v_1 \\ 2v_2 \eb = \v + \v \\
+-\v = \bb -v_1 \\ -v_2 \eb\end{split}\]</div>
+<div class="section" id="linear-combinations">
+<h2>Linear Combinations<a class="headerlink" href="#linear-combinations" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The sum of <span class="math notranslate nohighlight">\(c\v\)</span> and <span class="math notranslate nohighlight">\(d\w\)</span> is a <strong>linear combination</strong>
+<span class="math notranslate nohighlight">\(c\v + d\w\)</span>.</p>
+</div>
+<p>Four special linear combinations are: sum, difference, zero, and a scalar
+multiple <span class="math notranslate nohighlight">\(c\v\)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(1\v + 1\w =\)</span> sum of vectors</p></li>
+<li><p><span class="math notranslate nohighlight">\(1\v - 1\w =\)</span> difference of vectors</p></li>
+<li><p><span class="math notranslate nohighlight">\(0\v + 0\w =\)</span> <strong>zero vectors</strong></p></li>
+<li><p><span class="math notranslate nohighlight">\(c\v + 0\w =\)</span> vector <span class="math notranslate nohighlight">\(\v\)</span></p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Represent vector <span class="math notranslate nohighlight">\(\v\)</span>:
+<strong>Two numbers</strong>,
+<strong>Arrow from (0, 0)</strong>,
+<strong>Point in the plane</strong></p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Visualization of <span class="math notranslate nohighlight">\(\v + \w\)</span> (head to tail):
+At the end of <span class="math notranslate nohighlight">\(\v\)</span>, place the start of <span class="math notranslate nohighlight">\(\w\)</span>.</p>
+</div>
+</div>
+<div class="section" id="vectors-in-three-dimensions">
+<h2>Vectors in Three Dimensions<a class="headerlink" href="#vectors-in-three-dimensions" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>From now on <span class="math notranslate nohighlight">\(\v = \bb 1 \\ 1 \\ -1 \eb\)</span>
+is also written as <span class="math notranslate nohighlight">\(\v = (1, 1, -1)\)</span>.</p>
+</div>
+</div>
+<div class="section" id="the-important-questions">
+<h2>The Important Questions<a class="headerlink" href="#the-important-questions" title="Permalink to this headline">¶</a></h2>
+<p>If <span class="math notranslate nohighlight">\(\u, \v \;\mathrm{and}\; \w\)</span> are typical nonzero vectors (components
+chosen at random)</p>
+<ol class="arabic">
+<li><p>What is the picture of <em>all</em> combinations <span class="math notranslate nohighlight">\(c\u\)</span>?</p>
+<p>The combinations <span class="math notranslate nohighlight">\(c\u\)</span> fill a <strong>line</strong> through <strong>(0, 0, 0)</strong>.</p>
+</li>
+<li><p>What is the picture of <em>all</em> combinations <span class="math notranslate nohighlight">\(c\u + d\v\)</span>?</p>
+<p>The combinations <span class="math notranslate nohighlight">\(c\u + d\v\)</span> fill a <strong>plane</strong> through <strong>(0, 0, 0)</strong>.</p>
+</li>
+<li><p>What is the picture of <em>all</em> combinations <span class="math notranslate nohighlight">\(c\u + d\v + e\w\)</span>?</p>
+<p>The combinations <span class="math notranslate nohighlight">\(c\u + d\v + e\w\)</span> fill a <strong>three-dimensional space</strong>.</p>
+</li>
+</ol>
+</div>
+</div>
 
 
            </div>
