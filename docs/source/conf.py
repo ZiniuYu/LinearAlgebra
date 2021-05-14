@@ -53,28 +53,28 @@ html_static_path = ['_static']
 
 
 # -- Options for LaTeX output ------------------------------------------------
-# rst_prolog = r'''
-# .. math::
+rst_prolog = r'''
+.. math::
     
-#     \newcommand{\bs}{\boldsymbol}
-#     \newcommand{\dp}{\displaystyle}
+    \newcommand{\bs}{\boldsymbol}
+    \newcommand{\dp}{\displaystyle}
     
-#     \newcommand{\cd}{\cdot}
-#     \newcommand{\cds}{\cdots}
-#     \newcommand{\lv}{\lVert}
-#     \newcommand{\rv}{\rVert}
+    \newcommand{\cd}{\cdot}
+    \newcommand{\cds}{\cdots}
+    \newcommand{\lv}{\lVert}
+    \newcommand{\rv}{\rVert}
     
-#     \newcommand{\b}{\boldsymbol{b}}
-#     \newcommand{\i}{\boldsymbol{i}}
-#     \newcommand{\j}{\boldsymbol{j}}
-#     \newcommand{\u}{\boldsymbol{u}}
-#     \newcommand{\v}{\boldsymbol{v}}
-#     \newcommand{\w}{\boldsymbol{w}}
-#     \newcommand{\x}{\boldsymbol{x}}
+    \newcommand{\b}{\boldsymbol{b}}
+    \newcommand{\i}{\boldsymbol{i}}
+    \newcommand{\j}{\boldsymbol{j}}
+    \newcommand{\u}{\boldsymbol{u}}
+    \newcommand{\v}{\boldsymbol{v}}
+    \newcommand{\w}{\boldsymbol{w}}
+    \newcommand{\x}{\boldsymbol{x}}
 
-#     \newcommand{\bb}{\begin{bmatrix}}
-#     \newcommand{\eb}{\end{bmatrix}}
-# '''
+    \newcommand{\bb}{\begin{bmatrix}}
+    \newcommand{\eb}{\end{bmatrix}}
+'''
 
 # # -- Options for MathJax -----------------------------------------------------
 # mathjax_config = {
