@@ -1,0 +1,9 @@
+Chapter 1 Introduction to Vectors
+=================================
+
+.. toctree::
+   :maxdepth: 2
+
+   chap1-1
+   chap1-2
+   chap1-3

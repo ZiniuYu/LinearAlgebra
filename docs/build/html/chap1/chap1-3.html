@@ -1,0 +1,300 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Chapter 1.3 Matrices &mdash; LinearAlgebra  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="About" href="../about.html" />
+    <link rel="prev" title="Chapter 1.2 Lengths and Dot Products" href="chap1-2.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> LinearAlgebra
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index1.html">Chapter 1 Introduction to Vectors</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="chap1-1.html">Chapter 1.1 Vectors and Linear Combinations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap1-2.html">Chapter 1.2 Lengths and Dot Products</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 1.3 Matrices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#linear-equations">Linear Equations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-inverse-matrix">The Inverse Matrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cyclic-differences">Cyclic Differences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#independence-and-dependence">Independence and Dependence</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">LinearAlgebra</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index1.html">Chapter 1 Introduction to Vectors</a> &raquo;</li>
+        
+      <li>Chapter 1.3 Matrices</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/chap1/chap1-3.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\newcommand{\bs}{\boldsymbol}
+\newcommand{\dp}{\displaystyle}\\\newcommand{\cd}{\cdot}
+\newcommand{\cds}{\cdots}
+\newcommand{\lv}{\lVert}
+\newcommand{\rv}{\rVert}\\\newcommand{\b}{\boldsymbol{b}}
+\newcommand{\i}{\boldsymbol{i}}
+\newcommand{\j}{\boldsymbol{j}}
+\newcommand{\u}{\boldsymbol{u}}
+\newcommand{\v}{\boldsymbol{v}}
+\newcommand{\w}{\boldsymbol{w}}
+\newcommand{\x}{\boldsymbol{x}}\\\newcommand{\bb}{\begin{bmatrix}}
+\newcommand{\eb}{\end{bmatrix}}\end{aligned}\end{align} \]</div>
+<div class="section" id="chapter-1-3-matrices">
+<h1>Chapter 1.3 Matrices<a class="headerlink" href="#chapter-1-3-matrices" title="Permalink to this headline">¶</a></h1>
+<p>The linear combinations of the three vectors
+<span class="math notranslate nohighlight">\(\u = (1, -1, 0)\)</span>, <span class="math notranslate nohighlight">\(\v = (0, 1, -1)\)</span>, <span class="math notranslate nohighlight">\(\w = (0, 0, 1)\)</span>
+are <span class="math notranslate nohighlight">\(x_1\u + x_2\v + x_3\w\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}x_1 \bb 1 \\ -1 \\ 0 \eb + x_2 \bb 0 \\ 1 \\ -1 \eb + x_3 \bb 0 \\ 0 \\ 1 \eb
+= \bb x_1 \\ x_2 - x_1 \\ x_3 - x_2 \eb.\end{split}\]</div>
+<p>Rewrite that combination using a matrix:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Matrix times vector</strong>, <strong>Combination of columns</strong>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(A\x = \bb 1 &amp; 0 &amp; 0 \\ -1 &amp; 1 &amp; 0 \\ 0 &amp; -1 &amp; 1 \eb \bb x_1 \\ x_2 \\ x_3 \eb = \bb x_1 \\ x_2 - x_1 \\ x_3 - x_2 \eb\)</span></p></li>
+</ul>
+</div>
+<p><strong>The matrix</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>acts on the vector</strong> <span class="math notranslate nohighlight">\(\x\)</span>. The output
+<span class="math notranslate nohighlight">\(A\x\)</span> is a <strong>combination</strong> <span class="math notranslate nohighlight">\(\b\)</span> <strong>of the columns of</strong>
+<span class="math notranslate nohighlight">\(A\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A\x = \bb 1 &amp; 0 &amp; 0 \\ -1 &amp; 1 &amp; 0 \\ 0 &amp; -1 &amp; 1 \eb \bb x_1 \\ x_2 \\ x_3 \eb
+= \bb \bs{x_1} \\ \bs{x_2} - \bs{x_1} \\ \bs{x_3} - \bs{x_2} \eb
+= \bb b_1 \\ b_2 \\ b_3 \eb = \b\end{split}\]</div>
+<p>This <span class="math notranslate nohighlight">\(A\)</span> is a “<strong>difference matrix</strong>” because <span class="math notranslate nohighlight">\(\b\)</span> combinations
+difference of the input vector <span class="math notranslate nohighlight">\(\x\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(A\x\)</span> is also <strong>dot products with rows</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A\x = \bb 1 &amp; 0 &amp; 0 \\ -1 &amp; 1 &amp; 0 \\ 0 &amp; -1 &amp; 1 \eb \bb x_1 \\ x_2 \\ x_3 \eb
+= \bb (1,0,0)\cd(x_1,x_2,x_3) \\ (-1,1,0)\cd(x_1,x_2,x_3) \\ (0,-1,1)\cd(x_1,x_2,x_3) \eb.\end{split}\]</div>
+<p>Linear combinations are the key to linear algebra, and the output <span class="math notranslate nohighlight">\(A\x\)</span> is
+a linear combination of the <strong>columns</strong> of <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<div class="section" id="linear-equations">
+<h2>Linear Equations<a class="headerlink" href="#linear-equations" title="Permalink to this headline">¶</a></h2>
+<p><strong>Now we think of</strong> <span class="math notranslate nohighlight">\(\b\)</span> <strong>as known and we look for</strong> <span class="math notranslate nohighlight">\(\x\)</span>.</p>
+<blockquote>
+<div><p><em>Old question</em>: Compute the linear combination <span class="math notranslate nohighlight">\(x_1\u + x_2\v + x_3\w\)</span>
+to find <span class="math notranslate nohighlight">\(\b\)</span>.</p>
+<p><em>New question</em>: Which combination of <span class="math notranslate nohighlight">\(\u, \v, \w\)</span> produces a particular
+vector <span class="math notranslate nohighlight">\(\b\)</span>?</p>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Equations</strong> <span class="math notranslate nohighlight">\(A\x = \b\)</span>:
+<span class="math notranslate nohighlight">\(\begin{matrix} x_1 = b_1 \\ -x_1+x_2=b_2 \\ -x_2+x_3=b_3 \end{matrix}\)</span>.
+<strong>Solution</strong> <span class="math notranslate nohighlight">\(\x = A^{-1}\b\)</span>:
+<span class="math notranslate nohighlight">\(\begin{matrix} x_1 = b_1 \\ x_2=b_1+b_2 \\ x_3=b_1+b_2+b_3 \end{matrix}\)</span>.</p>
+</div>
+<p><em>The equations can be solved in order (top to bottom) because</em> <span class="math notranslate nohighlight">\(A\)</span> <em>is a
+triangular matrix</em>.</p>
+<p>This matrix <span class="math notranslate nohighlight">\(A\)</span> is “<strong>invertible</strong>”. From <span class="math notranslate nohighlight">\(\b\)</span> we can recover
+<span class="math notranslate nohighlight">\(\x\)</span>. We write <span class="math notranslate nohighlight">\(\x\)</span> as <span class="math notranslate nohighlight">\(A^{-1}\b\)</span>.</p>
+</div>
+<div class="section" id="the-inverse-matrix">
+<h2>The Inverse Matrix<a class="headerlink" href="#the-inverse-matrix" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="cyclic-differences">
+<h2>Cyclic Differences<a class="headerlink" href="#cyclic-differences" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="independence-and-dependence">
+<h2>Independence and Dependence<a class="headerlink" href="#independence-and-dependence" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../about.html" class="btn btn-neutral float-right" title="About" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="chap1-2.html" class="btn btn-neutral float-left" title="Chapter 1.2 Lengths and Dot Products" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Ziniu Yu.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

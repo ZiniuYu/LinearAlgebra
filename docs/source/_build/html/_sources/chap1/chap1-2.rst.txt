@@ -1,0 +1,58 @@
+Chapter 1.2 Lengths and Dot Products
+====================================
+
+.. note::
+
+    The **dot product** or **inner product** of :math:`\v = (v_1, v_2)` and 
+    :math:`\w = (w_1, w_2)` is the number :math:`\v\cd\w`:
+    
+    * :math:`\v\cd\w = v_1w_1 + v_2w_2`.
+
+The dot product of **perpendicular vectors** is **zero**.
+
+.. tip::
+
+    The dot product :math:`\w\cd\v` equals :math:`\v\cd\w`.
+    The order of :math:`\v` and :math:`\w` makes no difference.
+
+**Main point:** For :math:`\v\cd\w`, multiply each :math:`v_i` times :math:`w_i`.
+Then :math:`\v\cd\w = v_1w_1 + \cds + v_nw_n`
+
+Lengths and Unit Vectors
+------------------------
+
+.. admonition:: Definition
+    :class: attention
+
+    The **length** :math:`||\v||` of a vector :math:`\v` is the
+    square root of :math:`\v\cd\v`:
+    
+    * **length** :math:`=||\v||=\sqrt{\v\cd\v} = (v_1^2 + v_2^2 + \cds + v_n^2)^{1/2}`.
+
+.. admonition:: Definition
+    :class: attention
+
+    A unit vector :math:`\u` is a vector whose length equals one.
+    Then :math:`\u\cd\u = \bs{1}`.
+
+The standard unit vectors along the *x* and *y* axes are written :math:`\i` and
+:math:`\j`
+
+For a unit vector, **divide any nonzero vector** :math:`\v` **by its length**
+:math:`||\v||`.
+
+.. note::
+
+    **Unit vector:** :math:`\u = \v/||\v||` is a unit vector in the same
+    direction as :math:`\v`.
+
+The Angle Between Two Vectors
+-----------------------------
+
+.. note::
+
+    **Right angles:** The dot product is :math:`\v\cd\w = 0` when :math:`\v` is
+    perpendicular to :math:`\w`.
+
+**Proof:** When :math:`\v` and :math:`\w` are perpendicular, they form two sides
+of a right triangle. The third side is :math:`\v - \w`
