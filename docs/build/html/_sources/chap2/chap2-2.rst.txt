@@ -1,0 +1,2 @@
+The idea of Elimination
+=======================

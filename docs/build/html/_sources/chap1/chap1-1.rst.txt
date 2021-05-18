@@ -13,9 +13,9 @@ Chapter 1.1 Vectors and Linear Combinations
 .. math::
     
     \v = \bb v_1 \\ v_2 \eb
-    \;\mathrm{and}\;
+    \ \mathrm{and}\ 
     \w = \bb w_1 \\ w_2 \eb
-    \;\mathrm{add}\;\mathrm{to}\;
+    \ \mathrm{add}\ \mathrm{to}\ 
     \v + \w = \bb v_1 + w_1 \\ v_2 + w_2 \eb
 
 **SCALAR MULTIPLICATION**
@@ -64,7 +64,7 @@ Vectors in Three Dimensions
 The Important Questions
 -----------------------
 
-If :math:`\u, \v \;\mathrm{and}\; \w` are typical nonzero vectors (components
+If :math:`\u, \v \ \mathrm{and}\  \w` are typical nonzero vectors (components
 chosen at random)
 
 #. What is the picture of *all* combinations :math:`c\u`?

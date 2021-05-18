@@ -99,7 +99,7 @@ vector :math:`\u` rotates to :math:`(\cos\beta, \sin\beta)` with
 
 .. note::
 
-    **COSINE FORMULA**: If :math:`\v` and :math:`\w` are nonzero vectors Then
+    **COSINE FORMULA**: If :math:`\v` and :math:`\w` are nonzero vectors, then
     :math:`\dp\frac{\v\cd\w}{\lv\v\rv\lv\w\rv} = \cos\theta`
 
 Since :math:`\cos\theta` never exceeds 1, the cosine formula gives two great

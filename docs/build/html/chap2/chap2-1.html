@@ -1,0 +1,337 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Chapter 2.1 Vectors and linear Equations &mdash; LinearAlgebra  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="The idea of Elimination" href="chap2-2.html" />
+    <link rel="prev" title="Chapter 2 Solving Linear Equations" href="index2.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> LinearAlgebra
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../chap1/index1.html">Chapter 1 Introduction to Vectors</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index2.html">Chapter 2 Solving Linear Equations</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 2.1 Vectors and linear Equations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#three-equations-in-three-unknowns">Three Equations in Three unknowns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-matrix-form-of-the-equations">The Matrix Form of the Equations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#matrix-notation">Matrix Notation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multiplication-in-matlab">Multiplication in MATLAB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#programming-languages-for-mathematics-and-statistics">Programming Languages for Mathematics and Statistics</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="chap2-2.html">The idea of Elimination</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap2-3.html">Elimination Using Matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap2-4.html">Rules for Matrix Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap2-5.html">Inverse Matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap2-6.html">Elimination = Factorization: <span class="math notranslate nohighlight">\(A = LU\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap2-7.html">Transposes and Permutations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">LinearAlgebra</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index2.html">Chapter 2 Solving Linear Equations</a> &raquo;</li>
+        
+      <li>Chapter 2.1 Vectors and linear Equations</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/chap2/chap2-1.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\newcommand{\bs}{\boldsymbol}
+\newcommand{\dp}{\displaystyle}\\\newcommand{\cd}{\cdot}
+\newcommand{\cds}{\cdots}
+\newcommand{\lv}{\lVert}
+\newcommand{\rv}{\rVert}\\\newcommand{\b}{\boldsymbol{b}}
+\newcommand{\i}{\boldsymbol{i}}
+\newcommand{\j}{\boldsymbol{j}}
+\newcommand{\u}{\boldsymbol{u}}
+\newcommand{\v}{\boldsymbol{v}}
+\newcommand{\w}{\boldsymbol{w}}
+\newcommand{\x}{\boldsymbol{x}}\\\newcommand{\bb}{\begin{bmatrix}}
+\newcommand{\eb}{\end{bmatrix}}\end{aligned}\end{align} \]</div>
+<div class="section" id="chapter-2-1-vectors-and-linear-equations">
+<h1>Chapter 2.1 Vectors and linear Equations<a class="headerlink" href="#chapter-2-1-vectors-and-linear-equations" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Two euqtions, Two unknowns</strong>:
+<span class="math notranslate nohighlight">\(\begin{matrix} x - 2y = 1 \\ 3x + 2y = 11 \end{matrix}\)</span></p>
+</div>
+<p>The point <span class="math notranslate nohighlight">\((3,1)\)</span> lies on both lines and solves both equations.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>ROWS</strong>: The row picture shows two lines meeting at a single point (the
+solution).</p>
+</div>
+<p>Separating the original system into its columns instead of its rows, we get a
+vector equations:</p>
+<p><strong>Combination equals</strong> <span class="math notranslate nohighlight">\(\b\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}x \bb 1\\3 \eb + y \bb -2 \\2 \eb = \bb 1 \\ 11 \eb = \b.\end{split}\]</div>
+<p>The problem is <em>to find the combination of those vectors that equals the vector on the right</em>.
+The right choices produce <span class="math notranslate nohighlight">\(3(\bs{col1})+1(\bs{col2})=\b\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>COLUMNS</strong>: The column picture combines the column vectors on the left side
+to produce the vector <span class="math notranslate nohighlight">\(\b\)</span> on the right side.</p>
+</div>
+<p>The left side of the vector equation is a <strong>linear combination</strong> of the columns.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Linear combination</strong>:
+<span class="math notranslate nohighlight">\(3\bb 1\\3 \eb + \bb -2\\2 \eb = \bb 1\\11 \eb\)</span>.</p>
+</div>
+<p>The <strong>coefficient matrix</strong> on the lieft side of the equations is the 2 by 2
+matrix <span class="math notranslate nohighlight">\(A\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A = \bb 1 &amp; -2 \\ 3 &amp; 2 \eb\end{split}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Matrix equation</strong> <span class="math notranslate nohighlight">\(A\x=\b\)</span>:
+<span class="math notranslate nohighlight">\(\bb 1 &amp; -2 \\ 3 &amp; 2 \eb \bb x\\y \eb = \bb 1\\11 \eb\)</span></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Dot products with rows</strong>, <strong>Combination of columns</strong>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(A\x=\b\ \)</span> is <span class="math notranslate nohighlight">\(\ \bb 1 &amp; -2 \\ 3 &amp; 2 \eb \bb 3\\1 \eb = \bb 1\\11 \eb\)</span></p></li>
+</ul>
+</div>
+<p>Four steps to understanding elimination using matrices:</p>
+<ol class="arabic simple">
+<li><p>Elimination goes from <span class="math notranslate nohighlight">\(A\)</span> to a triangular <span class="math notranslate nohighlight">\(U\)</span> by a sequence of matrix steps <span class="math notranslate nohighlight">\(E_{ij}\)</span>.</p></li>
+<li><p>The triangular system is solved by <strong>back substitution</strong>: working bottom to top.</p></li>
+<li><p>In matrix language <span class="math notranslate nohighlight">\(A\)</span> is factored into <span class="math notranslate nohighlight">\(LU =\)</span> (lower triangular) (upper triangular).</p></li>
+<li><p>Elimination succeeds if <span class="math notranslate nohighlight">\(A\)</span> is invertible. (But it may need rwo exchanges.)</p></li>
+</ol>
+<div class="section" id="three-equations-in-three-unknowns">
+<h2>Three Equations in Three unknowns<a class="headerlink" href="#three-equations-in-three-unknowns" title="Permalink to this headline">¶</a></h2>
+<p>The three unknowns are <span class="math notranslate nohighlight">\(x,y,z\)</span>. We have three linear equations:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A\x = \b \quad
+\begin{matrix}
+x + 2y + 3z = 6 \\
+2x + 5y + 2z = 4 \\
+6x - 3y + z = 2
+\end{matrix}\end{split}\]</div>
+<p>Before solving the problem, we visualize it both ways:</p>
+<blockquote>
+<div><p><strong>ROW</strong>: The row picture shows three planes meeting at a single point.</p>
+<p><strong>COLUMN</strong>: The column picture combines three columns to produce
+<span class="math notranslate nohighlight">\(\b = (6,4,2)\)</span>.</p>
+</div></blockquote>
+<p>The column picture starts with the vector form of the equations <span class="math notranslate nohighlight">\(A\x = \b\)</span>:</p>
+<blockquote>
+<div><p><strong>Combine columns</strong>:
+<span class="math notranslate nohighlight">\(x\bb 1\\2\\6 \eb + y\bb 2\\5\\-3 \eb + z\bb 3\\2\\1 \eb = \bb 6\\4\\2 \eb = \b\)</span>.</p>
+<p><strong>Correct combination</strong> <span class="math notranslate nohighlight">\((x,y,z)=(\bs{0},\bs{0},\bs{2})\)</span>:
+<span class="math notranslate nohighlight">\(\bs{0}\bb 1\\2\\6 \eb + \bs{0}\bb 2\\5\\-3 \eb + \bs{2}\bb 3\\2\\1 \eb = \bb 6\\4\\2 \eb\)</span>.</p>
+</div></blockquote>
+</div>
+<div class="section" id="the-matrix-form-of-the-equations">
+<h2>The Matrix Form of the Equations<a class="headerlink" href="#the-matrix-form-of-the-equations" title="Permalink to this headline">¶</a></h2>
+<p><strong>The “coefficient matrix” in</strong> <span class="math notranslate nohighlight">\(A\x = \b\)</span> <strong>is</strong>:
+<span class="math notranslate nohighlight">\(A = \bb 1&amp;2&amp;3 \\ 2&amp;5&amp;2 \\ 6&amp;-3&amp;1 \eb\)</span>.</p>
+</div>
+<div class="section" id="matrix-notation">
+<h2>Matrix Notation<a class="headerlink" href="#matrix-notation" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="multiplication-in-matlab">
+<h2>Multiplication in MATLAB<a class="headerlink" href="#multiplication-in-matlab" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="programming-languages-for-mathematics-and-statistics">
+<h2>Programming Languages for Mathematics and Statistics<a class="headerlink" href="#programming-languages-for-mathematics-and-statistics" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="chap2-2.html" class="btn btn-neutral float-right" title="The idea of Elimination" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index2.html" class="btn btn-neutral float-left" title="Chapter 2 Solving Linear Equations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Ziniu Yu.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
