@@ -18,9 +18,8 @@ Rewrite that combination using a matrix:
 
     * :math:`A\x = \bb 1 & 0 & 0 \\ -1 & 1 & 0 \\ 0 & -1 & 1 \eb \bb x_1 \\ x_2 \\ x_3 \eb = \bb x_1 \\ x_2 - x_1 \\ x_3 - x_2 \eb`
 
-**The matrix** :math:`A` **acts on the vector** :math:`\x`. The output
-:math:`A\x` is a **combination** :math:`\b` **of the columns of**
-:math:`A`.
+**The matrix** :math:`A` **acts on the vector** :math:`\x`. 
+The output :math:`A\x` is a **combination** :math:`\b` **of the columns of** :math:`A`.
 
 .. math::
     
@@ -28,8 +27,7 @@ Rewrite that combination using a matrix:
     = \bb \bs{x_1} \\ \bs{x_2} - \bs{x_1} \\ \bs{x_3} - \bs{x_2} \eb
     = \bb b_1 \\ b_2 \\ b_3 \eb = \b
 
-This :math:`A` is a "**difference matrix**" because :math:`\b` combinations
-difference of the input vector :math:`\x`.
+This :math:`A` is a "**difference matrix**" because :math:`\b` combinations difference of the input vector :math:`\x`.
 
 :math:`A\x` is also **dot products with rows**:
 
@@ -46,11 +44,9 @@ Linear Equations
 
 **Now we think of** :math:`\b` **as known and we look for** :math:`\x`.
 
-    *Old question*: Compute the linear combination :math:`x_1\u + x_2\v + x_3\w`
-    to find :math:`\b`.
+    *Old question*: Compute the linear combination :math:`x_1\u + x_2\v + x_3\w` to find :math:`\b`.
 
-    *New question*: Which combination of :math:`\u, \v, \w` produces a particular
-    vector :math:`\b`?
+    *New question*: Which combination of :math:`\u, \v, \w` produces a particular vector :math:`\b`?
 
 .. note::
 
@@ -59,11 +55,11 @@ Linear Equations
     **Solution** :math:`\x = A^{-1}\b`:
     :math:`\begin{matrix} x_1 = b_1 \\ x_2=b_1+b_2 \\ x_3=b_1+b_2+b_3 \end{matrix}`.
     
-*The equations can be solved in order (top to bottom) because* :math:`A` *is a
-triangular matrix*.
+*The equations can be solved in order (top to bottom) because* :math:`A` *is a triangular matrix*.
 
-This matrix :math:`A` is "**invertible**". From :math:`\b` we can recover
-:math:`\x`. We write :math:`\x` as :math:`A^{-1}\b`.
+This matrix :math:`A` is "**invertible**". 
+From :math:`\b` we can recover :math:`\x`. 
+We write :math:`\x` as :math:`A^{-1}\b`.
 
 The Inverse Matrix
 ------------------
@@ -95,8 +91,7 @@ The sums :math:`A^{-1}\b` become the *integral* of :math:`b(t)`.
 Cyclic Differences
 ------------------
 
-Keeps the same columns :math:`\u` and :math:`\v` but changes :math:`\w` to a new
-vector :math:`\w^*`:
+Keeps the same columns :math:`\u` and :math:`\v` but changes :math:`\w` to a new vector :math:`\w^*`:
 
 .. math::
 
@@ -104,8 +99,7 @@ vector :math:`\w^*`:
     \v = \bb 0 \\ 1 \\ -1 \eb \quad
     \w^* = \bb -1 \\ 0 \\ 1 \eb
 
-The linear combinations of :math:`\u, \v, \w^*` lead to a **cyclic difference matrix**
-:math:`C`:
+The linear combinations of :math:`\u, \v, \w^*` lead to a **cyclic difference matrix** :math:`C`:
 
 .. note::
 
@@ -113,8 +107,7 @@ The linear combinations of :math:`\u, \v, \w^*` lead to a **cyclic difference ma
     \bb x_1 \\ x_2 \\ x_3 \eb = \bb x_1 - x_3 \\ x_2 - x_1 \\ x_3 - x_2 \eb
     = \b`
 
-The three equations either have **infinitely many solutions** (sometimes) or 
-else **no solutions** (usually).
+The three equations either have **infinitely many solutions** (sometimes) or else **no solutions** (usually).
 
 **All linear combinations** :math:`x_1\u + x_2\v + x_3\w^*`
 **lie on the plane given by** :math:`b_1 + b_2 + b_3 = 0`.

@@ -10,11 +10,9 @@ The point :math:`(3,1)` lies on both lines and solves both equations.
 
 .. note::
 
-    **ROWS**: The row picture shows two lines meeting at a single point (the
-    solution).
+    **ROWS**: The row picture shows two lines meeting at a single point (the solution).
 
-Separating the original system into its columns instead of its rows, we get a
-vector equations:
+Separating the original system into its columns instead of its rows, we get a vector equations:
 
 **Combination equals** :math:`\b`
 
@@ -37,8 +35,7 @@ The left side of the vector equation is a **linear combination** of the columns.
     **Linear combination**:
     :math:`3\bb 1\\3 \eb + \bb -2\\2 \eb = \bb 1\\11 \eb`.
 
-The **coefficient matrix** on the lieft side of the equations is the 2 by 2
-matrix :math:`A`:
+The **coefficient matrix** on the lieft side of the equations is the 2 by 2 matrix :math:`A`:
 
 .. math::
 
@@ -79,8 +76,7 @@ Before solving the problem, we visualize it both ways:
 
     **ROW**: The row picture shows three planes meeting at a single point.
 
-    **COLUMN**: The column picture combines three columns to produce
-    :math:`\b = (6,4,2)`.
+    **COLUMN**: The column picture combines three columns to produce :math:`\b = (6,4,2)`.
 
 The column picture starts with the vector form of the equations :math:`A\x = \b`:
 
@@ -93,16 +89,66 @@ The column picture starts with the vector form of the equations :math:`A\x = \b`
 The Matrix Form of the Equations
 --------------------------------
 
-**The "coefficient matrix" in** :math:`A\x = \b` **is**:
-:math:`A = \bb 1&2&3 \\ 2&5&2 \\ 6&-3&1 \eb`.
+**The "coefficient matrix" in** :math:`A\x = \b`
+
+.. math::
+    
+    A = \bb 1&2&3 \\ 2&5&2 \\ 6&-3&1 \eb.
 
 
+**Matrix equation** :math:`A\x = \b`
+
+.. math::
+
+    \bb 1&2&3 \\ 2&5&2 \\ 6&-3&1 \eb \bb x\\y\\z \eb = \bb 6\\4\\2 \eb.
+
+**What does it mean to multiply** :math:`\bs{A}` **times** :math:`\x` **?**
+
+* **Multiplication by rows**: :math:`A\x` comes from **dot products**, each row times the column :math:`\x`:
+  
+    .. math::
+
+        A\x = \bb (\bs{row1})\cd\x \\ (\bs{row2})\cd\x \\ (\bs{row3})\cd\x \eb.
+
+* **Multiplication by columns**: :math:`A\x` is a **combination of column vectors**:
+
+    .. math::
+
+        A\x = x(\bs{col1}) + y(\bs{col2}) + z(\bs{col3}).
+
+**This book sees** :math:`A\x` **as a combination of the columns of** :math:`A`.
+
+**Identity matrix** always yields the multiplication :math:`I\x = \x`.
+
+.. math::
+
+    I = \bb 1&0&0 \\ 0&1&0 \\ 0&0&1 \eb
 
 Matrix Notation
 ---------------
 
+For convenience, we type :math:`A(i,j)` instead of :math:`a_{ij}`.
+The entry :math:`a_{57} = A(5,7)` would be in row 5, column 7.
+
 Multiplication in MATLAB
 ------------------------
+
+.. note::
+
+    **MATLAB Matrix multiplication**: :math:`\b = A * \x`.
+
+**Row at a time**
+
+.. math::
+
+    \b = [A(1,:)*\x; A(2,:)*\x; A(3,:)*\x]
+
+
+**Column at a time**
+
+.. math::
+
+    \b = A(:,1)*x(1) + A(:,2)*x(2) + A(:,3)*x(3)
 
 Programming Languages for Mathematics and Statistics
 ----------------------------------------------------

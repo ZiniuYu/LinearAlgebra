@@ -203,15 +203,13 @@ are <span class="math notranslate nohighlight">\(x_1\u + x_2\v + x_3\w\)</span>:
 <li><p><span class="math notranslate nohighlight">\(A\x = \bb 1 &amp; 0 &amp; 0 \\ -1 &amp; 1 &amp; 0 \\ 0 &amp; -1 &amp; 1 \eb \bb x_1 \\ x_2 \\ x_3 \eb = \bb x_1 \\ x_2 - x_1 \\ x_3 - x_2 \eb\)</span></p></li>
 </ul>
 </div>
-<p><strong>The matrix</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>acts on the vector</strong> <span class="math notranslate nohighlight">\(\x\)</span>. The output
-<span class="math notranslate nohighlight">\(A\x\)</span> is a <strong>combination</strong> <span class="math notranslate nohighlight">\(\b\)</span> <strong>of the columns of</strong>
-<span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p><strong>The matrix</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>acts on the vector</strong> <span class="math notranslate nohighlight">\(\x\)</span>.
+The output <span class="math notranslate nohighlight">\(A\x\)</span> is a <strong>combination</strong> <span class="math notranslate nohighlight">\(\b\)</span> <strong>of the columns of</strong> <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}A\x = \bb 1 &amp; 0 &amp; 0 \\ -1 &amp; 1 &amp; 0 \\ 0 &amp; -1 &amp; 1 \eb \bb x_1 \\ x_2 \\ x_3 \eb
 = \bb \bs{x_1} \\ \bs{x_2} - \bs{x_1} \\ \bs{x_3} - \bs{x_2} \eb
 = \bb b_1 \\ b_2 \\ b_3 \eb = \b\end{split}\]</div>
-<p>This <span class="math notranslate nohighlight">\(A\)</span> is a “<strong>difference matrix</strong>” because <span class="math notranslate nohighlight">\(\b\)</span> combinations
-difference of the input vector <span class="math notranslate nohighlight">\(\x\)</span>.</p>
+<p>This <span class="math notranslate nohighlight">\(A\)</span> is a “<strong>difference matrix</strong>” because <span class="math notranslate nohighlight">\(\b\)</span> combinations difference of the input vector <span class="math notranslate nohighlight">\(\x\)</span>.</p>
 <p><span class="math notranslate nohighlight">\(A\x\)</span> is also <strong>dot products with rows</strong>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}A\x = \bb 1 &amp; 0 &amp; 0 \\ -1 &amp; 1 &amp; 0 \\ 0 &amp; -1 &amp; 1 \eb \bb x_1 \\ x_2 \\ x_3 \eb
@@ -222,10 +220,8 @@ a linear combination of the <strong>columns</strong> of <span class="math notran
 <h2>Linear Equations<a class="headerlink" href="#linear-equations" title="Permalink to this headline">¶</a></h2>
 <p><strong>Now we think of</strong> <span class="math notranslate nohighlight">\(\b\)</span> <strong>as known and we look for</strong> <span class="math notranslate nohighlight">\(\x\)</span>.</p>
 <blockquote>
-<div><p><em>Old question</em>: Compute the linear combination <span class="math notranslate nohighlight">\(x_1\u + x_2\v + x_3\w\)</span>
-to find <span class="math notranslate nohighlight">\(\b\)</span>.</p>
-<p><em>New question</em>: Which combination of <span class="math notranslate nohighlight">\(\u, \v, \w\)</span> produces a particular
-vector <span class="math notranslate nohighlight">\(\b\)</span>?</p>
+<div><p><em>Old question</em>: Compute the linear combination <span class="math notranslate nohighlight">\(x_1\u + x_2\v + x_3\w\)</span> to find <span class="math notranslate nohighlight">\(\b\)</span>.</p>
+<p><em>New question</em>: Which combination of <span class="math notranslate nohighlight">\(\u, \v, \w\)</span> produces a particular vector <span class="math notranslate nohighlight">\(\b\)</span>?</p>
 </div></blockquote>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -234,10 +230,10 @@ vector <span class="math notranslate nohighlight">\(\b\)</span>?</p>
 <strong>Solution</strong> <span class="math notranslate nohighlight">\(\x = A^{-1}\b\)</span>:
 <span class="math notranslate nohighlight">\(\begin{matrix} x_1 = b_1 \\ x_2=b_1+b_2 \\ x_3=b_1+b_2+b_3 \end{matrix}\)</span>.</p>
 </div>
-<p><em>The equations can be solved in order (top to bottom) because</em> <span class="math notranslate nohighlight">\(A\)</span> <em>is a
-triangular matrix</em>.</p>
-<p>This matrix <span class="math notranslate nohighlight">\(A\)</span> is “<strong>invertible</strong>”. From <span class="math notranslate nohighlight">\(\b\)</span> we can recover
-<span class="math notranslate nohighlight">\(\x\)</span>. We write <span class="math notranslate nohighlight">\(\x\)</span> as <span class="math notranslate nohighlight">\(A^{-1}\b\)</span>.</p>
+<p><em>The equations can be solved in order (top to bottom) because</em> <span class="math notranslate nohighlight">\(A\)</span> <em>is a triangular matrix</em>.</p>
+<p>This matrix <span class="math notranslate nohighlight">\(A\)</span> is “<strong>invertible</strong>”.
+From <span class="math notranslate nohighlight">\(\b\)</span> we can recover <span class="math notranslate nohighlight">\(\x\)</span>.
+We write <span class="math notranslate nohighlight">\(\x\)</span> as <span class="math notranslate nohighlight">\(A^{-1}\b\)</span>.</p>
 </div>
 <div class="section" id="the-inverse-matrix">
 <h2>The Inverse Matrix<a class="headerlink" href="#the-inverse-matrix" title="Permalink to this headline">¶</a></h2>
@@ -264,22 +260,19 @@ The sums <span class="math notranslate nohighlight">\(A^{-1}\b\)</span> become t
 </div>
 <div class="section" id="cyclic-differences">
 <h2>Cyclic Differences<a class="headerlink" href="#cyclic-differences" title="Permalink to this headline">¶</a></h2>
-<p>Keeps the same columns <span class="math notranslate nohighlight">\(\u\)</span> and <span class="math notranslate nohighlight">\(\v\)</span> but changes <span class="math notranslate nohighlight">\(\w\)</span> to a new
-vector <span class="math notranslate nohighlight">\(\w^*\)</span>:</p>
+<p>Keeps the same columns <span class="math notranslate nohighlight">\(\u\)</span> and <span class="math notranslate nohighlight">\(\v\)</span> but changes <span class="math notranslate nohighlight">\(\w\)</span> to a new vector <span class="math notranslate nohighlight">\(\w^*\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\u = \bb 1 \\ -1 \\ 0 \eb \quad
 \v = \bb 0 \\ 1 \\ -1 \eb \quad
 \w^* = \bb -1 \\ 0 \\ 1 \eb\end{split}\]</div>
-<p>The linear combinations of <span class="math notranslate nohighlight">\(\u, \v, \w^*\)</span> lead to a <strong>cyclic difference matrix</strong>
-<span class="math notranslate nohighlight">\(C\)</span>:</p>
+<p>The linear combinations of <span class="math notranslate nohighlight">\(\u, \v, \w^*\)</span> lead to a <strong>cyclic difference matrix</strong> <span class="math notranslate nohighlight">\(C\)</span>:</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><strong>Cyclic</strong>: <span class="math notranslate nohighlight">\(C\x = \bb 1 &amp; 0 &amp; -1 \\ -1 &amp; 1 &amp; 0 \\ 0 &amp; -1 &amp; 1 \eb
 \bb x_1 \\ x_2 \\ x_3 \eb = \bb x_1 - x_3 \\ x_2 - x_1 \\ x_3 - x_2 \eb
 = \b\)</span></p>
 </div>
-<p>The three equations either have <strong>infinitely many solutions</strong> (sometimes) or
-else <strong>no solutions</strong> (usually).</p>
+<p>The three equations either have <strong>infinitely many solutions</strong> (sometimes) or else <strong>no solutions</strong> (usually).</p>
 <p><strong>All linear combinations</strong> <span class="math notranslate nohighlight">\(x_1\u + x_2\v + x_3\w^*\)</span>
 <strong>lie on the plane given by</strong> <span class="math notranslate nohighlight">\(b_1 + b_2 + b_3 = 0\)</span>.</p>
 </div>

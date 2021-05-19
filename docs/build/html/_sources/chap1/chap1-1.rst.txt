@@ -33,8 +33,7 @@ Linear Combinations
     The sum of :math:`c\v` and :math:`d\w` is a **linear combination**
     :math:`c\v + d\w`.
 
-Four special linear combinations are: sum, difference, zero, and a scalar
-multiple :math:`c\v`:
+Four special linear combinations are: sum, difference, zero, and a scalar multiple :math:`c\v`:
 
 * :math:`1\v + 1\w =` sum of vectors
 * :math:`1\v - 1\w =` difference of vectors
@@ -58,14 +57,12 @@ Vectors in Three Dimensions
 
 .. note::
 
-    From now on :math:`\v = \bb 1 \\ 1 \\ -1 \eb` 
-    is also written as :math:`\v = (1, 1, -1)`.
+    From now on :math:`\v = \bb 1 \\ 1 \\ -1 \eb` is also written as :math:`\v = (1, 1, -1)`.
 
 The Important Questions
 -----------------------
 
-If :math:`\u, \v \ \mathrm{and}\  \w` are typical nonzero vectors (components
-chosen at random)
+If :math:`\u, \v \ \mathrm{and}\  \w` are typical nonzero vectors (components chosen at random)
 
 #. What is the picture of *all* combinations :math:`c\u`?
 

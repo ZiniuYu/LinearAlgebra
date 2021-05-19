@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>The idea of Elimination &mdash; LinearAlgebra  documentation</title>
+  <title>Chapter2.2 The idea of Elimination &mdash; LinearAlgebra  documentation</title>
   
 
   
@@ -43,8 +43,8 @@
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="&lt;no title&gt;" href="chap2-3.html" />
-    <link rel="prev" title="Vectors and linear Equations" href="chap2-1.html" /> 
+    <link rel="next" title="Elimination Using Matrices" href="chap2-3.html" />
+    <link rel="prev" title="Chapter 2.1 Vectors and linear Equations" href="chap2-1.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -93,8 +93,18 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../chap1/index1.html">Chapter 1 Introduction to Vectors</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index2.html">Chapter 2 Solving Linear Equations</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="chap2-1.html">Vectors and linear Equations</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">The idea of Elimination</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap2-1.html">Chapter 2.1 Vectors and linear Equations</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter2.2 The idea of Elimination</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#breakdown-of-elimination">Breakdown of Elimination</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#three-equations-in-three-unknowns">Three Equations in Three Unknowns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elimination-from-a-to-u">Elimination from <span class="math notranslate nohighlight">\(A\)</span> to <span class="math notranslate nohighlight">\(U\)</span></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="chap2-3.html">Elimination Using Matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap2-4.html">Rules for Matrix Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap2-5.html">Inverse Matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap2-6.html">Elimination = Factorization: <span class="math notranslate nohighlight">\(A = LU\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap2-7.html">Transposes and Permutations</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
@@ -148,7 +158,7 @@
         
           <li><a href="index2.html">Chapter 2 Solving Linear Equations</a> &raquo;</li>
         
-      <li>The idea of Elimination</li>
+      <li>Chapter2.2 The idea of Elimination</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -180,8 +190,43 @@
 \newcommand{\w}{\boldsymbol{w}}
 \newcommand{\x}{\boldsymbol{x}}\\\newcommand{\bb}{\begin{bmatrix}}
 \newcommand{\eb}{\end{bmatrix}}\end{aligned}\end{align} \]</div>
-<div class="section" id="the-idea-of-elimination">
-<h1>The idea of Elimination<a class="headerlink" href="#the-idea-of-elimination" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="chapter2-2-the-idea-of-elimination">
+<h1>Chapter2.2 The idea of Elimination<a class="headerlink" href="#chapter2-2-the-idea-of-elimination" title="Permalink to this headline">¶</a></h1>
+<p>For 2 by 2 equations, before elimination, <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> appear in both equations.
+After elimination, the first unknown <span class="math notranslate nohighlight">\(x\)</span> has disappeared from the second equation.</p>
+<p><strong>Before</strong>:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}x - 2y &amp;= 1\\3x + 2y &amp;= 11\end{aligned}\end{align} \]</div>
+<p><strong>After</strong> (multiply equation 1 by 3, subtract to eliminate <span class="math notranslate nohighlight">\(3x\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}x - 2y &amp;= 1\\8y &amp;= 8\end{aligned}\end{align} \]</div>
+<p>The goal of elimination: produces an <strong>upper triangular system</strong>.
+The system is solved from the bottom upwards.
+This process is called <strong>back substitution</strong>.
+It is used for upper triangular systems of any size, after elimination gives a triangle.</p>
+<p>If the first equation is changed to <span class="math notranslate nohighlight">\(4x - 8y = 4\)</span>, the multiplier changes to <span class="math notranslate nohighlight">\(l = \frac{3}{4}\)</span>.
+<em>To find the multiplier, divide the coefficient 3 to be eliminated by the pivot 4</em>:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\bs{4}x - 8y &amp;= 4\\\bs{3}x + 2y &amp;= 11\end{aligned}\end{align} \]</div>
+<p><strong>Multiply eqution 1 by 3/4 and subtract from equation 2</strong>:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}4x - 8y &amp;= 4\\8y &amp;= 8\end{aligned}\end{align} \]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Pivot</strong>: first nonzero in the row that does the elimination</p>
+<p><strong>Multiplier</strong>: (entry to eliminate) divided by (pivot)</p>
+</div>
+<p><em>To solve n equations we want n pivots</em>.
+<strong>The pivots are on the diagonal of the triangle after elimination</strong>.</p>
+<div class="section" id="breakdown-of-elimination">
+<h2>Breakdown of Elimination<a class="headerlink" href="#breakdown-of-elimination" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="three-equations-in-three-unknowns">
+<h2>Three Equations in Three Unknowns<a class="headerlink" href="#three-equations-in-three-unknowns" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="elimination-from-a-to-u">
+<h2>Elimination from <span class="math notranslate nohighlight">\(A\)</span> to <span class="math notranslate nohighlight">\(U\)</span><a class="headerlink" href="#elimination-from-a-to-u" title="Permalink to this headline">¶</a></h2>
+</div>
 </div>
 
 
@@ -190,8 +235,8 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="chap2-3.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="chap2-1.html" class="btn btn-neutral float-left" title="Vectors and linear Equations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="chap2-3.html" class="btn btn-neutral float-right" title="Elimination Using Matrices" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="chap2-1.html" class="btn btn-neutral float-left" title="Chapter 2.1 Vectors and linear Equations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
