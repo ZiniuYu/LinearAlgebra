@@ -81,10 +81,16 @@ Before solving the problem, we visualize it both ways:
 The column picture starts with the vector form of the equations :math:`A\x = \b`:
 
     **Combine columns**:
-    :math:`x\bb 1\\2\\6 \eb + y\bb 2\\5\\-3 \eb + z\bb 3\\2\\1 \eb = \bb 6\\4\\2 \eb = \b`.
+    
+    .. math::
+        
+        x\bb 1\\2\\6 \eb + y\bb 2\\5\\-3 \eb + z\bb 3\\2\\1 \eb = \bb 6\\4\\2 \eb = \b.
 
     **Correct combination** :math:`(x,y,z)=(\bs{0},\bs{0},\bs{2})`:
-    :math:`\bs{0}\bb 1\\2\\6 \eb + \bs{0}\bb 2\\5\\-3 \eb + \bs{2}\bb 3\\2\\1 \eb = \bb 6\\4\\2 \eb`.
+    
+    .. math::
+    
+        \bs{0}\bb 1\\2\\6 \eb + \bs{0}\bb 2\\5\\-3 \eb + \bs{2}\bb 3\\2\\1 \eb = \bb 6\\4\\2 \eb.
 
 The Matrix Form of the Equations
 --------------------------------

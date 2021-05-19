@@ -82,11 +82,17 @@ The sums :math:`A^{-1}\b` become the *integral* of :math:`b(t)`.
 
     Fundamental Theorem of Calculus: integration is the inverse of differentiation.
     
-    :math:`\bs{Ax=b} \ ` and :math:`\ \bs{x=A^{-1}b} \quad`
-    :math:`\dp \frac{dx}{dt}=b \ \mathrm{and}\  x(t) = \int_{0}^{t}b\ dt`.
+    :math:`\bs{Ax=b}` and :math:`\bs{x=A^{-1}b}`:
+    
+    .. math::
+    
+        \dp \frac{dx}{dt}=b \ \mathrm{and}\  x(t) = \int_{0}^{t}b\ dt.
 
-    **Centered difference of** :math:`\bs{x(t)=t^2}`
-    :math:`\quad \dp \frac{(t+1)^2 - (t-1)^2}{2} = 2t`.
+    **Centered difference of** :math:`\bs{x(t)=t^2}`:
+
+    .. math::
+    
+        \dp \frac{(t+1)^2 - (t-1)^2}{2} = 2t.
 
 Cyclic Differences
 ------------------

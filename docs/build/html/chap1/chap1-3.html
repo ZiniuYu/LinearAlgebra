@@ -13,8 +13,6 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -31,11 +29,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -252,10 +250,12 @@ The sums <span class="math notranslate nohighlight">\(A^{-1}\b\)</span> become t
 <strong>Sums of differences are like integrals of derivatives</strong>.</p>
 <blockquote>
 <div><p>Fundamental Theorem of Calculus: integration is the inverse of differentiation.</p>
-<p><span class="math notranslate nohighlight">\(\bs{Ax=b} \ \)</span> and <span class="math notranslate nohighlight">\(\ \bs{x=A^{-1}b} \quad\)</span>
-<span class="math notranslate nohighlight">\(\dp \frac{dx}{dt}=b \ \mathrm{and}\  x(t) = \int_{0}^{t}b\ dt\)</span>.</p>
-<p><strong>Centered difference of</strong> <span class="math notranslate nohighlight">\(\bs{x(t)=t^2}\)</span>
-<span class="math notranslate nohighlight">\(\quad \dp \frac{(t+1)^2 - (t-1)^2}{2} = 2t\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\bs{Ax=b}\)</span> and <span class="math notranslate nohighlight">\(\bs{x=A^{-1}b}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\dp \frac{dx}{dt}=b \ \mathrm{and}\  x(t) = \int_{0}^{t}b\ dt.\]</div>
+<p><strong>Centered difference of</strong> <span class="math notranslate nohighlight">\(\bs{x(t)=t^2}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\dp \frac{(t+1)^2 - (t-1)^2}{2} = 2t.\]</div>
 </div></blockquote>
 </div>
 <div class="section" id="cyclic-differences">

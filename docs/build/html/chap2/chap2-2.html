@@ -7,14 +7,12 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Chapter2.2 The idea of Elimination &mdash; LinearAlgebra  documentation</title>
+  <title>Chapter 2.2 The idea of Elimination &mdash; LinearAlgebra  documentation</title>
   
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -31,11 +29,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -94,7 +92,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../chap1/index1.html">Chapter 1 Introduction to Vectors</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index2.html">Chapter 2 Solving Linear Equations</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="chap2-1.html">Chapter 2.1 Vectors and linear Equations</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter2.2 The idea of Elimination</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 2.2 The idea of Elimination</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#breakdown-of-elimination">Breakdown of Elimination</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#three-equations-in-three-unknowns">Three Equations in Three Unknowns</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#elimination-from-a-to-u">Elimination from <span class="math notranslate nohighlight">\(A\)</span> to <span class="math notranslate nohighlight">\(U\)</span></a></li>
@@ -158,7 +156,7 @@
         
           <li><a href="index2.html">Chapter 2 Solving Linear Equations</a> &raquo;</li>
         
-      <li>Chapter2.2 The idea of Elimination</li>
+      <li>Chapter 2.2 The idea of Elimination</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -190,8 +188,8 @@
 \newcommand{\w}{\boldsymbol{w}}
 \newcommand{\x}{\boldsymbol{x}}\\\newcommand{\bb}{\begin{bmatrix}}
 \newcommand{\eb}{\end{bmatrix}}\end{aligned}\end{align} \]</div>
-<div class="section" id="chapter2-2-the-idea-of-elimination">
-<h1>Chapter2.2 The idea of Elimination<a class="headerlink" href="#chapter2-2-the-idea-of-elimination" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="chapter-2-2-the-idea-of-elimination">
+<h1>Chapter 2.2 The idea of Elimination<a class="headerlink" href="#chapter-2-2-the-idea-of-elimination" title="Permalink to this headline">¶</a></h1>
 <p>For 2 by 2 equations, before elimination, <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> appear in both equations.
 After elimination, the first unknown <span class="math notranslate nohighlight">\(x\)</span> has disappeared from the second equation.</p>
 <p><strong>Before</strong>:</p>
@@ -213,19 +211,54 @@ It is used for upper triangular systems of any size, after elimination gives a t
 \[ \begin{align}\begin{aligned}4x - 8y &amp;= 4\\8y &amp;= 8\end{aligned}\end{align} \]</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><strong>Pivot</strong>: first nonzero in the row that does the elimination</p>
-<p><strong>Multiplier</strong>: (entry to eliminate) divided by (pivot)</p>
+<p><strong>Pivot</strong>: first nonzero in the row that does the elimination.</p>
+<p><strong>Multiplier</strong>: (entry to eliminate) divided by (pivot).</p>
 </div>
 <p><em>To solve n equations we want n pivots</em>.
 <strong>The pivots are on the diagonal of the triangle after elimination</strong>.</p>
 <div class="section" id="breakdown-of-elimination">
 <h2>Breakdown of Elimination<a class="headerlink" href="#breakdown-of-elimination" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Permanet failure with no solution.</p></li>
+<li><p>Failure with infinitely many solutions.</p></li>
+<li><p>Temporary failure (zero in pivot). A row exchange produces two pivots.</p></li>
+</ul>
+<p><strong>Failure</strong>: For <span class="math notranslate nohighlight">\(n\)</span> equations we do not get <span class="math notranslate nohighlight">\(n\)</span> pivots.</p>
+<p><strong>Elimination leads to an equation</strong>
+<span class="math notranslate nohighlight">\(\bs{0} \neq \bs{0}\)</span> (no solution) or <span class="math notranslate nohighlight">\(\bs{0} = \bs{0}\)</span> (many solutions)</p>
+<p><strong>Success comes with n pivots.</strong>
+<strong>But we may have to exchange the n equations.</strong></p>
 </div>
 <div class="section" id="three-equations-in-three-unknowns">
 <h2>Three Equations in Three Unknowns<a class="headerlink" href="#three-equations-in-three-unknowns" title="Permalink to this headline">¶</a></h2>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}2x + 4y - 2z &amp;= 2\\4x + 9y - 3z &amp;= 8\\-2x - 3y + 7z &amp;= 10\end{aligned}\end{align} \]</div>
+<p><strong>Step 1</strong>: Subtract 2 times equation 1 from equation2.
+This leaves <span class="math notranslate nohighlight">\(y+z=4\)</span>.</p>
+<p><strong>Step 2</strong>: Subtract -1 times equation 1 from equation 3.
+This leaves <span class="math notranslate nohighlight">\(y+5z=12\)</span>.</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\x\)</span> <strong>is eliminated</strong>:
+<span class="math notranslate nohighlight">\(\begin{matrix} 1y+1z=4 \\ 1y+5z=12 \end{matrix}\)</span></p>
+</div></blockquote>
+<p><strong>Step 3</strong>: Subtract equation 2<sub>new</sub> from 3<sub>new</sub>.
+The multiplier is <span class="math notranslate nohighlight">\(1/1=1\)</span>.
+Then <span class="math notranslate nohighlight">\(4z=8\)</span>.</p>
+<p>The original <span class="math notranslate nohighlight">\(A\x = \b\)</span> has been converted into an upper triangular <span class="math notranslate nohighlight">\(U\x = \bs{c}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}2x + 4y - 2z &amp;= 2\\1y + 1z &amp;= 4\\4z &amp;= 8\end{aligned}\end{align} \]</div>
+<p>The solution is <span class="math notranslate nohighlight">\((x,y,z) = (-1,2,2)\)</span>.</p>
 </div>
 <div class="section" id="elimination-from-a-to-u">
 <h2>Elimination from <span class="math notranslate nohighlight">\(A\)</span> to <span class="math notranslate nohighlight">\(U\)</span><a class="headerlink" href="#elimination-from-a-to-u" title="Permalink to this headline">¶</a></h2>
+<p>For a 4 by 4 problem, or an <span class="math notranslate nohighlight">\(n\)</span> by <span class="math notranslate nohighlight">\(n\)</span> problem, elimination proceeds in the same way.</p>
+<p><strong>Column 1</strong>: Use the first equation to create zeros below the first pivot.</p>
+<p><strong>Column 2</strong>: Use the new equation 2 to create zeros below the secod pivot.</p>
+<p><strong>Column 3 to n</strong>: Keep going to find all <span class="math notranslate nohighlight">\(n\)</span> pivots and the upper triangular <span class="math notranslate nohighlight">\(U\)</span>.</p>
+<p>After column 2 we have <span class="math notranslate nohighlight">\(\bb x&amp;x&amp;x&amp;x \\ 0&amp;x&amp;x&amp;x \\ 0&amp;0&amp;x&amp;x \\ 0&amp;0&amp;x&amp;x \eb\)</span>.
+We want <span class="math notranslate nohighlight">\(\bb x&amp;x&amp;x&amp;x \\ &amp;x&amp;x&amp;x \\ &amp;&amp;x&amp;x \\ &amp;&amp;&amp;x \eb\)</span>.</p>
+<p>The result of forward elimination is an upper triangular system.
+It is nonsigular if there is a full set of <span class="math notranslate nohighlight">\(n\)</span> pivots.</p>
 </div>
 </div>
 

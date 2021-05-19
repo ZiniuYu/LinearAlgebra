@@ -13,8 +13,6 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -31,11 +29,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -43,7 +41,7 @@
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Chapter2.2 The idea of Elimination" href="chap2-2.html" />
+    <link rel="next" title="Chapter 2.2 The idea of Elimination" href="chap2-2.html" />
     <link rel="prev" title="Chapter 2 Solving Linear Equations" href="index2.html" /> 
 </head>
 
@@ -101,7 +99,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#programming-languages-for-mathematics-and-statistics">Programming Languages for Mathematics and Statistics</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="chap2-2.html">Chapter2.2 The idea of Elimination</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap2-2.html">Chapter 2.2 The idea of Elimination</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chap2-3.html">Elimination Using Matrices</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chap2-4.html">Rules for Matrix Operations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chap2-5.html">Inverse Matrices</a></li>
@@ -260,10 +258,12 @@ x + 2y + 3z = 6 \\
 </div></blockquote>
 <p>The column picture starts with the vector form of the equations <span class="math notranslate nohighlight">\(A\x = \b\)</span>:</p>
 <blockquote>
-<div><p><strong>Combine columns</strong>:
-<span class="math notranslate nohighlight">\(x\bb 1\\2\\6 \eb + y\bb 2\\5\\-3 \eb + z\bb 3\\2\\1 \eb = \bb 6\\4\\2 \eb = \b\)</span>.</p>
-<p><strong>Correct combination</strong> <span class="math notranslate nohighlight">\((x,y,z)=(\bs{0},\bs{0},\bs{2})\)</span>:
-<span class="math notranslate nohighlight">\(\bs{0}\bb 1\\2\\6 \eb + \bs{0}\bb 2\\5\\-3 \eb + \bs{2}\bb 3\\2\\1 \eb = \bb 6\\4\\2 \eb\)</span>.</p>
+<div><p><strong>Combine columns</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}x\bb 1\\2\\6 \eb + y\bb 2\\5\\-3 \eb + z\bb 3\\2\\1 \eb = \bb 6\\4\\2 \eb = \b.\end{split}\]</div>
+<p><strong>Correct combination</strong> <span class="math notranslate nohighlight">\((x,y,z)=(\bs{0},\bs{0},\bs{2})\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bs{0}\bb 1\\2\\6 \eb + \bs{0}\bb 2\\5\\-3 \eb + \bs{2}\bb 3\\2\\1 \eb = \bb 6\\4\\2 \eb.\end{split}\]</div>
 </div></blockquote>
 </div>
 <div class="section" id="the-matrix-form-of-the-equations">
@@ -323,7 +323,7 @@ The entry <span class="math notranslate nohighlight">\(a_{57} = A(5,7)\)</span> 
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="chap2-2.html" class="btn btn-neutral float-right" title="Chapter2.2 The idea of Elimination" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="chap2-2.html" class="btn btn-neutral float-right" title="Chapter 2.2 The idea of Elimination" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
         <a href="index2.html" class="btn btn-neutral float-left" title="Chapter 2 Solving Linear Equations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
