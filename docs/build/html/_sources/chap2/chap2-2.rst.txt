@@ -48,7 +48,7 @@ If the first equation is changed to :math:`4x - 8y = 4`, the multiplier changes 
 
     **Multiplier**: (entry to eliminate) divided by (pivot).
 
-*To solve n equations we want n pivots*.
+*To solve* :math:`n` *equations we want* :math:`n` *pivots*.
 **The pivots are on the diagonal of the triangle after elimination**.
 
 Breakdown of Elimination
@@ -65,8 +65,8 @@ Breakdown of Elimination
 **Elimination leads to an equation**
 :math:`\bs{0} \neq \bs{0}` (no solution) or :math:`\bs{0} = \bs{0}` (many solutions)
 
-**Success comes with n pivots.**
-**But we may have to exchange the n equations.**
+**Success comes with** :math:`\bs{n}` **pivots.**
+**But we may have to exchange the** :math:`\bs{n}` **equations.**
 
 Three Equations in Three Unknowns
 ---------------------------------
@@ -113,7 +113,7 @@ For a 4 by 4 problem, or an :math:`n` by :math:`n` problem, elimination proceeds
 
 **Column 2**: Use the new equation 2 to create zeros below the secod pivot.
 
-**Column 3 to n**: Keep going to find all :math:`n` pivots and the upper triangular :math:`U`.
+**Column 3 to** :math:`\bs{n}`: Keep going to find all :math:`n` pivots and the upper triangular :math:`U`.
 
 After column 2 we have :math:`\bb x&x&x&x \\ 0&x&x&x \\ 0&0&x&x \\ 0&0&x&x \eb`.
 We want :math:`\bb x&x&x&x \\ &x&x&x \\ &&x&x \\ &&&x \eb`.
