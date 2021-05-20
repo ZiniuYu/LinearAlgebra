@@ -250,12 +250,59 @@ Then <span class="math notranslate nohighlight">\(E_{ij}\)</span> subtracts a mu
 </div>
 <div class="section" id="matrix-multiplication">
 <h2>Matrix Multiplication<a class="headerlink" href="#matrix-multiplication" title="Permalink to this headline">¶</a></h2>
+<p>How do we mulatiply two matrices?</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}EA = \bb 1&amp;0&amp;0 \\ -2&amp;1&amp;0 \\ 0&amp;0&amp;1 \eb \bb 2&amp;4&amp;-2 \\ 4&amp;9&amp;-3 \\ -2&amp;-3&amp;7 \eb = \bb 2&amp;4&amp;-2 \\ 0&amp;1&amp;1 \\ -2&amp;-3&amp;7 \eb.\end{split}\]</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The first was <span class="math notranslate nohighlight">\(E\)</span> times <span class="math notranslate nohighlight">\(A\x\)</span>, the second is <span class="math notranslate nohighlight">\(EA\)</span> times <span class="math notranslate nohighlight">\(\x\)</span>.
+They are the same.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Associative law is true</strong>: <span class="math notranslate nohighlight">\(A(BC) = (AB)C\)</span></p>
+<p><strong>Commutative law is false</strong>: Often <span class="math notranslate nohighlight">\(AB \neq BA\)</span></p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If <span class="math notranslate nohighlight">\(B\)</span> has several columns <span class="math notranslate nohighlight">\(b_1, b_2, b_3\)</span>, then the columns of <span class="math notranslate nohighlight">\(EB\)</span> are <span class="math notranslate nohighlight">\(Eb_1, Eb_2, Eb_3\)</span>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Matrix multiplication</strong>: <span class="math notranslate nohighlight">\(AB = A\bb \b_1&amp;\b_2&amp;\b_3 \eb = \bb A\b_1&amp;A\b_2&amp;A\b_3 \eb\)</span>.</p>
+</div>
 </div>
 <div class="section" id="the-matrix-p-ij-for-a-row-exchange">
 <h2>The Matrix <span class="math notranslate nohighlight">\(P_{ij}\)</span> for a Row Exchange<a class="headerlink" href="#the-matrix-p-ij-for-a-row-exchange" title="Permalink to this headline">¶</a></h2>
+<p><strong>Permutation matrix</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}P_{23} = \bb 1&amp;0&amp;0 \\ 0&amp;0&amp;1 \\ 0&amp;1&amp;0 \eb.\end{split}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Row Exchange Matrix</strong>: <span class="math notranslate nohighlight">\(P_{ij}\)</span> is the identity matrix with rows <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span> reversed.
+When this “<strong>permutation matrix</strong>” <span class="math notranslate nohighlight">\(P_{ij}\)</span> multiplies a matrix, it exchanges rows <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>.</p>
+</div>
 </div>
 <div class="section" id="the-augmented-matrix">
 <h2>The Augmented Matrix<a class="headerlink" href="#the-augmented-matrix" title="Permalink to this headline">¶</a></h2>
+<p>Elimination does the same row operations to <span class="math notranslate nohighlight">\(A\)</span> and to <span class="math notranslate nohighlight">\(\b\)</span>.
+We can include <span class="math notranslate nohighlight">\(\b\)</span> as an extra column and follow it through elimination.
+The matrix <span class="math notranslate nohighlight">\(A\)</span> is enlarged or “augmented” by the extra column <span class="math notranslate nohighlight">\(\b\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Augmented matrix</strong>: <span class="math notranslate nohighlight">\(\bb A&amp;\b \eb = \bb 2&amp;4&amp;-2&amp;2 \\ 4&amp;9&amp;-3&amp;8 \\-2&amp;-3&amp;7&amp;10 \eb\)</span>.</p>
+</div>
+<p><em>Elimination acts on whole rwos of this matrix</em>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb 1&amp;0&amp;0 \\ -2&amp;1&amp;0 \\ 0&amp;0&amp;1 \eb \bb 2&amp;4&amp;-2&amp;2 \\ 4&amp;9&amp;-3&amp;8 \\-2&amp;-3&amp;7&amp;10 \eb
+= \bb 2&amp;4&amp;-2&amp;2 \\ 0&amp;1&amp;1&amp;4 \\-2&amp;-3&amp;7&amp;10 \eb.\end{split}\]</div>
+<p>Matrix multiplication works by rwos and at the same time by columns:</p>
+<blockquote>
+<div><p><strong>ROWS</strong>: Each row of <span class="math notranslate nohighlight">\(E\)</span> acts on <span class="math notranslate nohighlight">\(\bb A&amp;\b \eb\)</span> to give a row of <span class="math notranslate nohighlight">\(\bb EA&amp;E\b \eb\)</span>.</p>
+<p><strong>COLUMNS</strong>: <span class="math notranslate nohighlight">\(E\)</span> acts on each column of <span class="math notranslate nohighlight">\(\bb A&amp;\b \eb\)</span> to give a column of <span class="math notranslate nohighlight">\(\bb EA&amp;E\b \eb\)</span>.</p>
+</div></blockquote>
+<p><span class="math notranslate nohighlight">\(A\)</span> goes to <span class="math notranslate nohighlight">\(E_{21}A\)</span> which goes to <span class="math notranslate nohighlight">\(E_{31}E_{21}A\)</span>.
+Finally <span class="math notranslate nohighlight">\(E_{32}E_{31}E_{21}A\)</span> is a triangular matrix.</p>
 </div>
 </div>
 

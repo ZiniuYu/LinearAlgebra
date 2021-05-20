@@ -79,8 +79,68 @@ Rows 1 and 3 stay the same:
 Matrix Multiplication
 ---------------------
 
+How do we mulatiply two matrices?
+
+.. math::
+
+    EA = \bb 1&0&0 \\ -2&1&0 \\ 0&0&1 \eb \bb 2&4&-2 \\ 4&9&-3 \\ -2&-3&7 \eb = \bb 2&4&-2 \\ 0&1&1 \\ -2&-3&7 \eb.
+
+.. tip::
+    
+    The first was :math:`E` times :math:`A\x`, the second is :math:`EA` times :math:`\x`.
+    They are the same.
+
+.. note::
+
+    **Associative law is true**: :math:`A(BC) = (AB)C`
+
+    **Commutative law is false**: Often :math:`AB \neq BA`
+
+.. tip::
+
+    If :math:`B` has several columns :math:`b_1, b_2, b_3`, then the columns of :math:`EB` are :math:`Eb_1, Eb_2, Eb_3`.
+
+.. note::
+
+    **Matrix multiplication**: :math:`AB = A\bb \b_1&\b_2&\b_3 \eb = \bb A\b_1&A\b_2&A\b_3 \eb`.
+
 The Matrix :math:`P_{ij}` for a Row Exchange
 --------------------------------------------
 
+**Permutation matrix**
+
+.. math::
+
+    P_{23} = \bb 1&0&0 \\ 0&0&1 \\ 0&1&0 \eb.
+
+.. note::
+
+    **Row Exchange Matrix**: :math:`P_{ij}` is the identity matrix with rows :math:`i` and :math:`j` reversed.
+    When this "**permutation matrix**" :math:`P_{ij}` multiplies a matrix, it exchanges rows :math:`i` and :math:`j`.
+
 The Augmented Matrix
 --------------------
+
+Elimination does the same row operations to :math:`A` and to :math:`\b`.
+We can include :math:`\b` as an extra column and follow it through elimination.
+The matrix :math:`A` is enlarged or "augmented" by the extra column :math:`\b`.
+
+.. note::
+
+    **Augmented matrix**: :math:`\bb A&\b \eb = \bb 2&4&-2&2 \\ 4&9&-3&8 \\-2&-3&7&10 \eb`.
+
+*Elimination acts on whole rwos of this matrix*.
+
+.. math::
+
+    \bb 1&0&0 \\ -2&1&0 \\ 0&0&1 \eb \bb 2&4&-2&2 \\ 4&9&-3&8 \\-2&-3&7&10 \eb
+    = \bb 2&4&-2&2 \\ 0&1&1&4 \\-2&-3&7&10 \eb.
+
+Matrix multiplication works by rwos and at the same time by columns:
+
+    **ROWS**: Each row of :math:`E` acts on :math:`\bb A&\b \eb` to give a row of :math:`\bb EA&E\b \eb`.
+
+    **COLUMNS**: :math:`E` acts on each column of :math:`\bb A&\b \eb` to give a column of :math:`\bb EA&E\b \eb`.
+
+:math:`A` goes to :math:`E_{21}A` which goes to :math:`E_{31}E_{21}A`.
+Finally :math:`E_{32}E_{31}E_{21}A` is a triangular matrix.
