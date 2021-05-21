@@ -193,17 +193,134 @@
 \newcommand{\eb}{\end{bmatrix}}\end{aligned}\end{align} \]</div>
 <div class="section" id="chapter-2-4-rules-for-matrix-operations">
 <h1>Chapter 2.4 Rules for Matrix Operations<a class="headerlink" href="#chapter-2-4-rules-for-matrix-operations" title="Permalink to this headline">¶</a></h1>
+<p><strong>The entry in row</strong> <span class="math notranslate nohighlight">\(i\)</span> <strong>and column</strong> <span class="math notranslate nohighlight">\(j\)</span> <strong>is called</strong> <span class="math notranslate nohighlight">\(a_{ij}\)</span> <strong>or</strong> <span class="math notranslate nohighlight">\(A(i,j)\)</span>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>To multiply</strong> <span class="math notranslate nohighlight">\(AB\)</span>: If <span class="math notranslate nohighlight">\(A\)</span> has <span class="math notranslate nohighlight">\(n\)</span> columns, <span class="math notranslate nohighlight">\(B\)</span> must have <span class="math notranslate nohighlight">\(n\)</span> rows.</p>
+</div>
+<p><strong>Every column of</strong> <span class="math notranslate nohighlight">\(B\)</span> <strong>is multiplied by</strong> <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Fundamental Law of Matrix Multiplication</strong>: <span class="math notranslate nohighlight">\(AB\)</span> times <span class="math notranslate nohighlight">\(C\)</span> equals <span class="math notranslate nohighlight">\(A\)</span> times <span class="math notranslate nohighlight">\(BC\)</span>.</p>
+</div>
+<p>The parentheses can move safely in <span class="math notranslate nohighlight">\((AB)C=A(BC)\)</span>.</p>
+<p>Suppose <span class="math notranslate nohighlight">\(A\)</span> is <span class="math notranslate nohighlight">\(m\)</span> by <span class="math notranslate nohighlight">\(n\)</span> and <span class="math notranslate nohighlight">\(B\)</span> is <span class="math notranslate nohighlight">\(n\)</span> by <span class="math notranslate nohighlight">\(p\)</span>.
+The product <span class="math notranslate nohighlight">\(AB\)</span> is <span class="math notranslate nohighlight">\(m\)</span> by <span class="math notranslate nohighlight">\(p\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[(\bs{m} \times n)(n \times \bs{p}) = (\bs{m} \times \bs{p}).\]</div>
+<p>A row times a column is 1 by <span class="math notranslate nohighlight">\(n\)</span> multiplies <span class="math notranslate nohighlight">\(n\)</span> by 1.
+The result will by 1 by 1.
+That single number is the “dot product”.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>1. The entry in row</strong> <span class="math notranslate nohighlight">\(i\)</span> <strong>and column</strong> <span class="math notranslate nohighlight">\(j\)</span> <strong>of</strong> <span class="math notranslate nohighlight">\(AB\)</span>
+<strong>is</strong> (row <span class="math notranslate nohighlight">\(i\)</span> of <span class="math notranslate nohighlight">\(A\)</span>) <span class="math notranslate nohighlight">\(\cd\)</span> (column <span class="math notranslate nohighlight">\(j\)</span> of <span class="math notranslate nohighlight">\(B\)</span>).</p>
+</div>
+<p>If <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are <span class="math notranslate nohighlight">\(n\)</span> by <span class="math notranslate nohighlight">\(n\)</span>, so is <span class="math notranslate nohighlight">\(AB\)</span>.
+It contains <span class="math notranslate nohighlight">\(n^2\)</span> dot products, row of <span class="math notranslate nohighlight">\(A\)</span> times column of <span class="math notranslate nohighlight">\(B\)</span>.
+Each dot product need <span class="math notranslate nohighlight">\(n\)</span> multiplications, so <strong>the computation of</strong>
+<span class="math notranslate nohighlight">\(AB\)</span> <strong>uses</strong> <span class="math notranslate nohighlight">\(n^3\)</span> <strong>separate multiplications</strong>.</p>
 <div class="section" id="the-second-and-third-ways-rows-and-columns">
 <h2>The Second and Third Ways: Rows and Columns<a class="headerlink" href="#the-second-and-third-ways-rows-and-columns" title="Permalink to this headline">¶</a></h2>
+<p>Each column of <span class="math notranslate nohighlight">\(AB\)</span> is a combination of the columns of <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p><strong>2. Matrix</strong> <span class="math notranslate nohighlight">\(\bs{A}\)</span> <strong>times every column of</strong> <span class="math notranslate nohighlight">\(\bs{B}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[A \bb \b_1 \cds \b_p \eb = \bb A\b_1 \cds A\b_p \eb.\]</div>
+<p>Every row of <span class="math notranslate nohighlight">\(AB\)</span> is a combination of the rows of <span class="math notranslate nohighlight">\(B\)</span>.</p>
+<p><strong>3. Every row of</strong> <span class="math notranslate nohighlight">\(\bs{A}\)</span> <strong>times matrix</strong> <span class="math notranslate nohighlight">\(\bs{B}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb \bs{\mathrm{row}}\ i\ \bs{\mathrm{of}}\ A \eb
+\bb 1&amp;2&amp;3 \\ 4&amp;5&amp;6 \\ 7&amp;8&amp;9 \eb =
+\bb \bs{\mathrm{row}}\ i\ \bs{\mathrm{of}}\ AB \eb.\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(AB = (m \times n)(n \times p) = (m \times p)\)</span>: <span class="math notranslate nohighlight">\(mp\)</span> dot products with <span class="math notranslate nohighlight">\(n\)</span> steps each.</p>
 </div>
 <div class="section" id="the-fourth-way-columns-multiply-rows">
 <h2>The Fourth Way: Columns Multiply Rows<a class="headerlink" href="#the-fourth-way-columns-multiply-rows" title="Permalink to this headline">¶</a></h2>
+<p><strong>4. Multiply columns 1 to</strong> <span class="math notranslate nohighlight">\(\bs{n}\)</span> <strong>of</strong> <span class="math notranslate nohighlight">\(\bs{A}\)</span>
+<strong>times rows 1 to</strong> <span class="math notranslate nohighlight">\(\bs{n}\)</span> <strong>of</strong> <span class="math notranslate nohighlight">\(\bs{B}\)</span><strong>. Add those matrices.</strong></p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\begin{split}\bb \bs{\mathrm{col\ 1}}&amp;\bs{\mathrm{col\ 2}}&amp;\bs{\mathrm{col\ 3}}\\
+\cd&amp;\cd&amp;\cd \\ \cd&amp;\cd&amp;\cd \eb
+\bb \bs{\mathrm{row\ 1}}&amp;\cd&amp;\cd \\ \bs{\mathrm{row\ 2}}&amp;\cd&amp;\cd \\
+\bs{\mathrm{row\ 3}}&amp;\cd&amp;\cd \eb\end{split}\\= (\bs{\mathrm{col\ 1}})(\bs{\mathrm{row\ 1}})
++ (\bs{\mathrm{col\ 2}})(\bs{\mathrm{row\ 2}})
++ (\bs{\mathrm{col\ 3}})(\bs{\mathrm{row\ 3}}).\end{aligned}\end{align} \]</div>
+<p>For 2 by 2 matrices:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}AB = \bb a&amp;b\\c&amp;d \eb \bb E&amp;F\\G&amp;H \eb = \bb aE+bG&amp;aF+bH \\ cE+dG&amp;cF+dH \eb\end{split}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Add columns of</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>times rows of</strong> <span class="math notranslate nohighlight">\(B\)</span>:<span class="math notranslate nohighlight">\(AB = \bb a\\c \eb \bb E&amp;F \eb + \bb b\\d \eb \bb G&amp;H \eb\)</span></p>
+</div>
+<p>This uses the same <span class="math notranslate nohighlight">\(mnp\)</span> steps as in the dot products but in a new order.</p>
 </div>
 <div class="section" id="the-laws-for-matrix-operations">
 <h2>The Laws for Matrix Operations<a class="headerlink" href="#the-laws-for-matrix-operations" title="Permalink to this headline">¶</a></h2>
+<p><strong>Laws that matrix operations obey</strong>:</p>
+<ul class="simple">
+<li><p>Commutative law: <span class="math notranslate nohighlight">\(A+b=B+A\)</span></p></li>
+<li><p>Distributive law: <span class="math notranslate nohighlight">\(c(A+B) = cA+cB\)</span></p></li>
+<li><p>Associative law: <span class="math notranslate nohighlight">\(A+(B+C) = (A+B)+C\)</span></p></li>
+<li><p>Distributive law from the left: <span class="math notranslate nohighlight">\(A(B+C) = AB+AC\)</span></p></li>
+<li><p>Distributive law from the right: <span class="math notranslate nohighlight">\((A+B)C = AC + BC\)</span></p></li>
+<li><p>Associative law for <span class="math notranslate nohighlight">\(ABC\)</span> (<strong>parentheses not needed</strong>): <span class="math notranslate nohighlight">\(A(BC) = (AB)C\)</span></p></li>
+</ul>
+<p><strong>The commutative “law” is usually broken</strong>: <span class="math notranslate nohighlight">\(AB \neq BA\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(A^p = AAA\cds A\)</span> (<span class="math notranslate nohighlight">\(p\)</span> <strong>factors</strong>):
+<span class="math notranslate nohighlight">\((A^p)(A^q) = A^{p+q} \quad (A^p)^q = A^{pq}\)</span></p>
+</div>
 </div>
 <div class="section" id="block-matrices-and-block-multiplication">
 <h2>Block Matrices and Block Multiplication<a class="headerlink" href="#block-matrices-and-block-multiplication" title="Permalink to this headline">¶</a></h2>
+<p>4 by 6 matrix, 2 by 2 blocks give 2 by 3 block matrix:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A =
+\left[\begin{array}{cc|cc|cc}
+1&amp;0&amp;1&amp;0&amp;1&amp;0 \\ 0&amp;1&amp;0&amp;1&amp;0&amp;1 \\ \hline
+1&amp;0&amp;1&amp;0&amp;1&amp;0 \\ 0&amp;1&amp;0&amp;1&amp;0&amp;1
+\end{array}\right]
+= \bb I&amp;I&amp;I \\ I&amp;I&amp;I \eb\end{split}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Block multiplication</strong>: If blocks of <span class="math notranslate nohighlight">\(A\)</span> can multiply blocks of
+<span class="math notranslate nohighlight">\(B\)</span>, then block multiplication of <span class="math notranslate nohighlight">\(AB\)</span> is allowed.
+Cuts between columns of <span class="math notranslate nohighlight">\(A\)</span> match cuts between rows of <span class="math notranslate nohighlight">\(B\)</span>.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\bb A_{11}&amp;A_{12} \\ A_{21}&amp;A_{22} \eb \bb B_{11}\\B_{21} \eb = \bb A_{11}B_{11}+A_{12}B_{21} \\ A_{21}B_{11}+A_{22}B_{21} \eb\)</span></p></li>
+</ul>
+</div>
+<p><strong>Important special case</strong>: Let the blocks of <span class="math notranslate nohighlight">\(A\)</span> be its <span class="math notranslate nohighlight">\(n\)</span> columns.
+Let the blocks of <span class="math notranslate nohighlight">\(B\)</span> be its <span class="math notranslate nohighlight">\(n\)</span> rows.
+Then block multiplication <span class="math notranslate nohighlight">\(AB\)</span> adds up <strong>columns times rows</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb |&amp;&amp;| \\ a_1&amp;\cds &amp;a_n \\ |&amp;&amp;| \eb
+\bb - &amp;b_1&amp; - \\ &amp; \vdots &amp; \\ - &amp;b_n&amp; - \eb
+= \bb a_1b_1 + \cds + a_nb_n \eb.\end{split}\]</div>
+<p>For example,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb 1&amp;4\\1&amp;5 \eb\bb 3&amp;2\\1&amp;0 \eb
+=\bb 1\\1 \eb\bb 3&amp;2 \eb+\bb 4\\5 \eb\bb 1&amp;0 \eb
+=\bb 3&amp;2\\3&amp;2 \eb+\bb 4&amp;0\\5&amp;0 \eb=\bb 7&amp;2\\8&amp;2 \eb.\end{split}\]</div>
+<p>the usual way, rows times columns, gives four dot products (8 multiplications).
+The new way, columns times rows, gives two full matrices (the same 8 multiplications).</p>
+<p><strong>Elimination by blocks</strong>: Suppose a matrix has four blocks <span class="math notranslate nohighlight">\(A, B, C, D\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left[\begin{array}{c|c}
+I &amp; 0 \\ \hline
+-CA^{-1} &amp; I
+\end{array}\right]
+\left[\begin{array}{c|c}
+A &amp; B \\ \hline
+C &amp; D
+\end{array}\right]
+\left[\begin{array}{c|c}
+A &amp; B \\ \hline
+0 &amp; D-CA^{-1}B
+\end{array}\right]\end{split}\]</div>
+<p>The final block is <span class="math notranslate nohighlight">\(D-CA^{-1}B\)</span>, just like <span class="math notranslate nohighlight">\(d-cb/a\)</span>.
+This is called the <strong>Schur complement</strong>.</p>
 </div>
 </div>
 
