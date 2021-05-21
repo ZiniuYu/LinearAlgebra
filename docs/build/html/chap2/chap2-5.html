@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Inverse Matrices &mdash; LinearAlgebra  documentation</title>
+  <title>Chapter 2.5 Inverse Matrices &mdash; LinearAlgebra  documentation</title>
   
 
   
@@ -44,7 +44,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Elimination = Factorization: \(A = LU\)" href="chap2-6.html" />
-    <link rel="prev" title="Rules for Matrix Operations" href="chap2-4.html" /> 
+    <link rel="prev" title="Chapter 2.4 Rules for Matrix Operations" href="chap2-4.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -95,9 +95,15 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index2.html">Chapter 2 Solving Linear Equations</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="chap2-1.html">Chapter 2.1 Vectors and linear Equations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chap2-2.html">Chapter 2.2 The idea of Elimination</a></li>
-<li class="toctree-l2"><a class="reference internal" href="chap2-3.html">Elimination Using Matrices</a></li>
-<li class="toctree-l2"><a class="reference internal" href="chap2-4.html">Rules for Matrix Operations</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Inverse Matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap2-3.html">Chapter 2.3 Elimination Using Matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap2-4.html">Chapter 2.4 Rules for Matrix Operations</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 2.5 Inverse Matrices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-inverse-of-a-product-ab">The Inverse of a Product <span class="math notranslate nohighlight">\(AB\)</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#calculating-a-1-by-gauss-jordan-elimination">Calculating <span class="math notranslate nohighlight">\(A^{-1}\)</span> by Gauss-Jordan Elimination</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#singular-versus-invertible">Singular versus Invertible</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#recognizing-an-invertible-matrix">Recognizing an Invertible Matrix</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="chap2-6.html">Elimination = Factorization: <span class="math notranslate nohighlight">\(A = LU\)</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="chap2-7.html">Transposes and Permutations</a></li>
 </ul>
@@ -153,7 +159,7 @@
         
           <li><a href="index2.html">Chapter 2 Solving Linear Equations</a> &raquo;</li>
         
-      <li>Inverse Matrices</li>
+      <li>Chapter 2.5 Inverse Matrices</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -185,8 +191,57 @@
 \newcommand{\w}{\boldsymbol{w}}
 \newcommand{\x}{\boldsymbol{x}}\\\newcommand{\bb}{\begin{bmatrix}}
 \newcommand{\eb}{\end{bmatrix}}\end{aligned}\end{align} \]</div>
-<div class="section" id="inverse-matrices">
-<h1>Inverse Matrices<a class="headerlink" href="#inverse-matrices" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="chapter-2-5-inverse-matrices">
+<h1>Chapter 2.5 Inverse Matrices<a class="headerlink" href="#chapter-2-5-inverse-matrices" title="Permalink to this headline">¶</a></h1>
+<p>Suppose <span class="math notranslate nohighlight">\(A\)</span> is a square matrix.
+We look for an “<strong>inverse matrix</strong>” <span class="math notranslate nohighlight">\(A^{-1}\)</span> of the same size, such that
+<span class="math notranslate nohighlight">\(A^{-1}\)</span> <em>times</em> <span class="math notranslate nohighlight">\(A\)</span> <em>equals</em> <span class="math notranslate nohighlight">\(I\)</span>.
+<em>But</em> <span class="math notranslate nohighlight">\(A^{-1}\)</span> <em>might not exist</em>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>DEFINITION</strong>: The matrix <span class="math notranslate nohighlight">\(A\)</span> is <strong>invertible</strong> if there exists a
+matrix <span class="math notranslate nohighlight">\(A^{-1}\)</span> that “inverts” <span class="math notranslate nohighlight">\(A\)</span>:</p>
+<ul class="simple">
+<li><p><strong>Two-sided inverse</strong>: <span class="math notranslate nohighlight">\(A^{-1}A = I\)</span> and <span class="math notranslate nohighlight">\(AA^{-1} = I\)</span>.</p></li>
+</ul>
+</div>
+<p><strong>Not all matrices have inverses</strong>:</p>
+<ul>
+<li><p><strong>Note 1</strong>: The inverse exists if and onlyu if elimination produces <span class="math notranslate nohighlight">\(n\)</span> pivots (row exchanges are allowed).</p></li>
+<li><p><strong>Note 2</strong>: The matrix <span class="math notranslate nohighlight">\(A\)</span> cannot have two different inverses.
+Suppose <span class="math notranslate nohighlight">\(BA=I\)</span> and also <span class="math notranslate nohighlight">\(AC=I\)</span>.
+Then <span class="math notranslate nohighlight">\(B =C\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[B(AC) = (BA)C\ \mathrm{gives}\ BI=IC\ \mathrm{or}\ B=C.\]</div>
+<p>This shows that a <em>left-inverse</em> <span class="math notranslate nohighlight">\(B\)</span> and a <em>right-inverse</em> <span class="math notranslate nohighlight">\(C\)</span> must be the <em>same matrix</em>.</p>
+</li>
+<li><p><strong>Note 3</strong>: If <span class="math notranslate nohighlight">\(A\)</span> is invertible, the one and only solution to <span class="math notranslate nohighlight">\(A\x=\b\)</span> is <span class="math notranslate nohighlight">\(\x=A^{-1}\b\)</span>:</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Multiply</strong> <span class="math notranslate nohighlight">\(A\x=\b\)</span> <strong>by</strong> <span class="math notranslate nohighlight">\(A^{-1}\)</span>. <strong>Then</strong> <span class="math notranslate nohighlight">\(\x = A^{-1}A\x = A^{-1}\b\)</span>.</p>
+</div>
+<ul class="simple">
+<li><p><strong>Note 4</strong>: <strong>Suppose there is a nonzero vector</strong> <span class="math notranslate nohighlight">\(\x\)</span> <strong>such that</strong> <span class="math notranslate nohighlight">\(A\x = \bs{0}\)</span>.
+<em>Then</em> <span class="math notranslate nohighlight">\(A\)</span> <em>connot have an inverse</em>.
+no matrix can bring <span class="math notranslate nohighlight">\(\bs{0}\)</span> back to <span class="math notranslate nohighlight">\(\x\)</span>.</p></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If <span class="math notranslate nohighlight">\(A\)</span> is invertible, then <span class="math notranslate nohighlight">\(A\x=\bs{0}\)</span> can only have the zero solution <span class="math notranslate nohighlight">\(\x=A^{-1}\bs{0}=\bs{0}\)</span>.</p>
+</div>
+<div class="section" id="the-inverse-of-a-product-ab">
+<h2>The Inverse of a Product <span class="math notranslate nohighlight">\(AB\)</span><a class="headerlink" href="#the-inverse-of-a-product-ab" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="calculating-a-1-by-gauss-jordan-elimination">
+<h2>Calculating <span class="math notranslate nohighlight">\(A^{-1}\)</span> by Gauss-Jordan Elimination<a class="headerlink" href="#calculating-a-1-by-gauss-jordan-elimination" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="singular-versus-invertible">
+<h2>Singular versus Invertible<a class="headerlink" href="#singular-versus-invertible" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="recognizing-an-invertible-matrix">
+<h2>Recognizing an Invertible Matrix<a class="headerlink" href="#recognizing-an-invertible-matrix" title="Permalink to this headline">¶</a></h2>
+</div>
 </div>
 
 
@@ -196,7 +251,7 @@
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
         <a href="chap2-6.html" class="btn btn-neutral float-right" title="Elimination = Factorization: \(A = LU\)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="chap2-4.html" class="btn btn-neutral float-left" title="Rules for Matrix Operations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="chap2-4.html" class="btn btn-neutral float-left" title="Chapter 2.4 Rules for Matrix Operations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
