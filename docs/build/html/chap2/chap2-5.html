@@ -207,7 +207,7 @@ matrix <span class="math notranslate nohighlight">\(A^{-1}\)</span> that “inve
 </div>
 <p><strong>Not all matrices have inverses</strong>:</p>
 <ul>
-<li><p><strong>Note 1</strong>: The inverse exists if and onlyu if elimination produces <span class="math notranslate nohighlight">\(n\)</span> pivots (row exchanges are allowed).</p></li>
+<li><p><strong>Note 1</strong>: The inverse exists if and only if elimination produces <span class="math notranslate nohighlight">\(n\)</span> pivots (row exchanges are allowed).</p></li>
 <li><p><strong>Note 2</strong>: The matrix <span class="math notranslate nohighlight">\(A\)</span> cannot have two different inverses.
 Suppose <span class="math notranslate nohighlight">\(BA=I\)</span> and also <span class="math notranslate nohighlight">\(AC=I\)</span>.
 Then <span class="math notranslate nohighlight">\(B =C\)</span>:</p>
@@ -230,14 +230,159 @@ no matrix can bring <span class="math notranslate nohighlight">\(\bs{0}\)</span>
 <p class="admonition-title">Tip</p>
 <p>If <span class="math notranslate nohighlight">\(A\)</span> is invertible, then <span class="math notranslate nohighlight">\(A\x=\bs{0}\)</span> can only have the zero solution <span class="math notranslate nohighlight">\(\x=A^{-1}\bs{0}=\bs{0}\)</span>.</p>
 </div>
+<ul>
+<li><p><strong>Note 5</strong>: A 2 by 2 matrix is invertible if and only if <span class="math notranslate nohighlight">\(ad-bc\)</span> is not zero:</p>
+<p><strong>2 by 2 Inverse</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb a&amp;d\\c&amp;d \eb^{-1} = \frac{1}{ad-bc} \bb d&amp;-b\\-c&amp;a \eb.\end{split}\]</div>
+<p>The number <span class="math notranslate nohighlight">\(ad-bc\)</span> is the determinant of <span class="math notranslate nohighlight">\(A\)</span>.
+A matrix is invertible if its determinant is not zero.</p>
+</li>
+<li><p><strong>Note 6</strong>: A diagonal matrix has an inverse provided no diagonal entries are zero:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathrm{If}\ A = \bb d_1 \\ &amp; \ddots \\ &amp;&amp; d_n \eb \ \mathrm{then}\
+A^{-1} = \bb 1/d_1 \\ &amp; \ddots \\ &amp;&amp; 1/d_n \eb.\end{split}\]</div>
+</li>
+</ul>
 <div class="section" id="the-inverse-of-a-product-ab">
 <h2>The Inverse of a Product <span class="math notranslate nohighlight">\(AB\)</span><a class="headerlink" href="#the-inverse-of-a-product-ab" title="Permalink to this headline">¶</a></h2>
+<p>The product <span class="math notranslate nohighlight">\(AB\)</span> has an inverse, if and only if the two factors <span class="math notranslate nohighlight">\(A\)</span>
+and <span class="math notranslate nohighlight">\(B\)</span> are separately invertible (and the same size).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are invertible then so is <span class="math notranslate nohighlight">\(AB\)</span>.
+The inverse of a product <span class="math notranslate nohighlight">\(AB\)</span> is</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\((AB)^{-1}=B^{-1}A^{-1}\)</span>.</p></li>
+</ul>
+</div>
+<p><strong>Inverse of AB</strong>:</p>
+<div class="math notranslate nohighlight">
+\[(AB)^{-1}(B^{-1}A^{-1}) = AIA^{-1} = AA^{-1} = I.\]</div>
+<p><strong>Reverse order</strong>:</p>
+<div class="math notranslate nohighlight">
+\[(ABC)^{-1} = C^{-1}B^{-1}A^{-1}.\]</div>
+<p><strong>Inverse of an elimination matrix</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}E = \bb 1&amp;0&amp;0\\-5&amp;1&amp;0\\0&amp;0&amp;1 \eb\ \mathrm{and}\ E^{-1} = \bb 1&amp;0&amp;0\\5&amp;1&amp;0\\0&amp;0&amp;1 \eb.\end{split}\]</div>
+<p>For square matrices, an inverse on one side is automatically an inverse on the other side.</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\begin{split}F = \bb 1&amp;0&amp;0\\0&amp;1&amp;0\\0&amp;-4&amp;1 \eb\ \mathrm{and}\ F^{-1} = \bb 1&amp;0&amp;0\\0&amp;1&amp;0\\0&amp;4&amp;1 \eb.\end{split}\\\begin{split}FE = \bb 1&amp;0&amp;0\\-5&amp;1&amp;0\\20&amp;-4&amp;1 \eb\ \mathrm{is\ inverted\ by}\ E^{-1}F^{-1} = \bb 1&amp;0&amp;0\\5&amp;1&amp;0\\0&amp;4&amp;1 \eb.\end{split}\end{aligned}\end{align} \]</div>
+<ul class="simple">
+<li><p>In this order <span class="math notranslate nohighlight">\(FE\)</span>, row 3 feels an effect from row 1.</p></li>
+<li><p>In this order <span class="math notranslate nohighlight">\(E^{-1}F^{-1}\)</span>, row 3 feels no effect from row 1.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In elimination order <span class="math notranslate nohighlight">\(F\)</span> follows <span class="math notranslate nohighlight">\(E\)</span>.
+In reverse order <span class="math notranslate nohighlight">\(E^{-1}\)</span> follows <span class="math notranslate nohighlight">\(F^{-1}\)</span>.
+<span class="math notranslate nohighlight">\(\bs{E^{-1}F^{-1}}\)</span> <strong>is quick.</strong>
+<strong>The multipliers 5, 4 fall into place below the diagonal of 1’s.</strong></p>
+</div>
 </div>
 <div class="section" id="calculating-a-1-by-gauss-jordan-elimination">
 <h2>Calculating <span class="math notranslate nohighlight">\(A^{-1}\)</span> by Gauss-Jordan Elimination<a class="headerlink" href="#calculating-a-1-by-gauss-jordan-elimination" title="Permalink to this headline">¶</a></h2>
+<p>Each of the columns <span class="math notranslate nohighlight">\(\bs{x_1}, \bs{x_2}, \bs{x_3}\)</span> of <span class="math notranslate nohighlight">\(A^{-1}\)</span> is
+multiplied by <span class="math notranslate nohighlight">\(A\)</span> to produce a column of <span class="math notranslate nohighlight">\(I\)</span>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>3 columns of</strong> <span class="math notranslate nohighlight">\(A^{-1}\)</span>:
+<span class="math notranslate nohighlight">\(AA^{-1}=A\bb \bs{x_1}&amp;\bs{x_2}&amp;\bs{x_3} \eb = \bb \bs{e_1}&amp;\bs{e_2}&amp;\bs{e_3} \eb = I\)</span>.</p>
+</div>
+<p><strong>The Gauss-Jordan method computes</strong> <span class="math notranslate nohighlight">\(A^{-1}\)</span> <strong>by solving all</strong> <span class="math notranslate nohighlight">\(n\)</span> <strong>equations together</strong>.</p>
+<p>Start Gauss-Jordan on <span class="math notranslate nohighlight">\(K\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb K&amp;\bs{e_1}&amp;\bs{e_2}&amp;\bs{e_3} \eb = \bb 2&amp;-1&amp;0&amp;1&amp;0&amp;0 \\ -1&amp;2&amp;-1&amp;0&amp;1&amp;0 \\ 0&amp;-1&amp;2&amp;0&amp;0&amp;1 \eb\end{split}\]</div>
+<p>(<span class="math notranslate nohighlight">\(\frac{1}{2}\)</span>row 1 + row 2)</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\rightarrow \bb 2&amp;-1&amp;0&amp;1&amp;0&amp;0 \\ 0&amp;\frac{3}{2}&amp;-1&amp;\frac{1}{2}&amp;1&amp;0 \\ 0&amp;-1&amp;2&amp;0&amp;0&amp;1 \eb\end{split}\]</div>
+<p>(<span class="math notranslate nohighlight">\(\frac{2}{3}\)</span>row 2 + row 3)</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\rightarrow \bb 2&amp;-1&amp;0&amp;1&amp;0&amp;0 \\ 0&amp;\frac{3}{2}&amp;-1&amp;\frac{1}{2}&amp;1&amp;0 \\ 0&amp;0&amp;\frac{4}{3}&amp;\frac{1}{3}&amp;\frac{2}{3}&amp;1 \eb\end{split}\]</div>
+<p>The matrix in the first three columns is <span class="math notranslate nohighlight">\(U\)</span> (upper triangular).
+Jordan goes all the way to the <strong>reduced echelon form</strong> <span class="math notranslate nohighlight">\(\bs{R=I}\)</span>.
+Rows are added to rows above them, to produce <strong>zeros above the pivots</strong></p>
+<p>(Zero above third pivot) (<span class="math notranslate nohighlight">\(\frac{3}{4}\)</span>row 3 + row 2)</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\rightarrow \bb 2&amp;-1&amp;0&amp;1&amp;0&amp;0 \\
+0&amp;\frac{3}{2}&amp;0&amp;\frac{3}{4}&amp;\frac{3}{2}&amp;\frac{3}{4} \\
+0&amp;0&amp;\frac{4}{3}&amp;\frac{1}{3}&amp;\frac{2}{3}&amp;1 \eb\end{split}\]</div>
+<p>(Zero above second pivot) (<span class="math notranslate nohighlight">\(\frac{2}{3}\)</span>row 2 + row 1)</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\rightarrow \bb 2&amp;0&amp;0&amp;\frac{3}{2}&amp;1&amp;\frac{1}{2} \\
+0&amp;\frac{3}{2}&amp;0&amp;\frac{3}{4}&amp;\frac{3}{2}&amp;\frac{3}{4} \\
+0&amp;0&amp;\frac{4}{3}&amp;\frac{1}{3}&amp;\frac{2}{3}&amp;1 \eb\end{split}\]</div>
+<p><strong>The three columns of</strong> <span class="math notranslate nohighlight">\(K^{-1}\)</span> <strong>are in the second half of</strong> <span class="math notranslate nohighlight">\(\bb I &amp; K^{-1} \eb\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{matrix}
+(\mathrm{divide\ by\ }2) \\
+(\mathrm{divide\ by\ }\frac{3}{2}) \\
+(\mathrm{divide\ by\ }\frac{4}{3})
+\end{matrix}\quad
+\bb 1&amp;0&amp;0&amp;\frac{3}{4}&amp;\frac{1}{2}&amp;\frac{1}{4} \\
+0&amp;1&amp;0&amp;\frac{1}{2}&amp;1&amp;\frac{1}{2} \\
+0&amp;0&amp;1&amp;\frac{1}{4}&amp;\frac{1}{2}&amp;\frac{3}{4} \eb
+= \bb I&amp;\bs{x_1}&amp;\bs{x_2}&amp;\bs{x_3} \eb = \bb I &amp; K^{-1} \eb.\end{split}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Gauss-Jordan</strong>:
+Multiply <span class="math notranslate nohighlight">\(\bb \bs{A}&amp;\bs{I} \eb\)</span> by <span class="math notranslate nohighlight">\(\bs{A^{-1}}\)</span> to get <span class="math notranslate nohighlight">\(\bb \bs{I}&amp;\bs{A^{-1}} \eb\)</span>.</p>
+</div>
+<p>Observations about <span class="math notranslate nohighlight">\(K^{-1}\)</span>:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(K\)</span> is <strong>symmetric</strong> across its main diagonal. Then <span class="math notranslate nohighlight">\(K^{-1}\)</span> is also symmetric.</p></li>
+<li><p><span class="math notranslate nohighlight">\(K\)</span> is <strong>tridiagonal</strong> (only three nonzero diagonals). But <span class="math notranslate nohighlight">\(K^{-1}\)</span> is a dense matrix with no zeros. The inverse of a band matrix is generally a dense matrix.</p></li>
+<li><p>The <em>product of pivots</em> is <span class="math notranslate nohighlight">\(2(\frac{3}{2})(\frac{4}{3})=4\)</span>. This number 4 is the <strong>determinant</strong> of <span class="math notranslate nohighlight">\(K\)</span>.</p></li>
+</ol>
+<p><span class="math notranslate nohighlight">\(\bs{K^{-1}}\)</span> <strong>involves division by the determinant of</strong> <span class="math notranslate nohighlight">\(\bs{K}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}K^{-1} = \frac{1}{4} \bb 3&amp;2&amp;1 \\ 2&amp;4&amp;2 \\ 1&amp;2&amp;3 \eb.\end{split}\]</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>This is why an invertible matrix cannot have a zero determinant: we need to divide.</p>
+</div>
+<p><strong>If</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>is invertible and upper triangular, so is</strong> <span class="math notranslate nohighlight">\(A^{-1}\)</span>.</p>
+<p>The total cost for <span class="math notranslate nohighlight">\(A^{-1}\)</span> using Gauss-Jordan elimination is <span class="math notranslate nohighlight">\(n^3\)</span> multiplications and subtractions.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To solve <span class="math notranslate nohighlight">\(Ax=b\)</span> without <span class="math notranslate nohighlight">\(A^{-1}\)</span>, we deal with one column <span class="math notranslate nohighlight">\(b\)</span> to find one column <span class="math notranslate nohighlight">\(x\)</span>.</p>
+</div>
 </div>
 <div class="section" id="singular-versus-invertible">
 <h2>Singular versus Invertible<a class="headerlink" href="#singular-versus-invertible" title="Permalink to this headline">¶</a></h2>
+<p><span class="math notranslate nohighlight">\(\bs{A^{-1}}\)</span> <strong>exists exactly when</strong> <span class="math notranslate nohighlight">\(\bs{A}\)</span> <strong>has a full set of</strong> <span class="math notranslate nohighlight">\(\bs{n}\)</span> <strong>pivots</strong>.
+(Row exhange are allowed)
+Prove by Gauss-Jordan elimination:</p>
+<ol class="arabic simple">
+<li><p>With <span class="math notranslate nohighlight">\(n\)</span> pivots, elimination solves all the equations <span class="math notranslate nohighlight">\(A\x_i=\bs{e}_i\)</span>. The columns <span class="math notranslate nohighlight">\(\x_i\)</span> go into <span class="math notranslate nohighlight">\(A^{-1}\)</span>. Then <span class="math notranslate nohighlight">\(AA^{-1}=I\)</span> and <span class="math notranslate nohighlight">\(A^{-1}\)</span> is at least a <strong>right-inverse</strong>.</p></li>
+<li><p>Elimination is really a sequence of multiplication by <span class="math notranslate nohighlight">\(E\)</span>’s and <span class="math notranslate nohighlight">\(P\)</span>’s and <span class="math notranslate nohighlight">\(D^{-1}\)</span>:</p></li>
+</ol>
+<p><strong>Left-inverse</strong> <span class="math notranslate nohighlight">\(C\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[CA = (D^{-1}\cds E \cds P \cds E)A = I.\]</div>
+<p><span class="math notranslate nohighlight">\(D^{-1}\)</span> divides by the pivots.
+The matrices <span class="math notranslate nohighlight">\(E\)</span> produce zeros below and above the pivots.
+<span class="math notranslate nohighlight">\(P\)</span> exchanges rows if needed.</p>
+<p><span class="math notranslate nohighlight">\(A\)</span> <strong>must have</strong> <span class="math notranslate nohighlight">\(n\)</span> <strong>pivots if</strong> <span class="math notranslate nohighlight">\(AC=I\)</span>:</p>
+<ol class="arabic simple">
+<li><p>If <span class="math notranslate nohighlight">\(A\)</span> doesn’t have <span class="math notranslate nohighlight">\(n\)</span> pivots, elimination will lead to a <em>zero row</em>.</p></li>
+<li><p>Those elimination steps are taken by an invertible <span class="math notranslate nohighlight">\(M\)</span>. So a row of <span class="math notranslate nohighlight">\(MA\)</span> is zero.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(AC=I\)</span> had been possible, then <span class="math notranslate nohighlight">\(MAC=M\)</span>. The zero row of <span class="math notranslate nohighlight">\(MA\)</span>, times <span class="math notranslate nohighlight">\(C\)</span>, gives a zero row of <span class="math notranslate nohighlight">\(M\)</span> itself.</p></li>
+<li><p>An invertible matrix <span class="math notranslate nohighlight">\(M\)</span> can’t have a zero row! <span class="math notranslate nohighlight">\(A\)</span> <em>must</em> have <span class="math notranslate nohighlight">\(n\)</span> pivots if <span class="math notranslate nohighlight">\(AC=I\)</span>.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Elimination gives a complete test for invertibility of a square matrix.
+<span class="math notranslate nohighlight">\(\bs{A^{-1}}\)</span> <strong>exists when</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>has</strong> <span class="math notranslate nohighlight">\(n\)</span> <a href="#id1"><span class="problematic" id="id2">**</span></a>pivots.
+The argument above shows more:</p>
+<ul class="simple">
+<li><p>If <span class="math notranslate nohighlight">\(AC=I\)</span> then <span class="math notranslate nohighlight">\(CA=I\)</span> and <span class="math notranslate nohighlight">\(C=A^{-1}\)</span>.</p></li>
+</ul>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>A triangular matrix is invertible if and only if no diagonal entries are zero.</p>
+</div>
 </div>
 <div class="section" id="recognizing-an-invertible-matrix">
 <h2>Recognizing an Invertible Matrix<a class="headerlink" href="#recognizing-an-invertible-matrix" title="Permalink to this headline">¶</a></h2>
