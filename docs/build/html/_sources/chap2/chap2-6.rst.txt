@@ -90,7 +90,7 @@ One Square System = Two Triangular Systems
 
     **Forward and backward**: Solve :math:`L\bs{c} = \b` and then solve :math:`U\x = \bs{c}`.
 
-:math:`LU\x = L\bs{c}` is just :math:`A\x=\b`
+:math:`LU\x = L\bs{c}` is just :math:`A\x=\b`.
 
 The Cost of Elimination
 -----------------------
