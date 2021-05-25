@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Elimination = Factorization: \(A = LU\) &mdash; LinearAlgebra  documentation</title>
+  <title>Chapter 2.6 Elimination = Factorization: \(A = LU\) &mdash; LinearAlgebra  documentation</title>
   
 
   
@@ -44,7 +44,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Transposes and Permutations" href="chap2-7.html" />
-    <link rel="prev" title="Inverse Matrices" href="chap2-5.html" /> 
+    <link rel="prev" title="Chapter 2.5 Inverse Matrices" href="chap2-5.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -95,10 +95,15 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index2.html">Chapter 2 Solving Linear Equations</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="chap2-1.html">Chapter 2.1 Vectors and linear Equations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chap2-2.html">Chapter 2.2 The idea of Elimination</a></li>
-<li class="toctree-l2"><a class="reference internal" href="chap2-3.html">Elimination Using Matrices</a></li>
-<li class="toctree-l2"><a class="reference internal" href="chap2-4.html">Rules for Matrix Operations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="chap2-5.html">Inverse Matrices</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Elimination = Factorization: <span class="math notranslate nohighlight">\(A = LU\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap2-3.html">Chapter 2.3 Elimination Using Matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap2-4.html">Chapter 2.4 Rules for Matrix Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap2-5.html">Chapter 2.5 Inverse Matrices</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 2.6 Elimination = Factorization: <span class="math notranslate nohighlight">\(A = LU\)</span></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#explanation-and-examples">Explanation and Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#one-square-system-two-triangular-systems">One Square System = Two Triangular Systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-cost-of-elimination">The Cost of Elimination</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="chap2-7.html">Transposes and Permutations</a></li>
 </ul>
 </li>
@@ -153,7 +158,7 @@
         
           <li><a href="index2.html">Chapter 2 Solving Linear Equations</a> &raquo;</li>
         
-      <li>Elimination = Factorization: <span class="math notranslate nohighlight">\(A = LU\)</span></li>
+      <li>Chapter 2.6 Elimination = Factorization: <span class="math notranslate nohighlight">\(A = LU\)</span></li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -185,8 +190,72 @@
 \newcommand{\w}{\boldsymbol{w}}
 \newcommand{\x}{\boldsymbol{x}}\\\newcommand{\bb}{\begin{bmatrix}}
 \newcommand{\eb}{\end{bmatrix}}\end{aligned}\end{align} \]</div>
-<div class="section" id="elimination-factorization-a-lu">
-<h1>Elimination = Factorization: <span class="math notranslate nohighlight">\(A = LU\)</span><a class="headerlink" href="#elimination-factorization-a-lu" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="chapter-2-6-elimination-factorization-a-lu">
+<h1>Chapter 2.6 Elimination = Factorization: <span class="math notranslate nohighlight">\(A = LU\)</span><a class="headerlink" href="#chapter-2-6-elimination-factorization-a-lu" title="Permalink to this headline">¶</a></h1>
+<p><strong>The factors</strong> <span class="math notranslate nohighlight">\(L\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(U\)</span> <strong>are triangular matrices</strong>.
+<strong>The factorization that comes from elimination is</strong> <span class="math notranslate nohighlight">\(\bs{A=LU}\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(U\)</span> is the upper triangular matrix with the pivots on its diagonal from elimination.</p>
+<p><span class="math notranslate nohighlight">\(L\)</span> is the lower triangular matrix whose entries are exactly the
+multipliers <span class="math notranslate nohighlight">\(l_{ij}\)</span>–which multiplied the pivot row <span class="math notranslate nohighlight">\(j\)</span> when it was
+subtracted from row <span class="math notranslate nohighlight">\(i\)</span>.</p>
+<p>Forward from <span class="math notranslate nohighlight">\(A\)</span> to <span class="math notranslate nohighlight">\(U\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}E_{21}A = \bb 1&amp;0\\-3&amp;1 \eb \bb 2&amp;1\\6&amp;8 \eb = \bb 2&amp;1\\0&amp;5 \eb = U.\end{split}\]</div>
+<p>Back from <span class="math notranslate nohighlight">\(U\)</span> to <span class="math notranslate nohighlight">\(A\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}E_{21}^{-1}A = \bb 1&amp;0\\3&amp;1 \eb \bb 2&amp;1\\0&amp;5 \eb = \bb 2&amp;1\\6&amp;8 \eb = A = LU.\end{split}\]</div>
+<p>For larger matrices with many <span class="math notranslate nohighlight">\(E\)</span>’s, <span class="math notranslate nohighlight">\(L\)</span> will include all their inverses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\((E_{32}E_{31}E_{21})A=U\)</span> becomes <span class="math notranslate nohighlight">\(A=(E_{21}^{-1}E_{31}^{-1}E_{32}^{-1})U\)</span> which is <span class="math notranslate nohighlight">\(A=LU\)</span>.</p>
+</div>
+<div class="section" id="explanation-and-examples">
+<h2>Explanation and Examples<a class="headerlink" href="#explanation-and-examples" title="Permalink to this headline">¶</a></h2>
+<p><em>First point</em>: Every inverse matrix <span class="math notranslate nohighlight">\(E^{-1}\)</span> is <em>lower triangular</em>.
+Its off-diagonal entry is <span class="math notranslate nohighlight">\(l_{ij}\)</span>, to undo the subtraction produced by <span class="math notranslate nohighlight">\(-l_{ij}\)</span>.
+The main diagonals of <span class="math notranslate nohighlight">\(E\)</span> and <span class="math notranslate nohighlight">\(E^{-1}\)</span> contain 1’s.</p>
+<p><em>Second point</em>: <strong>This lower triangular product of inverses is</strong> <span class="math notranslate nohighlight">\(\bs{L}\)</span>.</p>
+<p><em>Third point</em>: Each multiplier <span class="math notranslate nohighlight">\(l_{ij}\)</span> goes directly into its <span class="math notranslate nohighlight">\(i,j\)</span>
+position <em>unchanged</em> in the product of inverses which is <span class="math notranslate nohighlight">\(L\)</span>.
+<span class="math notranslate nohighlight">\(L\)</span> also has 1’s down its diagonal.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(\bs{A=LU}\)</span>: <strong>This is elimination without row exchanges</strong>.
+The upper triangular <span class="math notranslate nohighlight">\(U\)</span> has the pivots on its diagonal.
+The lower triangular <span class="math notranslate nohighlight">\(L\)</span> has all 1’s on its diagonal.
+<strong>The multipliers</strong> <span class="math notranslate nohighlight">\(l_{ij}\)</span> <strong>are below the diagonal of</strong> <span class="math notranslate nohighlight">\(L\)</span>.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<ul class="simple">
+<li><p>When a row of <span class="math notranslate nohighlight">\(A\)</span> starts with zeros, so does that row of <span class="math notranslate nohighlight">\(L\)</span>.</p></li>
+<li><p>When a column of <span class="math notranslate nohighlight">\(A\)</span> starts with zeros, so does that column of <span class="math notranslate nohighlight">\(U\)</span>.</p></li>
+</ul>
+</div>
+<p><strong>The key reason why</strong> <span class="math notranslate nohighlight">\(A\)</span> equals <span class="math notranslate nohighlight">\(LU\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{Row\ 3\ of\ }U=(\mathrm{Row\ 3\ of\ } A)-l_{31}(\mathrm{Row\ 1\ of\ } U)-l_{32}(\mathrm{Row\ 2\ of\ } U)\]</div>
+<p>Rewrite this equation to see that the row <span class="math notranslate nohighlight">\(\bb l_{31} &amp; l_{32} 1 \eb\)</span> is multiplying the matrix <span class="math notranslate nohighlight">\(U\)</span>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(\mathrm{Row\ 3\ of\ }A=1(\mathrm{Row\ 3\ of\ } U)+l_{31}(\mathrm{Row\ 1\ of\ } U)+l_{32}(\mathrm{Row\ 2\ of\ } U)\)</span></p>
+</div>
+<p><strong>Better balance from LDU</strong>: <strong>Divide</strong> <span class="math notranslate nohighlight">\(U\)</span> <strong>by a diagonal matrix</strong> <span class="math notranslate nohighlight">\(D\)</span> <strong>that contains the pivots</strong>.
+That leaves a new triangular matrix with 1’s on the diagonal:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathrm{Split\ } U \mathrm{\ into\ } \bb d_1\\&amp;d2\\&amp;&amp;\ddots\\&amp;&amp;&amp;d_n \eb
+\bb 1&amp;u_{12}/d_1&amp;u_{13}/d_1&amp;\cd\\&amp;1&amp;u_{23}/d_2&amp;\cd\\&amp;&amp;\ddots&amp;\vdots\\&amp;&amp;&amp;1 \eb.\end{split}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>The triangular factorization can be written</strong> <span class="math notranslate nohighlight">\(\bs{A=LU}\)</span> or <span class="math notranslate nohighlight">\(\bs{A=LDU}\)</span>.</p>
+</div>
+</div>
+<div class="section" id="one-square-system-two-triangular-systems">
+<h2>One Square System = Two Triangular Systems<a class="headerlink" href="#one-square-system-two-triangular-systems" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="the-cost-of-elimination">
+<h2>The Cost of Elimination<a class="headerlink" href="#the-cost-of-elimination" title="Permalink to this headline">¶</a></h2>
+</div>
 </div>
 
 
@@ -196,7 +265,7 @@
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
         <a href="chap2-7.html" class="btn btn-neutral float-right" title="Transposes and Permutations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="chap2-5.html" class="btn btn-neutral float-left" title="Inverse Matrices" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="chap2-5.html" class="btn btn-neutral float-left" title="Chapter 2.5 Inverse Matrices" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
