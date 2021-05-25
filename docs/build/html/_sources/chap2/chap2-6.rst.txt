@@ -80,7 +80,17 @@ That leaves a new triangular matrix with 1's on the diagonal:
 One Square System = Two Triangular Systems
 ------------------------------------------
 
+.. note::
 
+    **1 Factor** (into :math:`L` and :math:`U`, by elimination on the left side matrix :math:`A`).
+
+    **2 Solve** (forward elimination on :math:`\b` using :math:`L`, then back substitution for :math:`\x` using :math:`U`.
+
+.. note::
+
+    **Forward and backward**: Solve :math:`L\bs{c} = \b` and then solve :math:`U\x = \bs{c}`.
+
+:math:`LU\x = L\bs{c}` is just :math:`A\x=\b`
 
 The Cost of Elimination
 -----------------------

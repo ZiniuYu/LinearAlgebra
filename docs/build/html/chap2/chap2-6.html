@@ -252,6 +252,16 @@ That leaves a new triangular matrix with 1’s on the diagonal:</p>
 </div>
 <div class="section" id="one-square-system-two-triangular-systems">
 <h2>One Square System = Two Triangular Systems<a class="headerlink" href="#one-square-system-two-triangular-systems" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>1 Factor</strong> (into <span class="math notranslate nohighlight">\(L\)</span> and <span class="math notranslate nohighlight">\(U\)</span>, by elimination on the left side matrix <span class="math notranslate nohighlight">\(A\)</span>).</p>
+<p><strong>2 Solve</strong> (forward elimination on <span class="math notranslate nohighlight">\(\b\)</span> using <span class="math notranslate nohighlight">\(L\)</span>, then back substitution for <span class="math notranslate nohighlight">\(\x\)</span> using <span class="math notranslate nohighlight">\(U\)</span>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Forward and backward</strong>: Solve <span class="math notranslate nohighlight">\(L\bs{c} = \b\)</span> and then solve <span class="math notranslate nohighlight">\(U\x = \bs{c}\)</span>.</p>
+</div>
+<p><span class="math notranslate nohighlight">\(LU\x = L\bs{c}\)</span> is just <span class="math notranslate nohighlight">\(A\x=\b\)</span></p>
 </div>
 <div class="section" id="the-cost-of-elimination">
 <h2>The Cost of Elimination<a class="headerlink" href="#the-cost-of-elimination" title="Permalink to this headline">¶</a></h2>
