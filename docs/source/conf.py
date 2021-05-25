@@ -65,6 +65,7 @@ rst_prolog = r'''
     \newcommand{\rv}{\rVert}
     
     \newcommand{\b}{\boldsymbol{b}}
+    \newcommand{\e}{\boldsymbol{e}}
     \newcommand{\i}{\boldsymbol{i}}
     \newcommand{\j}{\boldsymbol{j}}
     \newcommand{\u}{\boldsymbol{u}}
@@ -74,6 +75,8 @@ rst_prolog = r'''
 
     \newcommand{\bb}{\begin{bmatrix}}
     \newcommand{\eb}{\end{bmatrix}}
+
+    \newcommand{\im}{^{-1}}
 '''
 
 # # -- Options for MathJax -----------------------------------------------------
