@@ -95,3 +95,19 @@ One Square System = Two Triangular Systems
 The Cost of Elimination
 -----------------------
 
+.. note::
+
+    **Elimination on** :math:`A` **requires about** :math:`\frac{1}{3}n^3` 
+    **multiplications and** :math:`\frac{1}{3}n^3` **subtractions**.
+
+.. note::
+
+    **Solve**: **Each right side needs** :math:`n^2` **multiplications and** :math:`n^2` **subtractions**.
+
+A **band matrix** :math:`B` has only :math:`w` nonzero diagonals below and above its main diagonal.
+The zero entries outside the band stay zero in elimination (they are zero in :math:`L` and :math:`U`).
+
+.. note::
+
+    **Band matrix**: :math:`\bs{A}` **to** :math:`\bs{U}`: :math:`\frac{1}{3}n^3` 
+    reduces to :math:`nw^2\quad` **Solve**: :math:`n^2` reduces to :math:`2nw`.
