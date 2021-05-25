@@ -251,3 +251,28 @@ The matrices :math:`E` produce zeros below and above the pivots.
 Recognizing an Invertible Matrix
 --------------------------------
 
+**Diagonally dominant matrices are invertible**.
+Each :math:`a_{ii}` on the diagonal is larger than the total sum along the rest of row :math:`i`.
+On every row,
+
+.. math::
+
+    |a_{ii}| > \sum_{j \neq i}|a_{ij}|\ \mathrm{means\ that}\ 
+    |a_{ii}| > |a_{i1}| + \cds (\mathrm{skip}\ |a_{ii}|) \cds + |a_{in}|.
+
+Take any nonzero vector :math:`\x`.
+Suppose its largest component is :math:`|x_i|`.
+Then :math:`A\x=\bs{0}` is impossible, because row :math:`i` of :math:`A\x=\bs{0}` would need
+
+.. math::
+
+    a_{i1}x_1 + \cds + a_{ii}x_i + \cds + a_{in}x_n = 0.
+
+Those can't add to zero when :math:`A` is diagonally dominant.
+The size of :math:`a_{ii}x_i` is greater than all the other terms combined:
+
+.. math::
+
+    \mathrm{All}\ |x_j|\leq|x_i|\quad\sum_{j\neq i}|a_{ij}x_j|\leq
+    \sum_{j\neq i}|a_{ij}||x_i|<|a_{ii}||x_i|\quad
+    \mathrm{because}\ a_{ii}\ \mathrm{dominates}.

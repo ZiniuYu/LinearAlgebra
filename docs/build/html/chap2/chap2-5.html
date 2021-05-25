@@ -386,6 +386,23 @@ The argument above shows more:</p>
 </div>
 <div class="section" id="recognizing-an-invertible-matrix">
 <h2>Recognizing an Invertible Matrix<a class="headerlink" href="#recognizing-an-invertible-matrix" title="Permalink to this headline">¶</a></h2>
+<p><strong>Diagonally dominant matrices are invertible</strong>.
+Each <span class="math notranslate nohighlight">\(a_{ii}\)</span> on the diagonal is larger than the total sum along the rest of row <span class="math notranslate nohighlight">\(i\)</span>.
+On every row,</p>
+<div class="math notranslate nohighlight">
+\[|a_{ii}| &gt; \sum_{j \neq i}|a_{ij}|\ \mathrm{means\ that}\
+|a_{ii}| &gt; |a_{i1}| + \cds (\mathrm{skip}\ |a_{ii}|) \cds + |a_{in}|.\]</div>
+<p>Take any nonzero vector <span class="math notranslate nohighlight">\(\x\)</span>.
+Suppose its largest component is <span class="math notranslate nohighlight">\(|x_i|\)</span>.
+Then <span class="math notranslate nohighlight">\(A\x=\bs{0}\)</span> is impossible, because row <span class="math notranslate nohighlight">\(i\)</span> of <span class="math notranslate nohighlight">\(A\x=\bs{0}\)</span> would need</p>
+<div class="math notranslate nohighlight">
+\[a_{i1}x_1 + \cds + a_{ii}x_i + \cds + a_{in}x_n = 0.\]</div>
+<p>Those can’t add to zero when <span class="math notranslate nohighlight">\(A\)</span> is diagonally dominant.
+The size of <span class="math notranslate nohighlight">\(a_{ii}x_i\)</span> is greater than all the other terms combined:</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{All}\ |x_j|\leq|x_i|\quad\sum_{j\neq i}|a_{ij}x_j|\leq
+\sum_{j\neq i}|a_{ij}||x_i|&lt;|a_{ii}||x_i|\quad
+\mathrm{because}\ a_{ii}\ \mathrm{dominates}.\]</div>
 </div>
 </div>
 
