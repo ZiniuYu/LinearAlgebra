@@ -181,11 +181,15 @@ Rows are added to rows above them, to produce **zeros above the pivots**
 
 Observations about :math:`K^{-1}`:
 
-#. :math:`K` is **symmetric** across its main diagonal. Then :math:`K^{-1}` is also symmetric.
+#. :math:`K` is **symmetric** across its main diagonal. 
+   Then :math:`K^{-1}` is also symmetric.
 
-#. :math:`K` is **tridiagonal** (only three nonzero diagonals). But :math:`K^{-1}` is a dense matrix with no zeros. The inverse of a band matrix is generally a dense matrix.
+#. :math:`K` is **tridiagonal** (only three nonzero diagonals). 
+   But :math:`K^{-1}` is a dense matrix with no zeros. 
+   The inverse of a band matrix is generally a dense matrix.
 
-#. The *product of pivots* is :math:`2(\frac{3}{2})(\frac{4}{3})=4`. This number 4 is the **determinant** of :math:`K`.
+#. The *product of pivots* is :math:`2(\frac{3}{2})(\frac{4}{3})=4`. 
+   This number 4 is the **determinant** of :math:`K`.
 
 :math:`\bs{K^{-1}}` **involves division by the determinant of** :math:`\bs{K}`:
 
@@ -212,7 +216,9 @@ Singular versus Invertible
 (Row exhange are allowed)
 Prove by Gauss-Jordan elimination:
 
-#. With :math:`n` pivots, elimination solves all the equations :math:`A\x_i=\bs{e}_i`. The columns :math:`\x_i` go into :math:`A^{-1}`. Then :math:`AA^{-1}=I` and :math:`A^{-1}` is at least a **right-inverse**.
+#. With :math:`n` pivots, elimination solves all the equations :math:`A\x_i=\bs{e}_i`. 
+   The columns :math:`\x_i` go into :math:`A^{-1}`. 
+   Then :math:`AA^{-1}=I` and :math:`A^{-1}` is at least a **right-inverse**.
 
 #. Elimination is really a sequence of multiplication by :math:`E`'s and :math:`P`'s and :math:`D^{-1}`:
 
@@ -232,14 +238,15 @@ The matrices :math:`E` produce zeros below and above the pivots.
 
 #. Those elimination steps are taken by an invertible :math:`M`. So a row of :math:`MA` is zero.
 
-#. If :math:`AC=I` had been possible, then :math:`MAC=M`. The zero row of :math:`MA`, times :math:`C`, gives a zero row of :math:`M` itself.
+#. If :math:`AC=I` had been possible, then :math:`MAC=M`. 
+   The zero row of :math:`MA`, times :math:`C`, gives a zero row of :math:`M` itself.
 
 #. An invertible matrix :math:`M` can't have a zero row! :math:`A` *must* have :math:`n` pivots if :math:`AC=I`.
 
 .. note::
 
     Elimination gives a complete test for invertibility of a square matrix.
-    :math:`\bs{A^{-1}}` **exists when** :math:`A` **has** :math:`n` **pivots.
+    :math:`\bs{A^{-1}}` **exists when** :math:`A` **has** :math:`n` **pivots**.
     The argument above shows more:
 
     * If :math:`AC=I` then :math:`CA=I` and :math:`C=A^{-1}`.

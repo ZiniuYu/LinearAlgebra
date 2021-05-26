@@ -13,6 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -29,11 +31,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -103,6 +105,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#symmetric-products-a-ta-and-aa-t-and-ldl-t">Symmetric Products <span class="math notranslate nohighlight">\(A^TA\)</span> and <span class="math notranslate nohighlight">\(AA^T\)</span> and <span class="math notranslate nohighlight">\(LDL^T\)</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#permutation-matrices">Permutation Matrices</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#the-pa-lu-factorization-with-row-exchanges">The <span class="math notranslate nohighlight">\(PA=LU\)</span> Factorization with Row Exchanges</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-transpose-of-a-derivative">The Transpose of a Derivative</a></li>
 </ul>
 </li>
 </ul>
@@ -189,24 +192,157 @@
 \newcommand{\u}{\boldsymbol{u}}
 \newcommand{\v}{\boldsymbol{v}}
 \newcommand{\w}{\boldsymbol{w}}
-\newcommand{\x}{\boldsymbol{x}}\\\newcommand{\bb}{\begin{bmatrix}}
+\newcommand{\x}{\boldsymbol{x}}
+\newcommand{\y}{\boldsymbol{y}}\\\newcommand{\bb}{\begin{bmatrix}}
 \newcommand{\eb}{\end{bmatrix}}\\\newcommand{\im}{^{-1}}\end{aligned}\end{align} \]</div>
 <div class="section" id="chapter-2-7-transposes-and-permutations">
 <h1>Chapter 2.7 Transposes and Permutations<a class="headerlink" href="#chapter-2-7-transposes-and-permutations" title="Permalink to this headline">¶</a></h1>
+<p>The <strong>transpose</strong> of <span class="math notranslate nohighlight">\(A\)</span> is denoted by <span class="math notranslate nohighlight">\(A^T\)</span>.
+The columns of <span class="math notranslate nohighlight">\(A^T\)</span> are the rows of <span class="math notranslate nohighlight">\(A\)</span>.
+When <span class="math notranslate nohighlight">\(A\)</span> is an <span class="math notranslate nohighlight">\(m\)</span> by <span class="math notranslate nohighlight">\(n\)</span> matrix, the transpose is <span class="math notranslate nohighlight">\(n\)</span> by <span class="math notranslate nohighlight">\(m\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathrm{If\ }A=\bb 1&amp;2&amp;3\\0&amp;0&amp;4\eb\mathrm{\ then\ }A^T=\bb 1&amp;0\\2&amp;0\\3&amp;4\eb.\end{split}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Exchange rows and columns</strong>: <span class="math notranslate nohighlight">\((A^T)_{ij}=A_{ji}\)</span>.</p>
+</div>
+<p>The rules for transposes:</p>
+<ul class="simple">
+<li><p><strong>Sum</strong>: <span class="math notranslate nohighlight">\((A+B)^T = A^T+B^T\)</span></p></li>
+<li><p><strong>Product</strong>: <span class="math notranslate nohighlight">\((AB)^T = B^TA^T\)</span></p></li>
+<li><p><strong>Inverse</strong>: <span class="math notranslate nohighlight">\((A^{-1})^T = (A^T)^{-1}\)</span>.</p></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><span class="math notranslate nohighlight">\(A\x\)</span> <strong>combines the columns of</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>while</strong> <span class="math notranslate nohighlight">\(\x^TA^T\)</span> <strong>combines the rows of</strong> <span class="math notranslate nohighlight">\(A^T\)</span>.</p>
+</div>
+<p>Transposing <span class="math notranslate nohighlight">\(AB=\bb A\x_1&amp;A\x_2&amp;\cds\eb\)</span> gives <span class="math notranslate nohighlight">\(\bb\x_1^TA^T\\\x_2^TA^T\\\vdots\eb\)</span> which is <span class="math notranslate nohighlight">\(B^TA^T\)</span>.</p>
+<p>The reverse order rule extends to three or more factors: <span class="math notranslate nohighlight">\((ABC)^T=C^TB^TA^T\)</span>.</p>
+<ul class="simple">
+<li><p><strong>If</strong> <span class="math notranslate nohighlight">\(A=LDU\)</span> <strong>then</strong> <span class="math notranslate nohighlight">\(A^T=U^TD^TL^T\)</span>. <strong>The pivot matrix has</strong> <span class="math notranslate nohighlight">\(D=D^T\)</span>.</p></li>
+</ul>
+<p><strong>Transpose of inverse</strong>:</p>
+<div class="math notranslate nohighlight">
+\[A\im A = I\ \mathrm{is\ transposed\ to\ } A^T(A\im)^T=I.\]</div>
+<p><span class="math notranslate nohighlight">\(A^T\)</span> <strong>is invertible exactly when</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>is invertible</strong>.</p>
 <div class="section" id="the-meaning-of-inner-products">
 <h2>The Meaning of Inner Products<a class="headerlink" href="#the-meaning-of-inner-products" title="Permalink to this headline">¶</a></h2>
+<p>The dot product <span class="math notranslate nohighlight">\(\x\cd\bs{y}\)</span> is the sum of numbers <span class="math notranslate nohighlight">\(x_iy_i\)</span>.
+Use matrix notation instead:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(^T\)</span> <strong>is inside</strong>: The dot product or inner product is <span class="math notranslate nohighlight">\(x^Ty\quad(1\times n)(n\times 1)\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(^T\)</span> <strong>is outside</strong>: The rank one product or outer product is <span class="math notranslate nohighlight">\(xy^T\quad(n\times 1)(1\times n)\)</span>.</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(\x^T\y\)</span> is a number, <span class="math notranslate nohighlight">\(\x\y^T\)</span> is a matrix.</p>
+<p>Examples where the inner product has meaning:</p>
+<ul class="simple">
+<li><p><strong>From mechanics</strong>: Work = (Movements) (Forces) = <span class="math notranslate nohighlight">\(\x^T\bs{f}\)</span></p></li>
+<li><p><strong>From circuits</strong>: Heat loss = (Voltage drops) (Currents) = <span class="math notranslate nohighlight">\(e^T\y\)</span></p></li>
+<li><p><strong>FRom economics</strong>: Income = (Quantities) (Prices) = <span class="math notranslate nohighlight">\(\bs{q}^T\bs{p}\)</span></p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(A^T\)</span> is the matrix that makes these two inner products equal for every <span class="math notranslate nohighlight">\(\x\)</span> and <span class="math notranslate nohighlight">\(\y\)</span>:</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><span class="math notranslate nohighlight">\((A\x)^T\y = \x^T(A^T\y)\)</span> Inner product of <span class="math notranslate nohighlight">\(A\x\)</span> with
+<span class="math notranslate nohighlight">\(\y =\)</span> Inner product of <span class="math notranslate nohighlight">\(\x\)</span> with <span class="math notranslate nohighlight">\(A^T\y\)</span>.</p>
+</div>
 </div>
 <div class="section" id="symmetric-matrices">
 <h2>Symmetric Matrices<a class="headerlink" href="#symmetric-matrices" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>DEFINITION</strong>: A <strong>symmetric matrix</strong> has <span class="math notranslate nohighlight">\(S^T=S\)</span>.
+This means that <span class="math notranslate nohighlight">\(s_{ji}=s_{ij}\)</span>.</p>
+</div>
+<p><strong>The inverse of a symmetric matrix is also symmetric</strong>.
+The transpose of <span class="math notranslate nohighlight">\(S\im\)</span> is <span class="math notranslate nohighlight">\((S\im)^T=(S^T)\im=S\im\)</span>.
+That says <span class="math notranslate nohighlight">\(S\im\)</span> is symmetric (when <span class="math notranslate nohighlight">\(S\)</span> is invertible).</p>
 </div>
 <div class="section" id="symmetric-products-a-ta-and-aa-t-and-ldl-t">
 <h2>Symmetric Products <span class="math notranslate nohighlight">\(A^TA\)</span> and <span class="math notranslate nohighlight">\(AA^T\)</span> and <span class="math notranslate nohighlight">\(LDL^T\)</span><a class="headerlink" href="#symmetric-products-a-ta-and-aa-t-and-ldl-t" title="Permalink to this headline">¶</a></h2>
+<p>The product <span class="math notranslate nohighlight">\(S=A^TA\)</span> is automatically a square symmetric matrx:</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The transpose of <span class="math notranslate nohighlight">\(A^TA\)</span> is <span class="math notranslate nohighlight">\(A^T(A^T)^T\)</span> which is <span class="math notranslate nohighlight">\(A^TA\)</span> again.</p>
+</div>
+<p>The <span class="math notranslate nohighlight">\((i,j)\)</span> entry of <span class="math notranslate nohighlight">\(A^TA\)</span> is the dot product of row <span class="math notranslate nohighlight">\(i\)</span> of
+<span class="math notranslate nohighlight">\(A^T\)</span> (column <span class="math notranslate nohighlight">\(i\)</span> of <span class="math notranslate nohighlight">\(A\)</span>) with column <span class="math notranslate nohighlight">\(j\)</span> of <span class="math notranslate nohighlight">\(A\)</span>.
+The <span class="math notranslate nohighlight">\((j,i)\)</span> entry is the same dot product, column <span class="math notranslate nohighlight">\(j\)</span> with column <span class="math notranslate nohighlight">\(i\)</span>.
+So <span class="math notranslate nohighlight">\(A^TA\)</span> is symmetric.</p>
+<p>The product <span class="math notranslate nohighlight">\(A^TA\)</span> is <span class="math notranslate nohighlight">\(n\)</span> by <span class="math notranslate nohighlight">\(n\)</span>.
+<span class="math notranslate nohighlight">\(AA^T\)</span> is <span class="math notranslate nohighlight">\(m\)</span> by <span class="math notranslate nohighlight">\(m\)</span>.
+Both are sysmetric, with positive diagonal.
+But even if <span class="math notranslate nohighlight">\(m=n\)</span>, it is very likely that <span class="math notranslate nohighlight">\(A^TA\neq AA^T\)</span>.</p>
+<p><strong>Symmetric matrices in elimination</strong>: the symmetry is in the triple product <span class="math notranslate nohighlight">\(S=LDU\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\begin{split}\bb 1&amp;2\\2&amp;7 \eb = \bb 1&amp;0\\2&amp;1 \eb \bb 1&amp;2\\0&amp;3 \eb\end{split}\\\begin{split}\bb 1&amp;2\\2&amp;7 \eb = \bb 1&amp;0\\2&amp;1 \eb \bb 1&amp;0\\0&amp;3 \eb \bb 1&amp;2\\0&amp;1 \eb\end{split}\end{aligned}\end{align} \]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If <span class="math notranslate nohighlight">\(S=S^T\)</span> is factored into <span class="math notranslate nohighlight">\(LDU\)</span> with no rwo exchanges, then <span class="math notranslate nohighlight">\(U\)</span> is exactly <span class="math notranslate nohighlight">\(L^T\)</span>.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The symmetric factorization of a symmetric matrix is <span class="math notranslate nohighlight">\(S=LDL^T\)</span>.</p>
+</div>
 </div>
 <div class="section" id="permutation-matrices">
 <h2>Permutation Matrices<a class="headerlink" href="#permutation-matrices" title="Permalink to this headline">¶</a></h2>
+<p>The row exchanges <span class="math notranslate nohighlight">\(P_{ij}\)</span> are constructed by exchanging two rows <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span> of <span class="math notranslate nohighlight">\(I\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>DEFINITION</strong>: A <strong>permutation matrix</strong> <span class="math notranslate nohighlight">\(P\)</span> has the rows of the identity <span class="math notranslate nohighlight">\(I\)</span> in any order.</p>
+</div>
+<p>There are <span class="math notranslate nohighlight">\(n!\)</span> permutation matrices of order <span class="math notranslate nohighlight">\(n\)</span>.
+<span class="math notranslate nohighlight">\(P\im\)</span> is also a permutation matrix.
+<span class="math notranslate nohighlight">\(P\im\)</span> is always the same as <span class="math notranslate nohighlight">\(P^T\)</span>.</p>
 </div>
 <div class="section" id="the-pa-lu-factorization-with-row-exchanges">
 <h2>The <span class="math notranslate nohighlight">\(PA=LU\)</span> Factorization with Row Exchanges<a class="headerlink" href="#the-pa-lu-factorization-with-row-exchanges" title="Permalink to this headline">¶</a></h2>
+<p>Sometimes row exchanges are needed to produce pivots.
+Then <span class="math notranslate nohighlight">\(A=(E\im \cds P\im \cds E\im \cds P\im \cds)U\)</span>.
+Every row exchange is carried out by a <span class="math notranslate nohighlight">\(P_{ij}\)</span> and inverted by that <span class="math notranslate nohighlight">\(P_{ij}\)</span>.
+We now compress those row exchanges into a <em>single permutation matrix</em> <span class="math notranslate nohighlight">\(P\)</span>.</p>
+<ol class="arabic simple">
+<li><p>The row exchanges can be done <em>in advance</em>.
+Their product <span class="math notranslate nohighlight">\(P\)</span> puts the rows of <span class="math notranslate nohighlight">\(A\)</span> in the right order, so
+that no exchanges are needed for <span class="math notranslate nohighlight">\(PA\)</span>.
+<strong>Then</strong> <span class="math notranslate nohighlight">\(\bs{PA=LU}\)</span>.</p></li>
+<li><p>If we hold row exchanges until <em>after elimination</em>, the pivot rows are in a strange order.
+<span class="math notranslate nohighlight">\(P_1\)</span> puts them in the correct triangular order in <span class="math notranslate nohighlight">\(U_1\)</span>.
+<strong>Then</strong> <span class="math notranslate nohighlight">\(\bs{A=L_1P_1U_1}\)</span>.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If <span class="math notranslate nohighlight">\(A\)</span> is invertible, a permutation <span class="math notranslate nohighlight">\(P\)</span> will put its rows inthe right order to factor <span class="math notranslate nohighlight">\(PA=LU\)</span>.
+There must be a full set of pivots after row exchanges for <span class="math notranslate nohighlight">\(A\)</span> to be invertible.</p>
+</div>
+</div>
+<div class="section" id="the-transpose-of-a-derivative">
+<h2>The Transpose of a Derivative<a class="headerlink" href="#the-transpose-of-a-derivative" title="Permalink to this headline">¶</a></h2>
+<p><strong>The matrix changes to a derivative so</strong> <span class="math notranslate nohighlight">\(\bs{A=d/dt}\)</span>.
+The inner product changes from the sum of <span class="math notranslate nohighlight">\(x_ky_k\)</span> to the <em>integral</em> of <span class="math notranslate nohighlight">\(x(t)y(t)\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Inner product of functions</strong>: <span class="math notranslate nohighlight">\(\dp x^Ty=(x,y)=\int^{\infty}_{-\infty}x(t)y(t)\ dt\)</span>.</p>
+</div>
+<p>The word “adjoint” is more correct than “transpose” when we are working with derivatives.</p>
+<p>The transpose of a matrix has <span class="math notranslate nohighlight">\((A\x)^T\y=\x^T(A^T\y)\)</span>.
+The adjoint of <span class="math notranslate nohighlight">\(A=\frac{d}{dt}\)</span> has</p>
+<div class="math notranslate nohighlight">
+\[(Ax,y) = \int^{\infty}_{-\infty} \frac{dx}{dt}y(t)dt =
+\int^{\infty}_{-\infty} x(t)\left( -\frac{dy}{dt} \right)dt = (x,A^Ty)\]</div>
+<p>The dirivative moves from the first function <span class="math notranslate nohighlight">\(x(t)\)</span> to the second function <span class="math notranslate nohighlight">\(y(t)\)</span>.
+During that move, a minus sign appears.
+<strong>The transpose of the derivative is minus the derivative</strong>.</p>
+<p>The derivative is <em>antisymmetric</em>: <span class="math notranslate nohighlight">\(\bs{A=d/dt}\)</span> and <span class="math notranslate nohighlight">\(\bs{A^T=-d/dt}\)</span>.
+Symmetric matrices have <span class="math notranslate nohighlight">\(S^T=S\)</span>, antisymmetric matrices have <span class="math notranslate nohighlight">\(A^T=-A\)</span>.</p>
+<p>This antisymmetry of the derivative applies also to centered difference matrices.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A = \bb 0&amp;1&amp;0&amp;0\\-1&amp;0&amp;1&amp;0\\0&amp;-1&amp;0&amp;1\\0&amp;0&amp;-1&amp;0 \eb\mathrm{\ transposes\ to\ }
+A^T=\bb 0&amp;-1&amp;0&amp;0\\1&amp;0&amp;-1&amp;0\\0&amp;1&amp;0&amp;-1\\0&amp;0&amp;1&amp;0 \eb = -A.\end{split}\]</div>
+<p>A forward difference matrix transposes to a backward difference matrix, <em>multiplied by</em> -1.
+In differential equations, the second derivative (acceleration) is <em>symmetric</em>.
+The first derivative (damping proportional to velocity) is <em>antisymmetric</em>.</p>
 </div>
 </div>
 
