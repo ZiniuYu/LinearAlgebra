@@ -74,6 +74,8 @@ rst_prolog = r'''
     \newcommand{\x}{\boldsymbol{x}}
     \newcommand{\y}{\boldsymbol{y}}
 
+    \newcommand{\R}{\boldsymbol{R}}
+
     \newcommand{\bb}{\begin{bmatrix}}
     \newcommand{\eb}{\end{bmatrix}}
 
