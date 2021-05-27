@@ -13,6 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -29,11 +31,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -41,7 +43,7 @@
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Chapter 3.2 The Nullspace of \(A\): Solving \(A\x = 0\) and \(R\x=0\)" href="chap3-2.html" />
+    <link rel="next" title="Chapter 3.2 The Nullspace of \(A\): Solving \(Ax = 0\) and \(Rx=0\)" href="chap3-2.html" />
     <link rel="prev" title="Chapter 3 Vector Spacese and Subspaces" href="index3.html" /> 
 </head>
 
@@ -97,7 +99,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#the-column-space-of-a">The Column Space of <span class="math notranslate nohighlight">\(A\)</span></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="chap3-2.html">Chapter 3.2 The Nullspace of <span class="math notranslate nohighlight">\(A\)</span>: Solving <span class="math notranslate nohighlight">\(A\x = 0\)</span> and <span class="math notranslate nohighlight">\(R\x=0\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap3-2.html">Chapter 3.2 The Nullspace of <span class="math notranslate nohighlight">\(A\)</span>: Solving <span class="math notranslate nohighlight">\(Ax = 0\)</span> and <span class="math notranslate nohighlight">\(Rx=0\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap3-3.html">Chapter 3.3 The Complete Solution to <span class="math notranslate nohighlight">\(Ax=b\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap3-4.html">Chapter 3.4 Independece, Basis and Dimension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap3-5.html">Chapter 3.5 Dimensions of the Four Subspaces</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
@@ -172,7 +177,8 @@
             
   <div class="math notranslate nohighlight">
 \[ \begin{align}\begin{aligned}\newcommand{\bs}{\boldsymbol}
-\newcommand{\dp}{\displaystyle}\\\newcommand{\cd}{\cdot}
+\newcommand{\dp}{\displaystyle}
+\newcommand{\rm}{\mathrm}\\\newcommand{\cd}{\cdot}
 \newcommand{\cds}{\cdots}
 \newcommand{\lv}{\lVert}
 \newcommand{\rv}{\rVert}\\\newcommand{\b}{\boldsymbol{b}}
@@ -183,19 +189,126 @@
 \newcommand{\v}{\boldsymbol{v}}
 \newcommand{\w}{\boldsymbol{w}}
 \newcommand{\x}{\boldsymbol{x}}
-\newcommand{\y}{\boldsymbol{y}}\\\newcommand{\R}{\boldsymbol{R}}\\\newcommand{\bb}{\begin{bmatrix}}
+\newcommand{\y}{\boldsymbol{y}}\\\newcommand{\R}{\boldsymbol{\mathrm{R}}}\\\newcommand{\bb}{\begin{bmatrix}}
 \newcommand{\eb}{\end{bmatrix}}\\\newcommand{\im}{^{-1}}\end{aligned}\end{align} \]</div>
 <div class="section" id="chapter-3-1-spaces-of-vectors">
 <h1>Chapter 3.1 Spaces of Vectors<a class="headerlink" href="#chapter-3-1-spaces-of-vectors" title="Permalink to this headline">¶</a></h1>
+<p>The vector spaces are denoted by <span class="math notranslate nohighlight">\(\R^1, \R^2, \R^3, \cds\)</span>.
+Each space <span class="math notranslate nohighlight">\(\R^n\)</span> consists of a whole collection of vectors.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><strong>DEFINITION</strong>: The space <span class="math notranslate nohighlight">\(\R^n\)</span> consists of all column vectors <span class="math notranslate nohighlight">\(v\)</span> with <span class="math notranslate nohighlight">\(n\)</span> components.</p>
+<p><strong>DEFINITION</strong>: The space <span class="math notranslate nohighlight">\(\R^n\)</span> consists of all column vectors <span class="math notranslate nohighlight">\(\v\)</span> with <span class="math notranslate nohighlight">\(n\)</span> components.</p>
 </div>
+<p>The components of <span class="math notranslate nohighlight">\(\v\)</span> are real numbers, which is the reason for the letter <span class="math notranslate nohighlight">\(\R\)</span>.
+A vector whose <span class="math notranslate nohighlight">\(n\)</span> components are complex numebrs lies in the space <span class="math notranslate nohighlight">\(\bs{\rm{C}}^n\)</span>.</p>
+<p>The vector space <span class="math notranslate nohighlight">\(\R^2\)</span> is represented by the usual <span class="math notranslate nohighlight">\(xy\)</span> plane.
+Each vector <span class="math notranslate nohighlight">\(\v\)</span> in <span class="math notranslate nohighlight">\(\R^2\)</span> has two components that give the
+<span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> coordinates of a point in the plane <span class="math notranslate nohighlight">\(\v=(x,y)\)</span>.</p>
+<p>The vectors in <span class="math notranslate nohighlight">\(\R^3\)</span> correspond to points <span class="math notranslate nohighlight">\((x,y,z)\)</span> in three-dimensional space.
+The one-dimensional space <span class="math notranslate nohighlight">\(\R^1\)</span> is a line (like the <span class="math notranslate nohighlight">\(x\)</span> axis).</p>
+<p>The two essential vector operations go on <em>inside the vector space</em>, and they produce <strong>linear combinations</strong>:</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>We can add any vectors in <span class="math notranslate nohighlight">\(\R^n\)</span>, and we can multiply any vector <span class="math notranslate nohighlight">\(\v\)</span> by any scalar <span class="math notranslate nohighlight">\(c\)</span>.</p>
+</div>
+<p>“Inside the vector space” means that <strong>the result stays in the space</strong>.</p>
+<p><em>A real vector space is a set of “vectors” together with rules for vector addition and for multiplication by real numbers</em>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\bs{\rm{M}}\)</span>: The vector space of <strong>all real 2 by 2 matrices</strong>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\bs{\rm{F}}\)</span>: The vector space of <strong>all real functions</strong> <span class="math notranslate nohighlight">\(f(x)\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\bs{\rm{Z}}\)</span>: The vector space that consists only of a <strong>zero vector</strong>.</p></li>
+</ul>
+</div>
+<p>The function space <span class="math notranslate nohighlight">\(\bs{\rm{F}}\)</span> is infinite-dimensional.
+A smaller function space is <span class="math notranslate nohighlight">\(\bs{\rm{P}}\)</span>, or <span class="math notranslate nohighlight">\(\bs{\rm{P}}_n\)</span>,
+containing all polynomials <span class="math notranslate nohighlight">\(a_0 + a_1x + \cds + a_nx^n\)</span> of degree
+<span class="math notranslate nohighlight">\(n\)</span>.</p>
+<p>The spzce <span class="math notranslate nohighlight">\(\bs{\rm{Z}}\)</span> is zero-dimensional.
+<span class="math notranslate nohighlight">\(\bs{\rm{Z}}\)</span> is the smallest possible vector space.
+The vector space <span class="math notranslate nohighlight">\(\bs{\rm{Z}}\)</span> contains exactly <em>one vector</em> (zero).
+Each space has its own zero vector.</p>
 <div class="section" id="subspaces">
 <h2>Subspaces<a class="headerlink" href="#subspaces" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>DEFINITION</strong>: A <strong>subspace</strong> of a vector space is a set of vectors
+(including <span class="math notranslate nohighlight">\(\bs{0}\)</span>) that satisfies two requirements:
+<strong>If</strong> <span class="math notranslate nohighlight">\(\v\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(\w\)</span> <strong>are in the subspace and</strong> <span class="math notranslate nohighlight">\(c\)</span>
+<strong>is any scalar, then</strong></p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(\v+\w\)</span> is in the subspace;</p></li>
+<li><p><span class="math notranslate nohighlight">\(c\v\)</span> is in the subspace.</p></li>
+</ol>
+</div>
+<p>In short, <strong>all linear combinations stay in the subspace</strong>.</p>
+<p><strong>Every subspace contains the zero vector</strong>.
+Planes that don’t contain the origin fail those tests.
+Those planes are not subspaces.</p>
+<p><strong>Lines through the origin are also subspaces</strong>.
+Another subspace is all of <span class="math notranslate nohighlight">\(\R^3\)</span>.
+The whole space is a subspace (<em>of itself</em>).</p>
+<p>A list of all the possible subspace of <span class="math notranslate nohighlight">\(\R^3\)</span>:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(\bs{\rm{L}}\)</span>: Any line through <span class="math notranslate nohighlight">\((0,0,0)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\bs{\rm{P}}\)</span>: Any plane through <span class="math notranslate nohighlight">\((0,0,0)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\R^3\)</span>: The whole space</p></li>
+<li><p><span class="math notranslate nohighlight">\(\bs{\rm{Z}}\)</span>: The single vector <span class="math notranslate nohighlight">\((0,0,0)\)</span></p></li>
+</ol>
+<p><strong>The quater-plane is not a subspace</strong>.
+<strong>Two quarter-planes don’t make a subspace</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>A subspace containing</strong> <span class="math notranslate nohighlight">\(\v\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(\w\)</span> <strong>must contain all linear combinations</strong> <span class="math notranslate nohighlight">\(c\v+d\w\)</span>.</p>
+</div>
 </div>
 <div class="section" id="the-column-space-of-a">
 <h2>The Column Space of <span class="math notranslate nohighlight">\(A\)</span><a class="headerlink" href="#the-column-space-of-a" title="Permalink to this headline">¶</a></h2>
+<p>Start with the columns of <span class="math notranslate nohighlight">\(A\)</span> and <strong>take all their linear combinations</strong>.
+This produces the column space of <span class="math notranslate nohighlight">\(A\)</span>.
+<strong>It is a vector space made up of column vectors</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>DEFINITION</strong>: The <strong>column space</strong> consists of <strong>all linear combinations of the columns</strong>
+The combinations are all possible vectors <span class="math notranslate nohighlight">\(A\x\)</span>.
+They fill the column space <span class="math notranslate nohighlight">\(\bs{C}(A)\)</span>.</p>
+</div>
+<p><strong>To solve</strong> <span class="math notranslate nohighlight">\(A\x=\b\)</span> <strong>is to express</strong> <span class="math notranslate nohighlight">\(\b\)</span> <strong>as a combination of the columns</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>The system</strong> <span class="math notranslate nohighlight">\(A\x=\b\)</span> <strong>is solvable if and only if</strong> <span class="math notranslate nohighlight">\(\b\)</span> <strong>is in the column space of</strong> <span class="math notranslate nohighlight">\(A\)</span>.</p>
+</div>
+<p>Suppose <span class="math notranslate nohighlight">\(A\)</span> by <span class="math notranslate nohighlight">\(n\)</span> matrix.
+Its columns have <span class="math notranslate nohighlight">\(m\)</span> components.
+So the columns belong to <span class="math notranslate nohighlight">\(\R^m\)</span>.
+<strong>The column space of</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>is a subspace of</strong> <span class="math notranslate nohighlight">\(\R^m\)</span>.</p>
+<p><strong>Notation</strong>: The column space of <span class="math notranslate nohighlight">\(A\)</span> is denoted by <span class="math notranslate nohighlight">\(\bs{C}(A)\)</span>.
+Start with the columns and take all their linear combinations.
+We might get the whole <span class="math notranslate nohighlight">\(\R^m\)</span> or only a subspace.</p>
+<p><strong>Important</strong>: Instead of columns in <span class="math notranslate nohighlight">\(\R^m\)</span>, we could start with any set
+<span class="math notranslate nohighlight">\(\bs{\rm{S}}\)</span> of vectors in a vector space <span class="math notranslate nohighlight">\(\bs{\rm{V}}\)</span>.
+To get a <em>subspace*</em> <span class="math notranslate nohighlight">\(\bs{\rm{SS}}\)</span> of <span class="math notranslate nohighlight">\(\bs{\rm{V}}\)</span>, we take
+<em>all combinations</em> of the vectors in that set:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\bs{\rm{S}}\)</span> = set of vectors in <span class="math notranslate nohighlight">\(\bs{\rm{V}}\)</span> (probably not a subspace)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\bs{\rm{SS}}\)</span> = all combinations of vectors in <span class="math notranslate nohighlight">\(\bs{\rm{S}}\)</span> (definitely a subspace)</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(\bs{\rm{SS}}\)</span> = all <span class="math notranslate nohighlight">\(c_1\v_1 + \cds + c_N\v_N\)</span>
+= <strong>the subspace of</strong> <span class="math notranslate nohighlight">\(\bs{\rm{V}}\)</span> “spanned” by <span class="math notranslate nohighlight">\(\bs{\rm{S}}\)</span></p>
+</div>
+<p>When <span class="math notranslate nohighlight">\(\bs{\rm{S}}\)</span> is the set of columns, <span class="math notranslate nohighlight">\(\bs{\rm{SS}}\)</span> is the column space.
+When there is only one nonzero vector <span class="math notranslate nohighlight">\(\v\)</span> in <span class="math notranslate nohighlight">\(\bs{\rm{S}}\)</span>, the
+subsapce <span class="math notranslate nohighlight">\(\bs{\rm{SS}}\)</span> is the line through <span class="math notranslate nohighlight">\(\v\)</span>.
+<em>Always</em> <span class="math notranslate nohighlight">\(\bs{\rm{SS}}\)</span> <em>is the smallest subspace containing</em> <span class="math notranslate nohighlight">\(\bs{\rm{S}}\)</span>.</p>
+<p>The columns “span” the column space.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The subspace <span class="math notranslate nohighlight">\(\bs{\rm{SS}}\)</span> is the “span” of <span class="math notranslate nohighlight">\(\bs{\rm{S}}\)</span>,
+containing all combinations of vectors in <span class="math notranslate nohighlight">\(\bs{\rm{S}}\)</span>.</p>
+</div>
 </div>
 </div>
 
@@ -205,7 +318,7 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="chap3-2.html" class="btn btn-neutral float-right" title="Chapter 3.2 The Nullspace of \(A\): Solving \(A\x = 0\) and \(R\x=0\)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="chap3-2.html" class="btn btn-neutral float-right" title="Chapter 3.2 The Nullspace of \(A\): Solving \(Ax = 0\) and \(Rx=0\)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
         <a href="index3.html" class="btn btn-neutral float-left" title="Chapter 3 Vector Spacese and Subspaces" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 

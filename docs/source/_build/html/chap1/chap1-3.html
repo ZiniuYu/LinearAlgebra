@@ -43,7 +43,7 @@
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="About" href="../about.html" />
+    <link rel="next" title="Chapter 2 Solving Linear Equations" href="../chap2/index2.html" />
     <link rel="prev" title="Chapter 1.2 Lengths and Dot Products" href="chap1-2.html" /> 
 </head>
 
@@ -94,9 +94,17 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index1.html">Chapter 1 Introduction to Vectors</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="chap1-1.html">Chapter 1.1 Vectors and Linear Combinations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chap1-2.html">Chapter 1.2 Lengths and Dot Products</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 1.3 Matrices</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 1.3 Matrices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#linear-equations">Linear Equations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-inverse-matrix">The Inverse Matrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cyclic-differences">Cyclic Differences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#independence-and-dependence">Independence and Dependence</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../chap2/index2.html">Chapter 2 Solving Linear Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap3/index3.html">Chapter 3 Vector Spacese and Subspaces</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
 </ul>
 
@@ -168,15 +176,131 @@
            <div itemprop="articleBody">
             
   <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}\newcommand{\bs}{\boldsymbol}\\\newcommand{\cd}{\cdot}
-\newcommand{\cds}{\cdots}\\\newcommand{\i}{\boldsymbol{i}}
+\[ \begin{align}\begin{aligned}\newcommand{\bs}{\boldsymbol}
+\newcommand{\dp}{\displaystyle}
+\newcommand{\rm}{\mathrm}\\\newcommand{\cd}{\cdot}
+\newcommand{\cds}{\cdots}
+\newcommand{\lv}{\lVert}
+\newcommand{\rv}{\rVert}\\\newcommand{\b}{\boldsymbol{b}}
+\newcommand{\e}{\boldsymbol{e}}
+\newcommand{\i}{\boldsymbol{i}}
 \newcommand{\j}{\boldsymbol{j}}
 \newcommand{\u}{\boldsymbol{u}}
 \newcommand{\v}{\boldsymbol{v}}
-\newcommand{\w}{\boldsymbol{w}}\\\newcommand{\bb}{\begin{bmatrix}}
-\newcommand{\eb}{\end{bmatrix}}\end{aligned}\end{align} \]</div>
+\newcommand{\w}{\boldsymbol{w}}
+\newcommand{\x}{\boldsymbol{x}}
+\newcommand{\y}{\boldsymbol{y}}\\\newcommand{\R}{\boldsymbol{\mathrm{R}}}\\\newcommand{\bb}{\begin{bmatrix}}
+\newcommand{\eb}{\end{bmatrix}}\\\newcommand{\im}{^{-1}}\end{aligned}\end{align} \]</div>
 <div class="section" id="chapter-1-3-matrices">
 <h1>Chapter 1.3 Matrices<a class="headerlink" href="#chapter-1-3-matrices" title="Permalink to this headline">¶</a></h1>
+<p>The linear combinations of the three vectors
+<span class="math notranslate nohighlight">\(\u = (1, -1, 0)\)</span>, <span class="math notranslate nohighlight">\(\v = (0, 1, -1)\)</span>, <span class="math notranslate nohighlight">\(\w = (0, 0, 1)\)</span>
+are <span class="math notranslate nohighlight">\(x_1\u + x_2\v + x_3\w\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}x_1 \bb 1 \\ -1 \\ 0 \eb + x_2 \bb 0 \\ 1 \\ -1 \eb + x_3 \bb 0 \\ 0 \\ 1 \eb
+= \bb x_1 \\ x_2 - x_1 \\ x_3 - x_2 \eb.\end{split}\]</div>
+<p>Rewrite that combination using a matrix:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Matrix times vector</strong>, <strong>Combination of columns</strong>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(A\x = \bb 1 &amp; 0 &amp; 0 \\ -1 &amp; 1 &amp; 0 \\ 0 &amp; -1 &amp; 1 \eb \bb x_1 \\ x_2 \\ x_3 \eb = \bb x_1 \\ x_2 - x_1 \\ x_3 - x_2 \eb\)</span></p></li>
+</ul>
+</div>
+<p><strong>The matrix</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>acts on the vector</strong> <span class="math notranslate nohighlight">\(\x\)</span>.
+The output <span class="math notranslate nohighlight">\(A\x\)</span> is a <strong>combination</strong> <span class="math notranslate nohighlight">\(\b\)</span> <strong>of the columns of</strong> <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A\x = \bb 1 &amp; 0 &amp; 0 \\ -1 &amp; 1 &amp; 0 \\ 0 &amp; -1 &amp; 1 \eb \bb x_1 \\ x_2 \\ x_3 \eb
+= \bb \bs{x_1} \\ \bs{x_2} - \bs{x_1} \\ \bs{x_3} - \bs{x_2} \eb
+= \bb b_1 \\ b_2 \\ b_3 \eb = \b\end{split}\]</div>
+<p>This <span class="math notranslate nohighlight">\(A\)</span> is a “<strong>difference matrix</strong>” because <span class="math notranslate nohighlight">\(\b\)</span> combinations difference of the input vector <span class="math notranslate nohighlight">\(\x\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(A\x\)</span> is also <strong>dot products with rows</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A\x = \bb 1 &amp; 0 &amp; 0 \\ -1 &amp; 1 &amp; 0 \\ 0 &amp; -1 &amp; 1 \eb \bb x_1 \\ x_2 \\ x_3 \eb
+= \bb (1,0,0)\cd(x_1,x_2,x_3) \\ (-1,1,0)\cd(x_1,x_2,x_3) \\ (0,-1,1)\cd(x_1,x_2,x_3) \eb.\end{split}\]</div>
+<p>Linear combinations are the key to linear algebra, and the output <span class="math notranslate nohighlight">\(A\x\)</span> is
+a linear combination of the <strong>columns</strong> of <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<div class="section" id="linear-equations">
+<h2>Linear Equations<a class="headerlink" href="#linear-equations" title="Permalink to this headline">¶</a></h2>
+<p><strong>Now we think of</strong> <span class="math notranslate nohighlight">\(\b\)</span> <strong>as known and we look for</strong> <span class="math notranslate nohighlight">\(\x\)</span>.</p>
+<blockquote>
+<div><p><em>Old question</em>: Compute the linear combination <span class="math notranslate nohighlight">\(x_1\u + x_2\v + x_3\w\)</span> to find <span class="math notranslate nohighlight">\(\b\)</span>.</p>
+<p><em>New question</em>: Which combination of <span class="math notranslate nohighlight">\(\u, \v, \w\)</span> produces a particular vector <span class="math notranslate nohighlight">\(\b\)</span>?</p>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Equations</strong> <span class="math notranslate nohighlight">\(A\x = \b\)</span>:
+<span class="math notranslate nohighlight">\(\begin{matrix} x_1 = b_1 \\ -x_1+x_2=b_2 \\ -x_2+x_3=b_3 \end{matrix}\)</span>.
+<strong>Solution</strong> <span class="math notranslate nohighlight">\(\x = A^{-1}\b\)</span>:
+<span class="math notranslate nohighlight">\(\begin{matrix} x_1 = b_1 \\ x_2=b_1+b_2 \\ x_3=b_1+b_2+b_3 \end{matrix}\)</span>.</p>
+</div>
+<p><em>The equations can be solved in order (top to bottom) because</em> <span class="math notranslate nohighlight">\(A\)</span> <em>is a triangular matrix</em>.</p>
+<p>This matrix <span class="math notranslate nohighlight">\(A\)</span> is “<strong>invertible</strong>”.
+From <span class="math notranslate nohighlight">\(\b\)</span> we can recover <span class="math notranslate nohighlight">\(\x\)</span>.
+We write <span class="math notranslate nohighlight">\(\x\)</span> as <span class="math notranslate nohighlight">\(A^{-1}\b\)</span>.</p>
+</div>
+<div class="section" id="the-inverse-matrix">
+<h2>The Inverse Matrix<a class="headerlink" href="#the-inverse-matrix" title="Permalink to this headline">¶</a></h2>
+<p><span class="math notranslate nohighlight">\(A\x = \b\)</span> is solved by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb x_1 \\ x_2 \\ x_3 \eb
+= \bb b_1 \\ b_1 + b_2 \\ b_1 + b_2 + b_3 \eb
+= \bb 1 &amp; 0 &amp; 0 \\ 1 &amp; 1 &amp; 0 \\ 1 &amp; 1 &amp; 1 \eb \bb b_1 \\ b_2 \\ b_3 \eb.\end{split}\]</div>
+<ol class="arabic simple">
+<li><p>For every <span class="math notranslate nohighlight">\(\b\)</span> there is one solution to <span class="math notranslate nohighlight">\(A\x = \b\)</span>.</p></li>
+<li><p>The matrix <span class="math notranslate nohighlight">\(A^{-1}\)</span> produces <span class="math notranslate nohighlight">\(\x = A^{-1}\b\)</span>.</p></li>
+</ol>
+<p><em>Note on calculus</em>. The vector <span class="math notranslate nohighlight">\(\x\)</span> changes to a function <span class="math notranslate nohighlight">\(x(t)\)</span>.
+The differences <span class="math notranslate nohighlight">\(A\x\)</span> become the <em>derivative</em> <span class="math notranslate nohighlight">\(dx/dt = b(t)\)</span>.
+The sums <span class="math notranslate nohighlight">\(A^{-1}\b\)</span> become the <em>integral</em> of <span class="math notranslate nohighlight">\(b(t)\)</span>.
+<strong>Sums of differences are like integrals of derivatives</strong>.</p>
+<blockquote>
+<div><p>Fundamental Theorem of Calculus: integration is the inverse of differentiation.</p>
+<p><span class="math notranslate nohighlight">\(\bs{Ax=b}\)</span> and <span class="math notranslate nohighlight">\(\bs{x=A^{-1}b}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\dp \frac{dx}{dt}=b \ \mathrm{and}\  x(t) = \int_{0}^{t}b\ dt.\]</div>
+<p><strong>Centered difference of</strong> <span class="math notranslate nohighlight">\(\bs{x(t)=t^2}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\dp \frac{(t+1)^2 - (t-1)^2}{2} = 2t.\]</div>
+</div></blockquote>
+</div>
+<div class="section" id="cyclic-differences">
+<h2>Cyclic Differences<a class="headerlink" href="#cyclic-differences" title="Permalink to this headline">¶</a></h2>
+<p>Keeps the same columns <span class="math notranslate nohighlight">\(\u\)</span> and <span class="math notranslate nohighlight">\(\v\)</span> but changes <span class="math notranslate nohighlight">\(\w\)</span> to a new vector <span class="math notranslate nohighlight">\(\w^*\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\u = \bb 1 \\ -1 \\ 0 \eb \quad
+\v = \bb 0 \\ 1 \\ -1 \eb \quad
+\w^* = \bb -1 \\ 0 \\ 1 \eb\end{split}\]</div>
+<p>The linear combinations of <span class="math notranslate nohighlight">\(\u, \v, \w^*\)</span> lead to a <strong>cyclic difference matrix</strong> <span class="math notranslate nohighlight">\(C\)</span>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Cyclic</strong>: <span class="math notranslate nohighlight">\(C\x = \bb 1 &amp; 0 &amp; -1 \\ -1 &amp; 1 &amp; 0 \\ 0 &amp; -1 &amp; 1 \eb
+\bb x_1 \\ x_2 \\ x_3 \eb = \bb x_1 - x_3 \\ x_2 - x_1 \\ x_3 - x_2 \eb
+= \b\)</span></p>
+</div>
+<p>The three equations either have <strong>infinitely many solutions</strong> (sometimes) or else <strong>no solutions</strong> (usually).</p>
+<p><strong>All linear combinations</strong> <span class="math notranslate nohighlight">\(x_1\u + x_2\v + x_3\w^*\)</span>
+<strong>lie on the plane given by</strong> <span class="math notranslate nohighlight">\(b_1 + b_2 + b_3 = 0\)</span>.</p>
+</div>
+<div class="section" id="independence-and-dependence">
+<h2>Independence and Dependence<a class="headerlink" href="#independence-and-dependence" title="Permalink to this headline">¶</a></h2>
+<p><strong>The key question is whether the third vector is in that plane</strong>:</p>
+<blockquote>
+<div><p><strong>Independence</strong>: <span class="math notranslate nohighlight">\(\w\)</span> is not in the plane of <span class="math notranslate nohighlight">\(\u\)</span> and <span class="math notranslate nohighlight">\(\v\)</span>.</p>
+<p><strong>Dependence</strong>: <span class="math notranslate nohighlight">\(\w\)</span> is not in the plane of <span class="math notranslate nohighlight">\(\u\)</span> and <span class="math notranslate nohighlight">\(\v\)</span>.</p>
+</div></blockquote>
+<p><span class="math notranslate nohighlight">\(\u, \v, \w\)</span> are <strong>independent</strong>.
+No combination except <span class="math notranslate nohighlight">\(0\u + 0\v + 0\w = \bs{0}\)</span> gives <span class="math notranslate nohighlight">\(\b = \bs{0}\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\u, \v, \w^*\)</span> are <strong>dependent</strong>.
+Other combinations like <span class="math notranslate nohighlight">\(\u + \v + \w^*\)</span> give <span class="math notranslate nohighlight">\(\b = \bs{0}\)</span>.</p>
+<p>The vectors go into the columns of an <span class="math notranslate nohighlight">\(n\)</span> by <span class="math notranslate nohighlight">\(n\)</span> matrix:</p>
+<blockquote>
+<div><p>Independent columns: <span class="math notranslate nohighlight">\(A\x = \bs{0}\)</span> has one solution.
+<span class="math notranslate nohighlight">\(A\)</span> is an <strong>invertible matrix</strong>.</p>
+<p>Dependent columns: <span class="math notranslate nohighlight">\(C\x = \bs{0}\)</span> has many solutions.
+<span class="math notranslate nohighlight">\(C\)</span> is a <strong>singular matrix</strong>.</p>
+</div></blockquote>
+</div>
 </div>
 
 
@@ -185,7 +309,7 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="../about.html" class="btn btn-neutral float-right" title="About" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../chap2/index2.html" class="btn btn-neutral float-right" title="Chapter 2 Solving Linear Equations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
         <a href="chap1-2.html" class="btn btn-neutral float-left" title="Chapter 1.2 Lengths and Dot Products" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 

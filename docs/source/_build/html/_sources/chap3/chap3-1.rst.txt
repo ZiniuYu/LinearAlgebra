@@ -1,0 +1,55 @@
+Chapter 3.1 Spaces of Vectors
+=============================
+
+The vector spaces are denoted by :math:`\R^1, \R^2, \R^3, \cds`.
+Each space :math:`\R^n` consists of a whole collection of vectors.
+
+.. Note::
+
+    **DEFINITION**: The space :math:`\R^n` consists of all column vectors :math:`\v` with :math:`n` components.
+
+The components of :math:`\v` are real numbers, which is the reason for the letter :math:`\R`.
+A vector whose :math:`n` components are complex numebrs lies in the space :math:`\bs{\rm{C}}^n`.
+
+The vector space :math:`\R^2` is represented by the usual :math:`xy` plane.
+Each vector :math:`\v` in :math:`\R^2` has two components that give the 
+:math:`x` and :math:`y` coordinates of a point in the plane :math:`\v=(x,y)`.
+
+The vectors in :math:`\R^3` correspond to points :math:`(x,y,z)` in three-dimensional space.
+The one-dimensional space :math:`\R^1` is a line (like the :math:`x` axis).
+
+The two essential vector operations go on *inside the vector space*, and they produce **linear combinations**:
+
+.. Tip::
+
+    We can add any vectors in :math:`\R^n`, and we can multiply any vector :math:`\v` by any scalar :math:`c`.
+
+"Inside the vector space" means that **the result stays in the space**.
+
+*A real vector space is a set of "vectors" together with rules for vector addition and for multiplication by real numbers*.
+
+.. note::
+
+    * :math:`\bs{\rm{M}}`: The vector space of **all real 2 by 2 matrices**.
+
+    * :math:`\bs{\rm{F}}`: The vector space of **all real functions** :math:`f(x)`.
+
+    * :math:`\bs{\rm{Z}}`: The vector space that consists only of a **zero vector**.
+
+The function space :math:`\bs{\rm{F}}` is infinite-dimensional.
+A smaller function space is :math:`\bs{\rm{P}}`, or :math:`\bs{\rm{P}}_n`, 
+containing all polynomials :math:`a_0 + a_1x + \cds + a_nx^n` of degree 
+:math:`n`.
+
+The spzce :math:`\bs{\rm{Z}}` is zero-dimensional.
+:math:`\bs{\rm{Z}}` is the smallest possible vector space.
+The vector space :math:`\bs{\rm{Z}}` contains exactly *one vector* (zero).
+Each space has its own zero vector.
+
+Subspaces
+---------
+
+
+
+The Column Space of :math:`A`
+-----------------------------

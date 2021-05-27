@@ -3,7 +3,7 @@ Chapter 1 Introduction to Vectors
 
 .. note::
 
-   **Linear combination** 
+   **Linear combination**:
    :math:`c\v + d \w
    = c\bb 1 \\ 1 \eb
    + d\bb 2 \\ 3 \eb

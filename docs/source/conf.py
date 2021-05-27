@@ -58,6 +58,7 @@ rst_prolog = r'''
     
     \newcommand{\bs}{\boldsymbol}
     \newcommand{\dp}{\displaystyle}
+    \newcommand{\rm}{\mathrm}
     
     \newcommand{\cd}{\cdot}
     \newcommand{\cds}{\cdots}
@@ -74,7 +75,7 @@ rst_prolog = r'''
     \newcommand{\x}{\boldsymbol{x}}
     \newcommand{\y}{\boldsymbol{y}}
 
-    \newcommand{\R}{\boldsymbol{R}}
+    \newcommand{\R}{\boldsymbol{\mathrm{R}}}
 
     \newcommand{\bb}{\begin{bmatrix}}
     \newcommand{\eb}{\end{bmatrix}}
