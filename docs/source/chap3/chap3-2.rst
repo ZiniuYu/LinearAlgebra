@@ -44,13 +44,143 @@ The first column of :math:`A=\bb 1&2&3 \eb` contains the only pivot, so the firs
 **The free components correspond to columns with no pivots**.
 The special choice (one or zero) is only for the free variables in the special solutions.
 
+.. math::
+
+    A = \bb 1&2\\3&8 \eb \quad
+    B = \bb A\\2A \eb = \bb 1&2\\3&8\\2&4\\6&16 \eb \quad
+    C = \bb A&2A \eb = \bb 1&2&2&4\\3&8&6&16 \eb.
+
+The equation :math:`A\x=\bs{0}` has only the zero solution :math:`\x=\bs{0}`.
+The *nullspace is* :math:`\bs{Z}`.
+It contains only the single point :math:`\x=\bs{0}` in :math:`\R^2`.
+
+.. math::
+
+    A\x = \bb 1&2\\3&8 \eb\bb x_1\\x_2 \eb = \bb 0\\0 \eb \rm{\ yields\ }
+    \bb 1&2\\0&2 \eb\bb x_1\\x_2 \eb = \bb 0\\0 \eb \rm{\ and\ }
+    \bb x_1=0\\x_2=0 \eb.
+
+:math:`A` is invertible.
+There are no special solutions.
+Both columns of this matrix have pivots.
+
+The rectangular matrix :math:`B` has the same nullspace :math:`\bs{Z}`.
+The extra rows impose more conditions on the vectors :math:`\x` in the nullspace.
+
+The rectangular matrix :math:`C` has extra columns instead of extra rows.
+The solution vector :math:`\x` has *four* components.
+Elimination will produce pivots in the first two columns of :math:`C`, but
+**the last two columns of** :math:`C` **and** :math:`U` **are "free"**.
+**They don't have pivots**:
+
+.. math::
+
+    C=\bb 1&2&2&4\\3&8&6&16 \eb\rm{\ becomes\ } U=\bb 1&2&2&4\\0&2&0&4 \eb
+    
+    \uparrow\quad\uparrow\quad\uparrow\quad\uparrow\;\;
+
+    \rm{pivot}\quad\;\rm{free}\;\;
+
+For the free variables :math:`x_3` and :math:`x_4`, we make special choices of ones and zeros.
+First :math:`x_3=1, x_4=0` and second :math:`x_3=0, x_4=1`.
+We get two special solutions in the nullspace of :math:`C` which is also the nullspace of :math:`U`:
+
+.. math::
+
+    \bs{s_1}=\bb -2\\0\\1\\0 \eb\rm{\ and\ }\bs{s_2}=\bb 0\\-2\\0\\1 \eb
+    \begin{matrix} \leftarrow\rm{pivot}\\ \leftarrow\rm{variables}\\ 
+    \leftarrow\rm{free}\\ \leftarrow\rm{variables} \end{matrix}
+
 The Reduced Row Echelon Form :math:`R`
 --------------------------------------
 
+.. note::
+
+    #. **Produce zeros above the pivots**. Use pivot rows to eliminate upward in :math:`R`.
+
+    #. **Produce ones in the pivots**. Divide the whole pivot row by its pivot.
+
+The nullspace stay the same: :math:`\N(A)=\N(U)=\N(R)`.
+This nullspace becomes easiest to see when we reach the **reduced row echelon form** :math:`R = \rm{rref}(A)`.
+**The pivot columns of** :math:`R` **contains** :math:`I`.
+
+.. note::
+
+    **Reduced form** :math:`R`: :math:`U=\bb 1&2&2&4\\0&2&0&4 \eb` becomes
+    :math:`R=\bb 1&0&2&0\\0&1&0&2 \eb`.
+
+Now (**free column 3**) = **2** (**pivot column 1**), so -2 appears in :math:`\bs{s}_1=(-2,0,1,0)`.
+Second special solution :math:`\bs{s}_2=(0,-2,0,1)`.  
+
+The case of a zero nullspace :math:`\bs{\rm{Z}}` is of the greatest importance.
+It says that the columns of :math:`A` are **independent**.
+
+**Pivot Variables and Free Variables in the Echelon Matrix** :math:`R`:
+
+.. math::
+
+    A=\bb p&p&f&p&f\\|&|&|&|&|\\|&|&|&|&|\\|&|&|&|&|\\ \eb \quad
+    R=\bb 1&0&a&0&c\\0&1&b&0&d\\0&0&0&1&e\\0&0&0&0&0\\ \eb \quad
+    \bs{s}_1=\bb -a\\-b\\1\\0\\0 \eb \quad \bs{s}_2=\bb -c\\-d\\0\\-e\\1 \eb
+
+* :math:`A`: 3 pivot columns :math:`p`, 2 free columns :math:`f` to be revealed by :math:`R`.
+
+* :math:`R`: :math:`I` in pivot columns, :math:`F` in free columns; 3 pivots: rank :math:`r=3`.
+
+* Special :math:`R\bs{s}_1=\bs{0}` and :math:`R\bs{s}_2=\bs{0}` take :math:`-a` 
+  to :math:`-e` from :math:`R`; 
+  :math:`R\bs{s}=\bs{0}` means :math:`A\bs{s}=\bs{0}`.
+
+Here are those steps for a 4 by 7 **reduced row echolon matrix** :math:`R` with three pivots:
+
+.. note::
+
+    :math:`R=\bb 1&0&x&x&x&0&x\\0&1&x&x&x&0&x\\0&0&0&0&0&1&x\\0&0&0&0&0&0&0 \eb`
+
+    * Three pivot variables :math:`x_1, x_2, x_6`
+  
+    * Four free variables :math:`x_3, x_4, x_5, x_7`
+  
+    * Four special solutions :math:`s` in :math:`N(R)`
+  
+    * The pivot rows and columns contain :math:`I`
+
+*The column space* :math:`\bs{C}(R)` *consists of all vectors of the form* :math:`(b_1,b_2,b_3,0)`.
+The nullspace :math:`\bs{N}(R)` is a subspace of :math:`\R^7`.
+The solutions to :math:`R\x=\0` are all the combinations of the four special 
+solutions -- *one for each free variable*:
+
+#. Columns 3, 4, 5, 7 have no pivots.
+   So the four free variables are :math:`x_3, x_4, x_5, x_7`.
+
+#. Set one free variable to 1 and set the other three free variables to zero.
+
+#. To find :math:`\bs{s}`, solve :math:`R\bs{x}=\bs{0}` for the pivot variables :math:`x_1, x_2, x_6`.
+
+.. note::
+
+    Suppose :math:`A\x=\0` has more unknowns than equations (:math:`\bs{n}>\bs{m}`, more columns than rows).
+    There must be at least one free column.
+    **Then** math:`A\x=\0` **has nonzero solutions**.
+
+*A short vide matrix* (:math:`n>m`) *always has nonzero vectors in its nullspace*.
+There must be at least :math:`n-m` free variables, since the number of pivots cannot exceed :math:`m`.
+A row might have *no* pivot -- which means an extra free variable.
+When there is a free variabl, it can be set to 1.
+Then the equation :math:`A\x=\0` has at least a line of nonzero solutions.
+
+*The nullspace is a subspace*.
+*Its "Dimension" is the number of free variables*.
 
 The Rank of a Matrix
 --------------------
 
+**The true size of** :math:`A` **is given by its rank**.
+
+.. note::
+
+    **DEFINITION OF RANK**: The rank of :math:`A` is the number of pivots.
+    This number is :math:`r`.
 
 Rank One
 --------

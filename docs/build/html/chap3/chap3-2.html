@@ -13,6 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -29,11 +31,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -181,7 +183,8 @@
 \newcommand{\rm}{\mathrm}\\\newcommand{\cd}{\cdot}
 \newcommand{\cds}{\cdots}
 \newcommand{\lv}{\lVert}
-\newcommand{\rv}{\rVert}\\\newcommand{\b}{\boldsymbol{b}}
+\newcommand{\rv}{\rVert}\\\newcommand{\0}{\boldsymbol{0}}
+\newcommand{\b}{\boldsymbol{b}}
 \newcommand{\e}{\boldsymbol{e}}
 \newcommand{\i}{\boldsymbol{i}}
 \newcommand{\j}{\boldsymbol{j}}
@@ -189,7 +192,7 @@
 \newcommand{\v}{\boldsymbol{v}}
 \newcommand{\w}{\boldsymbol{w}}
 \newcommand{\x}{\boldsymbol{x}}
-\newcommand{\y}{\boldsymbol{y}}\\\newcommand{\R}{\boldsymbol{\mathrm{R}}}\\\newcommand{\bb}{\begin{bmatrix}}
+\newcommand{\y}{\boldsymbol{y}}\\\newcommand{\N}{\boldsymbol{N}}\\\newcommand{\R}{\boldsymbol{\mathrm{R}}}\\\newcommand{\bb}{\begin{bmatrix}}
 \newcommand{\eb}{\end{bmatrix}}\\\newcommand{\im}{^{-1}}\end{aligned}\end{align} \]</div>
 <div class="section" id="chapter-3-2-the-nullspace-of-a-solving-ax-0-and-rx-0">
 <h1>Chapter 3.2 The Nullspace of <span class="math notranslate nohighlight">\(A\)</span>: Solving <span class="math notranslate nohighlight">\(Ax = 0\)</span> and <span class="math notranslate nohighlight">\(Rx=0\)</span><a class="headerlink" href="#chapter-3-2-the-nullspace-of-a-solving-ax-0-and-rx-0" title="Permalink to this headline">¶</a></h1>
@@ -228,12 +231,113 @@ Then the first components -2 and -3 are determined by the equation <span class="
 <p>The first column of <span class="math notranslate nohighlight">\(A=\bb 1&amp;2&amp;3 \eb\)</span> contains the only pivot, so the first component of <span class="math notranslate nohighlight">\(\x\)</span> is <em>not free</em>.
 <strong>The free components correspond to columns with no pivots</strong>.
 The special choice (one or zero) is only for the free variables in the special solutions.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A = \bb 1&amp;2\\3&amp;8 \eb \quad
+B = \bb A\\2A \eb = \bb 1&amp;2\\3&amp;8\\2&amp;4\\6&amp;16 \eb \quad
+C = \bb A&amp;2A \eb = \bb 1&amp;2&amp;2&amp;4\\3&amp;8&amp;6&amp;16 \eb.\end{split}\]</div>
+<p>The equation <span class="math notranslate nohighlight">\(A\x=\bs{0}\)</span> has only the zero solution <span class="math notranslate nohighlight">\(\x=\bs{0}\)</span>.
+The <em>nullspace is</em> <span class="math notranslate nohighlight">\(\bs{Z}\)</span>.
+It contains only the single point <span class="math notranslate nohighlight">\(\x=\bs{0}\)</span> in <span class="math notranslate nohighlight">\(\R^2\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A\x = \bb 1&amp;2\\3&amp;8 \eb\bb x_1\\x_2 \eb = \bb 0\\0 \eb \rm{\ yields\ }
+\bb 1&amp;2\\0&amp;2 \eb\bb x_1\\x_2 \eb = \bb 0\\0 \eb \rm{\ and\ }
+\bb x_1=0\\x_2=0 \eb.\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(A\)</span> is invertible.
+There are no special solutions.
+Both columns of this matrix have pivots.</p>
+<p>The rectangular matrix <span class="math notranslate nohighlight">\(B\)</span> has the same nullspace <span class="math notranslate nohighlight">\(\bs{Z}\)</span>.
+The extra rows impose more conditions on the vectors <span class="math notranslate nohighlight">\(\x\)</span> in the nullspace.</p>
+<p>The rectangular matrix <span class="math notranslate nohighlight">\(C\)</span> has extra columns instead of extra rows.
+The solution vector <span class="math notranslate nohighlight">\(\x\)</span> has <em>four</em> components.
+Elimination will produce pivots in the first two columns of <span class="math notranslate nohighlight">\(C\)</span>, but
+<strong>the last two columns of</strong> <span class="math notranslate nohighlight">\(C\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(U\)</span> <strong>are “free”</strong>.
+<strong>They don’t have pivots</strong>:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\begin{split}C=\bb 1&amp;2&amp;2&amp;4\\3&amp;8&amp;6&amp;16 \eb\rm{\ becomes\ } U=\bb 1&amp;2&amp;2&amp;4\\0&amp;2&amp;0&amp;4 \eb\end{split}\\\uparrow\quad\uparrow\quad\uparrow\quad\uparrow\;\;\\\rm{pivot}\quad\;\rm{free}\;\;\end{aligned}\end{align} \]</div>
+<p>For the free variables <span class="math notranslate nohighlight">\(x_3\)</span> and <span class="math notranslate nohighlight">\(x_4\)</span>, we make special choices of ones and zeros.
+First <span class="math notranslate nohighlight">\(x_3=1, x_4=0\)</span> and second <span class="math notranslate nohighlight">\(x_3=0, x_4=1\)</span>.
+We get two special solutions in the nullspace of <span class="math notranslate nohighlight">\(C\)</span> which is also the nullspace of <span class="math notranslate nohighlight">\(U\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bs{s_1}=\bb -2\\0\\1\\0 \eb\rm{\ and\ }\bs{s_2}=\bb 0\\-2\\0\\1 \eb
+\begin{matrix} \leftarrow\rm{pivot}\\ \leftarrow\rm{variables}\\
+\leftarrow\rm{free}\\ \leftarrow\rm{variables} \end{matrix}\end{split}\]</div>
 </div>
 <div class="section" id="the-reduced-row-echelon-form-r">
 <h2>The Reduced Row Echelon Form <span class="math notranslate nohighlight">\(R\)</span><a class="headerlink" href="#the-reduced-row-echelon-form-r" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ol class="arabic simple">
+<li><p><strong>Produce zeros above the pivots</strong>. Use pivot rows to eliminate upward in <span class="math notranslate nohighlight">\(R\)</span>.</p></li>
+<li><p><strong>Produce ones in the pivots</strong>. Divide the whole pivot row by its pivot.</p></li>
+</ol>
+</div>
+<p>The nullspace stay the same: <span class="math notranslate nohighlight">\(\N(A)=\N(U)=\N(R)\)</span>.
+This nullspace becomes easiest to see when we reach the <strong>reduced row echelon form</strong> <span class="math notranslate nohighlight">\(R = \rm{rref}(A)\)</span>.
+<strong>The pivot columns of</strong> <span class="math notranslate nohighlight">\(R\)</span> <strong>contains</strong> <span class="math notranslate nohighlight">\(I\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Reduced form</strong> <span class="math notranslate nohighlight">\(R\)</span>: <span class="math notranslate nohighlight">\(U=\bb 1&amp;2&amp;2&amp;4\\0&amp;2&amp;0&amp;4 \eb\)</span> becomes
+<span class="math notranslate nohighlight">\(R=\bb 1&amp;0&amp;2&amp;0\\0&amp;1&amp;0&amp;2 \eb\)</span>.</p>
+</div>
+<p>Now (<strong>free column 3</strong>) = <strong>2</strong> (<strong>pivot column 1</strong>), so -2 appears in <span class="math notranslate nohighlight">\(\bs{s}_1=(-2,0,1,0)\)</span>.
+Second special solution <span class="math notranslate nohighlight">\(\bs{s}_2=(0,-2,0,1)\)</span>.</p>
+<p>The case of a zero nullspace <span class="math notranslate nohighlight">\(\bs{\rm{Z}}\)</span> is of the greatest importance.
+It says that the columns of <span class="math notranslate nohighlight">\(A\)</span> are <strong>independent</strong>.</p>
+<p><strong>Pivot Variables and Free Variables in the Echelon Matrix</strong> <span class="math notranslate nohighlight">\(R\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A=\bb p&amp;p&amp;f&amp;p&amp;f\\|&amp;|&amp;|&amp;|&amp;|\\|&amp;|&amp;|&amp;|&amp;|\\|&amp;|&amp;|&amp;|&amp;|\\ \eb \quad
+R=\bb 1&amp;0&amp;a&amp;0&amp;c\\0&amp;1&amp;b&amp;0&amp;d\\0&amp;0&amp;0&amp;1&amp;e\\0&amp;0&amp;0&amp;0&amp;0\\ \eb \quad
+\bs{s}_1=\bb -a\\-b\\1\\0\\0 \eb \quad \bs{s}_2=\bb -c\\-d\\0\\-e\\1 \eb\end{split}\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(A\)</span>: 3 pivot columns <span class="math notranslate nohighlight">\(p\)</span>, 2 free columns <span class="math notranslate nohighlight">\(f\)</span> to be revealed by <span class="math notranslate nohighlight">\(R\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(R\)</span>: <span class="math notranslate nohighlight">\(I\)</span> in pivot columns, <span class="math notranslate nohighlight">\(F\)</span> in free columns; 3 pivots: rank <span class="math notranslate nohighlight">\(r=3\)</span>.</p></li>
+<li><p>Special <span class="math notranslate nohighlight">\(R\bs{s}_1=\bs{0}\)</span> and <span class="math notranslate nohighlight">\(R\bs{s}_2=\bs{0}\)</span> take <span class="math notranslate nohighlight">\(-a\)</span>
+to <span class="math notranslate nohighlight">\(-e\)</span> from <span class="math notranslate nohighlight">\(R\)</span>;
+<span class="math notranslate nohighlight">\(R\bs{s}=\bs{0}\)</span> means <span class="math notranslate nohighlight">\(A\bs{s}=\bs{0}\)</span>.</p></li>
+</ul>
+<p>Here are those steps for a 4 by 7 <strong>reduced row echolon matrix</strong> <span class="math notranslate nohighlight">\(R\)</span> with three pivots:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(R=\bb 1&amp;0&amp;x&amp;x&amp;x&amp;0&amp;x\\0&amp;1&amp;x&amp;x&amp;x&amp;0&amp;x\\0&amp;0&amp;0&amp;0&amp;0&amp;1&amp;x\\0&amp;0&amp;0&amp;0&amp;0&amp;0&amp;0 \eb\)</span></p>
+<ul class="simple">
+<li><p>Three pivot variables <span class="math notranslate nohighlight">\(x_1, x_2, x_6\)</span></p></li>
+<li><p>Four free variables <span class="math notranslate nohighlight">\(x_3, x_4, x_5, x_7\)</span></p></li>
+<li><p>Four special solutions <span class="math notranslate nohighlight">\(s\)</span> in <span class="math notranslate nohighlight">\(N(R)\)</span></p></li>
+<li><p>The pivot rows and columns contain <span class="math notranslate nohighlight">\(I\)</span></p></li>
+</ul>
+</div>
+<p><em>The column space</em> <span class="math notranslate nohighlight">\(\bs{C}(R)\)</span> <em>consists of all vectors of the form</em> <span class="math notranslate nohighlight">\((b_1,b_2,b_3,0)\)</span>.
+The nullspace <span class="math notranslate nohighlight">\(\bs{N}(R)\)</span> is a subspace of <span class="math notranslate nohighlight">\(\R^7\)</span>.
+The solutions to <span class="math notranslate nohighlight">\(R\x=\0\)</span> are all the combinations of the four special
+solutions – <em>one for each free variable</em>:</p>
+<ol class="arabic simple">
+<li><p>Columns 3, 4, 5, 7 have no pivots.
+So the four free variables are <span class="math notranslate nohighlight">\(x_3, x_4, x_5, x_7\)</span>.</p></li>
+<li><p>Set one free variable to 1 and set the other three free variables to zero.</p></li>
+<li><p>To find <span class="math notranslate nohighlight">\(\bs{s}\)</span>, solve <span class="math notranslate nohighlight">\(R\bs{x}=\bs{0}\)</span> for the pivot variables <span class="math notranslate nohighlight">\(x_1, x_2, x_6\)</span>.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Suppose <span class="math notranslate nohighlight">\(A\x=\0\)</span> has more unknowns than equations (<span class="math notranslate nohighlight">\(\bs{n}&gt;\bs{m}\)</span>, more columns than rows).
+There must be at least one free column.
+<strong>Then</strong> math:<cite>Ax=0</cite> <strong>has nonzero solutions</strong>.</p>
+</div>
+<p><em>A short vide matrix</em> (<span class="math notranslate nohighlight">\(n&gt;m\)</span>) <em>always has nonzero vectors in its nullspace</em>.
+There must be at least <span class="math notranslate nohighlight">\(n-m\)</span> free variables, since the number of pivots cannot exceed <span class="math notranslate nohighlight">\(m\)</span>.
+A row might have <em>no</em> pivot – which means an extra free variable.
+When there is a free variabl, it can be set to 1.
+Then the equation <span class="math notranslate nohighlight">\(A\x=\0\)</span> has at least a line of nonzero solutions.</p>
+<p><em>The nullspace is a subspace</em>.
+<em>Its “Dimension” is the number of free variables</em>.</p>
 </div>
 <div class="section" id="the-rank-of-a-matrix">
 <h2>The Rank of a Matrix<a class="headerlink" href="#the-rank-of-a-matrix" title="Permalink to this headline">¶</a></h2>
+<p><strong>The true size of</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>is given by its rank</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>DEFINITION OF RANK</strong>: The rank of <span class="math notranslate nohighlight">\(A\)</span> is the number of pivots.
+This number is <span class="math notranslate nohighlight">\(r\)</span>.</p>
+</div>
 </div>
 <div class="section" id="rank-one">
 <h2>Rank One<a class="headerlink" href="#rank-one" title="Permalink to this headline">¶</a></h2>

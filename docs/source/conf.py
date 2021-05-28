@@ -65,6 +65,7 @@ rst_prolog = r'''
     \newcommand{\lv}{\lVert}
     \newcommand{\rv}{\rVert}
     
+    \newcommand{\0}{\boldsymbol{0}}
     \newcommand{\b}{\boldsymbol{b}}
     \newcommand{\e}{\boldsymbol{e}}
     \newcommand{\i}{\boldsymbol{i}}
@@ -74,6 +75,8 @@ rst_prolog = r'''
     \newcommand{\w}{\boldsymbol{w}}
     \newcommand{\x}{\boldsymbol{x}}
     \newcommand{\y}{\boldsymbol{y}}
+
+    \newcommand{\N}{\boldsymbol{N}}
 
     \newcommand{\R}{\boldsymbol{\mathrm{R}}}
 
