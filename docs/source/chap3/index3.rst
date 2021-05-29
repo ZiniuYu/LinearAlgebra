@@ -1,5 +1,5 @@
-Chapter 3 Vector Spacese and Subspaces
-======================================
+Chapter 3 Vector Spaces and Subspaces
+=====================================
 
 .. toctree::
    :maxdepth: 2
