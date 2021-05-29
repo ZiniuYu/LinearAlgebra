@@ -91,10 +91,14 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../chap1/index1.html">Chapter 1 Introduction to Vectors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../chap2/index2.html">Chapter 2 Solving Linear Equations</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index3.html">Chapter 3 Vector Spacese and Subspaces</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index3.html">Chapter 3 Vector Spaces and Subspaces</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="chap3-1.html">Chapter 3.1 Spaces of Vectors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chap3-2.html">Chapter 3.2 The Nullspace of <span class="math notranslate nohighlight">\(A\)</span>: Solving <span class="math notranslate nohighlight">\(Ax = 0\)</span> and <span class="math notranslate nohighlight">\(Rx=0\)</span></a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 3.3 The Complete Solution to <span class="math notranslate nohighlight">\(Ax=b\)</span></a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 3.3 The Complete Solution to <span class="math notranslate nohighlight">\(Ax=b\)</span></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#one-particular-solution-ax-p-b">One Particular Solution <span class="math notranslate nohighlight">\(Ax_p=b\)</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-complete-solution">The Complete Solution</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="chap3-4.html">Chapter 3.4 Independece, Basis and Dimension</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chap3-5.html">Chapter 3.5 Dimensions of the Four Subspaces</a></li>
 </ul>
@@ -148,7 +152,7 @@
     
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
-          <li><a href="index3.html">Chapter 3 Vector Spacese and Subspaces</a> &raquo;</li>
+          <li><a href="index3.html">Chapter 3 Vector Spaces and Subspaces</a> &raquo;</li>
         
       <li>Chapter 3.3 The Complete Solution to <span class="math notranslate nohighlight">\(Ax=b\)</span></li>
     
@@ -188,6 +192,35 @@
 \newcommand{\eb}{\end{bmatrix}}\\\newcommand{\im}{^{-1}}\end{aligned}\end{align} \]</div>
 <div class="section" id="chapter-3-3-the-complete-solution-to-ax-b">
 <h1>Chapter 3.3 The Complete Solution to <span class="math notranslate nohighlight">\(Ax=b\)</span><a class="headerlink" href="#chapter-3-3-the-complete-solution-to-ax-b" title="Permalink to this headline">¶</a></h1>
+<p>The last section totally solved <span class="math notranslate nohighlight">\(A\x=\0\)</span>.
+Elimination converted the problem to <span class="math notranslate nohighlight">\(R\x=\0\)</span>.
+Now the right side <span class="math notranslate nohighlight">\(\b\)</span> is not zero.
+<span class="math notranslate nohighlight">\(A\x=\b\)</span> is reduced to a simple system <span class="math notranslate nohighlight">\(R\x=\bs{d}\)</span> with the same solutions.
+One way to organize that is to <strong>add</strong> <span class="math notranslate nohighlight">\(\b\)</span> <strong>as an extra column of the matrix</strong>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb 1&amp;3&amp;0&amp;2\\0&amp;0&amp;1&amp;4\\1&amp;3&amp;1&amp;6 \eb\bb x_1\\x_2\\x_3\\x_4 \eb=\bb 1\\6\\7 \eb
+\quad\begin{matrix} \rm{has\ the}\\\rm{augmented}\\\rm{matrix} \end{matrix}
+\quad\bb 1&amp;3&amp;0&amp;2&amp;1\\0&amp;0&amp;1&amp;4&amp;6\\1&amp;3&amp;1&amp;6&amp;7 \eb=\bb A&amp;\b \eb\end{split}\]</div>
+<p>When we apply the usual elimination steps to <span class="math notranslate nohighlight">\(A\)</span>, reacehing <span class="math notranslate nohighlight">\(R\)</span>, we also apply them to <span class="math notranslate nohighlight">\(\b\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb 1&amp;3&amp;0&amp;2\\0&amp;0&amp;1&amp;4\\0&amp;0&amp;0&amp;0 \eb\bb x_1\\x_2\\x_3\\x_4 \eb=\bb 1\\6\\0 \eb
+\quad\begin{matrix} \rm{has\ the}\\\rm{augmented}\\\rm{matrix} \end{matrix}
+\quad\bb 1&amp;3&amp;0&amp;2&amp;1\\0&amp;0&amp;1&amp;4&amp;6\\0&amp;0&amp;0&amp;0&amp;0 \eb=\bb R&amp;\bs{d} \eb\end{split}\]</div>
+<p>The very last zero is crucial.
+The third equation has become <span class="math notranslate nohighlight">\(0=0\)</span>.
+So the equations can be solved.</p>
+<p>Here are the same augmented matrices for a general <span class="math notranslate nohighlight">\(\b = (b_1,b_2,b)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb A&amp;\b \eb=\bb 1&amp;3&amp;0&amp;2&amp;b_1\\0&amp;0&amp;1&amp;4&amp;b_2\\1&amp;3&amp;1&amp;6&amp;b_3 \eb\rightarrow
+\bb 1&amp;3&amp;0&amp;2&amp;b_1\\0&amp;0&amp;1&amp;4&amp;b_2\\0&amp;0&amp;0&amp;0&amp;b_3-b_1-b_2 \eb=\bb R&amp;\bs{d} \eb\end{split}\]</div>
+<p>Now we get <span class="math notranslate nohighlight">\(0=0\)</span> in the third equation only of <span class="math notranslate nohighlight">\(b_3-b_1-b_2=0\)</span>.
+This is <span class="math notranslate nohighlight">\(b_1+b_2=b_3\)</span>.</p>
+<div class="section" id="one-particular-solution-ax-p-b">
+<h2>One Particular Solution <span class="math notranslate nohighlight">\(Ax_p=b\)</span><a class="headerlink" href="#one-particular-solution-ax-p-b" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="the-complete-solution">
+<h2>The Complete Solution<a class="headerlink" href="#the-complete-solution" title="Permalink to this headline">¶</a></h2>
+</div>
 </div>
 
 
