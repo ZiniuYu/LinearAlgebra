@@ -13,8 +13,6 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -31,11 +29,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -175,7 +173,8 @@
 \newcommand{\rm}{\mathrm}\\\newcommand{\cd}{\cdot}
 \newcommand{\cds}{\cdots}
 \newcommand{\lv}{\lVert}
-\newcommand{\rv}{\rVert}\\\newcommand{\b}{\boldsymbol{b}}
+\newcommand{\rv}{\rVert}\\\newcommand{\0}{\boldsymbol{0}}
+\newcommand{\b}{\boldsymbol{b}}
 \newcommand{\e}{\boldsymbol{e}}
 \newcommand{\i}{\boldsymbol{i}}
 \newcommand{\j}{\boldsymbol{j}}
@@ -183,7 +182,7 @@
 \newcommand{\v}{\boldsymbol{v}}
 \newcommand{\w}{\boldsymbol{w}}
 \newcommand{\x}{\boldsymbol{x}}
-\newcommand{\y}{\boldsymbol{y}}\\\newcommand{\R}{\boldsymbol{\mathrm{R}}}\\\newcommand{\bb}{\begin{bmatrix}}
+\newcommand{\y}{\boldsymbol{y}}\\\newcommand{\N}{\boldsymbol{N}}\\\newcommand{\R}{\boldsymbol{\mathrm{R}}}\\\newcommand{\bb}{\begin{bmatrix}}
 \newcommand{\eb}{\end{bmatrix}}\\\newcommand{\im}{^{-1}}\end{aligned}\end{align} \]</div>
 <div class="section" id="chapter-3-vector-spacese-and-subspaces">
 <h1>Chapter 3 Vector Spacese and Subspaces<a class="headerlink" href="#chapter-3-vector-spacese-and-subspaces" title="Permalink to this headline">¶</a></h1>
@@ -194,7 +193,13 @@
 <li class="toctree-l2"><a class="reference internal" href="chap3-1.html#the-column-space-of-a">The Column Space of <span class="math notranslate nohighlight">\(A\)</span></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="chap3-2.html">Chapter 3.2 The Nullspace of <span class="math notranslate nohighlight">\(A\)</span>: Solving <span class="math notranslate nohighlight">\(Ax = 0\)</span> and <span class="math notranslate nohighlight">\(Rx=0\)</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap3-2.html">Chapter 3.2 The Nullspace of <span class="math notranslate nohighlight">\(A\)</span>: Solving <span class="math notranslate nohighlight">\(Ax = 0\)</span> and <span class="math notranslate nohighlight">\(Rx=0\)</span></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="chap3-2.html#pivot-columns-and-free-columns">Pivot Columns and Free columns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap3-2.html#the-reduced-row-echelon-form-r">The Reduced Row Echelon Form <span class="math notranslate nohighlight">\(R\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap3-2.html#the-rank-of-a-matrix">The Rank of a Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap3-2.html#rank-one">Rank One</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="chap3-3.html">Chapter 3.3 The Complete Solution to <span class="math notranslate nohighlight">\(Ax=b\)</span></a></li>
 <li class="toctree-l1"><a class="reference internal" href="chap3-4.html">Chapter 3.4 Independece, Basis and Dimension</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chap3-5.html">Chapter 3.5 Dimensions of the Four Subspaces</a></li>

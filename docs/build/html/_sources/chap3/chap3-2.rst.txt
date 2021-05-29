@@ -182,5 +182,35 @@ The Rank of a Matrix
     **DEFINITION OF RANK**: The rank of :math:`A` is the number of pivots.
     This number is :math:`r`.
 
+**Every "free column" is a combination of earlier pivot columns**.
+
 Rank One
 --------
+
+Matrices of **rank one** have only *one pivot*.
+*Every row is a multiple of the pivot row*.
+
+**Rank one matrix**:
+
+.. math::
+
+    A=\bb 1&3&10\\2&6&20\\3&9&30 \eb\rightarrow R=\bb 1&3&10\\0&0&0\\0&0&0 \eb.
+
+:math:`A =` **column times row** :math:`= \u\v^T`:
+
+.. math::
+
+    \bb 1&3&10\\2&6&20\\3&9&30 \eb=\bb 1\\2\\3 \eb\bb 1&3&10 \eb.
+
+With rank one :math:`A\x=\0` is easy to understand.
+That equation :math:`\u(\v^T\x)=\0` leads us to :math:`\v^t\x=0`.
+All vectors :math:`\x` in the nullspace must be orthogonal to :math:`\v` in the row space.
+This is the geometry when :math:`r=1`:
+*row space = line*, *null space = perpendcular plane*.
+
+The second definition of rank: **the number of independent rows**.
+This is also **the number of independent columns**.
+
+The third definition of rank: **the "dimention" of the column space**.
+It is also **the dimension of the row space**.
+:math:`n-r` is **the dimension of the nullspace**.

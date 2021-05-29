@@ -13,8 +13,6 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -31,11 +29,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -181,7 +179,8 @@
 \newcommand{\rm}{\mathrm}\\\newcommand{\cd}{\cdot}
 \newcommand{\cds}{\cdots}
 \newcommand{\lv}{\lVert}
-\newcommand{\rv}{\rVert}\\\newcommand{\b}{\boldsymbol{b}}
+\newcommand{\rv}{\rVert}\\\newcommand{\0}{\boldsymbol{0}}
+\newcommand{\b}{\boldsymbol{b}}
 \newcommand{\e}{\boldsymbol{e}}
 \newcommand{\i}{\boldsymbol{i}}
 \newcommand{\j}{\boldsymbol{j}}
@@ -189,7 +188,7 @@
 \newcommand{\v}{\boldsymbol{v}}
 \newcommand{\w}{\boldsymbol{w}}
 \newcommand{\x}{\boldsymbol{x}}
-\newcommand{\y}{\boldsymbol{y}}\\\newcommand{\R}{\boldsymbol{\mathrm{R}}}\\\newcommand{\bb}{\begin{bmatrix}}
+\newcommand{\y}{\boldsymbol{y}}\\\newcommand{\N}{\boldsymbol{N}}\\\newcommand{\R}{\boldsymbol{\mathrm{R}}}\\\newcommand{\bb}{\begin{bmatrix}}
 \newcommand{\eb}{\end{bmatrix}}\\\newcommand{\im}{^{-1}}\end{aligned}\end{align} \]</div>
 <div class="section" id="chapter-3-1-spaces-of-vectors">
 <h1>Chapter 3.1 Spaces of Vectors<a class="headerlink" href="#chapter-3-1-spaces-of-vectors" title="Permalink to this headline">¶</a></h1>
@@ -231,9 +230,84 @@ The vector space <span class="math notranslate nohighlight">\(\bs{\rm{Z}}\)</spa
 Each space has its own zero vector.</p>
 <div class="section" id="subspaces">
 <h2>Subspaces<a class="headerlink" href="#subspaces" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>DEFINITION</strong>: A <strong>subspace</strong> of a vector space is a set of vectors
+(including <span class="math notranslate nohighlight">\(\bs{0}\)</span>) that satisfies two requirements:
+<strong>If</strong> <span class="math notranslate nohighlight">\(\v\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(\w\)</span> <strong>are in the subspace and</strong> <span class="math notranslate nohighlight">\(c\)</span>
+<strong>is any scalar, then</strong></p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(\v+\w\)</span> is in the subspace;</p></li>
+<li><p><span class="math notranslate nohighlight">\(c\v\)</span> is in the subspace.</p></li>
+</ol>
+</div>
+<p>In short, <strong>all linear combinations stay in the subspace</strong>.</p>
+<p><strong>Every subspace contains the zero vector</strong>.
+Planes that don’t contain the origin fail those tests.
+Those planes are not subspaces.</p>
+<p><strong>Lines through the origin are also subspaces</strong>.
+Another subspace is all of <span class="math notranslate nohighlight">\(\R^3\)</span>.
+The whole space is a subspace (<em>of itself</em>).</p>
+<p>A list of all the possible subspace of <span class="math notranslate nohighlight">\(\R^3\)</span>:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(\bs{\rm{L}}\)</span>: Any line through <span class="math notranslate nohighlight">\((0,0,0)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\bs{\rm{P}}\)</span>: Any plane through <span class="math notranslate nohighlight">\((0,0,0)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\R^3\)</span>: The whole space</p></li>
+<li><p><span class="math notranslate nohighlight">\(\bs{\rm{Z}}\)</span>: The single vector <span class="math notranslate nohighlight">\((0,0,0)\)</span></p></li>
+</ol>
+<p><strong>The quater-plane is not a subspace</strong>.
+<strong>Two quarter-planes don’t make a subspace</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>A subspace containing</strong> <span class="math notranslate nohighlight">\(\v\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(\w\)</span> <strong>must contain all linear combinations</strong> <span class="math notranslate nohighlight">\(c\v+d\w\)</span>.</p>
+</div>
 </div>
 <div class="section" id="the-column-space-of-a">
 <h2>The Column Space of <span class="math notranslate nohighlight">\(A\)</span><a class="headerlink" href="#the-column-space-of-a" title="Permalink to this headline">¶</a></h2>
+<p>Start with the columns of <span class="math notranslate nohighlight">\(A\)</span> and <strong>take all their linear combinations</strong>.
+This produces the column space of <span class="math notranslate nohighlight">\(A\)</span>.
+<strong>It is a vector space made up of column vectors</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>DEFINITION</strong>: The <strong>column space</strong> consists of <strong>all linear combinations of the columns</strong>
+The combinations are all possible vectors <span class="math notranslate nohighlight">\(A\x\)</span>.
+They fill the column space <span class="math notranslate nohighlight">\(\bs{C}(A)\)</span>.</p>
+</div>
+<p><strong>To solve</strong> <span class="math notranslate nohighlight">\(A\x=\b\)</span> <strong>is to express</strong> <span class="math notranslate nohighlight">\(\b\)</span> <strong>as a combination of the columns</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>The system</strong> <span class="math notranslate nohighlight">\(A\x=\b\)</span> <strong>is solvable if and only if</strong> <span class="math notranslate nohighlight">\(\b\)</span> <strong>is in the column space of</strong> <span class="math notranslate nohighlight">\(A\)</span>.</p>
+</div>
+<p>Suppose <span class="math notranslate nohighlight">\(A\)</span> by <span class="math notranslate nohighlight">\(n\)</span> matrix.
+Its columns have <span class="math notranslate nohighlight">\(m\)</span> components.
+So the columns belong to <span class="math notranslate nohighlight">\(\R^m\)</span>.
+<strong>The column space of</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>is a subspace of</strong> <span class="math notranslate nohighlight">\(\R^m\)</span>.</p>
+<p><strong>Notation</strong>: The column space of <span class="math notranslate nohighlight">\(A\)</span> is denoted by <span class="math notranslate nohighlight">\(\bs{C}(A)\)</span>.
+Start with the columns and take all their linear combinations.
+We might get the whole <span class="math notranslate nohighlight">\(\R^m\)</span> or only a subspace.</p>
+<p><strong>Important</strong>: Instead of columns in <span class="math notranslate nohighlight">\(\R^m\)</span>, we could start with any set
+<span class="math notranslate nohighlight">\(\bs{\rm{S}}\)</span> of vectors in a vector space <span class="math notranslate nohighlight">\(\bs{\rm{V}}\)</span>.
+To get a <em>subspace*</em> <span class="math notranslate nohighlight">\(\bs{\rm{SS}}\)</span> of <span class="math notranslate nohighlight">\(\bs{\rm{V}}\)</span>, we take
+<em>all combinations</em> of the vectors in that set:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\bs{\rm{S}}\)</span> = set of vectors in <span class="math notranslate nohighlight">\(\bs{\rm{V}}\)</span> (probably not a subspace)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\bs{\rm{SS}}\)</span> = all combinations of vectors in <span class="math notranslate nohighlight">\(\bs{\rm{S}}\)</span> (definitely a subspace)</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(\bs{\rm{SS}}\)</span> = all <span class="math notranslate nohighlight">\(c_1\v_1 + \cds + c_N\v_N\)</span>
+= <strong>the subspace of</strong> <span class="math notranslate nohighlight">\(\bs{\rm{V}}\)</span> “spanned” by <span class="math notranslate nohighlight">\(\bs{\rm{S}}\)</span></p>
+</div>
+<p>When <span class="math notranslate nohighlight">\(\bs{\rm{S}}\)</span> is the set of columns, <span class="math notranslate nohighlight">\(\bs{\rm{SS}}\)</span> is the column space.
+When there is only one nonzero vector <span class="math notranslate nohighlight">\(\v\)</span> in <span class="math notranslate nohighlight">\(\bs{\rm{S}}\)</span>, the
+subsapce <span class="math notranslate nohighlight">\(\bs{\rm{SS}}\)</span> is the line through <span class="math notranslate nohighlight">\(\v\)</span>.
+<em>Always</em> <span class="math notranslate nohighlight">\(\bs{\rm{SS}}\)</span> <em>is the smallest subspace containing</em> <span class="math notranslate nohighlight">\(\bs{\rm{S}}\)</span>.</p>
+<p>The columns “span” the column space.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The subspace <span class="math notranslate nohighlight">\(\bs{\rm{SS}}\)</span> is the “span” of <span class="math notranslate nohighlight">\(\bs{\rm{S}}\)</span>,
+containing all combinations of vectors in <span class="math notranslate nohighlight">\(\bs{\rm{S}}\)</span>.</p>
+</div>
 </div>
 </div>
 

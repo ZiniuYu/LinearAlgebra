@@ -13,8 +13,6 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -31,11 +29,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -338,9 +336,28 @@ Then the equation <span class="math notranslate nohighlight">\(A\x=\0\)</span> h
 <p><strong>DEFINITION OF RANK</strong>: The rank of <span class="math notranslate nohighlight">\(A\)</span> is the number of pivots.
 This number is <span class="math notranslate nohighlight">\(r\)</span>.</p>
 </div>
+<p><strong>Every “free column” is a combination of earlier pivot columns</strong>.</p>
 </div>
 <div class="section" id="rank-one">
 <h2>Rank One<a class="headerlink" href="#rank-one" title="Permalink to this headline">¶</a></h2>
+<p>Matrices of <strong>rank one</strong> have only <em>one pivot</em>.
+<em>Every row is a multiple of the pivot row</em>.</p>
+<p><strong>Rank one matrix</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A=\bb 1&amp;3&amp;10\\2&amp;6&amp;20\\3&amp;9&amp;30 \eb\rightarrow R=\bb 1&amp;3&amp;10\\0&amp;0&amp;0\\0&amp;0&amp;0 \eb.\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(A =\)</span> <strong>column times row</strong> <span class="math notranslate nohighlight">\(= \u\v^T\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb 1&amp;3&amp;10\\2&amp;6&amp;20\\3&amp;9&amp;30 \eb=\bb 1\\2\\3 \eb\bb 1&amp;3&amp;10 \eb.\end{split}\]</div>
+<p>With rank one <span class="math notranslate nohighlight">\(A\x=\0\)</span> is easy to understand.
+That equation <span class="math notranslate nohighlight">\(\u(\v^T\x)=\0\)</span> leads us to <span class="math notranslate nohighlight">\(\v^t\x=0\)</span>.
+All vectors <span class="math notranslate nohighlight">\(\x\)</span> in the nullspace must be orthogonal to <span class="math notranslate nohighlight">\(\v\)</span> in the row space.
+This is the geometry when <span class="math notranslate nohighlight">\(r=1\)</span>:
+<em>row space = line</em>, <em>null space = perpendcular plane</em>.</p>
+<p>The second definition of rank: <strong>the number of independent rows</strong>.
+This is also <strong>the number of independent columns</strong>.</p>
+<p>The third definition of rank: <strong>the “dimention” of the column space</strong>.
+It is also <strong>the dimension of the row space</strong>.
+<span class="math notranslate nohighlight">\(n-r\)</span> is <strong>the dimension of the nullspace</strong>.</p>
 </div>
 </div>
 
