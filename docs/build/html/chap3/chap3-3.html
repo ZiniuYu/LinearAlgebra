@@ -217,6 +217,43 @@ So the equations can be solved.</p>
 This is <span class="math notranslate nohighlight">\(b_1+b_2=b_3\)</span>.</p>
 <div class="section" id="one-particular-solution-ax-p-b">
 <h2>One Particular Solution <span class="math notranslate nohighlight">\(Ax_p=b\)</span><a class="headerlink" href="#one-particular-solution-ax-p-b" title="Permalink to this headline">¶</a></h2>
+<p>For an easy solution <span class="math notranslate nohighlight">\(\x_p\)</span>, <em>choose the free variables to be zero</em>: <span class="math notranslate nohighlight">\(x_2=x_4=0\)</span>.
+Then the two nonzero equations give the two pivot variables <span class="math notranslate nohighlight">\(x_1=1\)</span> and <span class="math notranslate nohighlight">\(x_3=6\)</span>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>For a solution to exist, zero rows in</strong> <span class="math notranslate nohighlight">\(R\)</span> <strong>must also be zero in</strong> <span class="math notranslate nohighlight">\(\bs{d}\)</span>.
+<strong>Since</strong> <span class="math notranslate nohighlight">\(I\)</span> <strong>is in the pivot rows and pivot columns of</strong> <span class="math notranslate nohighlight">\(R\)</span>,
+<strong>the pivot variables in</strong> <span class="math notranslate nohighlight">\(x_{\rm{particular}}\)</span> <strong>come from</strong>
+<span class="math notranslate nohighlight">\(\bs{d}\)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(R\x_p=\bb 1&amp;3&amp;0&amp;2\\0&amp;0&amp;1&amp;4\\0&amp;0&amp;0&amp;0 \eb\bb 1\\0\\6\\0 \eb=\bb 1\\6\\0 \eb\)</span></p></li>
+</ul>
+</div>
+<p>Notice how we <em>choose</em> the free variables (as zero) and <em>solve</em> for the pivot variables.
+When the free variables are zero, the pivot variables for <span class="math notranslate nohighlight">\(\x_p\)</span> are
+already seen in the right side vector <span class="math notranslate nohighlight">\(\bs{d}\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(\x_{\rm{particular}}\)</span>: The particular solution solves <span class="math notranslate nohighlight">\(A\x_p=\b\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\x_{\rm{nullspace}}\)</span>: The <span class="math notranslate nohighlight">\(n-r\)</span> special solutions solve <span class="math notranslate nohighlight">\(A\x_n=\0\)</span>.</p>
+</div>
+<p>That particular solution is <span class="math notranslate nohighlight">\((1,0,6,0)\)</span>.
+The two special (nullspace) solutions to <span class="math notranslate nohighlight">\(R\x=\0\)</span> come from the two free
+columns of <span class="math notranslate nohighlight">\(R\)</span>, by reversing signs of 3, 2, and 4.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Complete solution one</strong> <span class="math notranslate nohighlight">\(\x_p\)</span> <strong>many</strong> <span class="math notranslate nohighlight">\(\x_n\)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\x=\x_p+\x_n=\bb 1\\0\\6\\0 \eb+x_2\bb -3\\1\\0\\0 \eb+x_4\bb -2\\0\\-4\\1 \eb\)</span>.</p></li>
+</ul>
+</div>
+<p><strong>Question</strong>: Suppose <span class="math notranslate nohighlight">\(A\)</span> is a square invertible matrix, <span class="math notranslate nohighlight">\(m=n=r\)</span>.
+Whar are <span class="math notranslate nohighlight">\(\x_p\)</span> and <span class="math notranslate nohighlight">\(\x_n\)</span>?</p>
+<p><strong>Answer</strong>: The particular solution is the one and <em>only</em> solution <span class="math notranslate nohighlight">\(\x_p=A^{-1}\b\)</span>.
+There are no special solutions or free variables.
+<span class="math notranslate nohighlight">\(R=I\)</span> has no zero rows.</p>
+<p>The only vector in the nullspace is <span class="math notranslate nohighlight">\(\x_n=\0\)</span>.
+The complete solution is <span class="math notranslate nohighlight">\(\x=\x_p+\x_n=A^{-1}\b+\0\)</span>.</p>
 </div>
 <div class="section" id="the-complete-solution">
 <h2>The Complete Solution<a class="headerlink" href="#the-complete-solution" title="Permalink to this headline">¶</a></h2>
