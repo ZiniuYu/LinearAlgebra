@@ -214,3 +214,38 @@ This is also **the number of independent columns**.
 The third definition of rank: **the "dimention" of the column space**.
 It is also **the dimension of the row space**.
 :math:`n-r` is **the dimension of the nullspace**.
+
+**Every** :math:`m` **by** :math:`n` **matrix of rank** :math:`r` **reduces to** 
+(:math:`m` by :math:`r`) **times** (:math:`r` by :math:`n`):
+
+.. note::
+
+    :math:`A=(\rm{pivot\ columns\ of\ }A) (\rm{first\ }r\rm{\ rows\ of\ }R)=(\bs{\rm{COL}})(\bs{\rm{ROW}})`.
+
+Elimination: The Big Picture
+----------------------------
+
+**Question 1 Is this column a combination of previous columns?**
+
+If the column contains a pivot, the answer is no.
+Pivot columns are "independent" of previous columns.
+If column 4 has no pivot, it is a combination of columns 1, 2, 3.
+
+**Question 2 Is this row a combination of previous rows?**
+
+If the row contains a pivot, th answer is no.
+Pivot rows are "independent" of previous rows.
+If row 3 ends up with no pivot, it is a zero row and it is moved to the bottom of :math:`R`.
+
+In other words, :math:`R` **tells us the special solutions to** :math:`A\x=\0`.
+:math:`R` reveals a "basis" for three fundamental subspaces:
+
+    The **column space** of :math:`A`--choose the pivot columns of :math:`A` as a basis.
+
+    The **row space** of :math:`A`--choose the nonzero rows of :math:`R` as a basis.
+
+    The **nullspace** of :math:`A`--choose the speial solutions to :math:`R\x=\0` (and :math:`A\x=\0`).
+
+We learn from elimination the single most important number--**the rank** :math:`\bs{r}`.
+That number counts the pivot columns and the pivot rows.
+Then :math:`n-r` counts the free columns and the special solutions.

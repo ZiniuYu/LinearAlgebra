@@ -13,6 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -29,11 +31,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -254,9 +256,90 @@ There are no special solutions or free variables.
 <span class="math notranslate nohighlight">\(R=I\)</span> has no zero rows.</p>
 <p>The only vector in the nullspace is <span class="math notranslate nohighlight">\(\x_n=\0\)</span>.
 The complete solution is <span class="math notranslate nohighlight">\(\x=\x_p+\x_n=A^{-1}\b+\0\)</span>.</p>
+<p>An important case: <span class="math notranslate nohighlight">\(A\)</span> has <em>full column rank</em>.
+Every column has a pivot.
+<em>The rank is</em> <span class="math notranslate nohighlight">\(r=n\)</span>.
+The matrix is tall and thin (<span class="math notranslate nohighlight">\(m\geq n\)</span>).
+Row reduction puts <span class="math notranslate nohighlight">\(I\)</span> at the top, when <span class="math notranslate nohighlight">\(A\)</span> is reduced to <span class="math notranslate nohighlight">\(R\)</span> with rank <span class="math notranslate nohighlight">\(n\)</span>:</p>
+<p><strong>Full Column Rank</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}R=\bb I\\0 \eb=\bb n\rm{\ by\ }n\rm{\ identity\ matrix}\\m-n \rm{\ rows\ of\ zeros}\eb.\end{split}\]</div>
+<p>There are no free columnso r free variables.
+The nullspace is <span class="math notranslate nohighlight">\(\bs{\rm{Z}}\)</span> = {zero vector}.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Every matrix <span class="math notranslate nohighlight">\(A\)</span> with <strong>full column rank</strong> <span class="math notranslate nohighlight">\((r=n)\)</span> has all these properties:</p>
+<ol class="arabic simple">
+<li><p>All columns of <span class="math notranslate nohighlight">\(A\)</span> are pivot columns.</p></li>
+<li><p>There are no free variables or special solutions.</p></li>
+<li><p>The nullspace <span class="math notranslate nohighlight">\(\bs{N}(A)\)</span> contains only the zero vector <span class="math notranslate nohighlight">\(\x=\0\)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(A\x=\b\)</span> has a solution (it might not) then it has only <em>one solution</em>.</p></li>
+</ol>
+</div>
+<p>In the essential language of the next section, this <span class="math notranslate nohighlight">\(A\)</span> has <strong>independent columns</strong>.
+<span class="math notranslate nohighlight">\(A\x=\0\)</span> only happens when <span class="math notranslate nohighlight">\(\x=\0\)</span>.
+<em>The square matrix</em> <span class="math notranslate nohighlight">\(A^TA\)</span> <em>is invertible when the rank is</em> <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<p>In this case the nullspace of <span class="math notranslate nohighlight">\(A\)</span>) has shrunk to the zero vector.
+The solution to <span class="math notranslate nohighlight">\(A\x=\b\)</span> is <em>unique</em> (if it exists).
+There will be <span class="math notranslate nohighlight">\(m-n\)</span> zero rows in <span class="math notranslate nohighlight">\(R\)</span>.
+So there are <span class="math notranslate nohighlight">\(m-n\)</span> conditions on <span class="math notranslate nohighlight">\(\b\)</span> in order to have <span class="math notranslate nohighlight">\(0=0\)</span>
+in those rows, and <span class="math notranslate nohighlight">\(\b\)</span> in the column space.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>With full column rank, <span class="math notranslate nohighlight">\(A\x=\b\)</span> has <em>one</em> solution or <em>no</em> solution (<span class="math notranslate nohighlight">\(m&gt;n\)</span> is overdetermined).</p>
+</div>
 </div>
 <div class="section" id="the-complete-solution">
 <h2>The Complete Solution<a class="headerlink" href="#the-complete-solution" title="Permalink to this headline">¶</a></h2>
+<p>The other extreme case is full row rank.
+Now <span class="math notranslate nohighlight">\(A\x=\b\)</span> has <em>one or infinitely many</em> solutions.
+In this case <span class="math notranslate nohighlight">\(A\)</span> must be <em>short and wide</em> <span class="math notranslate nohighlight">\((m\leq n)\)</span>.
+<strong>A matrix has full row rank if</strong> <span class="math notranslate nohighlight">\(\bs{r=m}\)</span>.</p>
+<p><strong>Full row rank</strong> (rank <span class="math notranslate nohighlight">\(r=m=2\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}x+y+z&amp;=3\\x+2y-z&amp;=4\end{aligned}\end{align} \]</div>
+<p>The particular solution will be one point on the line.
+Adding the nullspace vectors <span class="math notranslate nohighlight">\(\x_n\)</span> will move us along the line.
+Then <span class="math notranslate nohighlight">\(\x=\x_p+\x_n\)</span> gives the whole line of solutions.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Complete solution = <em>one</em> particular solution + <em>all</em> nullspace solutions.</p>
+</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb 1&amp;1&amp;1&amp;3\\1&amp;2&amp;-1&amp;4 \eb\rightarrow\bb 1&amp;1&amp;1&amp;3\\0&amp;1&amp;-2&amp;1 \eb\rightarrow\bb 1&amp;0&amp;3&amp;2\\0&amp;1&amp;-2&amp;1 \eb=\bb R&amp;\bs{d} \eb.\end{split}\]</div>
+<p><em>The particular solution has free variable</em> <span class="math notranslate nohighlight">\(x_3=0\)</span>.
+The special solution has <span class="math notranslate nohighlight">\(x_3=1\)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\x_{\rm{particular}}\)</span> comes directly from <span class="math notranslate nohighlight">\(\bs{d}\)</span> on the right side: <span class="math notranslate nohighlight">\(\x_p=(2,1,0)\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\x_{\rm{special}}\)</span> comes from the third column (free column) of <span class="math notranslate nohighlight">\(R\)</span>: <span class="math notranslate nohighlight">\(\bs{s}=(-3,2,1)\)</span>.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Complete solution</strong>: <span class="math notranslate nohighlight">\(\x=\x_p+\x_n=\bb 2\\1\\0 \eb+x_3\bb -3\\2\\1\eb\)</span>.</p>
+</div>
+<p>If <span class="math notranslate nohighlight">\(m&lt;n\)</span> the equation <span class="math notranslate nohighlight">\(A\x=\b\)</span> is <strong>underdetermined</strong> (many solutions).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Every matrix <span class="math notranslate nohighlight">\(A\)</span> with <strong>full row rank</strong> <span class="math notranslate nohighlight">\(\bs{r=m}\)</span> has all these properties:</p>
+<ol class="arabic simple">
+<li><p>All rows have pivots, and <span class="math notranslate nohighlight">\(R\)</span> <strong>has no zero rows</strong>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(A\x=\b\)</span> has a <strong>solution for every right side</strong> <span class="math notranslate nohighlight">\(\b\)</span>.</p></li>
+<li><p>The column space is the whole space <span class="math notranslate nohighlight">\(\bs{R}^m\)</span>.</p></li>
+<li><p>There are <span class="math notranslate nohighlight">\(n-r=n-m\)</span> special solutions in the nullspace of <span class="math notranslate nohighlight">\(A\)</span>.</p></li>
+</ol>
+</div>
+<p>In this case with <span class="math notranslate nohighlight">\(m\)</span> pivots, the rows are “<strong>linearly independent</strong>”.
+So the columns of <span class="math notranslate nohighlight">\(A^T\)</span> are linearly independent.
+The nullspace of <span class="math notranslate nohighlight">\(A^T\)</span> is the zero vector.</p>
+<p><strong>The four possibilities for linear equations depend on the rank</strong> <span class="math notranslate nohighlight">\(\bs{r}\)</span>.
+The reduced <span class="math notranslate nohighlight">\(R\)</span> will fall in the same category as the matrix <span class="math notranslate nohighlight">\(A\)</span>.
+<span class="math notranslate nohighlight">\(F\)</span> is the free part of <span class="math notranslate nohighlight">\(R\)</span>:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(r=m\)</span> and <span class="math notranslate nohighlight">\(r=n\)</span> <em>Square and invertible</em> <span class="math notranslate nohighlight">\(A\x=\b\)</span> has 1 solution: <span class="math notranslate nohighlight">\(R=\bb I \eb\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(r=m\)</span> and <span class="math notranslate nohighlight">\(r&lt;n\)</span> <em>Short and wide</em> <span class="math notranslate nohighlight">\(A\x=\b\)</span> has <span class="math notranslate nohighlight">\(\infty\)</span> solution: <span class="math notranslate nohighlight">\(R=\bb I&amp;F \eb\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(r&lt;m\)</span> and <span class="math notranslate nohighlight">\(r=n\)</span> <em>Tall and thin</em> <span class="math notranslate nohighlight">\(A\x=\b\)</span> has 0 or 1 solution: <span class="math notranslate nohighlight">\(R=\bb I\\0 \eb\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(r&lt;m\)</span> and <span class="math notranslate nohighlight">\(r&lt;n\)</span> <em>Not full rank</em> <span class="math notranslate nohighlight">\(A\x=\b\)</span> has 0 or <span class="math notranslate nohighlight">\(\infty\)</span> solution: <span class="math notranslate nohighlight">\(R=\bb I&amp;F\\0&amp;0 \eb\)</span>.</p></li>
+</ol>
 </div>
 </div>
 

@@ -80,5 +80,112 @@ There are no special solutions or free variables.
 The only vector in the nullspace is :math:`\x_n=\0`.
 The complete solution is :math:`\x=\x_p+\x_n=A^{-1}\b+\0`.
 
+An important case: :math:`A` has *full column rank*.
+Every column has a pivot.
+*The rank is* :math:`r=n`.
+The matrix is tall and thin (:math:`m\geq n`).
+Row reduction puts :math:`I` at the top, when :math:`A` is reduced to :math:`R` with rank :math:`n`:
+
+**Full Column Rank**:
+
+.. math::
+
+    R=\bb I\\0 \eb=\bb n\rm{\ by\ }n\rm{\ identity\ matrix}\\m-n \rm{\ rows\ of\ zeros}\eb.
+
+There are no free columnso r free variables.
+The nullspace is :math:`\bs{\rm{Z}}` = {zero vector}.
+
+.. note::
+
+    Every matrix :math:`A` with **full column rank** :math:`(r=n)` has all these properties:
+
+    #. All columns of :math:`A` are pivot columns.
+
+    #. There are no free variables or special solutions.
+
+    #. The nullspace :math:`\bs{N}(A)` contains only the zero vector :math:`\x=\0`.
+
+    #. If :math:`A\x=\b` has a solution (it might not) then it has only *one solution*.
+
+In the essential language of the next section, this :math:`A` has **independent columns**.
+:math:`A\x=\0` only happens when :math:`\x=\0`.
+*The square matrix* :math:`A^TA` *is invertible when the rank is* :math:`n`.
+
+In this case the nullspace of :math:`A`(and :math:`R`) has shrunk to the zero vector.
+The solution to :math:`A\x=\b` is *unique* (if it exists).
+There will be :math:`m-n` zero rows in :math:`R`.
+So there are :math:`m-n` conditions on :math:`\b` in order to have :math:`0=0` 
+in those rows, and :math:`\b` in the column space.
+
+.. Tip::
+
+    With full column rank, :math:`A\x=\b` has *one* solution or *no* solution (:math:`m>n` is overdetermined).
+
 The Complete Solution
 ---------------------
+
+The other extreme case is full row rank.
+Now :math:`A\x=\b` has *one or infinitely many* solutions.
+In this case :math:`A` must be *short and wide* :math:`(m\leq n)`.
+**A matrix has full row rank if** :math:`\bs{r=m}`.
+
+**Full row rank** (rank :math:`r=m=2`):
+
+.. math::
+
+    x+y+z&=3
+
+    x+2y-z&=4
+
+The particular solution will be one point on the line.
+Adding the nullspace vectors :math:`\x_n` will move us along the line.
+Then :math:`\x=\x_p+\x_n` gives the whole line of solutions.
+
+.. Tip::
+
+    Complete solution = *one* particular solution + *all* nullspace solutions.
+
+.. math::
+
+    \bb 1&1&1&3\\1&2&-1&4 \eb\rightarrow\bb 1&1&1&3\\0&1&-2&1 \eb\rightarrow\bb 1&0&3&2\\0&1&-2&1 \eb=\bb R&\bs{d} \eb.
+
+*The particular solution has free variable* :math:`x_3=0`.
+The special solution has :math:`x_3=1`:
+
+* :math:`\x_{\rm{particular}}` comes directly from :math:`\bs{d}` on the right side: :math:`\x_p=(2,1,0)`.
+
+* :math:`\x_{\rm{special}}` comes from the third column (free column) of :math:`R`: :math:`\bs{s}=(-3,2,1)`.
+
+.. note::
+
+    **Complete solution**: :math:`\x=\x_p+\x_n=\bb 2\\1\\0 \eb+x_3\bb -3\\2\\1\eb`.
+
+If :math:`m<n` the equation :math:`A\x=\b` is **underdetermined** (many solutions).
+
+.. note::
+
+    Every matrix :math:`A` with **full row rank** :math:`\bs{r=m}` has all these properties:
+
+    #. All rows have pivots, and :math:`R` **has no zero rows**.
+
+    #. :math:`A\x=\b` has a **solution for every right side** :math:`\b`.
+
+    #. The column space is the whole space :math:`\bs{R}^m`.
+
+    #. There are :math:`n-r=n-m` special solutions in the nullspace of :math:`A`.
+
+In this case with :math:`m` pivots, the rows are "**linearly independent**".
+So the columns of :math:`A^T` are linearly independent.
+The nullspace of :math:`A^T` is the zero vector.
+
+**The four possibilities for linear equations depend on the rank** :math:`\bs{r}`.
+The reduced :math:`R` will fall in the same category as the matrix :math:`A`.
+:math:`F` is the free part of :math:`R`:
+
+#. :math:`r=m` and :math:`r=n` *Square and invertible* :math:`A\x=\b` has 1 solution: :math:`R=\bb I \eb`.
+
+#. :math:`r=m` and :math:`r<n` *Short and wide* :math:`A\x=\b` has :math:`\infty` solution: :math:`R=\bb I&F \eb`.
+
+#. :math:`r<m` and :math:`r=n` *Tall and thin* :math:`A\x=\b` has 0 or 1 solution: :math:`R=\bb I\\0 \eb`.
+
+#. :math:`r<m` and :math:`r<n` *Not full rank* :math:`A\x=\b` has 0 or :math:`\infty` solution: :math:`R=\bb I&F\\0&0 \eb`.
