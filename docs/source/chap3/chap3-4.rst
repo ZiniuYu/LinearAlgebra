@@ -132,7 +132,7 @@ When the columns are dependent. we keep only the *pivot columns*--the first two
 columns of :math:`B` above, with its two pivots.
 They are independent and they span the column space.
 
-.. math::
+.. note::
 
     **The pivot columns of** :math:`A` **are a basis for its column space**.
     The pivot rows of :math:`A` are a basis for its row space.
