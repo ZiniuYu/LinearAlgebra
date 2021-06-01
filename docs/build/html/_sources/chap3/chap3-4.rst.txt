@@ -138,14 +138,120 @@ They are independent and they span the column space.
     The pivot rows of :math:`A` are a basis for its row space.
     So are the pivot rows of its echelon form :math:`R`.
             
+.. note::
 
+    **Question**: Given five vectors in :math:`\R^7`, **how do you find a basis for the space they span**?
 
+*First answer*: Make them the rows of :math:`A`, and eliminate to find the nonzero rows of :math:`R`.
+
+*Second answer*: Put the five vectors into the columns of :math:`A`.
+Eliminate to find the pivot columns (of :math:`A` not :math:`R`).
+Those pivot columns are a basis for the column space.
+
+**All bases for a vector space contain the same number of vectors**.
+
+.. tip::
+
+    **The number of vectors, in any and every basis, is the "dimnesion" of the space**.
 
 Dimension of a Vector Space
 ---------------------------
 
+.. note::
 
+    If :math:`\v_1,\cds,\v_m` and :math:`\w_1,\cds,\w_n` are both bases for the same vector space, then :math:`m=n`.
 
+**Proof**: Suppose that there are more :math:`\w`'s than :math:`\v`'s.
+From :math:`n>m` we want to reach a contradiction.
+The :math:`\v`'s are a basis, so :math:`\w_1` must be a combination of the :math:`\v`'s.
+If :math:`\w_1` equals :math:`a_{11}\v_1+\cds+a_{m1}\v_m`, this is the first 
+column of a matrix multiplication :math:`VA`:
+
+    **Each** :math:`\w` **is a combination of the** :math:`\v`\ **'s**:
+
+    .. math::
+
+        W=\bb &&&\\\w_1&\w_2&\cds&\w_n\\&&& \eb=\bb &&\\\v_1&\cds&\v_m\\&& \eb
+        \bb a_{11}&&a_{1n}\\\vdots&&\vdots\\a_{m1}&&a_{mn} \eb=VA.
+
+    We don't know each :math:`a_{ij}`, but we know the shape of :math:`A` (it is :math:`m` by :math:`n`).
+    The second vector :math:`\w_2` is also a combination of the :math:`\v`'s.
+    The coefficients in that combination fill the second column of :math:`A`.
+    The key is that :math:`A` has a row for every :math:`\v` and a column for every :math:`\w`.
+    :math:`A` is a shrot wide matrix, since we assumed :math:`n>m`.
+    So :math:`A\x=\0` **has a nonzero solution**.
+
+    :math:`A\x=\0` gives :math:`VA\x=\0` which is :math:`W\x=\0`.
+    *A combination of the* :math:`\w`\ *'s gives zero*!
+    Then the :math:`\w`could not be a basis--ou assumption :math:`n>m` is **not possible** for two bases.
+
+    If :math:`m>n` we exchange the :math:`\v`'s and :math:`\w`'s and repeat the same steps.
+    The only way to avoid a contradiction is to have :math:`m=n`.
+    This completes the proof that :math:`m=n`.
+
+The number of basis vectors depends on the space--not on a particular basis.
+The number is the same for every basis, and it counts the "degrees of freedom" in the space.
+The dimension of the space :math:`\R^n` is :math:`n`.
+
+.. note::
+
+    **DEFINITION**: The **dimension of a space** is the **number of vectors** in every basis.
 
 Bases for Matrix Spaces and Function Spaces
 -------------------------------------------
+
+**Matrix spaces**: The vector space :math:`\bs{M}` contains all 2 by 2 matrices.
+Its dimension is 4.
+
+    **One basis is**:
+
+    .. math::
+
+        A_1,A_2,A_3,A_4=\bb 1&0\\0&0 \eb,\bb 0&1\\0&0 \eb,\bb 0&0\\1&0 \eb,\bb 0&0\\0&1 \eb.
+
+    Those matrices are linearly independent.
+    We are not looking at their columns, but at the whole matrix.
+    Combinations of those four matrices can produce any matrix in :math:`\bs{M}`, so they space the space:
+
+    **Every** :math:`A` **combines the basis matrices**:
+
+    .. math::
+
+        c_1A_1+c_2A_2+c_3A_3+c_4A_4=\bb c_1&c_2\\c_3&c_4 \eb=A.
+
+    :math:`A` is zero only if the :math:`c`'s are all zero--this proves independece of :math:`A_1,A_2,A_3,A_4`.
+
+    The three matrices :math:`A_1,A_2,A_4` are a basis for a subspace--the upper triangular matrices.
+    Its dimension is 3.
+    :math:`A_1` and :math:`A_4` are a basis for the diagonal matrices.
+
+    To push this further, think about the space of all :math:`n` by :math:`n` matrices.
+    One possible basis uses matrices that have only a single nonzero entry (that entry is 1).
+    There are :math:`n^2` positions for that 1, so there are :math:`n^2` basis matrices:
+
+        * **The dimension of the whole** :math:`n` **by** :math:`n` **matrix space is** :math:`n^2`.
+
+        * **The dimension of the subspace of** *upper triangular* **matrices is** :math:`\frac{1}{2}n^2+\frac{1}{2}n`.
+
+        * **The dimension of the subspace of** *diagonal* **matrices is** :math:`n`.
+
+        * **The dimension of the subspace of** *symmetric* **matrices is** :math:`\frac{1}{2}n^2+\frac{1}{2}n`.
+
+**Function spaces**: The equations :math:`d^2y/dx^2=0` and :math:`d^2y/dx^2=-y` 
+and :math:`d^2y/dx^2=y` involve the second derivative.
+In calculus we solve to find the functions :math:`y(x)`:
+
+    * :math:`y\ppr=0` is solved by any linear function :math:`y=cx+d`.
+
+    * :math:`y\ppr=-y` is solved by any combination :math:`y=c\sin x+d\cos x`.
+
+    * :math:`y\ppr=y` is solved by any combination :math:`y=ce^x+de^{-x}`.
+
+    That solution space for :math:`y\ppr=-y` has two basis functions: :math:`\sin x` and :math:`\cos x`.
+    The space for :math:`y\ppr=0` has :math:`x` and 1.
+    It is the "nullspace" of the second derivative!
+    The dimension is 2 ineach case (these are second-order equations).
+
+The dimension of the space :math:`\bs{\rm{Z}}` is *zero*.
+**The empty set** (containing no vectors) **is a basis for** :math:`\bs{\rm{Z}}`.
+We can never allow the zero vector into a basis, because then linear independence is lost.

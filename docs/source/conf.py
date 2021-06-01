@@ -84,6 +84,8 @@ rst_prolog = r'''
     \newcommand{\eb}{\end{bmatrix}}
 
     \newcommand{\im}{^{-1}}
+    \newcommand{\pr}{^{\prime}}
+    \newcommand{\ppr}{^{\prime\prime}}
 '''
 
 # # -- Options for MathJax -----------------------------------------------------
