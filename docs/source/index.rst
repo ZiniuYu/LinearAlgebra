@@ -16,6 +16,7 @@ Study notes of Introduction to Linear Algebra, 5th Edition by Gilbert Strang
    chap1/index1
    chap2/index2
    chap3/index3
+   chap4/index4
    about
 
 .. Indices and tables
