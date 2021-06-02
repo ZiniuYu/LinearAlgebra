@@ -66,10 +66,12 @@ rst_prolog = r'''
     \newcommand{\rv}{\rVert}
     
     \newcommand{\0}{\boldsymbol{0}}
+    \newcommand{\a}{\boldsymbol{a}}
     \newcommand{\b}{\boldsymbol{b}}
     \newcommand{\e}{\boldsymbol{e}}
     \newcommand{\i}{\boldsymbol{i}}
     \newcommand{\j}{\boldsymbol{j}}
+    \newcommand{\p}{\boldsymbol{p}}
     \newcommand{\u}{\boldsymbol{u}}
     \newcommand{\v}{\boldsymbol{v}}
     \newcommand{\w}{\boldsymbol{w}}

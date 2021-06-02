@@ -96,7 +96,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../chap3/index3.html">Chapter 3 Vector Spaces and Subspaces</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index4.html">Chapter 4 Orthogonality</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="chap4-1.html">Chapter 4.1 Orthogonality of the Four Subspaces</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 4.2 Projections</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 4.2 Projections</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#projection-onto-a-line">Projection Onto a Line</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#projection-onto-a-subspace">Projection Onto a Subspace</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="chap4-3.html">Chapter 4.3 Least Squares Approximations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chap4-4.html">Chapter 4.4 Orthonormal Bases and Gram-Schmidt</a></li>
 </ul>
@@ -178,10 +182,12 @@
 \newcommand{\cds}{\cdots}
 \newcommand{\lv}{\lVert}
 \newcommand{\rv}{\rVert}\\\newcommand{\0}{\boldsymbol{0}}
+\newcommand{\a}{\boldsymbol{a}}
 \newcommand{\b}{\boldsymbol{b}}
 \newcommand{\e}{\boldsymbol{e}}
 \newcommand{\i}{\boldsymbol{i}}
 \newcommand{\j}{\boldsymbol{j}}
+\newcommand{\p}{\boldsymbol{p}}
 \newcommand{\u}{\boldsymbol{u}}
 \newcommand{\v}{\boldsymbol{v}}
 \newcommand{\w}{\boldsymbol{w}}
@@ -192,6 +198,50 @@
 \newcommand{\ppr}{^{\prime\prime}}\end{aligned}\end{align} \]</div>
 <div class="section" id="chapter-4-2-projections">
 <h1>Chapter 4.2 Projections<a class="headerlink" href="#chapter-4-2-projections" title="Permalink to this headline">¶</a></h1>
+<p>The projection of <span class="math notranslate nohighlight">\(\b\)</span> is <span class="math notranslate nohighlight">\(P\b\)</span>.</p>
+<ol class="arabic simple">
+<li><p>What are the projection of <span class="math notranslate nohighlight">\(\b=(2,3,4)\)</span> onto the <span class="math notranslate nohighlight">\(z\)</span> axis and the <span class="math notranslate nohighlight">\(xy\)</span> plane?</p></li>
+<li><p>What matrices <span class="math notranslate nohighlight">\(P_1\)</span> and <span class="math notranslate nohighlight">\(P_2\)</span> produce those projections onto a line and a plane?</p></li>
+</ol>
+<p>When <span class="math notranslate nohighlight">\(\b\)</span> is projected onto a line, <strong>its projection</strong> <span class="math notranslate nohighlight">\(p\)</span> <strong>is the part of</strong> <span class="math notranslate nohighlight">\(\b\)</span> <strong>along that line</strong>.
+If <span class="math notranslate nohighlight">\(\b\)</span> is projected onto a plane, <span class="math notranslate nohighlight">\(\p\)</span> is the part in that plane.
+<strong>The projection</strong> <span class="math notranslate nohighlight">\(\p\)</span> <strong>is</strong> <span class="math notranslate nohighlight">\(P\b\)</span>.</p>
+<p>The projection matrix <span class="math notranslate nohighlight">\(P\)</span> multiplies <span class="math notranslate nohighlight">\(\b\)</span> to give <span class="math notranslate nohighlight">\(\p\)</span>.</p>
+<p>The projection onto the <span class="math notranslate nohighlight">\(z\)</span> axis we call <span class="math notranslate nohighlight">\(\p_1\)</span>.
+The second projection drops straight down to the <span class="math notranslate nohighlight">\(xy\)</span> plane.
+Start with <span class="math notranslate nohighlight">\(\b=(2,3,4)\)</span>.
+The projection across gives <span class="math notranslate nohighlight">\(\p_1=(0,0,4)\)</span>.
+The projection down gives <span class="math notranslate nohighlight">\(\p_2=(2,3,0)\)</span>.
+Those are the parts of <span class="math notranslate nohighlight">\(\b\)</span> along the <span class="math notranslate nohighlight">\(z\)</span> axis and in the <span class="math notranslate nohighlight">\(xy\)</span> plane.</p>
+<p><strong>Projection Matirx</strong> Onto the <span class="math notranslate nohighlight">\(z\)</span> axis:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}P_1 = \bb 0&amp;0&amp;0\\0&amp;0&amp;0\\0&amp;0&amp;1 \eb.\end{split}\]</div>
+<p><strong>Projection Matirx</strong> Onto the <span class="math notranslate nohighlight">\(xy\)</span> plane:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}P_2 = \bb 1&amp;0&amp;0\\0&amp;1&amp;0\\0&amp;0&amp;0 \eb.\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(P_1\)</span> picks out the <span class="math notranslate nohighlight">\(z\)</span> component of every vector.
+<span class="math notranslate nohighlight">\(P_2\)</span> picks out the <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> components.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\p_1=P_1\b=\bb 0&amp;0&amp;0\\0&amp;0&amp;0\\0&amp;0&amp;1 \eb\bb x\\y\\z \eb=\bb 0\\0\\z \eb\quad
+\p_2=P_2\b=\bb 1&amp;0&amp;0\\0&amp;1&amp;0\\0&amp;0&amp;0 \eb\bb x\\y\\z \eb=\bb x\\y\\0 \eb.\end{split}\]</div>
+<p>In this case the projections <span class="math notranslate nohighlight">\(p_1\)</span> and <span class="math notranslate nohighlight">\(p_2\)</span> are perpendicular.
+The <span class="math notranslate nohighlight">\(xy\)</span> plane and the <span class="math notranslate nohighlight">\(z\)</span> axis are <strong>orthogonal subspaces</strong>.
+More than just orthogonal, the line and plane are <strong>orthogonal complements</strong>.
+The projections <span class="math notranslate nohighlight">\(\p_1\)</span> and <span class="math notranslate nohighlight">\(\p_2\)</span> are exactly those two parts of <span class="math notranslate nohighlight">\(\b\)</span>:</p>
+<ul class="simple">
+<li><p>The vectors give <span class="math notranslate nohighlight">\(\p_1+\p_2=\b\)</span>.</p></li>
+<li><p>The matrices give <span class="math notranslate nohighlight">\(P_1+P_2=I\)</span>.</p></li>
+</ul>
+<p>Our problem is <strong>to project any</strong> <span class="math notranslate nohighlight">\(\b\)</span> <strong>onto the column space of any</strong> <span class="math notranslate nohighlight">\(m\)</span> <strong>by</strong> <span class="math notranslate nohighlight">\(n\)</span> <strong>matrix</strong>.
+Start with a line (dimension <span class="math notranslate nohighlight">\(n=1\)</span>).
+The matrix <span class="math notranslate nohighlight">\(A\)</span> will have only one column.
+Call it <span class="math notranslate nohighlight">\(\a\)</span>.l</p>
+<div class="section" id="projection-onto-a-line">
+<h2>Projection Onto a Line<a class="headerlink" href="#projection-onto-a-line" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="projection-onto-a-subspace">
+<h2>Projection Onto a Subspace<a class="headerlink" href="#projection-onto-a-subspace" title="Permalink to this headline">¶</a></h2>
+</div>
 </div>
 
 
