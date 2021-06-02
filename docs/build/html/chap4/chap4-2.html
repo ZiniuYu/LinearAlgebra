@@ -13,8 +13,6 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -31,11 +29,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -181,7 +179,8 @@
 \newcommand{\rm}{\mathrm}\\\newcommand{\cd}{\cdot}
 \newcommand{\cds}{\cdots}
 \newcommand{\lv}{\lVert}
-\newcommand{\rv}{\rVert}\\\newcommand{\0}{\boldsymbol{0}}
+\newcommand{\rv}{\rVert}
+\newcommand{\wh}{\widehat}\\\newcommand{\0}{\boldsymbol{0}}
 \newcommand{\a}{\boldsymbol{a}}
 \newcommand{\b}{\boldsymbol{b}}
 \newcommand{\e}{\boldsymbol{e}}
@@ -235,9 +234,65 @@ The projections <span class="math notranslate nohighlight">\(\p_1\)</span> and <
 <p>Our problem is <strong>to project any</strong> <span class="math notranslate nohighlight">\(\b\)</span> <strong>onto the column space of any</strong> <span class="math notranslate nohighlight">\(m\)</span> <strong>by</strong> <span class="math notranslate nohighlight">\(n\)</span> <strong>matrix</strong>.
 Start with a line (dimension <span class="math notranslate nohighlight">\(n=1\)</span>).
 The matrix <span class="math notranslate nohighlight">\(A\)</span> will have only one column.
-Call it <span class="math notranslate nohighlight">\(\a\)</span>.l</p>
+Call it <span class="math notranslate nohighlight">\(\a\)</span>.</p>
 <div class="section" id="projection-onto-a-line">
 <h2>Projection Onto a Line<a class="headerlink" href="#projection-onto-a-line" title="Permalink to this headline">¶</a></h2>
+<p>A line goes through the origin in the direction of <span class="math notranslate nohighlight">\(\a=(a_1,\cds,a_m)\)</span>.
+Along that line, we want the point <span class="math notranslate nohighlight">\(\p\)</span> closest to <span class="math notranslate nohighlight">\(\b=(b_1,\cds,b_m)\)</span>.
+The key to projection is orthogonality: <strong>The line from</strong> <span class="math notranslate nohighlight">\(\b\)</span> <strong>to</strong>
+<span class="math notranslate nohighlight">\(\p\)</span> <strong>is perpendicular to the vector</strong> <span class="math notranslate nohighlight">\(\a\)</span>.
+We now compute <span class="math notranslate nohighlight">\(\p\)</span> by algebra.</p>
+<p>The projection <span class="math notranslate nohighlight">\(\p\)</span> will be some multiple of <span class="math notranslate nohighlight">\(\a\)</span>.
+Call it <span class="math notranslate nohighlight">\(\p=\wh{x}\a=\)</span> “<span class="math notranslate nohighlight">\(x\)</span> hat” times <span class="math notranslate nohighlight">\(\a\)</span>.
+Computing this number <span class="math notranslate nohighlight">\(\wh{x}\)</span> will give the vector <span class="math notranslate nohighlight">\(\p\)</span>.
+Then from the formula for <span class="math notranslate nohighlight">\(\p\)</span>, we will read off the projection matrix <span class="math notranslate nohighlight">\(P\)</span>.
+These three steps will lead to all projection matrices: <strong>find</strong> <span class="math notranslate nohighlight">\(\wh{x}\)</span>,
+<strong>then find the vector</strong> <span class="math notranslate nohighlight">\(\p\)</span>, <strong>then find the matrix</strong> <span class="math notranslate nohighlight">\(P\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\b-\p\)</span> is the “error” <span class="math notranslate nohighlight">\(\e=\b-\wh{x}\a\)</span>.
+It is perpendicular to <span class="math notranslate nohighlight">\(\a\)</span>–this will determine <span class="math notranslate nohighlight">\(\wh{x}\)</span>.
+Use the fact that <span class="math notranslate nohighlight">\(\b-\wh{x}\a\)</span> <strong>is perpendicular to</strong> <span class="math notranslate nohighlight">\(\a\)</span> when their dot product is zero:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Projecting <span class="math notranslate nohighlight">\(\b\)</span> onto <span class="math notranslate nohighlight">\(\a\)</span> with error <span class="math notranslate nohighlight">\(\e=\b-\wh{x}\a\)</span>:
+<span class="math notranslate nohighlight">\(\a\cd(\b-\wh{x}\a)=0\)</span> or <span class="math notranslate nohighlight">\(\a\cd\b-\wh{x}\a\cd\a=0\)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\dp\wh{x}=\frac{\a\cd\b}{\a\cd\a}=\frac{\a^T\b}{\a^T\a}\)</span>.</p></li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>The projection of</strong> <span class="math notranslate nohighlight">\(\b\)</span> <strong>onto the line through</strong> <span class="math notranslate nohighlight">\(\a\)</span>
+<strong>is the vector</strong>: <span class="math notranslate nohighlight">\(\dp\p=\wh{x}\a=\frac{\a^T\b}{\a^T\a}\a\)</span>.</p>
+<ul class="simple">
+<li><p>Special case 1: If <span class="math notranslate nohighlight">\(\b=\a\)</span> then <span class="math notranslate nohighlight">\(\wh{x}=1\)</span>. The projection of <span class="math notranslate nohighlight">\(\a\)</span> onto <span class="math notranslate nohighlight">\(\a\)</span> is itself. <span class="math notranslate nohighlight">\(P\a=\a\)</span>.</p></li>
+<li><p>Special case 2: If <span class="math notranslate nohighlight">\(\b\)</span> is perpendicular to <span class="math notranslate nohighlight">\(\a\)</span> then <span class="math notranslate nohighlight">\(\a^T\b=0\)</span>. The projection is <span class="math notranslate nohighlight">\(\p=\0\)</span>.</p></li>
+</ul>
+</div>
+<p>Look at the right triangle of <span class="math notranslate nohighlight">\(\b,\p,\e\)</span>.
+The vector <span class="math notranslate nohighlight">\(\b\)</span> is split into two parts–its component along the line is
+<span class="math notranslate nohighlight">\(\p\)</span>, its perpendicular part is <span class="math notranslate nohighlight">\(\e\)</span>.
+Those two sides <span class="math notranslate nohighlight">\(\p\)</span> and <span class="math notranslate nohighlight">\(\e\)</span> have length
+<span class="math notranslate nohighlight">\(\lv\p\rv=\lv\b\rv\cos\theta\)</span> and <span class="math notranslate nohighlight">\(\lv\e\rv=\lv\b\rv\sin\theta\)</span>.
+Trigonometry matches the dot product:</p>
+<div class="math notranslate nohighlight">
+\[\p=\frac{\a^T\b}{\a^T\a}\a\rm{\ has\ length\ }\lv\p\rv=
+\frac{\lv\a\rv\lv\b\rv\cos\theta}{\lv\a\rv^2}\lv\a\rv=\lv\b\rv\cos\theta.\]</div>
+<p>The dot product is alot simpler than getting involved with <span class="math notranslate nohighlight">\(\cos\theta\)</span> and the length of <span class="math notranslate nohighlight">\(\b\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Projection matrix</strong> <span class="math notranslate nohighlight">\(P\)</span>: <span class="math notranslate nohighlight">\(\dp\p=\a\wh{x}=\a\frac{\a^T\b}{\a^T\a}=P\b\)</span>
+when the matrix is <span class="math notranslate nohighlight">\(\dp P=\frac{\a\a^T}{\a^T\a}\)</span>.</p>
+</div>
+<p><span class="math notranslate nohighlight">\(P\)</span> is a column times a row!
+The column is <span class="math notranslate nohighlight">\(\a\)</span>, the row is <span class="math notranslate nohighlight">\(\a^T\)</span>.
+Then divide by the number <span class="math notranslate nohighlight">\(\a^T\a\)</span>.
+The projection matrix <span class="math notranslate nohighlight">\(P\)</span> is <span class="math notranslate nohighlight">\(m\)</span> by <span class="math notranslate nohighlight">\(m\)</span>, but <strong>its rank is one</strong>.
+We are projecting onto a one-dimensional subspace, the line through <span class="math notranslate nohighlight">\(\a\)</span>.
+<em>That line is the column space of</em> <span class="math notranslate nohighlight">\(P\)</span>.</p>
+<p><strong>Projecting a second time doesn’t change anything, so</strong> <span class="math notranslate nohighlight">\(P^2=P\)</span>.</p>
+<p>Note that <span class="math notranslate nohighlight">\((I-P)\b=\b-\p=\e\)</span>.
+<strong>When</strong> <span class="math notranslate nohighlight">\(P\)</span> <strong>projects onto one subspace</strong>, <span class="math notranslate nohighlight">\(I-P\)</span> <strong>projects onto the perpendicular subspace</strong>.
+Here <span class="math notranslate nohighlight">\(I-P\)</span> projects onto the plane perpendicular to <span class="math notranslate nohighlight">\(\a\)</span>.</p>
 </div>
 <div class="section" id="projection-onto-a-subspace">
 <h2>Projection Onto a Subspace<a class="headerlink" href="#projection-onto-a-subspace" title="Permalink to this headline">¶</a></h2>

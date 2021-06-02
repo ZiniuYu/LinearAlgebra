@@ -64,6 +64,7 @@ rst_prolog = r'''
     \newcommand{\cds}{\cdots}
     \newcommand{\lv}{\lVert}
     \newcommand{\rv}{\rVert}
+    \newcommand{\wh}{\widehat}
     
     \newcommand{\0}{\boldsymbol{0}}
     \newcommand{\a}{\boldsymbol{a}}
