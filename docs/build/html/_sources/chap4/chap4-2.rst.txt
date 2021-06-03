@@ -122,6 +122,120 @@ Note that :math:`(I-P)\b=\b-\p=\e`.
 **When** :math:`P` **projects onto one subspace**, :math:`I-P` **projects onto the perpendicular subspace**.
 Here :math:`I-P` projects onto the plane perpendicular to :math:`\a`.
 
-
 Projection Onto a Subspace
 --------------------------
+
+Start with :math:`n` vectors :math:`\a_1,\cds,\a_n` in :math:`\R^m`.
+Assume that these :math:`\a`'s are linearly independent.
+
+**Problem: Find the combination** :math:`\p=\wh{x}_1\a_1+\cds+\wh{x}_n\a_n` **closest to a given vector** :math:`\b`.
+We are projecting each :math:`\b` in :math:`\R^m` onto the subspace spanned by the :math:`\a`'s.
+
+With :math:`n=1` (one vector :math:`\a_1`) this is projection onto a line.
+The line is the column space of :math:`A`, which has just one column.
+In general the matrix :math:`A` has :math:`n` columns :math:`\a_1,\cds,\a_n`.
+
+The combination in :math:`\R^m` are the vectors :math:`A\x` in the column space.
+We are looking for the particular combination :math:`\p=A\wh{\x}`.
+That choise is :math:`\wh{x}=\a^T\b/\a^T\a` when :math:`n=1`.
+
+We compute projections onto :math:`n`-dimensional subspaces in three steps as 
+before: **Find the vector** :math:`\wh{\x}`, **find the projection** 
+:math:`\p=A\wh{\x}`, **find the proection matrix** :math:`P`.
+
+**The error vector** :math:`\b-A\wh{\x}` **is perpendicular to the subspaces**.
+It makes a right angle with all the vectors :math:`\a_1,\cds,\a_n` in the base:
+
+.. note::
+
+    :math:`\begin{matrix}\a_1^T(\b-A\wh{\x})=0\\\vdots\\\a_n^T(\b-A\wh{\x})=0\end{matrix}\quad`
+    or :math:`\quad\bb -&\a_1^T&-\\&\vdots&\\-&\a_n^T&- \eb\bb \\\b-A\wh{\x}\\\ \eb=\bb \\\0\\\ \eb`.
+
+The matrix with those rows :math:`\a_i^T` is :math:`A^T`.
+The :math:`n` equations are exactly :math:`A^T(\b-A\wh{\x})=\0`.
+
+.. note::
+
+    The combination :math:`\p=\wh{x}_1\a_1+\cds+\wh{x}_n\a_n=A\wh{\x}` that is
+    closest to :math:`\b` comes from :math:`\wh{\x}`:
+
+    * **Find** :math:`\wh{\x}\ (n \times 1):\quad A^T(\b-A\wh{\x})=\0\quad\rm{or}\quad A^A\wh{\x}=A^T\b`.
+
+    This symmetric matrix :math:`A^TA` is :math:`n` by :math:`n`.
+    It is invertible if the :math:`\a`'s are independent.
+    The solution is :math:`\wh{\x}=(A^TA)^{-1}A^T\b`.
+    The **projection** of :math:`\b` onto the subspace is :math:`\p`:
+
+    * **Find** :math:`\p\ (m \times 1):\quad \p=A\wh{\x}=A(A^TA)^{-1}A^T\b`.
+
+    The next formula picks out the **projection matrix** that is multiplying :math:`\b`:
+
+    * **Find** :math:`P\ (m \times m):\quad P=A(A^TA)^{-1}A^T`.
+
+Compare with projection onto a line, when :math:`A` has only one column: :math:`A^A` is :math:`\a^T\a`.
+
+.. note::
+
+    **For** :math:`n=1`: :math:`\dp\wh{x}=\frac{\a^T\b}{\a^T\a}` and
+    :math:`\dp\p=\a\frac{\a^T\b}{\a^T\a}` and :math:`\dp P=\frac{\a\a^T}{\a^T\a}`.
+
+The key step was :math:`A^T(\b-A\wh{\x})=\0`.
+We used geometry (:math:`\e` is orthogonal to each :math:`\a`).
+*Linear algebra gives this "normal equation" too*, in a very quick and beautiful way:
+
+#. Our subspace is the column space of :math:`A`.
+
+#. The error vector :math:`\b-A\wh{\x}` is perpendicular to that column space.
+
+#. Therefore :math:`\b-A\wh{\x}` is in the nullspace of :math:`A^T`! This means :math:`A^T(\b-A\wh{\x})=\0`.
+
+The left nullspace is important in projections.
+That nullspace of :math:`A^T` contains the error vector :math:`\e-\b-A\wh{\x}`.
+The vector :math:`\b` is being split into the projection :math:`\p` and the error :math:`\e=\b-\p`.
+Projection produces a right triangle with sides :math:`\p,\e,\b`.
+
+.. warning::
+
+    The matrix :math:`P=A(A^TA)^{-1}A^T` is deceptive.
+    You cannot split :math:`(A^TA)^{-1}` into :math:`A^{-1}` times :math:`(A^T)^{-1}`.
+    **The matrix** :math:`A` **is rectangular**.
+    **It has no inverse matrix**.
+
+.. Tip::
+
+    :math:`A^TA` **is invertible if and only if** :math:`A` **has linearly independent columns**.
+
+**Proof**: :math:`A^TA` is a square matrix (:math:`n` by :math:`n`).
+For every matrix :math:`A`, we will now show that :math:`A^TA` **has the same nullsapce as** math:`A`.
+
+    Let :math:`A` be any matrix.
+    If :math:`\x` is in tis nullspace, then :math:`A\x=\0`.
+    Multiplying by :math:`A^T` gives :math:`A^TA\x=\0`.
+    So :math:`\x` is also in the nullsapce of :math:`A^TA`.
+
+    **From** :math:`A^TA\x=\0` **we must prove** :math:`A\x=\0`.
+    Since we can't multiply by :math:`(A^T)^{-1}`, which generally doesn't exist.
+    Just multiply by :math:`\x^T`.
+
+    .. math::
+
+        (\x^T)A^TA\x=0 \quad\rm{or}\quad (A\x)^T(A\x)=0 \quad\rm{or}\quad \lv A\x\rv ^2=0.
+
+    We have shown: If :math:`A^TA\x=\0` then :math:`A\x` has length zero.
+    Therefore :math:`A\x=\0`.
+    Every vector :math:`\x` in one nullspace is in the other nullspace.
+    If :math:`A^TA` has dependent column, so has :math:`A`.
+    If :math:`A^TA` has independent columns, so has :math:`A`.
+    This is the good case: :math:`A^TA` is invertible.
+
+.. tip::
+
+    When :math:`A` has independent columns, :math:`A^TA` is square, symmetric, and invertible.
+
+**Very brief summary**: To find the projection :math:`\p=\wh{x}_1\a_1+\cds+\wh{x}_n\a_n`, solve :math:`A^TA\wh{\x}=A^T\b`.
+This gives :math:`\wh{\x}`.
+The projection is :math:`\p=A\wh{\x}` and the error is :math:`\e=\b-p=\b-A\wh{\x}`.
+The projection matrix :math:`P=A(A^TA)^{1}A^T` gives :math:`\p=P\b`.
+
+**This matrix satsfies** :math:`P^2=P`.
+**The distance from** :math:`\b` **to the subspace** :math:`\bs{C}(A)` **is** :math:`\lv\e\rv`.

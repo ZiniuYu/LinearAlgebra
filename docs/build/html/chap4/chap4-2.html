@@ -13,6 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -29,11 +31,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -296,6 +298,105 @@ Here <span class="math notranslate nohighlight">\(I-P\)</span> projects onto the
 </div>
 <div class="section" id="projection-onto-a-subspace">
 <h2>Projection Onto a Subspace<a class="headerlink" href="#projection-onto-a-subspace" title="Permalink to this headline">¶</a></h2>
+<p>Start with <span class="math notranslate nohighlight">\(n\)</span> vectors <span class="math notranslate nohighlight">\(\a_1,\cds,\a_n\)</span> in <span class="math notranslate nohighlight">\(\R^m\)</span>.
+Assume that these <span class="math notranslate nohighlight">\(\a\)</span>’s are linearly independent.</p>
+<p><strong>Problem: Find the combination</strong> <span class="math notranslate nohighlight">\(\p=\wh{x}_1\a_1+\cds+\wh{x}_n\a_n\)</span> <strong>closest to a given vector</strong> <span class="math notranslate nohighlight">\(\b\)</span>.
+We are projecting each <span class="math notranslate nohighlight">\(\b\)</span> in <span class="math notranslate nohighlight">\(\R^m\)</span> onto the subspace spanned by the <span class="math notranslate nohighlight">\(\a\)</span>’s.</p>
+<p>With <span class="math notranslate nohighlight">\(n=1\)</span> (one vector <span class="math notranslate nohighlight">\(\a_1\)</span>) this is projection onto a line.
+The line is the column space of <span class="math notranslate nohighlight">\(A\)</span>, which has just one column.
+In general the matrix <span class="math notranslate nohighlight">\(A\)</span> has <span class="math notranslate nohighlight">\(n\)</span> columns <span class="math notranslate nohighlight">\(\a_1,\cds,\a_n\)</span>.</p>
+<p>The combination in <span class="math notranslate nohighlight">\(\R^m\)</span> are the vectors <span class="math notranslate nohighlight">\(A\x\)</span> in the column space.
+We are looking for the particular combination <span class="math notranslate nohighlight">\(\p=A\wh{\x}\)</span>.
+That choise is <span class="math notranslate nohighlight">\(\wh{x}=\a^T\b/\a^T\a\)</span> when <span class="math notranslate nohighlight">\(n=1\)</span>.</p>
+<p>We compute projections onto <span class="math notranslate nohighlight">\(n\)</span>-dimensional subspaces in three steps as
+before: <strong>Find the vector</strong> <span class="math notranslate nohighlight">\(\wh{\x}\)</span>, <strong>find the projection</strong>
+<span class="math notranslate nohighlight">\(\p=A\wh{\x}\)</span>, <strong>find the proection matrix</strong> <span class="math notranslate nohighlight">\(P\)</span>.</p>
+<p><strong>The error vector</strong> <span class="math notranslate nohighlight">\(\b-A\wh{\x}\)</span> <strong>is perpendicular to the subspaces</strong>.
+It makes a right angle with all the vectors <span class="math notranslate nohighlight">\(\a_1,\cds,\a_n\)</span> in the base:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(\begin{matrix}\a_1^T(\b-A\wh{\x})=0\\\vdots\\\a_n^T(\b-A\wh{\x})=0\end{matrix}\quad\)</span>
+or <span class="math notranslate nohighlight">\(\quad\bb -&amp;\a_1^T&amp;-\\&amp;\vdots&amp;\\-&amp;\a_n^T&amp;- \eb\bb \\\b-A\wh{\x}\\\ \eb=\bb \\\0\\\ \eb\)</span>.</p>
+</div>
+<p>The matrix with those rows <span class="math notranslate nohighlight">\(\a_i^T\)</span> is <span class="math notranslate nohighlight">\(A^T\)</span>.
+The <span class="math notranslate nohighlight">\(n\)</span> equations are exactly <span class="math notranslate nohighlight">\(A^T(\b-A\wh{\x})=\0\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The combination <span class="math notranslate nohighlight">\(\p=\wh{x}_1\a_1+\cds+\wh{x}_n\a_n=A\wh{\x}\)</span> that is
+closest to <span class="math notranslate nohighlight">\(\b\)</span> comes from <span class="math notranslate nohighlight">\(\wh{\x}\)</span>:</p>
+<ul class="simple">
+<li><p><strong>Find</strong> <span class="math notranslate nohighlight">\(\wh{\x}\ (n \times 1):\quad A^T(\b-A\wh{\x})=\0\quad\rm{or}\quad A^A\wh{\x}=A^T\b\)</span>.</p></li>
+</ul>
+<p>This symmetric matrix <span class="math notranslate nohighlight">\(A^TA\)</span> is <span class="math notranslate nohighlight">\(n\)</span> by <span class="math notranslate nohighlight">\(n\)</span>.
+It is invertible if the <span class="math notranslate nohighlight">\(\a\)</span>’s are independent.
+The solution is <span class="math notranslate nohighlight">\(\wh{\x}=(A^TA)^{-1}A^T\b\)</span>.
+The <strong>projection</strong> of <span class="math notranslate nohighlight">\(\b\)</span> onto the subspace is <span class="math notranslate nohighlight">\(\p\)</span>:</p>
+<ul class="simple">
+<li><p><strong>Find</strong> <span class="math notranslate nohighlight">\(\p\ (m \times 1):\quad \p=A\wh{\x}=A(A^TA)^{-1}A^T\b\)</span>.</p></li>
+</ul>
+<p>The next formula picks out the <strong>projection matrix</strong> that is multiplying <span class="math notranslate nohighlight">\(\b\)</span>:</p>
+<ul class="simple">
+<li><p><strong>Find</strong> <span class="math notranslate nohighlight">\(P\ (m \times m):\quad P=A(A^TA)^{-1}A^T\)</span>.</p></li>
+</ul>
+</div>
+<p>Compare with projection onto a line, when <span class="math notranslate nohighlight">\(A\)</span> has only one column: <span class="math notranslate nohighlight">\(A^A\)</span> is <span class="math notranslate nohighlight">\(\a^T\a\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>For</strong> <span class="math notranslate nohighlight">\(n=1\)</span>: <span class="math notranslate nohighlight">\(\dp\wh{x}=\frac{\a^T\b}{\a^T\a}\)</span> and
+<span class="math notranslate nohighlight">\(\dp\p=\a\frac{\a^T\b}{\a^T\a}\)</span> and <span class="math notranslate nohighlight">\(\dp P=\frac{\a\a^T}{\a^T\a}\)</span>.</p>
+</div>
+<p>The key step was <span class="math notranslate nohighlight">\(A^T(\b-A\wh{\x})=\0\)</span>.
+We used geometry (<span class="math notranslate nohighlight">\(\e\)</span> is orthogonal to each <span class="math notranslate nohighlight">\(\a\)</span>).
+<em>Linear algebra gives this “normal equation” too</em>, in a very quick and beautiful way:</p>
+<ol class="arabic simple">
+<li><p>Our subspace is the column space of <span class="math notranslate nohighlight">\(A\)</span>.</p></li>
+<li><p>The error vector <span class="math notranslate nohighlight">\(\b-A\wh{\x}\)</span> is perpendicular to that column space.</p></li>
+<li><p>Therefore <span class="math notranslate nohighlight">\(\b-A\wh{\x}\)</span> is in the nullspace of <span class="math notranslate nohighlight">\(A^T\)</span>! This means <span class="math notranslate nohighlight">\(A^T(\b-A\wh{\x})=\0\)</span>.</p></li>
+</ol>
+<p>The left nullspace is important in projections.
+That nullspace of <span class="math notranslate nohighlight">\(A^T\)</span> contains the error vector <span class="math notranslate nohighlight">\(\e-\b-A\wh{\x}\)</span>.
+The vector <span class="math notranslate nohighlight">\(\b\)</span> is being split into the projection <span class="math notranslate nohighlight">\(\p\)</span> and the error <span class="math notranslate nohighlight">\(\e=\b-\p\)</span>.
+Projection produces a right triangle with sides <span class="math notranslate nohighlight">\(\p,\e,\b\)</span>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The matrix <span class="math notranslate nohighlight">\(P=A(A^TA)^{-1}A^T\)</span> is deceptive.
+You cannot split <span class="math notranslate nohighlight">\((A^TA)^{-1}\)</span> into <span class="math notranslate nohighlight">\(A^{-1}\)</span> times <span class="math notranslate nohighlight">\((A^T)^{-1}\)</span>.
+<strong>The matrix</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>is rectangular</strong>.
+<strong>It has no inverse matrix</strong>.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><span class="math notranslate nohighlight">\(A^TA\)</span> <strong>is invertible if and only if</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>has linearly independent columns</strong>.</p>
+</div>
+<p><strong>Proof</strong>: <span class="math notranslate nohighlight">\(A^TA\)</span> is a square matrix (<span class="math notranslate nohighlight">\(n\)</span> by <span class="math notranslate nohighlight">\(n\)</span>).
+For every matrix <span class="math notranslate nohighlight">\(A\)</span>, we will now show that <span class="math notranslate nohighlight">\(A^TA\)</span> <strong>has the same nullsapce as</strong> math:<cite>A</cite>.</p>
+<blockquote>
+<div><p>Let <span class="math notranslate nohighlight">\(A\)</span> be any matrix.
+If <span class="math notranslate nohighlight">\(\x\)</span> is in tis nullspace, then <span class="math notranslate nohighlight">\(A\x=\0\)</span>.
+Multiplying by <span class="math notranslate nohighlight">\(A^T\)</span> gives <span class="math notranslate nohighlight">\(A^TA\x=\0\)</span>.
+So <span class="math notranslate nohighlight">\(\x\)</span> is also in the nullsapce of <span class="math notranslate nohighlight">\(A^TA\)</span>.</p>
+<p><strong>From</strong> <span class="math notranslate nohighlight">\(A^TA\x=\0\)</span> <strong>we must prove</strong> <span class="math notranslate nohighlight">\(A\x=\0\)</span>.
+Since we can’t multiply by <span class="math notranslate nohighlight">\((A^T)^{-1}\)</span>, which generally doesn’t exist.
+Just multiply by <span class="math notranslate nohighlight">\(\x^T\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[(\x^T)A^TA\x=0 \quad\rm{or}\quad (A\x)^T(A\x)=0 \quad\rm{or}\quad \lv A\x\rv ^2=0.\]</div>
+<p>We have shown: If <span class="math notranslate nohighlight">\(A^TA\x=\0\)</span> then <span class="math notranslate nohighlight">\(A\x\)</span> has length zero.
+Therefore <span class="math notranslate nohighlight">\(A\x=\0\)</span>.
+Every vector <span class="math notranslate nohighlight">\(\x\)</span> in one nullspace is in the other nullspace.
+If <span class="math notranslate nohighlight">\(A^TA\)</span> has dependent column, so has <span class="math notranslate nohighlight">\(A\)</span>.
+If <span class="math notranslate nohighlight">\(A^TA\)</span> has independent columns, so has <span class="math notranslate nohighlight">\(A\)</span>.
+This is the good case: <span class="math notranslate nohighlight">\(A^TA\)</span> is invertible.</p>
+</div></blockquote>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>When <span class="math notranslate nohighlight">\(A\)</span> has independent columns, <span class="math notranslate nohighlight">\(A^TA\)</span> is square, symmetric, and invertible.</p>
+</div>
+<p><strong>Very brief summary</strong>: To find the projection <span class="math notranslate nohighlight">\(\p=\wh{x}_1\a_1+\cds+\wh{x}_n\a_n\)</span>, solve <span class="math notranslate nohighlight">\(A^TA\wh{\x}=A^T\b\)</span>.
+This gives <span class="math notranslate nohighlight">\(\wh{\x}\)</span>.
+The projection is <span class="math notranslate nohighlight">\(\p=A\wh{\x}\)</span> and the error is <span class="math notranslate nohighlight">\(\e=\b-p=\b-A\wh{\x}\)</span>.
+The projection matrix <span class="math notranslate nohighlight">\(P=A(A^TA)^{1}A^T\)</span> gives <span class="math notranslate nohighlight">\(\p=P\b\)</span>.</p>
+<p><strong>This matrix satsfies</strong> <span class="math notranslate nohighlight">\(P^2=P\)</span>.
+<strong>The distance from</strong> <span class="math notranslate nohighlight">\(\b\)</span> <strong>to the subspace</strong> <span class="math notranslate nohighlight">\(\bs{C}(A)\)</span> <strong>is</strong> <span class="math notranslate nohighlight">\(\lv\e\rv\)</span>.</p>
 </div>
 </div>
 
