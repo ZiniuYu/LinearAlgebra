@@ -13,8 +13,6 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -31,11 +29,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -257,8 +255,39 @@ That leaves the smallest possible error <span class="math notranslate nohighligh
 <p class="admonition-title">Note</p>
 <p><strong>The least squares solution</strong> <span class="math notranslate nohighlight">\(\wh{\x}\)</span> <strong>makes</strong> <span class="math notranslate nohighlight">\(E=\lv A\x-\b \rv^2\)</span> <strong>as small as possible</strong>.</p>
 </div>
+<p>The closest line misses by distance <span class="math notranslate nohighlight">\(e_1,e_2,e_2=1,-2,1\)</span>.
+<em>Those are vertical distances</em>.
+The least squares line minimizes <span class="math notranslate nohighlight">\(E=e_1^2+e_2^2+e_3^2\)</span>.</p>
+<p>Notice that the erros <span class="math notranslate nohighlight">\(1,-2,1\)</span> add to zero.
+<em>Reason</em>: The error <span class="math notranslate nohighlight">\(\e=(e_1,e_2,e_3)\)</span> is perpendicular to the first column <span class="math notranslate nohighlight">\((1,1,1)\)</span> in <span class="math notranslate nohighlight">\(A\)</span>.
+The dot product gives <span class="math notranslate nohighlight">\(e_1+e_2+e_3=0\)</span>.</p>
 </div></blockquote>
-<p><strong>By calculus</strong></p>
+<p><strong>By calculus</strong>: Most functions are minimized by calculus!
+The graph bottoms out and the derivative in every direction is zero.
+Here the error function <span class="math notranslate nohighlight">\(E\)</span> to be minimized is a <em>sum of squares</em>
+<span class="math notranslate nohighlight">\(e_1^2+e_2^2+e_3^2\)</span> (the square of the error in each equation):</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[E=\lv a\x-\b \rv^2=(C+D\cd 0-6)^2+(C+D\cd 1)^2+(C+D\cd 2)^2.\]</div>
+<p>With two unknonws <span class="math notranslate nohighlight">\(C,D\)</span>, there are <em>two derivatives</em>–both zero at the minimum.
+They are “partial derivatives” because <span class="math notranslate nohighlight">\(\partial{E}/\partial{C}\)</span>
+treats <span class="math notranslate nohighlight">\(D\)</span> as constant and <span class="math notranslate nohighlight">\(\partial{E}/\partial{D}\)</span> treats
+<span class="math notranslate nohighlight">\(C\)</span> as constant:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\partial{E}/\partial{C}=2(C+D\cd 0-6)+2(C+D\cd 1)+2(C+D\cd 2)=0\\\partial{E}/\partial{D}=2(C+D\cd 0-6)(0)+2(C+D\cd 1)(1)+2(C+D\cd 2)(2)=0\\3C+3D=6\\3C+5D=0\end{aligned}\end{align} \]</div>
+<p><strong>This matrix</strong> <span class="math notranslate nohighlight">\(\bb 3&amp;3\\3&amp;5 \eb\)</span> <strong>is</strong> <span class="math notranslate nohighlight">\(A^TA\)</span>.</p>
+<p><strong>These equations are identical with</strong> <span class="math notranslate nohighlight">\(A^TA\wh{\x}=A^T\b\)</span>.
+The best <span class="math notranslate nohighlight">\(C\)</span> and <span class="math notranslate nohighlight">\(D\)</span> are the components of <span class="math notranslate nohighlight">\(\wh{\x}\)</span>.
+The equations from calculus are the same as the “normal equations” from linear algebra.
+These are the key equations of least squares:</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>The partial derivatives of</strong> <span class="math notranslate nohighlight">\(\lv A\x-\b\rv^2\)</span> <strong>are zero when</strong> <span class="math notranslate nohighlight">\(A^TA\wh{\x}=A^T\b\)</span>.</p>
+</div>
+<p>The solution is <span class="math notranslate nohighlight">\(C=5\)</span> and <span class="math notranslate nohighlight">\(D=-3\)</span>.
+Threfore <span class="math notranslate nohighlight">\(b=5-3t\)</span> is the bet line.
+The errors are <span class="math notranslate nohighlight">\(1,-2,1\)</span> which are the same as components of vector <span class="math notranslate nohighlight">\(\e\)</span>.</p>
+</div></blockquote>
 </div>
 <div class="section" id="the-big-picture-for-least-squares">
 <h2>The Big Picture for Least Squares<a class="headerlink" href="#the-big-picture-for-least-squares" title="Permalink to this headline">¶</a></h2>

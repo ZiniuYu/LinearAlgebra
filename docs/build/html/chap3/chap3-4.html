@@ -13,8 +13,6 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -31,11 +29,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -95,7 +93,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../chap2/index2.html">Chapter 2 Solving Linear Equations</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index3.html">Chapter 3 Vector Spaces and Subspaces</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="chap3-1.html">Chapter 3.1 Spaces of Vectors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="chap3-2.html">Chapter 3.2 The Nullspace of <span class="math notranslate nohighlight">\(A\)</span>: Solving <span class="math notranslate nohighlight">\(Ax = 0\)</span> and <span class="math notranslate nohighlight">\(Rx=0\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap3-2.html">Chapter 3.2 The Nullspace of <span class="math notranslate nohighlight">\(A\)</span>: Solving <span class="math notranslate nohighlight">\(A\boldsymbol{x} = 0\)</span> and <span class="math notranslate nohighlight">\(R\boldsymbol{x}=0\)</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="chap3-3.html">Chapter 3.3 The Complete Solution to <span class="math notranslate nohighlight">\(Ax=b\)</span></a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 3.4 Independece, Basis and Dimension</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#linear-independece">Linear Independece</a></li>
@@ -355,7 +353,7 @@ The <span class="math notranslate nohighlight">\(\v\)</span>’s are a basis, so
 If <span class="math notranslate nohighlight">\(\w_1\)</span> equals <span class="math notranslate nohighlight">\(a_{11}\v_1+\cds+a_{m1}\v_m\)</span>, this is the first
 column of a matrix multiplication <span class="math notranslate nohighlight">\(VA\)</span>:</p>
 <blockquote>
-<div><p><strong>Each</strong> <span class="math notranslate nohighlight">\(\w\)</span> <strong>is a combination of the</strong> <span class="math notranslate nohighlight">\(\v\)</span><strong>‘s</strong>:</p>
+<div><p><strong>Each</strong> <span class="math notranslate nohighlight">\(\w\)</span> <strong>is a combination of the</strong> <span class="math notranslate nohighlight">\(\v\)</span><strong>’s</strong>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}W=\bb &amp;&amp;&amp;\\\w_1&amp;\w_2&amp;\cds&amp;\w_n\\&amp;&amp;&amp; \eb=\bb &amp;&amp;\\\v_1&amp;\cds&amp;\v_m\\&amp;&amp; \eb
 \bb a_{11}&amp;&amp;a_{1n}\\\vdots&amp;&amp;\vdots\\a_{m1}&amp;&amp;a_{mn} \eb=VA.\end{split}\]</div>
@@ -366,7 +364,7 @@ The key is that <span class="math notranslate nohighlight">\(A\)</span> has a ro
 <span class="math notranslate nohighlight">\(A\)</span> is a shrot wide matrix, since we assumed <span class="math notranslate nohighlight">\(n&gt;m\)</span>.
 So <span class="math notranslate nohighlight">\(A\x=\0\)</span> <strong>has a nonzero solution</strong>.</p>
 <p><span class="math notranslate nohighlight">\(A\x=\0\)</span> gives <span class="math notranslate nohighlight">\(VA\x=\0\)</span> which is <span class="math notranslate nohighlight">\(W\x=\0\)</span>.
-<em>A combination of the</em> <span class="math notranslate nohighlight">\(\w\)</span><em>‘s gives zero</em>!
+<em>A combination of the</em> <span class="math notranslate nohighlight">\(\w\)</span><em>’s gives zero</em>!
 Then the <span class="math notranslate nohighlight">\(\w\)</span> is <strong>not possible</strong> for two bases.</p>
 <p>If <span class="math notranslate nohighlight">\(m&gt;n\)</span> we exchange the <span class="math notranslate nohighlight">\(\v\)</span>’s and <span class="math notranslate nohighlight">\(\w\)</span>’s and repeat the same steps.
 The only way to avoid a contradiction is to have <span class="math notranslate nohighlight">\(m=n\)</span>.

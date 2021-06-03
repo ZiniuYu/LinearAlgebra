@@ -74,12 +74,52 @@ There is an equation :math:`A\wh{\x}=\p` we can and do solve:
 
         **The least squares solution** :math:`\wh{\x}` **makes** :math:`E=\lv A\x-\b \rv^2` **as small as possible**.
 
-    
+    The closest line misses by distance :math:`e_1,e_2,e_2=1,-2,1`.
+    *Those are vertical distances*.
+    The least squares line minimizes :math:`E=e_1^2+e_2^2+e_3^2`.
 
+    Notice that the erros :math:`1,-2,1` add to zero.
+    *Reason*: The error :math:`\e=(e_1,e_2,e_3)` is perpendicular to the first column :math:`(1,1,1)` in :math:`A`.
+    The dot product gives :math:`e_1+e_2+e_3=0`.
 
-**By calculus**
+**By calculus**: Most functions are minimized by calculus!
+The graph bottoms out and the derivative in every direction is zero.
+Here the error function :math:`E` to be minimized is a *sum of squares* 
+:math:`e_1^2+e_2^2+e_3^2` (the square of the error in each equation):
 
+    .. math::
 
+        E=\lv a\x-\b \rv^2=(C+D\cd 0-6)^2+(C+D\cd 1)^2+(C+D\cd 2)^2.
+
+    With two unknonws :math:`C,D`, there are *two derivatives*--both zero at the minimum.
+    They are "partial derivatives" because :math:`\partial{E}/\partial{C}`
+    treats :math:`D` as constant and :math:`\partial{E}/\partial{D}` treats
+    :math:`C` as constant:
+
+    .. math::
+
+        \partial{E}/\partial{C}=2(C+D\cd 0-6)+2(C+D\cd 1)+2(C+D\cd 2)=0
+
+        \partial{E}/\partial{D}=2(C+D\cd 0-6)(0)+2(C+D\cd 1)(1)+2(C+D\cd 2)(2)=0
+
+        3C+3D=6
+
+        3C+5D=0
+
+    **This matrix** :math:`\bb 3&3\\3&5 \eb` **is** :math:`A^TA`.
+
+    **These equations are identical with** :math:`A^TA\wh{\x}=A^T\b`.
+    The best :math:`C` and :math:`D` are the components of :math:`\wh{\x}`.
+    The equations from calculus are the same as the "normal equations" from linear algebra.
+    These are the key equations of least squares:
+
+    .. tip::
+
+        **The partial derivatives of** :math:`\lv A\x-\b\rv^2` **are zero when** :math:`A^TA\wh{\x}=A^T\b`.
+
+    The solution is :math:`C=5` and :math:`D=-3`.
+    Threfore :math:`b=5-3t` is the bet line.
+    The errors are :math:`1,-2,1` which are the same as components of vector :math:`\e`.
 
 The Big Picture for Least Squares
 ---------------------------------
