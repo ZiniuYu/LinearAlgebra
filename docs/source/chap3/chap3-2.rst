@@ -1,5 +1,5 @@
-Chapter 3.2 The Nullspace of :math:`A`: Solving :math:`Ax = 0` and :math:`Rx=0`
-=================================================================================
+Chapter 3.2 The Nullspace of :math:`A`: Solving :math:`A\boldsymbol{x} = 0` and :math:`R\boldsymbol{x}=0`
+=========================================================================================================
 
 For a :math:`m` by :math:`n` matrix, one immediate solution to :math:`A\x=\bs{0}` is :math:`\x=\bs{0}`.
 For invertible matrices this is the only solution.
