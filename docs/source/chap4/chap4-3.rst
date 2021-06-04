@@ -118,30 +118,100 @@ Here the error function :math:`E` to be minimized is a *sum of squares*
         **The partial derivatives of** :math:`\lv A\x-\b\rv^2` **are zero when** :math:`A^TA\wh{\x}=A^T\b`.
 
     The solution is :math:`C=5` and :math:`D=-3`.
-    Threfore :math:`b=5-3t` is the bet line.
+    Threfore :math:`b=5-3t` is the best line.
     The errors are :math:`1,-2,1` which are the same as components of vector :math:`\e`.
 
 The Big Picture for Least Squares
 ---------------------------------
 
-
-
-
+Refer to the textbook Page 222.
 
 Fitting a Straight Line
 -----------------------
 
+Fitting a line is the clearest application of least squares.
+It starts with :math:`m>2` points, hopefully near a straigt line.
+At times :math:`t_1,\cds,t_m` those :math:`m` points are at heights :math:`b_1,\cds,b_m`.
+The best line :math:`C+Dt` misses the points by vertical distances :math:`e_1,\cds,e_m`.
+No line is perfect, and the least squares line minimizes :math:`E=e_1^2+\cds+e_m^2`.
 
+Now we allow :math:`m` points (and :math:`m` can be large).
 
+A line goes through the :math:`m` points when we exactly solve :math:`A\x=\b`.
+To fit the :math:`m` points, we are trying to solve :math:`m` equations (and we only jave two unknowns!).
 
+.. math::
+
+    A\x=\b \quad\rm{is}\quad
+    \begin{matrix}C+Dt_1=b_1\\C+Dt_2=b_2\\\vdots\\C+Dt_m=b_m\end{matrix}
+    \quad\rm{with}\quad A=\bb 1&t_1\\1&t_2\\\vdots&\vdots\\1&t_m\eb.
+
+When :math:`\b` happens to lie in the column space, the points happen to lie on a line.
+In that case :math:`\b=\p`.
+Then :math:`A\x=\b` is solvable and the errors are :math:`\e=(0,\cds,0)`.
+
+.. tip::
+
+    **The closest line** :math:`C+Dt` **has heights** :math:`p_1,\cds,p_m` **with errors** :math:`e_1,\cds,e_m`.
+    **Solve** :math:`A^TA\wh{\x}=A^T\b` **for** :math:`\wh{\x}=(C,D)`.
+    **The errors are** :math:`\e_i=\b_i-C-Dt_i`.
+
+Fitting points by a straight line is so important that we give the two equations 
+:math:`A^TA\wh{\x}=A^T\b`, once and for all.
+The two columns of :math:`A` are independent (unless all times :math:`t_i` are the same).
+So we turn to least squares and solve :math:`A^TA\wh{\x}=A^T\b`.
+
+**Dot-product matrix**:
+
+.. math::
+
+    A^TA=\bb 1&\cds&1\\t_1&\cds&t_m \eb\bb 1&t_1\\\vds&\vds\\1&t_m \eb=\bb m&\sum t_i\\\sum t_i&\sum t_i^2\eb.
+
+On the right side of the normal equation is the 2 by 1 vector :math:`A^T\b`:
+
+.. math::
+
+    A^T\b=\bb 1&\cds&1\\t_1&\cds&t_m \eb\bb b_1\\\vds\\b_m \eb=\bb \sum b_i\\\sum t_ib_i \eb. 
+
+In a specific problem, these numbers are given.
+The best :math:`\wh{\x}=(C,D)` is :math:`(A^TA)^{-1}A^T\b`.
+
+.. note::
+
+    The line :math:`C+Dt` minimizes :math:`e_1^2+\cds+e_m^2=\lv A\x-\b \rv^2` when :math:`A^TA\wh{\x}=A^T\b`:
+
+    * :math:`A^TA\wh{\x}=A^T\b\quad\bb m&\sum t_i\\\sum t_i&\sum t_i^2\eb\bb C\\D\eb=\bb \sum b_i\\\sum t_ib_i \eb`.
+
+The vertical errors at the :math:`m` points on the line are the components of :math:`\e=\b-\p`.
+This error vector (the *residual*) :math:`\b-A\wh{\x}` is perpendicular to the columns of :math:`A` (geometry).
+The error is in the nullspace of :math:`A^T` (linear algebra).
+The best :math:`\wh{\x}=(C,D)` minimizes the total error :math:`E`, the sum of squares (calculus):
+
+.. math::
+
+    E(\x)=\lv A\x-\b \rv^2=(C+Dt_1-b_1)^2+\cds+(C+Dt_m-b_m)^2.
+
+Calculus set the derivatives :math:`\partial{E}/\partial{C}` and 
+:math:`\partial{E}/\partial{D}` to zero, and produces :math:`A^TA\wh{\x}=A^T\b`.
+
+Other least squares problems have more than two unknowns.
+Fitting by the best parabola has :math:`n=3` coefficients :math:`C,D,E`.
+In general we are fitting :math:`m` data points by :math:`n` parameters :math:`x_1,\cds,x_n`.
+The matrix :math:`A` has :math:`n` columns and :math:`n<m`.
+The derivatives of :math:`\lv A\x=\b \rv^2` give the :math:`n` equations :math:`A^TA\wh{\x}=A^T\b`.
+**The derivative of a square is linear**.
+This is why the method of least squares is so popular.
+
+:math:`A` has *orthogonal columns* when the measurement times :math:`t_i` add to zero.
+When the columns of :math:`A` are orthogonal, :math:`A^TA` will be a diagonal matrix.
+Orthogonal columns are so helpful that it is worth 
+*shifting the times by subtracting the average time*
+:math:`\wh{t}=(t_1+\cds+t_m)/m`.
 
 Dependent Columns in :math:`A`: What is :math:`\widehat{\boldsymbol{x}}`?
 -------------------------------------------------------------------------
 
-
-
-
-
+In Section 7.4, the "*pseudoinverse*" of :math:`A` will choose the **shortest solution to** :math:`A\wh{\x}=\p`.
 
 Fitting by a Parabola
 ---------------------
