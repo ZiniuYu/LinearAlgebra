@@ -13,8 +13,6 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -31,11 +29,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -365,6 +363,16 @@ Orthogonal columns are so helpful that it is worth
 </div>
 <div class="section" id="fitting-by-a-parabola">
 <h2>Fitting by a Parabola<a class="headerlink" href="#fitting-by-a-parabola" title="Permalink to this headline">¶</a></h2>
+<p><strong>Problem</strong> Fit heights <span class="math notranslate nohighlight">\(b_1,\cds,b_m\)</span> at times <span class="math notranslate nohighlight">\(t_1,\cds,t_m\)</span> by a parabola <span class="math notranslate nohighlight">\(C+Dt+Et^2\)</span>.</p>
+<p><strong>Solution</strong> With <span class="math notranslate nohighlight">\(m&gt;3\)</span> points, the <span class="math notranslate nohighlight">\(m\)</span> equations for an exact fit are generally unsolvable:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{matrix}C+Dt_1+Et_1^2=b_1\\\vds\\C+Dt_m+Et_m^2=b_m \end{matrix}\quad
+\begin{matrix}\rm{is\ }A\x=\b\rm{\ with}\\
+\rm{the\ }m\rm{\ by\ }3\rm{\ matrix}\end{matrix}\quad
+A=\bb 1&amp;t_1&amp;t_1^2\\\vds&amp;\vds&amp;\vds\\1&amp;t_m&amp;t_m^2\eb.\end{split}\]</div>
+<p><strong>Least squares</strong>: The closest parabola <span class="math notranslate nohighlight">\(C+Dt+Et^2\)</span> choose
+<span class="math notranslate nohighlight">\(\wh{\x}=(C,D,E)\)</span> to satisfy the three normal equation
+<span class="math notranslate nohighlight">\(A^TA\wh{\x}=A^T\b\)</span>.</p>
 </div>
 </div>
 

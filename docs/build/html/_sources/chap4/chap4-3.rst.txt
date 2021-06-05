@@ -215,3 +215,19 @@ In Section 7.4, the "*pseudoinverse*" of :math:`A` will choose the **shortest so
 
 Fitting by a Parabola
 ---------------------
+
+**Problem** Fit heights :math:`b_1,\cds,b_m` at times :math:`t_1,\cds,t_m` by a parabola :math:`C+Dt+Et^2`.
+
+**Solution** With :math:`m>3` points, the :math:`m` equations for an exact fit are generally unsolvable:
+
+.. math::
+
+    \begin{matrix}C+Dt_1+Et_1^2=b_1\\\vds\\C+Dt_m+Et_m^2=b_m \end{matrix}\quad
+    \begin{matrix}\rm{is\ }A\x=\b\rm{\ with}\\
+    \rm{the\ }m\rm{\ by\ }3\rm{\ matrix}\end{matrix}\quad
+    A=\bb 1&t_1&t_1^2\\\vds&\vds&\vds\\1&t_m&t_m^2\eb.
+
+**Least squares**: The closest parabola :math:`C+Dt+Et^2` choose 
+:math:`\wh{\x}=(C,D,E)` to satisfy the three normal equation
+:math:`A^TA\wh{\x}=A^T\b`.
+
