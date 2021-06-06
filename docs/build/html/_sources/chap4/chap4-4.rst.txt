@@ -11,10 +11,7 @@ Then the basis is called **orthonormal**.
 
     **DEFINITION**: The vectors :math:`\q_1,\cds,\q_n` are **orthonormal** if:
 
-    * :math:`q_i^Tq_j=\left\{\begin{matrix}
-    0\quad\rm{\ when\ } i \neq j\quad(\rm{orthogonal\ vectors})\\
-    1\quad\rm{\ when\ } i = j\quad(\rm{unit\ vectors}: \lv \q_i \rv=1)
-    \end{matrix}\right.`
+    * :math:`q_i^Tq_j=\left\{\begin{matrix}0\quad\rm{\ when\ } i \neq j\quad(\rm{orthogonal\ vectors})\\1\quad\rm{\ when\ } i = j\quad(\rm{unit\ vectors}: \lv \q_i \rv=1)\end{matrix}\right.`.
 
     A matrix with orthonormal columns is assigned the special letter :math:`Q`.
 
