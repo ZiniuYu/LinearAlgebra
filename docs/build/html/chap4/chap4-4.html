@@ -189,6 +189,7 @@
 \newcommand{\i}{\boldsymbol{i}}
 \newcommand{\j}{\boldsymbol{j}}
 \newcommand{\p}{\boldsymbol{p}}
+\newcommand{\q}{\boldsymbol{q}}
 \newcommand{\u}{\boldsymbol{u}}
 \newcommand{\v}{\boldsymbol{v}}
 \newcommand{\w}{\boldsymbol{w}}
@@ -199,6 +200,43 @@
 \newcommand{\ppr}{^{\prime\prime}}\end{aligned}\end{align} \]</div>
 <div class="section" id="chapter-4-4-orthonormal-bases-and-gram-schmidt">
 <h1>Chapter 4.4 Orthonormal Bases and Gram-Schmidt<a class="headerlink" href="#chapter-4-4-orthonormal-bases-and-gram-schmidt" title="Permalink to this headline">¶</a></h1>
+<p>The vectors <span class="math notranslate nohighlight">\(\q_1,\cds,\q_n\)</span> are <strong>orthogonal</strong> when their dot products <span class="math notranslate nohighlight">\(\q_i\cd\q_j\)</span> are zero.
+More exactly <span class="math notranslate nohighlight">\(\q_i^T\q_j=0\)</span> whenever <span class="math notranslate nohighlight">\(i\neq j\)</span>.
+With one more step–just <em>divide each vector by its length</em>–the vectors become <strong>orthogonal unit vectors</strong>.
+Their lengths are all 1 (normal).
+Then the basis is called <strong>orthonormal</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>DEFINITION</strong>: The vectors <span class="math notranslate nohighlight">\(\q_1,\cds,\q_n\)</span> are <strong>orthonormal</strong> if:</p>
+<ul class="simple">
+<li><p>:math:<a href="#id1"><span class="problematic" id="id2">`</span></a>q_i^Tq_j=left{begin{matrix}</p></li>
+</ul>
+<p>0quadrm{when} i neq jquad(rm{orthogonalvectors})\
+1quadrm{when} i = jquad(rm{unitvectors}: lv q_i rv=1)
+end{matrix}right.`</p>
+<p>A matrix with orthonormal columns is assigned the special letter <span class="math notranslate nohighlight">\(Q\)</span>.</p>
+</div>
+<p><strong>The matrix</strong> <span class="math notranslate nohighlight">\(Q\)</span> <strong>is easy to work with because</strong> <span class="math notranslate nohighlight">\(Q^TQ=I\)</span>.
+<span class="math notranslate nohighlight">\(Q\)</span> is not required to be square.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>A matrix</strong> <span class="math notranslate nohighlight">\(Q\)</span> <strong>with orthonormal columns satisfies</strong> <span class="math notranslate nohighlight">\(Q^TQ=I\)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(Q^TQ=\bb -\q_1^T-\\-\q_2^T-\\\vds\\-\q_n^T- \eb\bb |&amp;|&amp;&amp;|\\\q_1&amp;\q_2&amp;\cds&amp;\q_n\\|&amp;|&amp;&amp;| \eb=\bb 1&amp;0&amp;\cds&amp;0\\0&amp;1&amp;\cds&amp;0\\\vds&amp;\vds&amp;\ddots&amp;\vds\\0&amp;0&amp;\cds&amp;1 \eb=I\)</span>.</p></li>
+</ul>
+</div>
+<p>When row <span class="math notranslate nohighlight">\(i\)</span> of <span class="math notranslate nohighlight">\(Q^T\)</span> multiplies column <span class="math notranslate nohighlight">\(j\)</span> of <span class="math notranslate nohighlight">\(Q\)</span>, the dot product is <span class="math notranslate nohighlight">\(\q_i^T\q_j\)</span>.
+Off the diagonal (<span class="math notranslate nohighlight">\(i\neq j\)</span>) that dot product is zero by orthogonality.
+On the diagonal (<span class="math notranslate nohighlight">\(i=j\)</span>) the unit vectors give <span class="math notranslate nohighlight">\(\q_i^T\q_i=\lv\q_i\rv^2=1\)</span>.
+Often <span class="math notranslate nohighlight">\(Q\)</span> is rectangular (math:<cite>m&gt;n</cite>).
+Sometimes <span class="math notranslate nohighlight">\(m=n\)</span>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>When</strong> <span class="math notranslate nohighlight">\(Q\)</span> <strong>is square</strong>, <span class="math notranslate nohighlight">\(Q^TQ=I\)</span> <strong>means that</strong> <span class="math notranslate nohighlight">\(Q^T=Q^{-1}\)</span>: <strong>transpose</strong> = <strong>inverse</strong>.</p>
+</div>
+<p>If the columns are only orthogonal (not unit vectors), dot products still give a
+diagonal matrix (not the identity matrix).
+This diagonal matrix is almost as good as <span class="math notranslate nohighlight">\(I\)</span>.</p>
 <div class="section" id="projections-using-orthonormal-bases-q-replaces-a">
 <h2>Projections Using Orthonormal Bases: <span class="math notranslate nohighlight">\(Q\)</span> Replaces <span class="math notranslate nohighlight">\(A\)</span><a class="headerlink" href="#projections-using-orthonormal-bases-q-replaces-a" title="Permalink to this headline">¶</a></h2>
 </div>

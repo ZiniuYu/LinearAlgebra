@@ -74,6 +74,7 @@ rst_prolog = r'''
     \newcommand{\i}{\boldsymbol{i}}
     \newcommand{\j}{\boldsymbol{j}}
     \newcommand{\p}{\boldsymbol{p}}
+    \newcommand{\q}{\boldsymbol{q}}
     \newcommand{\u}{\boldsymbol{u}}
     \newcommand{\v}{\boldsymbol{v}}
     \newcommand{\w}{\boldsymbol{w}}
