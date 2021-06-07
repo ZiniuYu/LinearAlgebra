@@ -81,6 +81,9 @@ rst_prolog = r'''
     \newcommand{\x}{\boldsymbol{x}}
     \newcommand{\y}{\boldsymbol{y}}
 
+    \newcommand{\A}{\boldsymbol{A}}
+    \newcommand{\B}{\boldsymbol{B}}
+    \newcommand{\C}{\boldsymbol{C}}
     \newcommand{\N}{\boldsymbol{N}}
 
     \newcommand{\R}{\boldsymbol{\mathrm{R}}}

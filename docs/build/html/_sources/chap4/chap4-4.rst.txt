@@ -142,14 +142,77 @@ By adding the pieces, the inverse transform puts :math:`\b` and :math:`f(x)` bac
 The Gram-Schmidt Process
 ------------------------
 
+Start with three independent vectors :math:`\a,\b,\bs{c}`.
+We intend to construct three orthogonal vectors :math:`\A,\B,\C`.
+Then (at the end may be easiest) we divide :math:`\A,\B,\C` by their lengths.
+That produces three orthonormal vectors :math:`\q_1=\A/\lv\A\rv,\q_2=\B/\lv\B\rv,\q_3=\C/\lv\C\rv`.
 
+**Gram-Schmidt**: Begin by choosing :math:`\A=\a`.
+This first direction is accepted as it comes.
+The next direction :math:`\B` must be perpendicular to :math:`\A`.
+**Start with** :math:`\b` **and subtract its projection along** :math:`\A`.
+This leaves the perpendicular part, which is the orthogonal vector :math:`\B`:
 
+.. note::
 
+    **First Gram-Schmidt step**: :math:`\dp \B=\b-\frac{\A^T\b}{\A^T\A}\A`.
 
+Multiply the equation by :math:`\A^T` to verify that :math:`\A^T\B=\A^T\b-\A^T\b=0`.
+This vector :math:`\B` is what we have called the error vector :math:`\e`, perpendicular to :math:`\A`.
+Notice that :math:`\B` is not zero (otherwise :math:`\a` and :math:`\b` would be dependent).
+The directions :math:`\A` and :math:`\B` are now set.
 
+The third direction starts with :math:`\bs{c}`.
+This is not a combination of :math:`\A` and :math:`\B` (because :math:`\bs{c}` is 
+not a combination of :math:`\a` and :math:`b`).
+But most likely :math:`\bs{c}` is not perpendicular to :math:`\A` and :math:`\B`.
+So subtract off its components in those two directions to get a perpendicular direction :math:`\C`:
 
+.. note::
 
+    **Next Gram-Schmidt step**: :math:`\dp \C=\bs{c}-\frac{\A^T\bs{c}}{\A^T\A}\A-\frac{\B^T\bs{c}}{\B^T\B}\B`.
 
+This is the one and only idea of the Gram-Schmidt process.
+**Subtract from every new vector its projections in the directions already set**.
+That idea is repeated at every step.
+If we had a fourth vector :math:`\bs{d}`, we would subtract three projections 
+onto :math:`\A,\B,\C` to get :math:`\bs{D}`.
+
+At the end, or *immediately when each one is found*, divide the orthogonal 
+vectors :math:`\A,\B,\C,\bs{D}` by their lengths.
+The resulting vectors :math:`\q_1,\q_2,\q_3,\q_4` are orthonormal.
 
 The Factorization :math:`A=QR`
 ------------------------------
+
+We started with a matrix :math:`A`, whose columns were :math:`\a,\b,\bs{c}`.
+We ended with a matrix :math:`Q`, whose columns are :math:`\q_1,\q_2,\q_3`.
+Since the vectors :math:`\a,\b,\bs{c}` are combinations of the :math:`\q`'s (and 
+vice versa), there must be a third matrix connecting :math:`A` to :math:`Q`.
+This third matrix is the triangular :math:`R` in :math:`A=QR`.
+
+* The vectors :math:`\a` and :math:`\A` and :math:`\q_1` are all along a single line.
+
+* The vectors :math:`\a,\b` and :math:`\A,\B` amd :math:`\q_1,\q_2` are all in the smae plane.
+
+* The vectors :math:`\a,\b,\bs{c}` and :math:`\A,\B,\bs{C}` and :math:`\q_1,\q_2,\q_3` are in one subspace.
+
+At every step :math:`\a_1,\cds,\a_k` are combinations of :math:`\q_1,\cds,\q_k`.
+Later :math:`\q`'s are not involved.
+The connecting matrix :math:`R` is **triangular**, and we have :math:`A=QR`:
+
+.. note::
+
+    :math:`\bb \\\a&\b&\bs{c}\\\ \eb=\bb \\\q_1&\q_2&\q_3\\\ \eb
+    \bb\q_1^T\a&\q_1^T\b&\q_1^T\bs{c}\\&\q_2^T\b&\q_2^T\bs{c}\\&&\q_3^T\bs{c}\eb`
+    or :math:`A=QR`.
+
+:math:`A=QR` is Gram-Schmidt in a nutshell.
+Multiply by :math:`Q^T` to recognize :math:`R=Q^TA` above.
+
+.. note::
+
+    **Gram-Schmidt**: From independent vectors :math:`\a_1,\cds,\a_n`, 
+    Gram-Schmidt constructs orthonormal vectors :math:`\q_1,\cds,\q_n`.
+    The matrices with these columns satisfy :math:`A=QR`.
+    Then :math:`R=Q^TA` is **upper triangular** because later :math:`\q`'s are orthogonal to earlier :math:`\a`'s.
