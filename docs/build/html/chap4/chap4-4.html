@@ -13,6 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -29,11 +31,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -209,7 +211,7 @@ Then the basis is called <strong>orthonormal</strong>.</p>
 <p class="admonition-title">Note</p>
 <p><strong>DEFINITION</strong>: The vectors <span class="math notranslate nohighlight">\(\q_1,\cds,\q_n\)</span> are <strong>orthonormal</strong> if:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(q_i^Tq_j=\left\{\begin{matrix}0\quad\rm{\ when\ } i \neq j\quad(\rm{orthogonal\ vectors})\\1\quad\rm{\ when\ } i = j\quad(\rm{unit\ vectors}: \lv \q_i \rv=1)\end{matrix}\right.\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\q_i^T\q_j=\left\{\begin{matrix}0\quad\rm{\ when\ } i \neq j\quad(\rm{orthogonal\ vectors})\ \ \ \quad\\1\quad\rm{\ when\ } i = j\quad(\rm{unit\ vectors}: \lv \q_i \rv=1)\end{matrix}\right.\)</span>.</p></li>
 </ul>
 <p>A matrix with orthonormal columns is assigned the special letter <span class="math notranslate nohighlight">\(Q\)</span>.</p>
 </div>
@@ -229,13 +231,94 @@ Often <span class="math notranslate nohighlight">\(Q\)</span> is rectangular (ma
 Sometimes <span class="math notranslate nohighlight">\(m=n\)</span>.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p><strong>When</strong> <span class="math notranslate nohighlight">\(Q\)</span> <strong>is square</strong>, <span class="math notranslate nohighlight">\(Q^TQ=I\)</span> <strong>means that</strong> <span class="math notranslate nohighlight">\(Q^T=Q^{-1}\)</span>: <strong>transpose</strong> = <strong>inverse</strong>.</p>
+<p><strong>When</strong> <span class="math notranslate nohighlight">\(Q\)</span> <strong>is square</strong>, <span class="math notranslate nohighlight">\(Q^TQ=I\)</span> <strong>means that</strong> <span class="math notranslate nohighlight">\(Q^T=Q\im\)</span>: <strong>transpose</strong> = <strong>inverse</strong>.</p>
 </div>
 <p>If the columns are only orthogonal (not unit vectors), dot products still give a
 diagonal matrix (not the identity matrix).
 This diagonal matrix is almost as good as <span class="math notranslate nohighlight">\(I\)</span>.</p>
+<p><em>To repeat</em>: <span class="math notranslate nohighlight">\(Q^TQ=I\)</span> even when <span class="math notranslate nohighlight">\(Q\)</span> is rectangular.
+In that case <span class="math notranslate nohighlight">\(Q^T\)</span> is only an inverse from the left.
+For square matrices we also have <span class="math notranslate nohighlight">\(QQ^T=I\)</span>, so <span class="math notranslate nohighlight">\(Q^T\)</span> is the two-sided inverse of <span class="math notranslate nohighlight">\(Q\)</span>.
+The rows of a square <span class="math notranslate nohighlight">\(Q\)</span> are orthonormal like the columns.
+<strong>The inverse is the transpose</strong>.
+In this square case we call <span class="math notranslate nohighlight">\(Q\)</span> an <strong>orthogonal matrix</strong>.</p>
+<p><strong>Rotation</strong>: <span class="math notranslate nohighlight">\(Q\)</span> rotates every vector in the plane by the angle <span class="math notranslate nohighlight">\(\theta\)</span>:</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}Q=\bb \cos\theta&amp;-\sin\theta\\\sin\theta&amp;\cos\theta \eb\quad\rm{and}\quad
+Q^T=Q\im =\bb \cos\theta&amp;\sin\theta\\-\sin\theta&amp;\cos\theta\eb.\end{split}\]</div>
+<p>Those columns give an <strong>orthonormal basis</strong> for the plane <span class="math notranslate nohighlight">\(\R^2\)</span>.</p>
+</div></blockquote>
+<p><strong>Permutation</strong>: These matrices change the order to <span class="math notranslate nohighlight">\((y,z,x)\)</span> and <span class="math notranslate nohighlight">\((y,x)\)</span>:</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}\bb 0&amp;1&amp;0\\0&amp;0&amp;1\\1&amp;0&amp;0 \eb\bb x\\y\\z \eb=\bb y\\z\\x \eb\quad\rm{and}\quad
+\bb 0&amp;1\\1&amp;0 \eb\bb x\\y \eb=\bb y\\x \eb.\end{split}\]</div>
+<p><em>The inverse of a permutation matrix is its transpose</em>: <span class="math notranslate nohighlight">\(Q\im=Q^T\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb 0&amp;0&amp;1\\1&amp;0&amp;0\\0&amp;1&amp;0 \eb\bb y\\\\x \eb=\bb x\\y\\z \eb\quad\rm{and}\quad
+\bb 0&amp;1\\1&amp;0 \eb\bb y\\x \eb=\bb x\\y \eb.\end{split}\]</div>
+</div></blockquote>
+<p><strong>Every permutation matrix is an orthogonal matrix</strong>.</p>
+<p><strong>Reflection</strong>: If <span class="math notranslate nohighlight">\(\u\)</span> is any unit vector, set <span class="math notranslate nohighlight">\(Q=I-2\u\u^T\)</span>.
+Notice that <span class="math notranslate nohighlight">\(\u\u^T\)</span> is a matrix while <span class="math notranslate nohighlight">\(\u^T\u\)</span> is the number <span class="math notranslate nohighlight">\(\lv\u\rv^2=1\)</span>.
+Then <span class="math notranslate nohighlight">\(Q^T\)</span> and <span class="math notranslate nohighlight">\(Q\im\)</span> both equal <span class="math notranslate nohighlight">\(Q\)</span>:</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[Q^T=I-2\u\u^T=Q \quad\rm{and}\quad Q^TQ=I-4\u\u^T+4\u\u^T\u\u^T=I.\]</div>
+<p>Reflection matrices <span class="math notranslate nohighlight">\(I-2\u\u^T\)</span> are symmetric and also orthogonal.
+Notice <span class="math notranslate nohighlight">\(\u^T\u=1\)</span> inside <span class="math notranslate nohighlight">\(4\u\u^T\u\u^T\)</span>.</p>
+</div></blockquote>
+<p>Rotations preserve the length of every vector.
+So do reflections.
+So do permutations.
+So does multiplication by any orthogonal matrix <span class="math notranslate nohighlight">\(Q\)</span>–<strong>lengths and angles don’t change</strong>.</p>
+<p><strong>Proof</strong>: <span class="math notranslate nohighlight">\(\lv Q\x\rv^2\)</span> equals <span class="math notranslate nohighlight">\(\lv\x\rv^2\)</span> because <span class="math notranslate nohighlight">\((Q\x)^T(Q\x)=\x^TQ^TQ\x=\x^TI\x=\x^T\x\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>If</strong> <span class="math notranslate nohighlight">\(Q\)</span> <strong>has orthonormal columns</strong> <span class="math notranslate nohighlight">\((Q^TQ=I)\)</span>, <strong>it leaves lengths unchanged</strong>:</p>
+<ul class="simple">
+<li><p><strong>Same length for</strong> <span class="math notranslate nohighlight">\(Q\x\)</span>: <span class="math notranslate nohighlight">\(\lv Q\x\rv=\lv\x\rv\)</span> <strong>for every vector</strong> <span class="math notranslate nohighlight">\(\x\)</span>.</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(Q\)</span> also preserves dot products: <span class="math notranslate nohighlight">\((Q\x)^T(Q\y)=\x^TQ^TQ\y=\x^T\y\)</span>.
+Just use <span class="math notranslate nohighlight">\(Q^TQ=I\)</span>.</p>
+</div>
 <div class="section" id="projections-using-orthonormal-bases-q-replaces-a">
 <h2>Projections Using Orthonormal Bases: <span class="math notranslate nohighlight">\(Q\)</span> Replaces <span class="math notranslate nohighlight">\(A\)</span><a class="headerlink" href="#projections-using-orthonormal-bases-q-replaces-a" title="Permalink to this headline">¶</a></h2>
+<p><strong>Suppose the basis vectors are actually orthonormal</strong>.
+The <span class="math notranslate nohighlight">\(\a\)</span>’s become the <span class="math notranslate nohighlight">\(\q\)</span>’s.
+Then <span class="math notranslate nohighlight">\(A^TA\)</span> <em>simplifies to</em> <span class="math notranslate nohighlight">\(Q^TQ=I\)</span>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>The least squares solution of</strong> <span class="math notranslate nohighlight">\(Q\x=\b\)</span> <strong>is</strong> <span class="math notranslate nohighlight">\(\wh{\x}=Q^T\b\)</span>.
+<strong>The projection matrix is</strong> <span class="math notranslate nohighlight">\(QQ^T\)</span>.</p>
+</div>
+<p>There are no matrices to invert.
+The “coupling matrix” or “correlation matirx” <span class="math notranslate nohighlight">\(A^TA\)</span> is now <span class="math notranslate nohighlight">\(Q^TQ=I\)</span>.
+There is no coupling.
+When <span class="math notranslate nohighlight">\(A\)</span> is <span class="math notranslate nohighlight">\(Q\)</span>, with orthonormal columns, here is <span class="math notranslate nohighlight">\(\p=Q\wh{\x}=QQ^T\b\)</span>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Projection onto</strong> <span class="math notranslate nohighlight">\(\q\)</span><strong>‘s</strong>:
+<span class="math notranslate nohighlight">\(\p=\bb |&amp;&amp;|\\\q_1&amp;\cds&amp;\q_n\\|&amp;&amp;| \eb\bb \q_1^T\b\\\vds\\\q_n^T\b \eb
+=\q_1(\q_1^T\b)+\cds+\q_n(\q_n^T\b)\)</span>.</p>
+</div>
+<p><strong>Important case</strong>: When <span class="math notranslate nohighlight">\(Q\)</span> is square and <span class="math notranslate nohighlight">\(m=n\)</span>, the subspace is the whole space.
+Then <span class="math notranslate nohighlight">\(Q^T=Q\im\)</span> and <span class="math notranslate nohighlight">\(\wh{\x}=Q^T\b\)</span> is the same as <span class="math notranslate nohighlight">\(\x=Q\im\b\)</span>.
+The solution is exact.
+The projection of <span class="math notranslate nohighlight">\(\b\)</span> onto the whole space is <span class="math notranslate nohighlight">\(\b\)</span> itself.
+In this case <span class="math notranslate nohighlight">\(\p=\b\)</span> and <span class="math notranslate nohighlight">\(P=QQ^T=I\)</span>.</p>
+<p>When <span class="math notranslate nohighlight">\(\p=\b\)</span>, our formula assembles <span class="math notranslate nohighlight">\(\b\)</span> out of its 1-dimensional projections.
+If <span class="math notranslate nohighlight">\(\q_1,\cds,\q_n\)</span> is an orthonormal basis for the whole space, then <span class="math notranslate nohighlight">\(Q\)</span> is square.
+Every <span class="math notranslate nohighlight">\(\b=QQ^T\b\)</span> <em>is the sum of its components along the</em> <span class="math notranslate nohighlight">\(\q\)</span>’s:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(\b=\q_1(\q_1^T\b)+\q_2(\q_2^T\b)+\cds+\q_n(\q_n^T\b)\)</span>.</p>
+</div>
+<p><strong>Transforms</strong>: <span class="math notranslate nohighlight">\(QQ^T=I\)</span> is the foundation of Fourier series and all the
+great “transforms” of applied mathematics.
+They break vectors <span class="math notranslate nohighlight">\(\b\)</span> or functions <span class="math notranslate nohighlight">\(f(x)\)</span> into perpendicular pieces.
+By adding the pieces, the inverse transform puts <span class="math notranslate nohighlight">\(\b\)</span> and <span class="math notranslate nohighlight">\(f(x)\)</span> back together.</p>
 </div>
 <div class="section" id="the-gram-schmidt-process">
 <h2>The Gram-Schmidt Process<a class="headerlink" href="#the-gram-schmidt-process" title="Permalink to this headline">¶</a></h2>
