@@ -90,6 +90,8 @@ rst_prolog = r'''
 
     \newcommand{\bb}{\begin{bmatrix}}
     \newcommand{\eb}{\end{bmatrix}}
+    \newcommand{\bv}{\begin{vmatrix}}
+    \newcommand{\ev}{\end{vmatrix}}
 
     \newcommand{\im}{^{-1}}
     \newcommand{\pr}{^{\prime}}

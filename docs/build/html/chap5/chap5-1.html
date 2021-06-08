@@ -94,7 +94,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../chap3/index3.html">Chapter 3 Vector Spaces and Subspaces</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../chap4/index4.html">Chapter 4 Orthogonality</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index5.html">Chapter 5 Determinants</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 5.1 The Properties of Determinants</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 5.1 The Properties of Determinants</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-properties-of-the-determinant">The Properties of the Determinant</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="chap5-2.html">Chapter 5.2 Permutations and Cofactors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chap5-3.html">Chapter 5.3 Cramer’s Rule, Inverses, and Volumes</a></li>
 </ul>
@@ -193,11 +196,64 @@
 \newcommand{\B}{\boldsymbol{B}}
 \newcommand{\C}{\boldsymbol{C}}
 \newcommand{\N}{\boldsymbol{N}}\\\newcommand{\R}{\boldsymbol{\mathrm{R}}}\\\newcommand{\bb}{\begin{bmatrix}}
-\newcommand{\eb}{\end{bmatrix}}\\\newcommand{\im}{^{-1}}
+\newcommand{\eb}{\end{bmatrix}}
+\newcommand{\bv}{\begin{vmatrix}}
+\newcommand{\ev}{\end{vmatrix}}\\\newcommand{\im}{^{-1}}
 \newcommand{\pr}{^{\prime}}
 \newcommand{\ppr}{^{\prime\prime}}\end{aligned}\end{align} \]</div>
 <div class="section" id="chapter-5-1-the-properties-of-determinants">
 <h1>Chapter 5.1 The Properties of Determinants<a class="headerlink" href="#chapter-5-1-the-properties-of-determinants" title="Permalink to this headline">¶</a></h1>
+<p>The determinant of a square matrix is a single number.
+<strong>The determinant is zero when the matrix has no inverse</strong>.
+When <span class="math notranslate nohighlight">\(A\)</span> is invertible, the determinant of <span class="math notranslate nohighlight">\(A\im\)</span> is <span class="math notranslate nohighlight">\(1/(\det A)\)</span>.
+In fact the determinant leads to a formula for every entry in <span class="math notranslate nohighlight">\(A\im\)</span>.</p>
+<p>This is one use for determinants–to find formulas for inverse matrices and pivots and solutions <span class="math notranslate nohighlight">\(A\im\b\)</span>.
+For a large matrix we seldom use those formulas, because elimination is faster.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A=\bb a&amp;b\\c&amp;d \eb\rm{\ has\ inverse\ }A\im=\frac{1}{ad-bc}\bb d&amp;-b\\-c&amp;a \eb.\end{split}\]</div>
+<p>When the determinant is <span class="math notranslate nohighlight">\(ad-bc=0\)</span>, we are asked to divide by zero and we can’t–then <span class="math notranslate nohighlight">\(A\)</span> has no inverse.
+Dependent rows always lead to <span class="math notranslate nohighlight">\(\det A=0\)</span>.</p>
+<p>The determinant is also connected to the pivots.
+For a 2 by 2 matrix the pivots are <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(d-(c/a)b\)</span>.
+<strong>The product of the pivots is the determinant</strong>:</p>
+<p><strong>Product of pivots</strong>: <span class="math notranslate nohighlight">\(\dp a(d-\frac{c}{a}b)=ad-bc\)</span> <strong>which is</strong> <span class="math notranslate nohighlight">\(\det A\)</span>.</p>
+<p>Aftere a row exchange the pivots change to <span class="math notranslate nohighlight">\(c\)</span> and <span class="math notranslate nohighlight">\(b-(a/c)d\)</span>.
+Those new pivots multiply to give <span class="math notranslate nohighlight">\(bc-ad\)</span>.
+The row exchange to <span class="math notranslate nohighlight">\(\bb c&amp;d\\a&amp;b \eb\)</span> reversed the sign of the determinant.</p>
+<p>The determinant of an <span class="math notranslate nohighlight">\(n\)</span> by <span class="math notranslate nohighlight">\(n\)</span> matrix can be found in three ways:</p>
+<ol class="arabic simple">
+<li><p><strong>Pivot formula</strong>: Multiply the <span class="math notranslate nohighlight">\(n\)</span> pivots (times 1 or -1).</p></li>
+<li><p><strong>“Big” formula</strong>: Add up <span class="math notranslate nohighlight">\(n!\)</span> terms (times 1 or -1).</p></li>
+<li><p><strong>Cofactor formula</strong>: Combine <span class="math notranslate nohighlight">\(n\)</span> smaller determinants (times 1 or -1).</p></li>
+</ol>
+<p><strong>The determinant changes sign when two rows (or two columns) are exchanged</strong>.</p>
+<p>The identity matrix has determinant <span class="math notranslate nohighlight">\(+1\)</span>.
+Exchange two rows and <span class="math notranslate nohighlight">\(\det P=-1\)</span>.
+Exchange two more rows and the new permutation has <span class="math notranslate nohighlight">\(\det P=+1\)</span>.
+Half of all permutations are <em>even</em> (<span class="math notranslate nohighlight">\(\det P=1\)</span>) and half are <em>odd</em> (<span class="math notranslate nohighlight">\(\det P=-1\)</span>).
+Starting from <span class="math notranslate nohighlight">\(I\)</span>, half of the <span class="math notranslate nohighlight">\(P\)</span>’s involve an even number of exchanges and half require an odd number.
+In the 2 by 2 case, <span class="math notranslate nohighlight">\(ad\)</span> has a plus sign and <span class="math notranslate nohighlight">\(bc\)</span> has minus–coming from the row exchange:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\det \bb 1&amp;0\\0&amp;1 \eb = 1 \rm{\ and\ } \det \bb 0&amp;1\\1&amp;0 \eb = -1\end{split}\]</div>
+<div class="section" id="the-properties-of-the-determinant">
+<h2>The Properties of the Determinant<a class="headerlink" href="#the-properties-of-the-determinant" title="Permalink to this headline">¶</a></h2>
+<p><strong>The determinant is written in two ways</strong>, <span class="math notranslate nohighlight">\(\det A\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(\bv A \ev\)</span>.
+Notice: Brackets for the matrix, straight bars for its determinant.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\rm{The\ determinant\ of\ } \bb a&amp;b\\c&amp;d \eb \rm{\ is\ } \bv a&amp;b\\c&amp;d \ev = ad - bc.\end{split}\]</div>
+<p>We will check all rules with the 2 by 2 formula, but do not forget: The rules
+apply to any <span class="math notranslate nohighlight">\(n\)</span> by <span class="math notranslate nohighlight">\(n\)</span> matrix <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p><strong>1. The determinant of the</strong> <span class="math notranslate nohighlight">\(n\)</span> <strong>by</strong> <span class="math notranslate nohighlight">\(n\)</span> <strong>identity matrix is 1</strong>.</p>
+<p><strong>2. The determinant changes sign when two rows are exchanged</strong> (sign reversal).</p>
+<p><strong>3. The determinant is a linear function of each row separately</strong> (all other rows stay fixed).</p>
+<p><strong>4. If two rows of</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>are equal</strong>, <strong>then</strong> <span class="math notranslate nohighlight">\(\det A=0\)</span>.</p>
+<p><strong>5. Subtracting a multiple of one row from another row leaves</strong> <span class="math notranslate nohighlight">\(\det A\)</span> <strong>unchanged</strong>.</p>
+<p><strong>6. A matrix with a row of zeros has</strong> <span class="math notranslate nohighlight">\(\det A=0\)</span>.</p>
+<p><strong>7. If</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>is triangular then</strong> <span class="math notranslate nohighlight">\(\det A=\a_{11}\a_{22}\cds\a_{nn}=\)</span> <strong>product of diagonal entries</strong>.</p>
+<p><strong>8. If</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>is singular then</strong> <span class="math notranslate nohighlight">\(\det A=0\)</span>. <strong>If</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>is invertible then</strong> <span class="math notranslate nohighlight">\(\det A\neq 0\)</span>.</p>
+<p><strong>9. The determinant of</strong> <span class="math notranslate nohighlight">\(AB\)</span> <strong>is</strong> <span class="math notranslate nohighlight">\(\det A\)</span> <strong>times</strong> <span class="math notranslate nohighlight">\(\det B\)</span>: <span class="math notranslate nohighlight">\(\bv AB\ev=\bv A\ev\bv B\ev\)</span>.</p>
+<p><strong>10. The transpose</strong> <span class="math notranslate nohighlight">\(A^T\)</span> <strong>has the same determinant as</strong> <span class="math notranslate nohighlight">\(A\)</span>.</p>
+</div>
 </div>
 
 
