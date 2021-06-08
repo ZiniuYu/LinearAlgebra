@@ -142,7 +142,7 @@ By adding the pieces, the inverse transform puts :math:`\b` and :math:`f(x)` bac
 The Gram-Schmidt Process
 ------------------------
 
-Start with three independent vectors :math:`\a,\b,\bs{c}`.
+Start with three independent vectors :math:`\a,\b,\C`.
 We intend to construct three orthogonal vectors :math:`\A,\B,\C`.
 Then (at the end may be easiest) we divide :math:`\A,\B,\C` by their lengths.
 That produces three orthonormal vectors :math:`\q_1=\A/\lv\A\rv,\q_2=\B/\lv\B\rv,\q_3=\C/\lv\C\rv`.
@@ -162,15 +162,15 @@ This vector :math:`\B` is what we have called the error vector :math:`\e`, perpe
 Notice that :math:`\B` is not zero (otherwise :math:`\a` and :math:`\b` would be dependent).
 The directions :math:`\A` and :math:`\B` are now set.
 
-The third direction starts with :math:`\bs{c}`.
-This is not a combination of :math:`\A` and :math:`\B` (because :math:`\bs{c}` is 
+The third direction starts with :math:`\C`.
+This is not a combination of :math:`\A` and :math:`\B` (because :math:`\C` is 
 not a combination of :math:`\a` and :math:`b`).
-But most likely :math:`\bs{c}` is not perpendicular to :math:`\A` and :math:`\B`.
+But most likely :math:`\C` is not perpendicular to :math:`\A` and :math:`\B`.
 So subtract off its components in those two directions to get a perpendicular direction :math:`\C`:
 
 .. note::
 
-    **Next Gram-Schmidt step**: :math:`\dp \C=\bs{c}-\frac{\A^T\bs{c}}{\A^T\A}\A-\frac{\B^T\bs{c}}{\B^T\B}\B`.
+    **Next Gram-Schmidt step**: :math:`\dp \C=\C-\frac{\A^T\C}{\A^T\A}\A-\frac{\B^T\C}{\B^T\B}\B`.
 
 This is the one and only idea of the Gram-Schmidt process.
 **Subtract from every new vector its projections in the directions already set**.
@@ -185,9 +185,9 @@ The resulting vectors :math:`\q_1,\q_2,\q_3,\q_4` are orthonormal.
 The Factorization :math:`A=QR`
 ------------------------------
 
-We started with a matrix :math:`A`, whose columns were :math:`\a,\b,\bs{c}`.
+We started with a matrix :math:`A`, whose columns were :math:`\a,\b,\C`.
 We ended with a matrix :math:`Q`, whose columns are :math:`\q_1,\q_2,\q_3`.
-Since the vectors :math:`\a,\b,\bs{c}` are combinations of the :math:`\q`'s (and 
+Since the vectors :math:`\a,\b,\C` are combinations of the :math:`\q`'s (and 
 vice versa), there must be a third matrix connecting :math:`A` to :math:`Q`.
 This third matrix is the triangular :math:`R` in :math:`A=QR`.
 
@@ -195,7 +195,7 @@ This third matrix is the triangular :math:`R` in :math:`A=QR`.
 
 * The vectors :math:`\a,\b` and :math:`\A,\B` amd :math:`\q_1,\q_2` are all in the smae plane.
 
-* The vectors :math:`\a,\b,\bs{c}` and :math:`\A,\B,\bs{C}` and :math:`\q_1,\q_2,\q_3` are in one subspace.
+* The vectors :math:`\a,\b,\C` and :math:`\A,\B,\C` and :math:`\q_1,\q_2,\q_3` are in one subspace.
 
 At every step :math:`\a_1,\cds,\a_k` are combinations of :math:`\q_1,\cds,\q_k`.
 Later :math:`\q`'s are not involved.
@@ -203,8 +203,8 @@ The connecting matrix :math:`R` is **triangular**, and we have :math:`A=QR`:
 
 .. note::
 
-    :math:`\bb \\\a&\b&\bs{c}\\\ \eb=\bb \\\q_1&\q_2&\q_3\\\ \eb
-    \bb\q_1^T\a&\q_1^T\b&\q_1^T\bs{c}\\&\q_2^T\b&\q_2^T\bs{c}\\&&\q_3^T\bs{c}\eb`
+    :math:`\bb \\\a&\b&\C\\\ \eb=\bb \\\q_1&\q_2&\q_3\\\ \eb
+    \bb\q_1^T\a&\q_1^T\b&\q_1^T\C\\&\q_2^T\b&\q_2^T\C\\&&\q_3^T\C\eb`
     or :math:`A=QR`.
 
 :math:`A=QR` is Gram-Schmidt in a nutshell.
@@ -216,3 +216,57 @@ Multiply by :math:`Q^T` to recognize :math:`R=Q^TA` above.
     Gram-Schmidt constructs orthonormal vectors :math:`\q_1,\cds,\q_n`.
     The matrices with these columns satisfy :math:`A=QR`.
     Then :math:`R=Q^TA` is **upper triangular** because later :math:`\q`'s are orthogonal to earlier :math:`\a`'s.
+
+Any :math:`m` by :math:`n` matrix :math:`A` with independent columns can be factored into :math:`A=QR`.
+The :math:`m` by :math:`n` matrix :math:`Q` has orthonormal columns, and the 
+square matrix :math:`R` is upper triangular with positive diagonal.
+We must not forget why this is usefull for least squares: :math:`\bs{A^TA=(QR)^TQR=R^TQ^TQR=R^TR}`.
+The least squares equation :math:`A^TA\wh{\x}=A^T\b` simplifies to :math:`R^TR\wh{\x}=R^TQ^T\b`.
+Then finally we reach :math:`R\wh{\x}=Q^T\b`.
+
+.. note::
+
+    **Least squares**: :math:`R^TR\wh{\x}=R^TQ^T\b` or :math:`R\wh{\x}=Q^T\b` or :math:`\wh{\x}R\im Q^T\b`.
+
+Instead of solving :math:`A\x=\b`, which is impossible, we solve 
+:math:`R\wh{\x}=Q^T\b` by back substitution--which is very fast.
+The real cost is the :math:`mn^2` multiplications in the Gram-Schmidt process, 
+which are needed to construct the orthogonal :math:`Q` and the triangular 
+:math:`R` with :math:`A=QR`.
+
+Below is an informal code.
+The last line of that code normalizes :math:`\v` (divides by 
+:math:`r_{jj}=\lv\lv\rv`) to get the unit vector :math:`\q_j`:
+
+.. math::
+
+    r_{kj}=\sum_{i=1}^{m}q_{ik}v_{ij}\rm{\ and\ }v_{ij}=v_{ij}-q_{ik}r_{kj}
+    \rm{\ and\ }r_{jj}=\left(\sum_{i=1}^{m}v_{ij}^2\right)^{1/2}\rm{\ and\ }
+    q_{ij}=\frac{v_{ij}}{r_{jj}}.
+
+Starting from :math:`\a,\b,\C=\a_1,\a_2,\a_3` this code will construct 
+:math:`\q_1`, then :math:`\B,\q_2`, then :math:`\C,\q_3`:
+
+.. math::
+
+    \q_1=\a_1/\lv\a_1\rv\quad\B=\a_2-(\q_1^T\a_2)\q_1\quad\q_2=\B/\lv\B\rv
+
+    \C^*=\a_3-(\q_1^T\a_3)\q_1\quad\C=\C^*-(\q_2^T\C^*)\q_2\quad\q_3=\C/\lv\C\rv
+
+.. code-block:: MATLAB
+
+    for j = 1:n
+        V = A(:,j);
+        for i = 1:j-1
+            R(i,j) = Q(:,i)' * v;
+            v = v - R(i,j) * Q(:, i);
+        end
+        R(j,j) = norm(v);
+        Q(:,j) = v/R(j,j);
+    end
+
+To recover column :math:`j` of :math:`A`, undo the last step and the middle steps of the code:
+
+.. math::
+
+    R(j,i)\q_j=(\v\rm{\ minus\ its\ projections})=(\rm{column\ }j\rm{\ of\ }A)-\sum_{i=1}^{j-1}R(i,j)\q_i.

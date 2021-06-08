@@ -13,6 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -29,11 +31,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -300,7 +302,7 @@ There is no coupling.
 When <span class="math notranslate nohighlight">\(A\)</span> is <span class="math notranslate nohighlight">\(Q\)</span>, with orthonormal columns, here is <span class="math notranslate nohighlight">\(\p=Q\wh{\x}=QQ^T\b\)</span>:</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><strong>Projection onto</strong> <span class="math notranslate nohighlight">\(\q\)</span><strong>’s</strong>:
+<p><strong>Projection onto</strong> <span class="math notranslate nohighlight">\(\q\)</span><strong>‘s</strong>:
 <span class="math notranslate nohighlight">\(\p=\bb |&amp;&amp;|\\\q_1&amp;\cds&amp;\q_n\\|&amp;&amp;| \eb\bb \q_1^T\b\\\vds\\\q_n^T\b \eb
 =\q_1(\q_1^T\b)+\cds+\q_n(\q_n^T\b)\)</span>.</p>
 </div>
@@ -323,7 +325,7 @@ By adding the pieces, the inverse transform puts <span class="math notranslate n
 </div>
 <div class="section" id="the-gram-schmidt-process">
 <h2>The Gram-Schmidt Process<a class="headerlink" href="#the-gram-schmidt-process" title="Permalink to this headline">¶</a></h2>
-<p>Start with three independent vectors <span class="math notranslate nohighlight">\(\a,\b,\bs{c}\)</span>.
+<p>Start with three independent vectors <span class="math notranslate nohighlight">\(\a,\b,\C\)</span>.
 We intend to construct three orthogonal vectors <span class="math notranslate nohighlight">\(\A,\B,\C\)</span>.
 Then (at the end may be easiest) we divide <span class="math notranslate nohighlight">\(\A,\B,\C\)</span> by their lengths.
 That produces three orthonormal vectors <span class="math notranslate nohighlight">\(\q_1=\A/\lv\A\rv,\q_2=\B/\lv\B\rv,\q_3=\C/\lv\C\rv\)</span>.</p>
@@ -340,14 +342,14 @@ This leaves the perpendicular part, which is the orthogonal vector <span class="
 This vector <span class="math notranslate nohighlight">\(\B\)</span> is what we have called the error vector <span class="math notranslate nohighlight">\(\e\)</span>, perpendicular to <span class="math notranslate nohighlight">\(\A\)</span>.
 Notice that <span class="math notranslate nohighlight">\(\B\)</span> is not zero (otherwise <span class="math notranslate nohighlight">\(\a\)</span> and <span class="math notranslate nohighlight">\(\b\)</span> would be dependent).
 The directions <span class="math notranslate nohighlight">\(\A\)</span> and <span class="math notranslate nohighlight">\(\B\)</span> are now set.</p>
-<p>The third direction starts with <span class="math notranslate nohighlight">\(\bs{c}\)</span>.
-This is not a combination of <span class="math notranslate nohighlight">\(\A\)</span> and <span class="math notranslate nohighlight">\(\B\)</span> (because <span class="math notranslate nohighlight">\(\bs{c}\)</span> is
+<p>The third direction starts with <span class="math notranslate nohighlight">\(\C\)</span>.
+This is not a combination of <span class="math notranslate nohighlight">\(\A\)</span> and <span class="math notranslate nohighlight">\(\B\)</span> (because <span class="math notranslate nohighlight">\(\C\)</span> is
 not a combination of <span class="math notranslate nohighlight">\(\a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>).
-But most likely <span class="math notranslate nohighlight">\(\bs{c}\)</span> is not perpendicular to <span class="math notranslate nohighlight">\(\A\)</span> and <span class="math notranslate nohighlight">\(\B\)</span>.
+But most likely <span class="math notranslate nohighlight">\(\C\)</span> is not perpendicular to <span class="math notranslate nohighlight">\(\A\)</span> and <span class="math notranslate nohighlight">\(\B\)</span>.
 So subtract off its components in those two directions to get a perpendicular direction <span class="math notranslate nohighlight">\(\C\)</span>:</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><strong>Next Gram-Schmidt step</strong>: <span class="math notranslate nohighlight">\(\dp \C=\bs{c}-\frac{\A^T\bs{c}}{\A^T\A}\A-\frac{\B^T\bs{c}}{\B^T\B}\B\)</span>.</p>
+<p><strong>Next Gram-Schmidt step</strong>: <span class="math notranslate nohighlight">\(\dp \C=\C-\frac{\A^T\C}{\A^T\A}\A-\frac{\B^T\C}{\B^T\B}\B\)</span>.</p>
 </div>
 <p>This is the one and only idea of the Gram-Schmidt process.
 <strong>Subtract from every new vector its projections in the directions already set</strong>.
@@ -360,23 +362,23 @@ The resulting vectors <span class="math notranslate nohighlight">\(\q_1,\q_2,\q_
 </div>
 <div class="section" id="the-factorization-a-qr">
 <h2>The Factorization <span class="math notranslate nohighlight">\(A=QR\)</span><a class="headerlink" href="#the-factorization-a-qr" title="Permalink to this headline">¶</a></h2>
-<p>We started with a matrix <span class="math notranslate nohighlight">\(A\)</span>, whose columns were <span class="math notranslate nohighlight">\(\a,\b,\bs{c}\)</span>.
+<p>We started with a matrix <span class="math notranslate nohighlight">\(A\)</span>, whose columns were <span class="math notranslate nohighlight">\(\a,\b,\C\)</span>.
 We ended with a matrix <span class="math notranslate nohighlight">\(Q\)</span>, whose columns are <span class="math notranslate nohighlight">\(\q_1,\q_2,\q_3\)</span>.
-Since the vectors <span class="math notranslate nohighlight">\(\a,\b,\bs{c}\)</span> are combinations of the <span class="math notranslate nohighlight">\(\q\)</span>’s (and
+Since the vectors <span class="math notranslate nohighlight">\(\a,\b,\C\)</span> are combinations of the <span class="math notranslate nohighlight">\(\q\)</span>’s (and
 vice versa), there must be a third matrix connecting <span class="math notranslate nohighlight">\(A\)</span> to <span class="math notranslate nohighlight">\(Q\)</span>.
 This third matrix is the triangular <span class="math notranslate nohighlight">\(R\)</span> in <span class="math notranslate nohighlight">\(A=QR\)</span>.</p>
 <ul class="simple">
 <li><p>The vectors <span class="math notranslate nohighlight">\(\a\)</span> and <span class="math notranslate nohighlight">\(\A\)</span> and <span class="math notranslate nohighlight">\(\q_1\)</span> are all along a single line.</p></li>
 <li><p>The vectors <span class="math notranslate nohighlight">\(\a,\b\)</span> and <span class="math notranslate nohighlight">\(\A,\B\)</span> amd <span class="math notranslate nohighlight">\(\q_1,\q_2\)</span> are all in the smae plane.</p></li>
-<li><p>The vectors <span class="math notranslate nohighlight">\(\a,\b,\bs{c}\)</span> and <span class="math notranslate nohighlight">\(\A,\B,\bs{C}\)</span> and <span class="math notranslate nohighlight">\(\q_1,\q_2,\q_3\)</span> are in one subspace.</p></li>
+<li><p>The vectors <span class="math notranslate nohighlight">\(\a,\b,\C\)</span> and <span class="math notranslate nohighlight">\(\A,\B,\C\)</span> and <span class="math notranslate nohighlight">\(\q_1,\q_2,\q_3\)</span> are in one subspace.</p></li>
 </ul>
 <p>At every step <span class="math notranslate nohighlight">\(\a_1,\cds,\a_k\)</span> are combinations of <span class="math notranslate nohighlight">\(\q_1,\cds,\q_k\)</span>.
 Later <span class="math notranslate nohighlight">\(\q\)</span>’s are not involved.
 The connecting matrix <span class="math notranslate nohighlight">\(R\)</span> is <strong>triangular</strong>, and we have <span class="math notranslate nohighlight">\(A=QR\)</span>:</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><span class="math notranslate nohighlight">\(\bb \\\a&amp;\b&amp;\bs{c}\\\ \eb=\bb \\\q_1&amp;\q_2&amp;\q_3\\\ \eb
-\bb\q_1^T\a&amp;\q_1^T\b&amp;\q_1^T\bs{c}\\&amp;\q_2^T\b&amp;\q_2^T\bs{c}\\&amp;&amp;\q_3^T\bs{c}\eb\)</span>
+<p><span class="math notranslate nohighlight">\(\bb \\\a&amp;\b&amp;\C\\\ \eb=\bb \\\q_1&amp;\q_2&amp;\q_3\\\ \eb
+\bb\q_1^T\a&amp;\q_1^T\b&amp;\q_1^T\C\\&amp;\q_2^T\b&amp;\q_2^T\C\\&amp;&amp;\q_3^T\C\eb\)</span>
 or <span class="math notranslate nohighlight">\(A=QR\)</span>.</p>
 </div>
 <p><span class="math notranslate nohighlight">\(A=QR\)</span> is Gram-Schmidt in a nutshell.
@@ -388,6 +390,46 @@ Gram-Schmidt constructs orthonormal vectors <span class="math notranslate nohigh
 The matrices with these columns satisfy <span class="math notranslate nohighlight">\(A=QR\)</span>.
 Then <span class="math notranslate nohighlight">\(R=Q^TA\)</span> is <strong>upper triangular</strong> because later <span class="math notranslate nohighlight">\(\q\)</span>’s are orthogonal to earlier <span class="math notranslate nohighlight">\(\a\)</span>’s.</p>
 </div>
+<p>Any <span class="math notranslate nohighlight">\(m\)</span> by <span class="math notranslate nohighlight">\(n\)</span> matrix <span class="math notranslate nohighlight">\(A\)</span> with independent columns can be factored into <span class="math notranslate nohighlight">\(A=QR\)</span>.
+The <span class="math notranslate nohighlight">\(m\)</span> by <span class="math notranslate nohighlight">\(n\)</span> matrix <span class="math notranslate nohighlight">\(Q\)</span> has orthonormal columns, and the
+square matrix <span class="math notranslate nohighlight">\(R\)</span> is upper triangular with positive diagonal.
+We must not forget why this is usefull for least squares: <span class="math notranslate nohighlight">\(\bs{A^TA=(QR)^TQR=R^TQ^TQR=R^TR}\)</span>.
+The least squares equation <span class="math notranslate nohighlight">\(A^TA\wh{\x}=A^T\b\)</span> simplifies to <span class="math notranslate nohighlight">\(R^TR\wh{\x}=R^TQ^T\b\)</span>.
+Then finally we reach <span class="math notranslate nohighlight">\(R\wh{\x}=Q^T\b\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Least squares</strong>: <span class="math notranslate nohighlight">\(R^TR\wh{\x}=R^TQ^T\b\)</span> or <span class="math notranslate nohighlight">\(R\wh{\x}=Q^T\b\)</span> or <span class="math notranslate nohighlight">\(\wh{\x}R\im Q^T\b\)</span>.</p>
+</div>
+<p>Instead of solving <span class="math notranslate nohighlight">\(A\x=\b\)</span>, which is impossible, we solve
+<span class="math notranslate nohighlight">\(R\wh{\x}=Q^T\b\)</span> by back substitution–which is very fast.
+The real cost is the <span class="math notranslate nohighlight">\(mn^2\)</span> multiplications in the Gram-Schmidt process,
+which are needed to construct the orthogonal <span class="math notranslate nohighlight">\(Q\)</span> and the triangular
+<span class="math notranslate nohighlight">\(R\)</span> with <span class="math notranslate nohighlight">\(A=QR\)</span>.</p>
+<p>Below is an informal code.
+The last line of that code normalizes <span class="math notranslate nohighlight">\(\v\)</span> (divides by
+<span class="math notranslate nohighlight">\(r_{jj}=\lv\lv\rv\)</span>) to get the unit vector <span class="math notranslate nohighlight">\(\q_j\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[r_{kj}=\sum_{i=1}^{m}q_{ik}v_{ij}\rm{\ and\ }v_{ij}=v_{ij}-q_{ik}r_{kj}
+\rm{\ and\ }r_{jj}=\left(\sum_{i=1}^{m}v_{ij}^2\right)^{1/2}\rm{\ and\ }
+q_{ij}=\frac{v_{ij}}{r_{jj}}.\]</div>
+<p>Starting from <span class="math notranslate nohighlight">\(\a,\b,\C=\a_1,\a_2,\a_3\)</span> this code will construct
+<span class="math notranslate nohighlight">\(\q_1\)</span>, then <span class="math notranslate nohighlight">\(\B,\q_2\)</span>, then <span class="math notranslate nohighlight">\(\C,\q_3\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\q_1=\a_1/\lv\a_1\rv\quad\B=\a_2-(\q_1^T\a_2)\q_1\quad\q_2=\B/\lv\B\rv\\\C^*=\a_3-(\q_1^T\a_3)\q_1\quad\C=\C^*-(\q_2^T\C^*)\q_2\quad\q_3=\C/\lv\C\rv\end{aligned}\end{align} \]</div>
+<div class="highlight-MATLAB notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="nb">j</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="w"></span>
+<span class="w">    </span><span class="n">V</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">A</span><span class="p">(:,</span><span class="nb">j</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="nb">i</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="nb">j</span><span class="o">-</span><span class="mi">1</span><span class="w"></span>
+<span class="w">        </span><span class="n">R</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="nb">j</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">Q</span><span class="p">(:,</span><span class="nb">i</span><span class="p">)</span><span class="o">&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">v</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">v</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">R</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="nb">j</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Q</span><span class="p">(:,</span><span class="w"> </span><span class="nb">i</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">end</span><span class="w"></span>
+<span class="w">    </span><span class="n">R</span><span class="p">(</span><span class="nb">j</span><span class="p">,</span><span class="nb">j</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">norm</span><span class="p">(</span><span class="n">v</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">Q</span><span class="p">(:,</span><span class="nb">j</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">v</span><span class="o">/</span><span class="n">R</span><span class="p">(</span><span class="nb">j</span><span class="p">,</span><span class="nb">j</span><span class="p">);</span><span class="w"></span>
+<span class="k">end</span><span class="w"></span>
+</pre></div>
+</div>
+<p>To recover column <span class="math notranslate nohighlight">\(j\)</span> of <span class="math notranslate nohighlight">\(A\)</span>, undo the last step and the middle steps of the code:</p>
+<div class="math notranslate nohighlight">
+\[R(j,i)\q_j=(\v\rm{\ minus\ its\ projections})=(\rm{column\ }j\rm{\ of\ }A)-\sum_{i=1}^{j-1}R(i,j)\q_i.\]</div>
 </div>
 </div>
 
