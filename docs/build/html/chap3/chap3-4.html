@@ -13,8 +13,6 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -31,11 +29,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -363,7 +361,7 @@ The <span class="math notranslate nohighlight">\(\v\)</span>’s are a basis, so
 If <span class="math notranslate nohighlight">\(\w_1\)</span> equals <span class="math notranslate nohighlight">\(a_{11}\v_1+\cds+a_{m1}\v_m\)</span>, this is the first
 column of a matrix multiplication <span class="math notranslate nohighlight">\(VA\)</span>:</p>
 <blockquote>
-<div><p><strong>Each</strong> <span class="math notranslate nohighlight">\(\w\)</span> <strong>is a combination of the</strong> <span class="math notranslate nohighlight">\(\v\)</span><strong>‘s</strong>:</p>
+<div><p><strong>Each</strong> <span class="math notranslate nohighlight">\(\w\)</span> <strong>is a combination of the</strong> <span class="math notranslate nohighlight">\(\v\)</span><strong>’s</strong>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}W=\bb &amp;&amp;&amp;\\\w_1&amp;\w_2&amp;\cds&amp;\w_n\\&amp;&amp;&amp; \eb=\bb &amp;&amp;\\\v_1&amp;\cds&amp;\v_m\\&amp;&amp; \eb
 \bb a_{11}&amp;&amp;a_{1n}\\\vdots&amp;&amp;\vdots\\a_{m1}&amp;&amp;a_{mn} \eb=VA.\end{split}\]</div>
@@ -374,7 +372,7 @@ The key is that <span class="math notranslate nohighlight">\(A\)</span> has a ro
 <span class="math notranslate nohighlight">\(A\)</span> is a shrot wide matrix, since we assumed <span class="math notranslate nohighlight">\(n&gt;m\)</span>.
 So <span class="math notranslate nohighlight">\(A\x=\0\)</span> <strong>has a nonzero solution</strong>.</p>
 <p><span class="math notranslate nohighlight">\(A\x=\0\)</span> gives <span class="math notranslate nohighlight">\(VA\x=\0\)</span> which is <span class="math notranslate nohighlight">\(W\x=\0\)</span>.
-<em>A combination of the</em> <span class="math notranslate nohighlight">\(\w\)</span><em>‘s gives zero</em>!
+<em>A combination of the</em> <span class="math notranslate nohighlight">\(\w\)</span><em>’s gives zero</em>!
 Then the <span class="math notranslate nohighlight">\(\w\)</span> is <strong>not possible</strong> for two bases.</p>
 <p>If <span class="math notranslate nohighlight">\(m&gt;n\)</span> we exchange the <span class="math notranslate nohighlight">\(\v\)</span>’s and <span class="math notranslate nohighlight">\(\w\)</span>’s and repeat the same steps.
 The only way to avoid a contradiction is to have <span class="math notranslate nohighlight">\(m=n\)</span>.

@@ -131,16 +131,89 @@ The permutation tells the column sequence.
 In this case the column order is (1,2) or (2,1).
 
 Now try :math:`n=3`.
-We pay attention only when
+We pay attention only when **the entries** :math:`a_{ij}` **come rom different columns**, like :math:`(3,1,2)`:
+
+.. note::
+
+    :math:`\bv a_{11}&a_{12}&a_{13}\\a_{21}&a_{22}&a_{23}\\a_{31}&a_{32}&a_{33} 
+    \ev=\begin{matrix}\bv a_{11}\\&a_{22}\\&&a_{33} \ev+\bv &a_{12}\\&&a_{23}
+    \\a_{31} \ev+\bv &&a_{13}\\a_{21}\\&a_{32} \ev \\
+    +\bv a_{11}\\&&a_{23}\\&a_{32} \ev+\bv &a_{12}\\a_{21}\\&&a_{33} \ev+\bv
+    &&a_{13}\\&a_{22}\\a_{31} \ev\end{matrix}`.
+
+**There are** :math:`3!=6` **ways to order the columns, so six determinants**.
+The six permutations of :math:`(1,2,3)` include the identity permutation  :math:`(1,2,3)` from :math:`P=I`.
+
+.. math::
+
+    \bs{\rm{Column\ numbers}} = (1,2,3),(2,3,1),(3,1,2),(1,3,2),(2,1,3),(3,2,1).
+
+The last three are *odd permutations* (one exchange).
+The first three are *even permutations* (0 or 2 exchanges).
+Factor out the :math:`a_{ij}`:
+
+.. math::
+
+    \det A=a_{11}a_{22}a_{33}\bv 1\\&1\\&&1 \ev+a_{12}a_{23}a_{31}\bv &1\\&&1\\1 
+    \ev+a_{13}a_{21}a_{32}\bv &&1\\1\\&1 \ev
+
+    +a_{11}a_{23}a_{32}\bv 1\\&&1\\&1 \ev+a_{12}a_{21}a_{33}\bv &1\\1\\&&1 \ev+
+    a_{13}a_{22}a_{31}\bv &&1\\&1\\1 \ev.
+
+The first three (even) permutations have :math:`\det P=+1`, the last three (odd) permutations have :math:`\det P=-1`.
+
+Now you can see the :math:`n` by :math:`n` formula.
+There are :math:`n!` orderings of the columns.
+The columns :math:`(1,2,\cds,n)` go in each possible order :math:`(\alpha,\beta,\cds,\omega)`.
+Taking :math:`a_{1\alpha}` from row 1 and :math:`a_{2\beta}` from row 2 and 
+eventually :math:`a_{n\omega}` from row :math:`n`, the determinant contains the
+product :math:`a_{1\alpha}a_{2\beta}\cds a_{n\omega}` times :math:`+1` or
+:math:`-1`.
+
+The determinant of :math:`A` is the sum of these :math:`n!` simple determinants, times 1 or -1.
+The simple determinants :math:`a_{1\alpha}a_{2\beta}\cds a_{n\omega}` choose **one entry from every row and column**.
+
+.. note::
+
+    **BIG FORMULA**: :math:`\det A=` sum over all :math:`n!` column permutations 
+    :math:`P=(\alpha,\beta,\cds,\omega)=\sum(\det P)a_{1\alpha}a_{2\beta}\cds a_{n\omega}`.
 
 Determinant by Cofactors
 ------------------------
 
+**When you separate out the factor** :math:`a_{11}` **or** :math:`a_{12}` **or** 
+:math:`a_{1\alpha}` **that comes from the first row**, you see linearity.
+For 3 by 3, separate the usual 6 terms of the determinant into 3 pairs:
 
+.. note::
 
+    :math:`\det A=a_{11}(a_{22}a_{33}-a_{23}a_{32})+a_{12}(a_{23}a_{31}-a_{21}a_{33})+a_{13}(a_{21}a_{32}-a_{22}a_{31})`.
 
+Those three quantities in parentheses are called "**cofactors**".
+They are **2 by 2 determinants**, from row 2 and 3.
+The first row contributes the factors :math:`a_{11},a_{12},a_{13}`.
+*The lower rows contribute the cofactors* :math:`C_{11},C_{12},C_{13}`.
+Certainly the determinant :math:`a_{11}C_{11}+a_{12}C_{12}+a_{13}C_{13}` depends linearly on :math:`a_{11},a_{12},a_{13}`.
 
+The cofactor of :math:`a_{11}` is :math:`C_{11}=a_{22}a_{33}-a_{23}a_{32}`.
+You can see it in this splitting:
 
+.. math::
 
+    \bv a_{11}&a_{12}&a_{13}\\a_{21}&a_{22}&a_{23}\\a_{31}&a_{32}&a_{33} \ev=
+    \bv a_{11}\\&a_{22}&a_{23}\\&a_{32}&a_{33} \ev+
+    \bv &a_{12}&\\a_{21}&&a_{23}\\a_{31}&&a_{33} \ev+
+    \bv &&a_{13}\\a_{21}&a_{22}&\\a_{31}&a_{32}& \ev.
+
+We are still choosing **one entry from each row and column**.
+Since :math:`a_{11}` uses up row 1 and column 1, that leaves a 2 by 2 determinant as its cofactor.
+
+The sign pattern for cofactors along the first row is *plus-minus-plus-minus*.
+**You cross out row 1 and column** :math:`j` **to get a submatrix** :math:`M_{1j}` **of size** :math:`n-1`.
+Multiply its determinant by the sign :math:`(-1)^{1+j}` to get the cofactor:
+
+    The cofactors along row 1 are :math:`C_{1j}=(-1)^{1+j}\det M_{1j}`.
+
+    **The cofactor expansion is** :math:`\det A=a_{11}C_{11}+a_{12}+C_{12}+\cds+a_{1n}C_{1n}`.
 
 
