@@ -97,7 +97,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../chap4/index4.html">Chapter 4 Orthogonality</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index5.html">Chapter 5 Determinants</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="chap5-1.html">Chapter 5.1 The Properties of Determinants</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 5.2 Permutations and Cofactors</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 5.2 Permutations and Cofactors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-pivot-formula">The Pivot Formula</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-big-formula-for-determinants">The Big Formula for Determinants</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#determinant-by-cofactors">Determinant by Cofactors</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="chap5-3.html">Chapter 5.3 Cramer’s Rule, Inverses, and Volumes</a></li>
 </ul>
 </li>
@@ -202,6 +207,112 @@
 \newcommand{\ppr}{^{\prime\prime}}\end{aligned}\end{align} \]</div>
 <div class="section" id="chapter-5-2-permutations-and-cofactors">
 <h1>Chapter 5.2 Permutations and Cofactors<a class="headerlink" href="#chapter-5-2-permutations-and-cofactors" title="Permalink to this headline">¶</a></h1>
+<div class="math notranslate nohighlight">
+\[\begin{split}A=\bb 2&amp;-1&amp;0&amp;0\\-1&amp;2&amp;-1&amp;0\\0&amp;-1&amp;2&amp;-1\\0&amp;0&amp;-1&amp;2 \eb\quad\rm{has}\quad\det A=5.\end{split}\]</div>
+<p>We can find this determinant in all three ways: <strong>pivots</strong>, <strong>big formula</strong>, <strong>cofactors</strong>.</p>
+<ol class="arabic simple">
+<li><p>The product of the pivots is <span class="math notranslate nohighlight">\(2\cd\frac{3}{2}\cd\frac{4}{3}\cd\frac{5}{4}\)</span>.
+Cancellation produces 5.</p></li>
+<li><p>The “big formula” has <span class="math notranslate nohighlight">\(4!=24\)</span> terms.
+Only five terms are nonzero:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\det A=16-4-4-4+1=5.\]</div>
+<ol class="arabic simple" start="3">
+<li><p>The numbers <span class="math notranslate nohighlight">\(2,-1,0,0\)</span> in the first row multiply their cofactors <span class="math notranslate nohighlight">\(4,3,2,1\)</span> from the other rows.
+That gives <span class="math notranslate nohighlight">\(2\cd 4-1\cd 3=5\)</span>.
+Those cofactors are 3 by 3 determinants.
+Cofactors use the rows and columns that are <em>not</em> used by the entry in the first row.</p></li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>Every term in a determinant uses each row and column once!</strong></p>
+</div>
+<div class="section" id="the-pivot-formula">
+<h2>The Pivot Formula<a class="headerlink" href="#the-pivot-formula" title="Permalink to this headline">¶</a></h2>
+<p>When elimination leads to <span class="math notranslate nohighlight">\(A=LU\)</span>, the pivots <span class="math notranslate nohighlight">\(d_1,\cds,d_n\)</span> are on
+the diagonal of the upper triangular <span class="math notranslate nohighlight">\(U\)</span>.
+If no row exchanges are involved, <strong>multiply those pivots</strong> to find the determinant:</p>
+<div class="math notranslate nohighlight">
+\[\det A=(\det L)(\det U)=(1)(d_1 d_2\cds d_n).\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\((\det P)(\det A)=(\det L)(\det U)\)</span> gives <span class="math notranslate nohighlight">\(\det A=\pm(d_1 d_2 \cds d_n)\)</span>.</p>
+</div>
+<p>The first pivots of this tridiagonal matrix <span class="math notranslate nohighlight">\(A\)</span> are <span class="math notranslate nohighlight">\(2,\frac{3}{2},\frac{4}{3}\)</span>.
+The next are <span class="math notranslate nohighlight">\(\frac{5}{4}\)</span> and <span class="math notranslate nohighlight">\(\frac{6}{5}\)</span> and eventually <span class="math notranslate nohighlight">\(\frac{n+1}{n}\)</span>.
+Factoring this <span class="math notranslate nohighlight">\(n\)</span> by <span class="math notranslate nohighlight">\(n\)</span> matrix reveals its determinant:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb 2&amp;-1\\-1&amp;2&amp;-1\\&amp;-1&amp;2&amp;\cd\\&amp;&amp;\cd&amp;\cd&amp;-1\\&amp;&amp;&amp;-1&amp;2 \eb=
+\bb 1\\-\frac{1}{2}&amp;1\\&amp;-\frac{2}{3}&amp;1\\&amp;&amp;\cd&amp;\cd\\&amp;&amp;&amp;-\frac{n-1}{n}&amp;1 \eb
+\bb 2&amp;-1\\&amp;\frac{3}{2}&amp;-1\\&amp;&amp;\frac{4}{3}&amp;-1\\&amp;&amp;&amp;\cd&amp;\cd\\&amp;&amp;&amp;&amp;\frac{n+1}{n} \eb.\end{split}\]</div>
+<p>The pivots are on the diagonal of <span class="math notranslate nohighlight">\(U\)</span> (the last matrix).
+<em>The</em> <span class="math notranslate nohighlight">\(n\)</span> <em>by</em> <span class="math notranslate nohighlight">\(n\)</span> <em>determinant is</em> <span class="math notranslate nohighlight">\(n+1\)</span>:</p>
+<p><strong>-1, 2, -1 matrix</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\det A=(2)\left(\frac{3}{2}\right)\left(\frac{4}{3}\right)\cds\left(\frac{n+1}{n}\right)=n+1.\]</div>
+<p>Important point: The first pivots depend only on the <em>upper left corner</em> of the original matrix <span class="math notranslate nohighlight">\(A\)</span>.
+This is a rule for all matrices without row exchanges.</p>
+<blockquote>
+<div><p>The first <span class="math notranslate nohighlight">\(k\)</span> pivots come from the <span class="math notranslate nohighlight">\(k\)</span> by <span class="math notranslate nohighlight">\(k\)</span> matrix
+<span class="math notranslate nohighlight">\(A_k\)</span> in the top left corner of <span class="math notranslate nohighlight">\(A\)</span>.
+<strong>The determinant of that corner submatrix</strong> <span class="math notranslate nohighlight">\(A_k\)</span> <strong>is</strong>
+<span class="math notranslate nohighlight">\(d_1d_2\cds d_k\)</span> (<strong>first</strong> <span class="math notranslate nohighlight">\(k\)</span> <strong>pivots</strong>).</p>
+</div></blockquote>
+<p>Elimination deals with the matrix <span class="math notranslate nohighlight">\(A_k\)</span> in the upper left corner while starting on the whole matrix.
+We assume no row exchanges–then <span class="math notranslate nohighlight">\(A=LU\)</span> and <span class="math notranslate nohighlight">\(A_k=L_kU_k\)</span>.
+Dividing one determinant by the previous determinant (<span class="math notranslate nohighlight">\(\det A_k\)</span> divided
+by <span class="math notranslate nohighlight">\(\det A_{k-1}\)</span>) cancels everything but the latest pivot <span class="math notranslate nohighlight">\(d_k\)</span>.
+<strong>Each pivot is a ratio of determinants</strong>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Pivots from determinants</strong>: <strong>The</strong> <span class="math notranslate nohighlight">\(k\)</span><strong>th pivot is</strong>
+<span class="math notranslate nohighlight">\(\dp d_k=\frac{d_1d_2\cds d_k}{d_1d_2\cds d_{k-1}}=\frac{\det A_k}{\det A_{k-1}}\)</span></p>
+</div>
+<p><em>We don’t need row exchanges when all the upper left submatrices have</em> <span class="math notranslate nohighlight">\(\det A_k\neq 0\)</span>.</p>
+</div>
+<div class="section" id="the-big-formula-for-determinants">
+<h2>The Big Formula for Determinants<a class="headerlink" href="#the-big-formula-for-determinants" title="Permalink to this headline">¶</a></h2>
+<p><strong>The formula has ** :math:`n!` **terms</strong>.
+Half the terms have minus signs (as in <span class="math notranslate nohighlight">\(-bc\)</span>).
+The other half have plus signs (as in <span class="math notranslate nohighlight">\(ad\)</span>).
+For <span class="math notranslate nohighlight">\(n=3\)</span> there are <span class="math notranslate nohighlight">\(3!=(3)(2)(1)=6\)</span> terms:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>3 by 3 determinant: <span class="math notranslate nohighlight">\(\bv a_{11}&amp;a_{12}&amp;a_{13}\\a_{21}&amp;a_{22}&amp;a_{23}
+\\a_{31}&amp;a_{32}&amp;a_{33} \ev=
+\begin{matrix}+a_{11}a_{22}a_{33}+a_{12}a_{23}a_{31}+a_{13}a_{21}a_{32}\\
+-a_{11}a_{23}a_{32}-a_{12}a_{21}a_{33}-a_{13}a_{22}a_{31}\end{matrix}\)</span>.</p>
+</div>
+<p>Notice the pattern.
+Each product like <span class="math notranslate nohighlight">\(a_{11}a_{23}a_{32}\)</span> has <strong>one entry from each row</strong>.
+It also has <strong>one entry from each column</strong>.
+The column order 1, 3, 2 means that this particular term comes with a minus sign.
+The column 3, 1, 2 in <span class="math notranslate nohighlight">\(a_{13}a_{21}a_{32}\)</span> has a plus sign.
+It will be “permutations” that tell us the sign.</p>
+<p>To derive the big formula I start with <span class="math notranslate nohighlight">\(n=2\)</span>.
+The goal is to reach <span class="math notranslate nohighlight">\(ad-bc\)</span> in a systematic way.
+Break each row into two simpler rows:</p>
+<div class="math notranslate nohighlight">
+\[\bb a&amp;b \eb=\bb a&amp;0 \eb+\bb 0&amp;b \eb\quad\rm{and}\quad\bb c&amp;d \eb=\bb c&amp;0 \eb+\bb 0&amp;d \eb.\]</div>
+<p>Now apply linearity, first in row 1 (with row 2 fixed) and then in row 2 (with row 1 fixed):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bv a&amp;b\\c&amp;d \ev=\bv a&amp;0\\c&amp;d \ev+\bv 0&amp;b\\c&amp;d \ev=\bv a&amp;0\\c&amp;0 \ev+\bv a&amp;0\\0&amp;d \ev+\bv 0&amp;b\\c&amp;0 \ev+\bv 0&amp;b\\0&amp;d \ev.\end{split}\]</div>
+<p>The last line has <span class="math notranslate nohighlight">\(2^2=4\)</span> determinants.
+The first and fourth are zero because one row is a multiple of the other row.
+We are left with <span class="math notranslate nohighlight">\(2!=2\)</span> determinants to compute:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bv a&amp;0\\c&amp;d \ev+\bv 0&amp;b\\c&amp;d \ev=ad\bv 1&amp;0\\0&amp;1 \ev+bc\bv 0&amp;1\\1&amp;0 \ev=ad-bc.\end{split}\]</div>
+<p>The splitting led to permutation matrices.
+Their determinants give a plus or minus sign.
+The permutation tells the column sequence.
+In this case the column order is (1,2) or (2,1).</p>
+<p>Now try <span class="math notranslate nohighlight">\(n=3\)</span>.
+We pay attention only when</p>
+</div>
+<div class="section" id="determinant-by-cofactors">
+<h2>Determinant by Cofactors<a class="headerlink" href="#determinant-by-cofactors" title="Permalink to this headline">¶</a></h2>
+</div>
 </div>
 
 
