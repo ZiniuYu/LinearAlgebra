@@ -13,8 +13,6 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -31,11 +29,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -246,7 +244,7 @@ When the right side is a column of the identity matrix <span class="math notrans
 <strong>in Cramer’s Rule is a cofactor of</strong> <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <p>You can see those cofactors for <span class="math notranslate nohighlight">\(n=3\)</span>.
 Solve <span class="math notranslate nohighlight">\(A\x=(1,0,0)\)</span> to find column 1 of <span class="math notranslate nohighlight">\(A\im\)</span>:</p>
-<p><strong>Determinant of</strong> <span class="math notranslate nohighlight">\(B\)</span><strong>‘s = Cofactors of</strong> <span class="math notranslate nohighlight">\(A\)</span>:</p>
+<p><strong>Determinant of</strong> <span class="math notranslate nohighlight">\(B\)</span><strong>’s = Cofactors of</strong> <span class="math notranslate nohighlight">\(A\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\bv 1&amp;a_{12}&amp;a_{13}\\0&amp;a_{22}&amp;a_{23}\\0&amp;a_{32}&amp;a_{33} \ev\quad
 \bv a_{11}&amp;1&amp;a_{13}\\a_{21}&amp;0&amp;a_{23}\\a_{31}&amp;0&amp;a_{33} \ev\quad
@@ -321,9 +319,85 @@ The real problem is to explain the area of a triangle with corner <span class="m
 <p>Why is <span class="math notranslate nohighlight">\(\frac{1}{2}|x_1y_2-x_2y_1|\)</span> the area of this triangle?
 We can remove the factor <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span> for a parallelogram (twice as big).
 We now prove that the parallellogram area is the determinant <span class="math notranslate nohighlight">\(x_1y_2-x_2y_1\)</span>.</p>
+<p><strong>Proof that a parallelogram staring from</strong> <span class="math notranslate nohighlight">\((0,0)\)</span> <strong>has area = 2 by 2 determinant</strong>:</p>
+<p>We shoa that the area has the same properties 1-2-3 as the determinant.
+Those three rules defined the determinant and led to all its other properties.</p>
+<ol class="arabic simple">
+<li><p>When <span class="math notranslate nohighlight">\(A=I\)</span>, the parallelogram becomes the unit square.
+Its area is <span class="math notranslate nohighlight">\(\det I=1\)</span>.</p></li>
+<li><p>When rows are exchanged, the determinant reverses sign.
+The absolute value (positive area) stays the same–it is the same parallelogram.</p></li>
+<li><p>If row 1 is multiplied by <span class="math notranslate nohighlight">\(t\)</span>, the area is also multiplied by <span class="math notranslate nohighlight">\(t\)</span>.
+Suppose a new row <span class="math notranslate nohighlight">\((x_1^{\pr},y_1^{\pr})\)</span> is added to <span class="math notranslate nohighlight">\((x_1,y_1)\)</span>, the area is also added.</p></li>
+</ol>
+<p>The <span class="math notranslate nohighlight">\(n\)</span> edges going out from the origin are given by the <em>rows of an</em> <span class="math notranslate nohighlight">\(n\)</span> <em>by</em> <span class="math notranslate nohighlight">\(n\)</span> <em>matrix</em>.
+The box is completed by more edges, like the parallelogram.
+For a three-dimensional box, <strong>the volume equals the absolute value of</strong> <span class="math notranslate nohighlight">\(\det A\)</span>.</p>
+<p>The unit cube has volume = 1, which is <span class="math notranslate nohighlight">\(\det I\)</span>.
+Row exchanges or edge exchanges leave the same box and the same absolute volume.
+The determinant changes sign, to indicate whether the edges are a
+<em>right-handed triple</em> (<span class="math notranslate nohighlight">\(\det A&gt;0\)</span>) or a <em>left-handed triple</em>
+(<span class="math notranslate nohighlight">\(\det A&lt;0\)</span>).
+The box volume follows the rules for determinants, so volume of <span class="math notranslate nohighlight">\(\det A =\)</span> absolute value.</p>
+<p>In calculus, the box is infinitesimally small!
+To integrate over a circle, we might change <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> to <span class="math notranslate nohighlight">\(r\)</span> and <span class="math notranslate nohighlight">\(\theta\)</span>.
+Those are polar coordinates: <span class="math notranslate nohighlight">\(x=r\cos\theta\)</span> and <span class="math notranslate nohighlight">\(y=r\sin\theta\)</span>.
+The area of a “polar box” is a determinant <span class="math notranslate nohighlight">\(J\)</span> times <span class="math notranslate nohighlight">\(dr\ d\theta\)</span>:</p>
+<p><strong>Area</strong> <span class="math notranslate nohighlight">\(r\ dr\ d\theta\)</span> <strong>in calculus</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}J=\bv \partial x/\partial r&amp;\partial x/\partial \theta\\
+\partial y/\partial r&amp;\partial y/\partial \theta \ev=
+\bv \cos\theta&amp;-r\sin\theta\\\sin\theta&amp;r\cos\theta \ev = r.\end{split}\]</div>
+<p>The determinant is the <span class="math notranslate nohighlight">\(r\)</span> in the small area <span class="math notranslate nohighlight">\(dA=r\ dr\ d\theta\)</span>.
+The stretching factor <span class="math notranslate nohighlight">\(J\)</span> goes into double integrals just as <span class="math notranslate nohighlight">\(dx/du\)</span>
+goes into an ordinary integral <span class="math notranslate nohighlight">\(\int dx=\int (dx/du)du\)</span>.
+For triple integrals the Jacobian matrix <span class="math notranslate nohighlight">\(J\)</span> with nine derivatives will be 3 by 3.</p>
 </div>
 <div class="section" id="the-cross-product">
 <h2>The Cross Product<a class="headerlink" href="#the-cross-product" title="Permalink to this headline">¶</a></h2>
+<p>Start with vectors <span class="math notranslate nohighlight">\(\u=(u_1,u_2,u_3)\)</span> and <span class="math notranslate nohighlight">\(\v=(v_1,v_2,v_3)\)</span>.
+Unlike the dot product, which is a number, <strong>the cross product is a vector</strong>–also in three dimensions.
+It is written <span class="math notranslate nohighlight">\(\u\times\v\)</span>.
+<em>The components of this cross product are 2 by 2 cofactors</em>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>DEFINITION</strong>: The <strong>cross product</strong> of <span class="math notranslate nohighlight">\(\u=(u_1,u_2,u_3)\)</span> and <span class="math notranslate nohighlight">\(\v=(v_1,v_2,v_3)\)</span> is a vector:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\u\times\v=\bv \i&amp;\j&amp;\bs{k}\\u_1&amp;u_2&amp;u_3\\v_1&amp;v_2&amp;v_3 \ev=
+(u_2v_3-u_3v_2)\i+(u_3v_1-u_1v_3)\j+(u_1v_2-u_2v_1)\bs{k}\)</span>.</p></li>
+</ul>
+<p><strong>This vector</strong> <span class="math notranslate nohighlight">\(\u\times\v\)</span> <strong>is perpendicular to</strong> <span class="math notranslate nohighlight">\(\u\)</span> and <span class="math notranslate nohighlight">\(\v\)</span>.
+The cross product <span class="math notranslate nohighlight">\(\v\times\u\)</span> is <span class="math notranslate nohighlight">\(-(\u\times\v)\)</span>.</p>
+</div>
+<p><strong>Comment</strong>: The 3 by 3 determinant is the easiest way to remember <span class="math notranslate nohighlight">\(\u\times\v\)</span>.
+It is not especially legal, because the first row contains vectors
+<span class="math notranslate nohighlight">\(\i,\j,\bs{k}\)</span> and the other rows contain numbers.
+In the determinant, the vector <span class="math notranslate nohighlight">\(\i=(1,0,0)\)</span> multiplies <span class="math notranslate nohighlight">\(u_2v_3\)</span>-u_3v_2`.
+The result is <span class="math notranslate nohighlight">\((u_2v_3-u_3v_2,0,0)\)</span>, which displays the first component of the cross product.</p>
+<p><strong>Property 1</strong> <span class="math notranslate nohighlight">\(\v\times\u\)</span> reverses rows 2 and 3 in the determinant so it equals <span class="math notranslate nohighlight">\(-(\u\times\v)\)</span>.</p>
+<p><strong>Property 2</strong>: The cross product <span class="math notranslate nohighlight">\(\u\times\v\)</span> is perpendicular to <span class="math notranslate nohighlight">\(\u\)</span> (and also to <span class="math notranslate nohighlight">\(\v\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[\u\cd(\u\times\v)=u_1(u_2v_3-u_3v_2)+u_2(u_3v_1-u_1v_3)+u_3(u_1v_2-u_2v_1)=0.\]</div>
+<p>The determinnat for <span class="math notranslate nohighlight">\(\u\cd(\u\times\v)\)</span> has rows <span class="math notranslate nohighlight">\(\u,\u,\v\)</span> so it is zero.</p>
+<p><strong>Property 3</strong>: The cross product of any vector with itself (two equal rows) is <span class="math notranslate nohighlight">\(\u\times\u=\0\)</span>.</p>
+<p>When <span class="math notranslate nohighlight">\(\u\)</span> and <span class="math notranslate nohighlight">\(\v\)</span> are parallel, the cross product is zero.
+When <span class="math notranslate nohighlight">\(\u\)</span> and <span class="math notranslate nohighlight">\(\v\)</span> are perpendicular, the dot product is zero.
+One involves <span class="math notranslate nohighlight">\(\sin\theta\)</span> and the other involves <span class="math notranslate nohighlight">\(\cos\theta\)</span>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(\lv\u\times\v\rv=\lv\u\rv\lv\v\rv|\sin\theta|\quad and \quad|\u\cd\v\rv=\lv\u\rv\lv\v\rv|\cos\theta|\)</span>.</p>
+</div>
+<p><strong>The length of</strong> <span class="math notranslate nohighlight">\(\u\times\v\)</span> <strong>equals the area of the parallelogram with sides</strong> <span class="math notranslate nohighlight">\(\u\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(\v\)</span>.</p>
+<p><em>Right hand rule</em>: <span class="math notranslate nohighlight">\(\u\times\v\)</span> points along your right thumb when the fingers curl from <span class="math notranslate nohighlight">\(\u\)</span> to <span class="math notranslate nohighlight">\(\v\)</span>.
+The right hand rule gives <span class="math notranslate nohighlight">\(\i\times\j=\bs{k}, \j\times\bs{k}=\i, \bs{k}\times\i=\j\)</span>.
+In the opposite order (anti-cyclic) the thumb is reversed and the cross product
+goes the other way: <span class="math notranslate nohighlight">\(\bs{k}\times\j=-\i,\i\times\bs{k}=-\j,\j\times\i=-\bs{k}\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>DEFINITION</strong>: The <strong>cross product</strong> is a vector with length <span class="math notranslate nohighlight">\(\lv\u\rv\lv\v\rv|\sin\theta|\)</span>.
+Its direction is perpendicular to <span class="math notranslate nohighlight">\(\u\)</span> and <span class="math notranslate nohighlight">\(\v\)</span>.
+It points “up” or “down” by the right hand rule.</p>
+</div>
 </div>
 <div class="section" id="triple-product-determinant-volume">
 <h2>Triple Product = Determinant = Volume<a class="headerlink" href="#triple-product-determinant-volume" title="Permalink to this headline">¶</a></h2>

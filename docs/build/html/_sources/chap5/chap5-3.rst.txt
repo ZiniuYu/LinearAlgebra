@@ -155,21 +155,105 @@ Why is :math:`\frac{1}{2}|x_1y_2-x_2y_1|` the area of this triangle?
 We can remove the factor :math:`\frac{1}{2}` for a parallelogram (twice as big).
 We now prove that the parallellogram area is the determinant :math:`x_1y_2-x_2y_1`.
 
+**Proof that a parallelogram staring from** :math:`(0,0)` **has area = 2 by 2 determinant**:
 
+We shoa that the area has the same properties 1-2-3 as the determinant.
+Those three rules defined the determinant and led to all its other properties.
 
+#. When :math:`A=I`, the parallelogram becomes the unit square.
+   Its area is :math:`\det I=1`.
 
+#. When rows are exchanged, the determinant reverses sign.
+   The absolute value (positive area) stays the same--it is the same parallelogram.
+
+#. If row 1 is multiplied by :math:`t`, the area is also multiplied by :math:`t`.
+   Suppose a new row :math:`(x_1^{\pr},y_1^{\pr})` is added to :math:`(x_1,y_1)`, the area is also added.
+
+The :math:`n` edges going out from the origin are given by the *rows of an* :math:`n` *by* :math:`n` *matrix*.
+The box is completed by more edges, like the parallelogram.
+For a three-dimensional box, **the volume equals the absolute value of** :math:`\det A`.
+
+The unit cube has volume = 1, which is :math:`\det I`.
+Row exchanges or edge exchanges leave the same box and the same absolute volume.
+The determinant changes sign, to indicate whether the edges are a 
+*right-handed triple* (:math:`\det A>0`) or a *left-handed triple* 
+(:math:`\det A<0`).
+The box volume follows the rules for determinants, so volume of :math:`\det A =` absolute value.
+
+In calculus, the box is infinitesimally small!
+To integrate over a circle, we might change :math:`x` and :math:`y` to :math:`r` and :math:`\theta`.
+Those are polar coordinates: :math:`x=r\cos\theta` and :math:`y=r\sin\theta`.
+The area of a "polar box" is a determinant :math:`J` times :math:`dr\ d\theta`:
+
+**Area** :math:`r\ dr\ d\theta` **in calculus**:
+
+.. math::
+
+    J=\bv \partial x/\partial r&\partial x/\partial \theta\\
+    \partial y/\partial r&\partial y/\partial \theta \ev=
+    \bv \cos\theta&-r\sin\theta\\\sin\theta&r\cos\theta \ev = r.
+
+The determinant is the :math:`r` in the small area :math:`dA=r\ dr\ d\theta`.
+The stretching factor :math:`J` goes into double integrals just as :math:`dx/du` 
+goes into an ordinary integral :math:`\int dx=\int (dx/du)du`.
+For triple integrals the Jacobian matrix :math:`J` with nine derivatives will be 3 by 3.
 
 The Cross Product
 -----------------
 
+Start with vectors :math:`\u=(u_1,u_2,u_3)` and :math:`\v=(v_1,v_2,v_3)`.
+Unlike the dot product, which is a number, **the cross product is a vector**--also in three dimensions.
+It is written :math:`\u\times\v`.
+*The components of this cross product are 2 by 2 cofactors*.
 
+.. note::
 
+    **DEFINITION**: The **cross product** of :math:`\u=(u_1,u_2,u_3)` and :math:`\v=(v_1,v_2,v_3)` is a vector:
 
+    * :math:`\u\times\v=\bv \i&\j&\bs{k}\\u_1&u_2&u_3\\v_1&v_2&v_3 \ev=
+      (u_2v_3-u_3v_2)\i+(u_3v_1-u_1v_3)\j+(u_1v_2-u_2v_1)\bs{k}`.
 
+    **This vector** :math:`\u\times\v` **is perpendicular to** :math:`\u` and :math:`\v`.
+    The cross product :math:`\v\times\u` is :math:`-(\u\times\v)`.
 
+**Comment**: The 3 by 3 determinant is the easiest way to remember :math:`\u\times\v`.
+It is not especially legal, because the first row contains vectors 
+:math:`\i,\j,\bs{k}` and the other rows contain numbers.
+In the determinant, the vector :math:`\i=(1,0,0)` multiplies :math:`u_2v_3`and :math:`-u_3v_2`.
+The result is :math:`(u_2v_3-u_3v_2,0,0)`, which displays the first component of the cross product.
 
+**Property 1** :math:`\v\times\u` reverses rows 2 and 3 in the determinant so it equals :math:`-(\u\times\v)`.
 
+**Property 2**: The cross product :math:`\u\times\v` is perpendicular to :math:`\u` (and also to :math:`\v`):
 
+.. math::
+
+    \u\cd(\u\times\v)=u_1(u_2v_3-u_3v_2)+u_2(u_3v_1-u_1v_3)+u_3(u_1v_2-u_2v_1)=0.
+
+The determinnat for :math:`\u\cd(\u\times\v)` has rows :math:`\u,\u,\v` so it is zero.
+
+**Property 3**: The cross product of any vector with itself (two equal rows) is :math:`\u\times\u=\0`.
+
+When :math:`\u` and :math:`\v` are parallel, the cross product is zero.
+When :math:`\u` and :math:`\v` are perpendicular, the dot product is zero.
+One involves :math:`\sin\theta` and the other involves :math:`\cos\theta`:
+
+.. note::
+
+    :math:`\lv\u\times\v\rv=\lv\u\rv\lv\v\rv|\sin\theta|\quad and \quad|\u\cd\v\rv=\lv\u\rv\lv\v\rv|\cos\theta|`.
+
+**The length of** :math:`\u\times\v` **equals the area of the parallelogram with sides** :math:`\u` **and** :math:`\v`.
+
+*Right hand rule*: :math:`\u\times\v` points along your right thumb when the fingers curl from :math:`\u` to :math:`\v`.
+The right hand rule gives :math:`\i\times\j=\bs{k}, \j\times\bs{k}=\i, \bs{k}\times\i=\j`.
+In the opposite order (anti-cyclic) the thumb is reversed and the cross product 
+goes the other way: :math:`\bs{k}\times\j=-\i,\i\times\bs{k}=-\j,\j\times\i=-\bs{k}`.
+
+.. note::
+
+    **DEFINITION**: The **cross product** is a vector with length :math:`\lv\u\rv\lv\v\rv|\sin\theta|`.
+    Its direction is perpendicular to :math:`\u` and :math:`\v`.
+    It points "up" or "down" by the right hand rule.
 
 Triple Product = Determinant = Volume
 -------------------------------------
