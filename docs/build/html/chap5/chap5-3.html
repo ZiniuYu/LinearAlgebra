@@ -13,6 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -29,11 +31,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -96,7 +98,12 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index5.html">Chapter 5 Determinants</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="chap5-1.html">Chapter 5.1 The Properties of Determinants</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chap5-2.html">Chapter 5.2 Permutations and Cofactors</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 5.3 Cramer’s Rule, Inverses, and Volumes</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 5.3 Cramer’s Rule, Inverses, and Volumes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#area-of-a-triangle">Area of a Triangle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-cross-product">The Cross Product</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#triple-product-determinant-volume">Triple Product = Determinant = Volume</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
@@ -200,6 +207,127 @@
 \newcommand{\ppr}{^{\prime\prime}}\end{aligned}\end{align} \]</div>
 <div class="section" id="chapter-5-3-cramer-s-rule-inverses-and-volumes">
 <h1>Chapter 5.3 Cramer’s Rule, Inverses, and Volumes<a class="headerlink" href="#chapter-5-3-cramer-s-rule-inverses-and-volumes" title="Permalink to this headline">¶</a></h1>
+<p><strong>Cramer’s Rule solves</strong> <span class="math notranslate nohighlight">\(A\x=\b\)</span>.
+A neat idea gives the first component <span class="math notranslate nohighlight">\(x_1\)</span>.
+Replacing the first column of <span class="math notranslate nohighlight">\(I\)</span> by <span class="math notranslate nohighlight">\(\x\)</span> gives a matrix with determinant <span class="math notranslate nohighlight">\(x_1\)</span>.
+When you multiply it by <span class="math notranslate nohighlight">\(A\)</span>, <em>the first column becomes</em> <span class="math notranslate nohighlight">\(A\x\)</span> <em>which is</em> <span class="math notranslate nohighlight">\(\b\)</span>.
+The other columns of <span class="math notranslate nohighlight">\(B_1\)</span> are copied from <span class="math notranslate nohighlight">\(A\)</span>:</p>
+<p><strong>Key idea</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb \\\ &amp;A&amp; \\\ \eb\bb x_1&amp;0&amp;0\\x_2&amp;1&amp;0\\x_3&amp;0&amp;1 \eb=
+\bb b_1&amp;a_{12}&amp;a_{13}\\b_2&amp;a_{22}&amp;a_{23}\\b_3&amp;a_{32}&amp;a_{33} \eb=B_1.\end{split}\]</div>
+<p>We multiplied a column at a time.
+<em>Take determinants of the three matrices to find</em> <span class="math notranslate nohighlight">\(x_1\)</span>:</p>
+<p><strong>Product rule</strong>:</p>
+<div class="math notranslate nohighlight">
+\[(\det A)(x_1)=\det B_q1\quad\rm{or}\quad x_1=\frac{\det B_1}{\det A}.\]</div>
+<p>This is the first component of <span class="math notranslate nohighlight">\(\x\)</span> in Cramer’s Rule!
+Changing a column of <span class="math notranslate nohighlight">\(A\)</span> gave <span class="math notranslate nohighlight">\(B_1\)</span>.
+To find <span class="math notranslate nohighlight">\(x_2\)</span> and <span class="math notranslate nohighlight">\(B_2\)</span>, put the vectors <span class="math notranslate nohighlight">\(\x\)</span> and <span class="math notranslate nohighlight">\(\b\)</span>
+into the <em>second</em> column of <span class="math notranslate nohighlight">\(I\)</span> and <span class="math notranslate nohighlight">\(A\)</span>:</p>
+<p><strong>Same idea</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb \\\ \a_1&amp;\a_2&amp;\a_3\\\ \eb\bb 1&amp;x_1&amp;0\\0&amp;x_2&amp;0\\0&amp;x_3&amp;1 \eb=\bb \\\ \a_1&amp;\b&amp;\a_3\\\ \eb=B_2.\end{split}\]</div>
+<p>Take determinants to find <span class="math notranslate nohighlight">\((\det A)(\x_2)=\det B_2\)</span>.
+This gives <span class="math notranslate nohighlight">\(x_2=(\det B_2)/(\det A)\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>CRAMER’s RULE</strong>: If <span class="math notranslate nohighlight">\(\det A\)</span> is not zero, <span class="math notranslate nohighlight">\(A\x=\b\)</span> is solved by determinants:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\dp x_1=\frac{\det B_1}{\det A}\quad x_2=\frac{\det B_2}{\det A}\quad\cds\quad x_n=\frac{\det B_n}{\det A}\)</span>.</p></li>
+</ul>
+<p><strong>The matrix</strong> <span class="math notranslate nohighlight">\(B_j\)</span> <strong>has the</strong> <span class="math notranslate nohighlight">\(j\)</span><strong>th column of</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>replaced by the vector</strong> <span class="math notranslate nohighlight">\(\b\)</span>.</p>
+</div>
+<p>To solve an <span class="math notranslate nohighlight">\(n\)</span> by <span class="math notranslate nohighlight">\(n\)</span> system, Cramer’s Rule evaluates <span class="math notranslate nohighlight">\(n+1\)</span>
+determinants (of <span class="math notranslate nohighlight">\(A\)</span> and the <span class="math notranslate nohighlight">\(n\)</span> different <span class="math notranslate nohighlight">\(B\)</span>’s).</p>
+<p><span class="math notranslate nohighlight">\(A\im\)</span> <strong>involves the cofactors</strong>.
+When the right side is a column of the identity matrix <span class="math notranslate nohighlight">\(I\)</span>, as in
+<span class="math notranslate nohighlight">\(AA\im=I\)</span>, <strong>the determinant of each</strong> <span class="math notranslate nohighlight">\(B_j\)</span>
+<strong>in Cramer’s Rule is a cofactor of</strong> <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p>You can see those cofactors for <span class="math notranslate nohighlight">\(n=3\)</span>.
+Solve <span class="math notranslate nohighlight">\(A\x=(1,0,0)\)</span> to find column 1 of <span class="math notranslate nohighlight">\(A\im\)</span>:</p>
+<p><strong>Determinant of</strong> <span class="math notranslate nohighlight">\(B\)</span><strong>‘s = Cofactors of</strong> <span class="math notranslate nohighlight">\(A\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bv 1&amp;a_{12}&amp;a_{13}\\0&amp;a_{22}&amp;a_{23}\\0&amp;a_{32}&amp;a_{33} \ev\quad
+\bv a_{11}&amp;1&amp;a_{13}\\a_{21}&amp;0&amp;a_{23}\\a_{31}&amp;0&amp;a_{33} \ev\quad
+\bv a_{11}&amp;a_{12}&amp;1\\a_{21}&amp;a_{22}&amp;0\\a_{31}&amp;a_{32}&amp;0 \ev\end{split}\]</div>
+<p>The first determinant <span class="math notranslate nohighlight">\(\bv B_1 \ev\)</span> is the cofactor <span class="math notranslate nohighlight">\(C_{11}=a_{22}a_{33}-a_{23}a_{32}\)</span>.
+Then <span class="math notranslate nohighlight">\(\bv B_2 \ev\)</span> is the cofactor <span class="math notranslate nohighlight">\(C_{12}\)</span>.
+Notice that the correct minus sign appears in <span class="math notranslate nohighlight">\(-(a_{21}a_{33}-a_{23}a_{31})\)</span>.
+This cofactor <span class="math notranslate nohighlight">\(C_{12}\)</span> goes into column 1 of <span class="math notranslate nohighlight">\(A\im\)</span>.
+When we divide by <span class="math notranslate nohighlight">\(\det A\)</span>, we have the inverse matrix.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>The</strong> <span class="math notranslate nohighlight">\(i,j\)</span> <strong>entry of</strong> <span class="math notranslate nohighlight">\(A\im\)</span> <strong>is the cofactor</strong>
+<span class="math notranslate nohighlight">\(C_{ji}\)</span> <strong>(not</strong> <span class="math notranslate nohighlight">\(C_{ij}\)</span><strong>) divided by</strong> <span class="math notranslate nohighlight">\(\det A\)</span>.</p>
+<ul class="simple">
+<li><p><strong>FORMULA FOR</strong> <span class="math notranslate nohighlight">\(A\im\)</span>: <span class="math notranslate nohighlight">\(\dp(A\im)_{ij}=\frac{C_{ji}}{\det A}\quad\rm{and}\quad A\im=\frac{C^T}{\det A}\)</span>.</p></li>
+</ul>
+</div>
+<p>The cofactors <span class="math notranslate nohighlight">\(C_{ij}\)</span> go into the “<em>cofactor matrix</em>” <span class="math notranslate nohighlight">\(C\)</span>.
+<strong>The transpose of</strong> <span class="math notranslate nohighlight">\(C\)</span> <strong>leads to</strong> <span class="math notranslate nohighlight">\(A\im\)</span>.
+To compute the <span class="math notranslate nohighlight">\(i,j\)</span> entry of <span class="math notranslate nohighlight">\(A\im\)</span>, cross out row <span class="math notranslate nohighlight">\(j\)</span> and column <span class="math notranslate nohighlight">\(i\)</span> of <span class="math notranslate nohighlight">\(A\)</span>.
+Multiply the determinant by <span class="math notranslate nohighlight">\((-1)^{i+j}\)</span> to get the cofactor <span class="math notranslate nohighlight">\(C_{ji}\)</span>, and divide by <span class="math notranslate nohighlight">\(\det A\)</span>.</p>
+<p><em>Summary</em>: In solving <span class="math notranslate nohighlight">\(AA\im=I\)</span>, each column of <span class="math notranslate nohighlight">\(I\)</span> leads to a column of <span class="math notranslate nohighlight">\(A\im\)</span>.
+Every entry of <span class="math notranslate nohighlight">\(A\im\)</span> is a ratio: determinant of size <span class="math notranslate nohighlight">\(n-1/\)</span> determinant of size <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<p><strong>Direct proof of the formula</strong> <span class="math notranslate nohighlight">\(A\im=C^T/\det A\)</span>: This means <span class="math notranslate nohighlight">\(AC^T=(\det A)I\)</span>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(\bb a_{11}&amp;a_{12}&amp;a_{13}\\a_{21}&amp;a_{22}&amp;a_{23}\\a_{31}&amp;a_{32}&amp;a_{33}
+\eb\bb C_{11}&amp;C_{12}&amp;C_{13}\\C_{21}&amp;C_{22}&amp;C_{23}\\C_{31}&amp;C_{32}&amp;C_{33} \eb=
+\bb \det A&amp;0&amp;0\\0&amp;\det A&amp;0\\0&amp;0&amp;\det A \eb\)</span>.</p>
+</div>
+<p>(Row 1 of <span class="math notranslate nohighlight">\(A\)</span>) times (column 1 of <span class="math notranslate nohighlight">\(C^T\)</span>) yields the first <span class="math notranslate nohighlight">\(\det A\)</span> on the right:</p>
+<div class="math notranslate nohighlight">
+\[a_{11}C_{11}+a_{12}C_{12}+a_{13}C_{13}=\det A\]</div>
+<p>This is exactly the cofactor rule.</p>
+<p>Similarly row 2 of <span class="math notranslate nohighlight">\(A\)</span> times column 2 of <span class="math notranslate nohighlight">\(C^T\)</span> (<em>notice the transpose</em>) also yields <span class="math notranslate nohighlight">\(\det A\)</span>.
+The entries <span class="math notranslate nohighlight">\(a_{2j}\)</span> are multiplying cofactors <span class="math notranslate nohighlight">\(C_{2j}\)</span> as they should, to give the determinant.</p>
+<p><strong>Row 2 of</strong> <span class="math notranslate nohighlight">\(A\)</span>, <strong>Row 1 of</strong> <span class="math notranslate nohighlight">\(C\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[a_{21}C_{11}+a_{22}C_{12}+a_{23}C_{13}=0.\]</div>
+<p>Tjis is the cofactor rule for a new matrix, when the second row of <span class="math notranslate nohighlight">\(A\)</span> is copied into its first row.
+The new matrix <span class="math notranslate nohighlight">\(A^*\)</span> has two equal rows, so <span class="math notranslate nohighlight">\(\det A^*=0\)</span>.
+Notice that <span class="math notranslate nohighlight">\(A^*\)</span> has the same cofactors <span class="math notranslate nohighlight">\(C_{11},C_{12},C_{13}\)</span> as
+<span class="math notranslate nohighlight">\(A\)</span>–because all rows agree after the first row.
+Thus the remarkable multiplication is correct:</p>
+<div class="math notranslate nohighlight">
+\[AC^T=(\det A)I\quad\rm{or}\quad A\im=\frac{C^T}{\det A}.\]</div>
+<p><em>The inverse of a triangular matrix is triangular</em>.
+Cofactors give a reason why.</p>
+<div class="section" id="area-of-a-triangle">
+<h2>Area of a Triangle<a class="headerlink" href="#area-of-a-triangle" title="Permalink to this headline">¶</a></h2>
+<p><strong>If we know the corners</strong> <span class="math notranslate nohighlight">\((x_1,y_1)\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\((x_2,y_2)\)</span> <strong>and</strong>
+<span class="math notranslate nohighlight">\((x_3,y_3)\)</span> <strong>of a triangle, what is the area?</strong>
+Using the corners to find the base and height is not a good way to compute area.</p>
+<p>Determinants are the best way to find area.
+<strong>The area of a triangle is half of a 3 by 3 determinant</strong>.
+The square roots in the base and height cancel out in the good formula.
+If one corner is at the origin, the determinant is only 2 by 2.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The triangle with corners <span class="math notranslate nohighlight">\((x_1,y_1)\)</span> and <span class="math notranslate nohighlight">\((x_2,y_2)\)</span> and
+<span class="math notranslate nohighlight">\((x_3,y_3)\)</span> has <span class="math notranslate nohighlight">\(\dp\rm{area}=\frac{\rm{determinant}}{2}\)</span>:</p>
+<ul class="simple">
+<li><p><strong>Area of triangle</strong>: <span class="math notranslate nohighlight">\(\dp\frac{1}{2}\bv x_1&amp;y_1&amp;1\\x_2&amp;y_2&amp;1\\x_3&amp;y_3&amp;1 \ev\quad\)</span>
+<span class="math notranslate nohighlight">\(\dp\rm{Area}=\frac{1}{2}\bv x_1&amp;y_1\\x_2&amp;y_2 \ev\rm{\ when\ }(x_3,y_3)=(0,0)\)</span>.</p></li>
+</ul>
+</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\rm{Area} = \frac{1}{2}\bv x_1&amp;y_1&amp;1\\x_2&amp;y_2&amp;1\\x_3&amp;y_3&amp;1 \ev = \frac{1}{2}
+(x_1y_2-x_2y_1)+\frac{1}{2}(x_2y_3-x_3y_2)+\frac{1}{2}(x_3y_1-x_1y_3).\end{split}\]</div>
+<p>If <span class="math notranslate nohighlight">\((0,0)\)</span> is outside the triangle, two of the special areas can be negative–but the sum is still correct.
+The real problem is to explain the area of a triangle with corner <span class="math notranslate nohighlight">\((0,0)\)</span>.</p>
+<p>Why is <span class="math notranslate nohighlight">\(\frac{1}{2}|x_1y_2-x_2y_1|\)</span> the area of this triangle?
+We can remove the factor <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span> for a parallelogram (twice as big).
+We now prove that the parallellogram area is the determinant <span class="math notranslate nohighlight">\(x_1y_2-x_2y_1\)</span>.</p>
+</div>
+<div class="section" id="the-cross-product">
+<h2>The Cross Product<a class="headerlink" href="#the-cross-product" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="triple-product-determinant-volume">
+<h2>Triple Product = Determinant = Volume<a class="headerlink" href="#triple-product-determinant-volume" title="Permalink to this headline">¶</a></h2>
+</div>
 </div>
 
 

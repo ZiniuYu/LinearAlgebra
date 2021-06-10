@@ -13,6 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -29,11 +31,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -372,6 +374,41 @@ Multiply its determinant by the sign <span class="math notranslate nohighlight">
 <div><p>The cofactors along row 1 are <span class="math notranslate nohighlight">\(C_{1j}=(-1)^{1+j}\det M_{1j}\)</span>.</p>
 <p><strong>The cofactor expansion is</strong> <span class="math notranslate nohighlight">\(\det A=a_{11}C_{11}+a_{12}+C_{12}+\cds+a_{1n}C_{1n}\)</span>.</p>
 </div></blockquote>
+<p><strong>Note</strong>: What ever is possible for row 1 is possible for row <span class="math notranslate nohighlight">\(i\)</span>.
+The entries <span class="math notranslate nohighlight">\(a_{ij}\)</span> in that row also have cofactors <span class="math notranslate nohighlight">\(C_{ij}\)</span>.
+Those are determinants of order <span class="math notranslate nohighlight">\(n-1\)</span>, multiplied by <span class="math notranslate nohighlight">\((-1)^{i+j}\)</span>.
+Since <span class="math notranslate nohighlight">\(a_{ij}\)</span> accounts for row <span class="math notranslate nohighlight">\(i\)</span> and column <span class="math notranslate nohighlight">\(j\)</span>,
+<strong>the submatrix</strong> <span class="math notranslate nohighlight">\(M_{ij}\)</span> <strong>throws out row</strong> <span class="math notranslate nohighlight">\(i\)</span> <strong>and column</strong>
+<span class="math notranslate nohighlight">\(j\)</span>.
+The sign matrix shows the <span class="math notranslate nohighlight">\(\pm\)</span> pattern:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb +&amp;-&amp;+&amp;-\\-&amp;+&amp;-&amp;+\\+&amp;-&amp;+&amp;-\\-&amp;+&amp;-&amp;+ \eb.\end{split}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The determinant is the dot product of any row <span class="math notranslate nohighlight">\(i\)</span> of <span class="math notranslate nohighlight">\(A\)</span> with its cofactors using other rows:</p>
+<ul class="simple">
+<li><p><strong>COFACTOR FORMULA</strong>: <span class="math notranslate nohighlight">\(\det A=a_{i1}C_{i1}+a_{i2}C_{i2}+\cds+a_{in}C_{in}\)</span>.</p></li>
+</ul>
+<p>Each cofactor <span class="math notranslate nohighlight">\(C_{ij}\)</span> (order <span class="math notranslate nohighlight">\(n-1\)</span>, without row <span class="math notranslate nohighlight">\(i\)</span> and
+column <span class="math notranslate nohighlight">\(j\)</span>) includes its correct sign:</p>
+<ul class="simple">
+<li><p><strong>Cofactor</strong>: <span class="math notranslate nohighlight">\(C_{ij}=(-1)^{i+j}\det M_{ij}\)</span>.</p></li>
+</ul>
+</div>
+<p>A determinant of order <span class="math notranslate nohighlight">\(n\)</span> is a combination of determinants of order <span class="math notranslate nohighlight">\(n-1\)</span>.
+Each subdeterminant breaks into determinants of order <span class="math notranslate nohighlight">\(n-2\)</span>.
+<em>We could define all determinants via equation</em>.
+This rule goes from order <span class="math notranslate nohighlight">\(n\)</span> to <span class="math notranslate nohighlight">\(n-1\)</span> to <span class="math notranslate nohighlight">\(n-2\)</span> and eventually to order 1.
+Define the 1 by 1 determinant <span class="math notranslate nohighlight">\(\bv a \ev\)</span> to be the number <span class="math notranslate nohighlight">\(a\)</span>.
+Then the cofactor method is complete.</p>
+<p>We preferred to construct <span class="math notranslate nohighlight">\(\det A\)</span> from its properties (linearity, sign reversal <span class="math notranslate nohighlight">\(\det I=1\)</span>).
+One last formula comes from the rule that <span class="math notranslate nohighlight">\(\det A=\det A^T\)</span>.
+We can expand in cofactors, <em>down a column</em> instead of across a row.
+Down column <span class="math notranslate nohighlight">\(j\)</span> the entries are <span class="math notranslate nohighlight">\(a_{1j}\)</span> to <span class="math notranslate nohighlight">\(a_{nj}\)</span>.
+The cofactors are <span class="math notranslate nohighlight">\(C_{1j}\)</span> to <span class="math notranslate nohighlight">\(C_{nj}\)</span>.
+The determinant is the dot product:</p>
+<p><strong>Cofactors down column</strong> <span class="math notranslate nohighlight">\(j\)</span>: <span class="math notranslate nohighlight">\(\det A=a_{1j}C_{1j}+a_{2j}C_{2j}+\cds+a_{nj}C_{nj}\)</span>.</p>
+<p><strong>Cofactors are useful when matrices have many zeros</strong>.</p>
 </div>
 </div>
 

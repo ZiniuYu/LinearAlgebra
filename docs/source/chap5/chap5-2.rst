@@ -216,4 +216,43 @@ Multiply its determinant by the sign :math:`(-1)^{1+j}` to get the cofactor:
 
     **The cofactor expansion is** :math:`\det A=a_{11}C_{11}+a_{12}+C_{12}+\cds+a_{1n}C_{1n}`.
 
+**Note**: What ever is possible for row 1 is possible for row :math:`i`.
+The entries :math:`a_{ij}` in that row also have cofactors :math:`C_{ij}`.
+Those are determinants of order :math:`n-1`, multiplied by :math:`(-1)^{i+j}`.
+Since :math:`a_{ij}` accounts for row :math:`i` and column :math:`j`, 
+**the submatrix** :math:`M_{ij}` **throws out row** :math:`i` **and column** 
+:math:`j`.
+The sign matrix shows the :math:`\pm` pattern:
 
+.. math::
+
+    \bb +&-&+&-\\-&+&-&+\\+&-&+&-\\-&+&-&+ \eb.
+
+.. note::
+
+    The determinant is the dot product of any row :math:`i` of :math:`A` with its cofactors using other rows:
+
+    * **COFACTOR FORMULA**: :math:`\det A=a_{i1}C_{i1}+a_{i2}C_{i2}+\cds+a_{in}C_{in}`.
+
+    Each cofactor :math:`C_{ij}` (order :math:`n-1`, without row :math:`i` and 
+    column :math:`j`) includes its correct sign:
+
+    * **Cofactor**: :math:`C_{ij}=(-1)^{i+j}\det M_{ij}`.
+
+A determinant of order :math:`n` is a combination of determinants of order :math:`n-1`.
+Each subdeterminant breaks into determinants of order :math:`n-2`.
+*We could define all determinants via equation*.
+This rule goes from order :math:`n` to :math:`n-1` to :math:`n-2` and eventually to order 1.
+Define the 1 by 1 determinant :math:`\bv a \ev` to be the number :math:`a`.
+Then the cofactor method is complete.
+
+We preferred to construct :math:`\det A` from its properties (linearity, sign reversal :math:`\det I=1`).
+One last formula comes from the rule that :math:`\det A=\det A^T`.
+We can expand in cofactors, *down a column* instead of across a row.
+Down column :math:`j` the entries are :math:`a_{1j}` to :math:`a_{nj}`.
+The cofactors are :math:`C_{1j}` to :math:`C_{nj}`.
+The determinant is the dot product:
+
+**Cofactors down column** :math:`j`: :math:`\det A=a_{1j}C_{1j}+a_{2j}C_{2j}+\cds+a_{nj}C_{nj}`.
+
+**Cofactors are useful when matrices have many zeros**.
