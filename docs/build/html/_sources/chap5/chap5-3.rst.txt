@@ -257,3 +257,26 @@ goes the other way: :math:`\bs{k}\times\j=-\i,\i\times\bs{k}=-\j,\j\times\i=-\bs
 
 Triple Product = Determinant = Volume
 -------------------------------------
+
+Since :math:`\u\times\v` is a vector, we can take its dot product with a third vector :math:`\w`.
+That produces the **triple product** :math:`(\u\times\v)\cd\w`.
+It is called a "scalar" triple product, because it is a number.
+In fact it is a determinant--it gives the volume of the :math:`\u,\v,\w` box:
+
+**Triple product**:
+
+.. math::
+
+    (\u\times\v)\cd\w=\bv w_1&w_2&w_3\\u_1&u_2&u_3\\v_1&v_2&v_3 \ev=\bv u_1&u_2&u_3\\v_1&v_2&v_3\\w_1&w_2&w_3 \ev.
+
+We can put :math:`\w` in the top or bottom row.
+The two determinants are the same because 2 row exchanges go from one to the other.
+Notice when this determinant is zero: :math:`(\u\times\v)cd\w=0` exactly when
+the vectors :math:`\u,\v,\w` lie in the *same plane*.
+
+**First reason**: :math:`\u\times\v` is perpendicular to that plane so its dot product with :math:`\w` is zero.
+
+**Second reason**: Three vectors in a plane are dependent.
+The matrix is singular (:math:`\det =0`).
+
+**Thrid reason**: Zero volume when the :math:`\u,\v,\w` box is squashed onto a plane.
