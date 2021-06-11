@@ -88,6 +88,8 @@ rst_prolog = r'''
 
     \newcommand{\R}{\boldsymbol{\mathrm{R}}}
 
+    \newcommand{\ld}{\lambda}
+
     \newcommand{\bb}{\begin{bmatrix}}
     \newcommand{\eb}{\end{bmatrix}}
     \newcommand{\bv}{\begin{vmatrix}}
