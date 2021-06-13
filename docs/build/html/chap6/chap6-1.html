@@ -13,8 +13,6 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -31,11 +29,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -235,22 +233,197 @@ All vectors are eigenvectors of <span class="math notranslate nohighlight">\(I\)
 All eigenvalues “lambda” are <span class="math notranslate nohighlight">\(\ld=1\)</span>.
 Most 2 by 2 matrices have <em>two</em> eigenvector directions and <em>two</em> eigenvalues.
 We will show that <span class="math notranslate nohighlight">\(\det(A-\ld I)=0\)</span>.</p>
+<p>The matrix <span class="math notranslate nohighlight">\(A=\bb .8&amp;.3\\.2&amp;.7 \eb\)</span> has two eigenvalues <span class="math notranslate nohighlight">\(\ld=2\)</span> and <span class="math notranslate nohighlight">\(\ld=1/2\)</span>.
+The eigenvectors <span class="math notranslate nohighlight">\(\x_1=(.6,.4)\)</span> and <span class="math notranslate nohighlight">\(\x_2=(1.-1)\)</span> are in the
+nullspaces of <span class="math notranslate nohighlight">\(A-I\)</span> and <span class="math notranslate nohighlight">\(A-\frac{1}{2}I\)</span>.</p>
+<p>If <span class="math notranslate nohighlight">\(\x_1\)</span> is multiplied again by <span class="math notranslate nohighlight">\(A\)</span>, we still get <span class="math notranslate nohighlight">\(\x_1\)</span>.
+Every power of <span class="math notranslate nohighlight">\(A\)</span> will give <span class="math notranslate nohighlight">\(A^n\x_1=\x_1\)</span>.
+Multiplying <span class="math notranslate nohighlight">\(\x_2\)</span> by <span class="math notranslate nohighlight">\(A\)</span> gave <span class="math notranslate nohighlight">\(\frac{1}{2}\x_2\)</span>, and if we
+multiply again we get <span class="math notranslate nohighlight">\((\frac{1}{2})^2\)</span> times <span class="math notranslate nohighlight">\(\x_2\)</span>.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p><strong>When</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>is squared, the eigenvectors stay the same</strong>.
 <strong>The eigenvalues are squared</strong>.</p>
 </div>
+<p><strong>Separate into eigenvectors then multiply by</strong> <span class="math notranslate nohighlight">\(A\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb .8\\.2 \eb=\x_1+(.2)\x_2=\bb .6\\.4 \eb+\bb .2\\-.2 \eb.\end{split}\]</div>
+<p>When we multiply separately for <span class="math notranslate nohighlight">\(\x_1\)</span> and <span class="math notranslate nohighlight">\((.2)\x_2\)</span>, <span class="math notranslate nohighlight">\(A\)</span>
+multiplies <span class="math notranslate nohighlight">\(\x_2\)</span> by its eigenvalue <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span></p>
+<p><strong>Multiply each</strong> <span class="math notranslate nohighlight">\(\x_i\)</span> <strong>by</strong> <span class="math notranslate nohighlight">\(\ld_i\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A\bb .8\\.2 \eb\rm{ \ is\ }\x_1+\frac{1}{2}(.2)\x_2=\bb .6\\.4 \eb+\bb .1\\-.1 \eb=\bb .7\\.3 \eb.\end{split}\]</div>
+<p><strong>Each eigenvector is multiplied by its eigenvalue</strong>, when we multiply by <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A^{99}\bb .8\\.2 \eb\rm{\ is\ really\ }\x_1+(.2)(\frac{1}{2})^{99}\x_2=
+\bb .6\\.4 \eb+\bb \rm{very}\\\rm{small}\\\rm{vector} \eb.\end{split}\]</div>
+<p>The eigenvector <span class="math notranslate nohighlight">\(\x_1\)</span> is a “steady state” that doesn’t change (because <span class="math notranslate nohighlight">\(\ld_1=1\)</span>).
+The eigenvector <span class="math notranslate nohighlight">\(\x_2\)</span> is a “decaying mode” that virtually disappears (because <span class="math notranslate nohighlight">\(\ld_2=.5\)</span>).
+The higher the power of <span class="math notranslate nohighlight">\(A\)</span>, the more closely its columns approach the steady state.</p>
+<p>The particular <span class="math notranslate nohighlight">\(A\)</span> is a <strong>Markov matrix</strong>.
+Its largest eigenvalue is <span class="math notranslate nohighlight">\(\ld=1\)</span>.
+Its eigenvector <span class="math notranslate nohighlight">\(\x_1=(.6,.4)\)</span> is the <em>steady state</em>–which all columns of <span class="math notranslate nohighlight">\(A^k\)</span> will approach.</p>
+<p><strong>For projection matrices</strong> <span class="math notranslate nohighlight">\(P\)</span>, we can see when <span class="math notranslate nohighlight">\(P\x\)</span> is parallel to <span class="math notranslate nohighlight">\(\x\)</span>.
+The eigenvectors for <span class="math notranslate nohighlight">\(\ld=1\)</span> and <span class="math notranslate nohighlight">\(\ld=0\)</span> fill the column space and nullspace.
+The column space doesn’t move (<span class="math notranslate nohighlight">\(P\x=\x\)</span>).
+The nullspace goes to zero (<span class="math notranslate nohighlight">\(P\x=0\x\)</span>).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>The projection matrix</strong> <span class="math notranslate nohighlight">\(P=\bb .5&amp;.5\\.5&amp;.5 \eb\)</span> has eigenvalues <span class="math notranslate nohighlight">\(\ld=1\)</span> and <span class="math notranslate nohighlight">\(\ld=0\)</span>.</p>
+</div>
+<p>Its eigenvectors are <span class="math notranslate nohighlight">\(\x_1=(1,1)\)</span> and <span class="math notranslate nohighlight">\(\x_2=(1,-1)\)</span>.
+For those vectors, <span class="math notranslate nohighlight">\(P\x_1=\x_1\)</span> (steady state) and <span class="math notranslate nohighlight">\(P\x_2=\0\)</span> (nullspace).
+This example illustrates mrkov matrices and singular matrices and (most important) symmetric matrices.
+All have special <span class="math notranslate nohighlight">\(\ld\)</span>’s and <span class="math notranslate nohighlight">\(\x\)</span>’s:</p>
+<ol class="arabic simple">
+<li><p><strong>Markov matrix</strong>: Each column of <span class="math notranslate nohighlight">\(P\)</span> adds to 1, so <span class="math notranslate nohighlight">\(\ld=1\)</span> is an eigenvalue.</p></li>
+<li><p><span class="math notranslate nohighlight">\(P\)</span> is <strong>singular</strong>, so <span class="math notranslate nohighlight">\(\ld=0\)</span> is an eigenvalue.</p></li>
+<li><p><span class="math notranslate nohighlight">\(P\)</span> is <strong>symmetric</strong>, so its eigenvectors <span class="math notranslate nohighlight">\((1,1)\)</span> and <span class="math notranslate nohighlight">\((1,-1)\)</span> are perpendicular.</p></li>
+</ol>
+<p>The only eigenvalues of a projection matrix are 0 and 1.
+The eigenvectors for <span class="math notranslate nohighlight">\(\ld=0\)</span> (which means <span class="math notranslate nohighlight">\(P\x=0\x\)</span>) fill up the nullspace.
+The eigenvectors for <span class="math notranslate nohighlight">\(\ld=1\)</span> (which means <span class="math notranslate nohighlight">\(P\x=\x\)</span>) fill up the column space.
+The nullspace is projected to zero.
+The column space projects onto itself.
+The projection keeps the column space and destroys the nullspace:</p>
+<blockquote>
+<div><p><strong>Project each part</strong> <span class="math notranslate nohighlight">\(\v=\bb 1\\-1 \eb+\bb 2\\2 \eb\)</span> <strong>projects onto</strong> <span class="math notranslate nohighlight">\(P\v=\bb 0\\0 \eb+\bb 2\\2 \eb\)</span>.</p>
+</div></blockquote>
+<p>Projections have <span class="math notranslate nohighlight">\(\ld=0\)</span> and <span class="math notranslate nohighlight">\(1\)</span>.
+Permutations have all <span class="math notranslate nohighlight">\(|\ld|=1\)</span>.
+The next matrix <span class="math notranslate nohighlight">\(R\)</span> is a reflection an at the same time a permutation.
+<span class="math notranslate nohighlight">\(R\)</span> also has special eigenvalues.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>The reflection matrix</strong> <span class="math notranslate nohighlight">\(R=\bb 0&amp;1\\1&amp;0 \eb\)</span> <strong>has eigenvalues 1 and -1</strong>.</p>
+</div>
+<p>The eigenvector <span class="math notranslate nohighlight">\((1,1)\)</span> is unchanged by <span class="math notranslate nohighlight">\(R\)</span>.
+The second eigenvector is <span class="math notranslate nohighlight">\((1,-1)\)</span>–its signs are reversede by <span class="math notranslate nohighlight">\(R\)</span>.
+A matrix with no negative entries can still have a negative eigenvalue.
+The eigenvectors for <span class="math notranslate nohighlight">\(R\)</span> are the same as for <span class="math notranslate nohighlight">\(P\)</span>, because <span class="math notranslate nohighlight">\(reflection=2(projection)-I\)</span>:</p>
+<p><span class="math notranslate nohighlight">\(R=2P-I\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb 0&amp;1\\1&amp;0 \eb=2\bb .5&amp;.5\\.5&amp;.5 \eb-\bb 1&amp;0\\0&amp;1 \eb.\end{split}\]</div>
+<p><strong>When a matrix is shifted by</strong> <span class="math notranslate nohighlight">\(I\)</span>, <strong>each</strong> <span class="math notranslate nohighlight">\(\ld\)</span> <strong>is shifted by 1</strong>.
+No change in eigenvectors.</p>
 <div class="section" id="the-equation-for-the-eigenvalues">
 <h2>The Equation for the Eigenvalues<a class="headerlink" href="#the-equation-for-the-eigenvalues" title="Permalink to this headline">¶</a></h2>
+<p>For projection matrices we found <span class="math notranslate nohighlight">\(\ld\)</span>’s and <span class="math notranslate nohighlight">\(\x\)</span>’s by geometry: <span class="math notranslate nohighlight">\(P\x=\x\)</span> and <span class="math notranslate nohighlight">\(P\x=\0\)</span>.
+For other matrices we use determinants and linear algebra.</p>
+<p><strong>First move</strong> <span class="math notranslate nohighlight">\(\ld\x\)</span> <strong>to the left side</strong>.
+Write the equation <span class="math notranslate nohighlight">\(A\x=\ld\x\)</span> as <span class="math notranslate nohighlight">\((A-\ld I)\x=\0\)</span>.
+The matrix <span class="math notranslate nohighlight">\(A-\ld I\)</span> times the eigenvector <span class="math notranslate nohighlight">\(\x\)</span> is the zero vector.
+<strong>The eigenvectors make up the nullspace of</strong> <span class="math notranslate nohighlight">\(A-\ld I\)</span>.
+When we know an eigenvalue <span class="math notranslate nohighlight">\(\ld\)</span>, we find an eigenvector by solving <span class="math notranslate nohighlight">\((A-\ld I)\x-\0\)</span>.</p>
+<p>If <span class="math notranslate nohighlight">\((A-\ld I)\x=\0\)</span> has a nonzero solution, <span class="math notranslate nohighlight">\(A-\ld I\)</span> is not invertible.
+<strong>The determinant of</strong> <span class="math notranslate nohighlight">\(A\ld I\)</span> <strong>must be zero</strong>.
+This is how to recognize an eigenvalue <span class="math notranslate nohighlight">\(\ld\)</span>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Eigenvalues</strong>: The number <span class="math notranslate nohighlight">\(\ld\)</span> is an eigenvalue of <span class="math notranslate nohighlight">\(A\)</span> if and only if <span class="math notranslate nohighlight">\(A-\ld I\)</span> is singular.</p>
+<ul class="simple">
+<li><p><strong>Equation for the eigenvalues</strong>: <span class="math notranslate nohighlight">\(\det (A-\ld I)=0\)</span>.</p></li>
+</ul>
+</div>
+<p>This “<em>characteristic polynomial</em>” <span class="math notranslate nohighlight">\(\det(A-\ld I)\)</span> involves only <span class="math notranslate nohighlight">\(\ld\)</span>, not <span class="math notranslate nohighlight">\(\x\)</span>.
+When <span class="math notranslate nohighlight">\(A\)</span> is <span class="math notranslate nohighlight">\(n\)</span> by <span class="math notranslate nohighlight">\(n\)</span>, <span class="math notranslate nohighlight">\(\det(A-\ld I)\)</span> has degree <span class="math notranslate nohighlight">\(n\)</span>.
+Then <span class="math notranslate nohighlight">\(A\)</span> has <span class="math notranslate nohighlight">\(n\)</span> eigenvalues (repeats possible).
+Each <span class="math notranslate nohighlight">\(\ld\)</span> leads to <span class="math notranslate nohighlight">\(\x\)</span>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>For each eigenvalue</strong> <span class="math notranslate nohighlight">\(\ld\)</span> <strong>solve</strong> <span class="math notranslate nohighlight">\((A-\ld I)\x=\0\)</span> or
+<span class="math notranslate nohighlight">\(A\x=\ld\x\)</span> <strong>to find an eigenvector</strong> <span class="math notranslate nohighlight">\(\x\)</span>.</p>
+</div>
+<p><strong>Summary</strong>: To solve the eigenvalue problem for an <span class="math notranslate nohighlight">\(n\)</span> by <span class="math notranslate nohighlight">\(n\)</span> matrix, follow these steps:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>1. Compute the determinant of</strong> <span class="math notranslate nohighlight">\(A-\ld I\)</span>.
+With <span class="math notranslate nohighlight">\(\ld\)</span> subtracted along the diagonal, this determinant starts with <span class="math notranslate nohighlight">\(\ld^n\)</span> or <span class="math notranslate nohighlight">\(-\ld^n\)</span>.
+It is a polynomial in <span class="math notranslate nohighlight">\(\ld\)</span> of degree <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<p><strong>2. Find the roots of this polynomial</strong>, by solving <span class="math notranslate nohighlight">\(\det(A-\ld I)=0\)</span>.
+The <span class="math notranslate nohighlight">\(n\)</span> roots are the <span class="math notranslate nohighlight">\(n\)</span> eigenvalues of <span class="math notranslate nohighlight">\(A\)</span> singular.</p>
+<p><strong>3.</strong> For each eigenvalue <span class="math notranslate nohighlight">\(\ld\)</span>, <strong>solve</strong> <span class="math notranslate nohighlight">\((A-\ld I)\x=\0\)</span> <strong>to find an eigenvector</strong> <span class="math notranslate nohighlight">\(\x\)</span>.</p>
+</div>
+<p>A note on the eigenvectors of 2 by 2 matrices.
+When <span class="math notranslate nohighlight">\(A-\ld I\)</span> is singular, both rows are multiples of a vector <span class="math notranslate nohighlight">\((a,b)\)</span>.
+<em>The eigenvector is any multiple of</em> <span class="math notranslate nohighlight">\((b,-a)\)</span>.
+There is a whole <em>line of eigenvectors</em>–any nonzero multiple of <span class="math notranslate nohighlight">\(\x\)</span> is as good as <span class="math notranslate nohighlight">\(\x\)</span>.</p>
+<p>Some 2 by 2 matrices have only <em>one</em> line of eigenvectors.
+This can only happen when two eigenvalues are equal.
+(On the other hand <span class="math notranslate nohighlight">\(A=I\)</span> has equal eigenvalues and plenty of eigenvectors.)
+Without a full set of eigenvectors, we don’t have a basis.
+We can’t write every <span class="math notranslate nohighlight">\(\v\)</span> as a combination of eigenvectors.</p>
 </div>
 <div class="section" id="determinant-and-trace">
 <h2>Determinant and Trace<a class="headerlink" href="#determinant-and-trace" title="Permalink to this headline">¶</a></h2>
+<p><em>Elimination does not preserve the</em> <span class="math notranslate nohighlight">\(\ld\)</span>’s.
+The triangular <span class="math notranslate nohighlight">\(U\)</span> has <em>its</em> eigenvalues sitting along the diagonal–they are the pivots.
+But they are not the eigenvalues of <span class="math notranslate nohighlight">\(A\)</span>!</p>
+<p>The <em>product</em> <span class="math notranslate nohighlight">\(\ld_1\)</span> <em>times</em> <span class="math notranslate nohighlight">\(\ld_2\)</span> <em>and the sum</em>
+<span class="math notranslate nohighlight">\(\ld_1+\ld_2\)</span> <em>can be found quickly from the matrix</em>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>The product of the</strong> <span class="math notranslate nohighlight">\(n\)</span> <strong>eigenvalues equals the determinant</strong>.
+<strong>The sum of the</strong> <span class="math notranslate nohighlight">\(n\)</span> <strong>eigenvalues equals the sum of the</strong> <span class="math notranslate nohighlight">\(n\)</span> <strong>diagonal entries</strong>.</p>
+</div>
+<p>The sum of the entries along the main diagonal is called the <strong>trace</strong> of <span class="math notranslate nohighlight">\(A\)</span>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(\ld_1+\ld_2+\cds+\ld_n=\bs{trace}=a_{11}+a_{22}+\cds+a_{nn}\)</span>.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>Why do the eigenvalues of a triangular matrix lie along its diagonal?</strong></p>
+</div>
 </div>
 <div class="section" id="imaginary-eigenvalues">
 <h2>Imaginary Eigenvalues<a class="headerlink" href="#imaginary-eigenvalues" title="Permalink to this headline">¶</a></h2>
+<p>The eigenvalues might not be real numbers.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>The</strong> <span class="math notranslate nohighlight">\(90^{\circ}\)</span> <strong>rotation</strong> <span class="math notranslate nohighlight">\(Q=\bb 0&amp;-1\\1&amp;0 \eb\)</span> <strong>has no real eigenvectors</strong>.
+<strong>Its eigenvalues are</strong> <span class="math notranslate nohighlight">\(\ld_1=i\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(\ld_2=-i\)</span>.
+Then <span class="math notranslate nohighlight">\(\ld_1+\ld_2=trace=0\)</span> and <span class="math notranslate nohighlight">\(\ld_1\ld_2=determinant=1\)</span>.</p>
+</div>
+<p>After a rotation, <em>no real vector</em> <span class="math notranslate nohighlight">\(Q\x\)</span> <em>stays in the same direection as</em> <span class="math notranslate nohighlight">\(\x\)</span> (<span class="math notranslate nohighlight">\(\x=\0\)</span> is useless).
+There cannot be an eigenvector, unless we go to <strong>imaginary numbers</strong>.</p>
+<p>To see how <span class="math notranslate nohighlight">\(i=\sqrt{-1}\)</span> can help, look at <span class="math notranslate nohighlight">\(Q^2\)</span> which is <span class="math notranslate nohighlight">\(-I\)</span>.
+If <span class="math notranslate nohighlight">\(Q\)</span> is rotation through <span class="math notranslate nohighlight">\(90^{\circ}\)</span>, then <span class="math notranslate nohighlight">\(Q^2\)</span> is rotation through <span class="math notranslate nohighlight">\(180^{\circ}\)</span>.
+Its eigenvalues are -1 and 1.
+(Certainly <span class="math notranslate nohighlight">\(-I\x=1\x\)</span>.)
+Squaring <span class="math notranslate nohighlight">\(Q\)</span> will square each <span class="math notranslate nohighlight">\(\ld\)</span>, so we must have <span class="math notranslate nohighlight">\(\ld^2=-1\)</span>.
+<em>The eigenvalues of the</em> <span class="math notranslate nohighlight">\(90^\circ\)</span> <em>rotation matrix</em> <span class="math notranslate nohighlight">\(Q\)</span> <em>are</em>
+<span class="math notranslate nohighlight">\(+i\)</span> <em>and</em> <span class="math notranslate nohighlight">\(-1\)</span>, because <span class="math notranslate nohighlight">\(i^2=-1\)</span>.</p>
+<p>Those <span class="math notranslate nohighlight">\(\ld\)</span>’s come as usual from <span class="math notranslate nohighlight">\(\det(Q-\ld I)=0\)</span>.
+This equation gives <span class="math notranslate nohighlight">\(\ld^2+1=0\)</span>.
+Its root are <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(-i\)</span>.
+We meet the imaginary number <span class="math notranslate nohighlight">\(i\)</span> also in the eigenvectors:</p>
+<p><strong>Complex eigenvectors</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb 0&amp;-1\\1&amp;0 \eb\bb 1\\i \eb=-i\bb 1\\i \eb\quad\rm{and}\quad\bb 0&amp;-1\\1&amp;0 \eb\bb i\\1 \eb=i\bb i\\1 \eb.\end{split}\]</div>
+<p>Somehow these complelx vectors <span class="math notranslate nohighlight">\(\x_1=(1,i)\)</span> and <span class="math notranslate nohighlight">\(\x_2=(i,1)\)</span> keep their direction as they are rotated.
+The particualr eigenvalues <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(-i\)</span> also illustrate two special properties of <span class="math notranslate nohighlight">\(Q\)</span>:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(Q\)</span> is an orthogonal matrix so the absolute value of each <span class="math notranslate nohighlight">\(\ld\)</span> is <span class="math notranslate nohighlight">\(|\ld|=1\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(Q\)</span> is a skew-symmetric matrix so each <span class="math notranslate nohighlight">\(\ld\)</span> is pure imaginary.</p></li>
+</ol>
+</div></blockquote>
+<p>A symmetric matrix (<span class="math notranslate nohighlight">\(S^T=S\)</span>) can be compared to a real number.
+A skew-symmetric matrix (<span class="math notranslate nohighlight">\(A^T=-A\)</span>) can be compared to an imaginary number.
+An orthogonal matrix matrix (<span class="math notranslate nohighlight">\(Q^TQ=I\)</span>) corresponds to a complex number with <span class="math notranslate nohighlight">\(|\ld=1|\)</span>.
+For the eigenvalues of <span class="math notranslate nohighlight">\(S\)</span> and <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(Q\)</span>, those are more than analogies.</p>
+<p>The eigenvectors for all these special matrices are perpendicular.</p>
 </div>
 <div class="section" id="eigenvalues-of-ab-and-a-b">
 <h2>Eigenvalues of <span class="math notranslate nohighlight">\(AB\)</span> and <span class="math notranslate nohighlight">\(A+B\)</span><a class="headerlink" href="#eigenvalues-of-ab-and-a-b" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> share the same <span class="math notranslate nohighlight">\(n\)</span> <em>independent</em> eigenvectors if and only if <span class="math notranslate nohighlight">\(AB=BA\)</span>.</p>
+</div>
+<p><strong>Heisenberg’s uncertainty principle</strong>: In quantum mechancis, the position
+matrix <span class="math notranslate nohighlight">\(P\)</span> and the momemtum matrix <span class="math notranslate nohighlight">\(Q\)</span> do not commute.
+In fact <span class="math notranslate nohighlight">\(QP-PQ=I\)</span> (these are infinite matrices).</p>
 </div>
 </div>
 
