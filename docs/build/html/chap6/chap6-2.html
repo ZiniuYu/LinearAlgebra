@@ -96,7 +96,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../chap5/index5.html">Chapter 5 Determinants</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index6.html">Chapter 6 Eigenvalues and Eigenvectors</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="chap6-1.html">Chapter 6.1 Introduction to Eigenvalues</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 6.2 Diagonalizing a Matrix</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 6.2 Diagonalizing a Matrix</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#similar-matrices-same-eigenvalues">Similar Matrices: Same Eigenvalues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fibonacci-numbers">Fibonacci numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#matrix-powers-a-k">Matrix Powers <span class="math notranslate nohighlight">\(A^k\)</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nondiagonalizable-matrices-optional">Nondiagonalizable Matrices (Optional)</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="chap6-3.html">Chapter 6.3 Systems of Differential Equations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chap6-4.html">Chapter 6.4 Symmetric Matrices</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chap6-5.html">Chapter 6.5 Positive Definite Matrices</a></li>
@@ -177,6 +183,7 @@
 \newcommand{\dp}{\displaystyle}
 \newcommand{\rm}{\mathrm}\\\newcommand{\cd}{\cdot}
 \newcommand{\cds}{\cdots}
+\newcommand{\dds}{\ddots}
 \newcommand{\vds}{\vdots}
 \newcommand{\lv}{\lVert}
 \newcommand{\rv}{\rVert}
@@ -195,7 +202,8 @@
 \newcommand{\y}{\boldsymbol{y}}\\\newcommand{\A}{\boldsymbol{A}}
 \newcommand{\B}{\boldsymbol{B}}
 \newcommand{\C}{\boldsymbol{C}}
-\newcommand{\N}{\boldsymbol{N}}\\\newcommand{\R}{\boldsymbol{\mathrm{R}}}\\\newcommand{\ld}{\lambda}\\\newcommand{\bb}{\begin{bmatrix}}
+\newcommand{\N}{\boldsymbol{N}}\\\newcommand{\R}{\boldsymbol{\mathrm{R}}}\\\newcommand{\ld}{\lambda}
+\newcommand{\Ld}{\Lambda}\\\newcommand{\bb}{\begin{bmatrix}}
 \newcommand{\eb}{\end{bmatrix}}
 \newcommand{\bv}{\begin{vmatrix}}
 \newcommand{\ev}{\end{vmatrix}}\\\newcommand{\im}{^{-1}}
@@ -203,6 +211,156 @@
 \newcommand{\ppr}{^{\prime\prime}}\end{aligned}\end{align} \]</div>
 <div class="section" id="chapter-6-2-diagonalizing-a-matrix">
 <h1>Chapter 6.2 Diagonalizing a Matrix<a class="headerlink" href="#chapter-6-2-diagonalizing-a-matrix" title="Permalink to this headline">¶</a></h1>
+<p>When <span class="math notranslate nohighlight">\(\x\)</span> is an eigenvector, multiplication by <span class="math notranslate nohighlight">\(A\)</span> is just
+multiplication by a number <span class="math notranslate nohighlight">\(\ld\)</span>: <span class="math notranslate nohighlight">\(A\x=\ld\x\)</span>.</p>
+<p>The point of this section is very direct.
+<strong>The matrix</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>turns into a diagonal matrix</strong> <span class="math notranslate nohighlight">\(\Ld\)</span> <strong>when we use the eigenvectors properly</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Diagonalization</strong>: Suppose the <span class="math notranslate nohighlight">\(n\)</span> by <span class="math notranslate nohighlight">\(n\)</span> matrix <span class="math notranslate nohighlight">\(A\)</span> has
+<span class="math notranslate nohighlight">\(n\)</span> linearly independent eigenvectors <span class="math notranslate nohighlight">\(\x1,\cds,\x_n\)</span>.
+Put them into the columns of an <strong>eigenvector matrix</strong> <span class="math notranslate nohighlight">\(X\)</span>.
+Then <span class="math notranslate nohighlight">\(X\im AX\)</span> is the <strong>eigenvalue matrix</strong> <span class="math notranslate nohighlight">\(\Ld\)</span>:</p>
+<ul class="simple">
+<li><p><strong>Eigenvector matrix</strong> <span class="math notranslate nohighlight">\(X\)</span>, <strong>Eigenvalue matrix</strong> <span class="math notranslate nohighlight">\(\Ld\)</span>:
+<span class="math notranslate nohighlight">\(X\im AX=\Ld=\bb \ld_1\\&amp;\dds\\&amp;&amp;\ld_n \eb\)</span>.</p></li>
+</ul>
+</div>
+<p>The matrix <span class="math notranslate nohighlight">\(A=\bb 1&amp;5\\0&amp; 6\eb\)</span> is triangular so its eigenvalues are on the diagonal: <span class="math notranslate nohighlight">\(\ld_1=1,\ld_2=6\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Eigenvectors go into</strong> <span class="math notranslate nohighlight">\(X\)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\bb 1\\0 \eb\bb 1\\1 \eb\)</span>.</p></li>
+</ul>
+</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb 1&amp;-1\\0&amp;1 \eb\bb 1&amp;5\\0&amp;6 \eb\bb 1&amp;1\\0&amp;1 \eb=\bb 1&amp;0\\0&amp;6 \eb.\end{split}\]</div>
+<p>In other words <span class="math notranslate nohighlight">\(A=X\Ld X\im\)</span>.
+Then <span class="math notranslate nohighlight">\(A^2=X\Ld X\im X\Ld X\im=X\Ld^2X\im\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(A^2\)</span> <strong>has the same eigenvectors in</strong> <span class="math notranslate nohighlight">\(X\)</span> <strong>and squared eigenvalues in</strong> <span class="math notranslate nohighlight">\(\Ld^2\)</span>.</p>
+<p><strong>Why is</strong> <span class="math notranslate nohighlight">\(AX=X\Ld\)</span>?
+<span class="math notranslate nohighlight">\(A\)</span> multiplies its eigenvectors, which are the columns of <span class="math notranslate nohighlight">\(X\)</span>.
+The first column of <span class="math notranslate nohighlight">\(AX\)</span> is <span class="math notranslate nohighlight">\(A\x_1\)</span>.
+That is <span class="math notranslate nohighlight">\(\ld_1\x_1\)</span>.
+Each column of <span class="math notranslate nohighlight">\(X\)</span> is multiplied by its eigenvalue:</p>
+<p><span class="math notranslate nohighlight">\(A\)</span> <strong>times</strong> <span class="math notranslate nohighlight">\(X\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}AX=A\bb \\\ \x_1&amp;\cds&amp;\x_n \\\ \eb=\bb \\\ \ld_1\x_1&amp;\cds&amp;\ld_n\x_n \\\ \eb.\end{split}\]</div>
+<p>The trick is to split thsis matrix <span class="math notranslate nohighlight">\(AX\)</span> into <span class="math notranslate nohighlight">\(X\)</span> times <span class="math notranslate nohighlight">\(\Ld\)</span>:</p>
+<p><span class="math notranslate nohighlight">\(X\)</span> <strong>times</strong> <span class="math notranslate nohighlight">\(\Ld\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb \\\ \ld_1\x_1&amp;\cds&amp;\ld_n\x_n \\\ \eb=\bb \\\ \x_1&amp;\cds&amp;\x_n \\\ \eb\bb \ld_1\\&amp;\dds\\&amp;&amp;\ld_n \eb=X\Ld.\end{split}\]</div>
+<p>Keep those matrices in the right order.
+Then <span class="math notranslate nohighlight">\(\ld_1\)</span> multiplies the first column <span class="math notranslate nohighlight">\(\x_1\)</span>, as shown.
+The diagonalization is complete, and we can write <span class="math notranslate nohighlight">\(AX=X\Ld\)</span> in two good ways:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(AX=X\Ld\)</span> is <span class="math notranslate nohighlight">\(X\im AX=\Ld\)</span> or <span class="math notranslate nohighlight">\(A=X\Ld X\im\)</span>.</p>
+</div>
+<p>The matrix <span class="math notranslate nohighlight">\(X\)</span> has an inverse, because its columns (the eigenvectors of
+<span class="math notranslate nohighlight">\(A\)</span>) were assumede to be linearly independent.
+<em>Without</em> <span class="math notranslate nohighlight">\(n\)</span> <em>independent eigenvectors, we can’t diagonalize</em>.</p>
+<p><span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(\Ld\)</span> have the same eigenvalues <span class="math notranslate nohighlight">\(\ld_1,\cds,\ld_n\)</span>.
+The eigenvectors are different.
+The <span class="math notranslate nohighlight">\(k\)</span> which is easy to compute:</p>
+<div class="math notranslate nohighlight">
+\[A^k=(X\Ld X\im)(X\Ld X\im)\cds(X\Ld X\im)=X\Ld^kX\im.\]</div>
+<p><strong>Powers of</strong> <span class="math notranslate nohighlight">\(A\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb 1&amp;5\\0&amp;6 \eb^k=\bb 1&amp;1\\0&amp;1 \eb\bb 1\\&amp;6^k \eb\bb 1&amp;-1\\0&amp;1 \eb=\bb 1&amp;6^k-1\\0&amp;6^k \eb=A^k.\end{split}\]</div>
+<p><strong>Remark 1</strong>: Suppose the eigenvalues <span class="math notranslate nohighlight">\(\ld_1,\cds,\ld_n\)</span> are all different.
+Then it is automatic that the eigenvectors <span class="math notranslate nohighlight">\(\x_1,cds,\x+n\)</span> are independent.
+The eigenvector matrix <span class="math notranslate nohighlight">\(X\)</span> will be <em>invertible</em>.
+<strong>Any matrix that has no repeated eigenvalues can be diagonalized</strong>.</p>
+<p><strong>Remark 2</strong>: <strong>We can multiply eigenvectors by any nonzero constants</strong>.
+<span class="math notranslate nohighlight">\(A(c\x)=\ld(c\x)\)</span> is still true.</p>
+<p><strong>Remark 3</strong>: The eigenvectors in <span class="math notranslate nohighlight">\(X\)</span> come in the same order as the eigenvalues in <span class="math notranslate nohighlight">\(Ld\)</span>.
+To reverse the order in <span class="math notranslate nohighlight">\(\Ld\)</span>, put the eigenvector <span class="math notranslate nohighlight">\((1,1)\)</span> before <span class="math notranslate nohighlight">\((1,0)\)</span> in <span class="math notranslate nohighlight">\(X\)</span>:</p>
+<blockquote>
+<div><p><strong>New order</strong> :math;`6,1`:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb 0&amp;1\\1&amp;-1 \eb\bb 1&amp;5\\0&amp;6 \eb\bb 1&amp;1\\1&amp;0 \eb=\bb 6&amp;0\\0&amp;1 \eb=\Ld_{\rm{new}}.\end{split}\]</div>
+<p>To diagonalize <span class="math notranslate nohighlight">\(A\)</span> we <em>must</em> use an eigenvector matrix.
+From <span class="math notranslate nohighlight">\(X\im AX=\Ld\)</span> we know that <span class="math notranslate nohighlight">\(AX=X\Ld\)</span>.
+Suppose the first column of <span class="math notranslate nohighlight">\(X\)</span> is <span class="math notranslate nohighlight">\(\x\)</span>.
+Then the first columns of <span class="math notranslate nohighlight">\(AX\)</span> and <span class="math notranslate nohighlight">\(X\Ld\)</span> are <span class="math notranslate nohighlight">\(A\x\)</span> and <span class="math notranslate nohighlight">\(\ld_1\x\)</span>.
+For those to be equal, <span class="math notranslate nohighlight">\(\x\)</span> must be an eigenvector.</p>
+</div></blockquote>
+<p><strong>Remark 4</strong> (repeated warning for repeated eigenvalues): Some matrices have too few eigenvectors.
+<em>Those matrices cannot be diagonalized</em>.</p>
+<blockquote>
+<div><p><strong>Not diagnoalizable</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A=\bb 1&amp;-1\\1&amp;-1 \eb\quad \rm{and} \quad B=\bb 0&amp;1\\0&amp;1 \eb.\end{split}\]</div>
+<p>Their engenvalues happen to be 0 and 0.
+Nothing is special about <span class="math notranslate nohighlight">\(\ld=0\)</span>, the problem is the repetition of <span class="math notranslate nohighlight">\(\ld\)</span>.
+All eigenvectors of the first matrix are multiples of <span class="math notranslate nohighlight">\((1,1)\)</span>:</p>
+<p><strong>Only one line of eigenvectors</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A\x=0\x \quad\rm{means}\quad \bb 1&amp;-1\\1&amp;-1 \eb\bb \\\ \x\\\ \eb=\bb 0\\0 \eb\quad\rm{and}\quad \x=c\bb 1\\1 \eb.\end{split}\]</div>
+<p>There is no second eigenvector, so this unusual matrix <span class="math notranslate nohighlight">\(A\)</span> cannot be diagonalized.</p>
+<ul class="simple">
+<li><p><strong>Invertibility</strong> is concerned with the <strong>eigenvalues</strong> (<span class="math notranslate nohighlight">\(\ld=0\)</span> or <span class="math notranslate nohighlight">\(\ld\neq 0\)</span>).</p></li>
+<li><p><strong>Diagonalizability</strong> is concerned with the <strong>eigenvectors</strong> (too few or enough for <span class="math notranslate nohighlight">\(X\)</span>).</p></li>
+</ul>
+<p>Each eigenvalue has at least one eigenvector.
+<span class="math notranslate nohighlight">\(A-\ld I\)</span> is singular.
+If <span class="math notranslate nohighlight">\((A-\ld I)\x=\0\)</span> leads you to <span class="math notranslate nohighlight">\(\x=\0\)</span>, <span class="math notranslate nohighlight">\(\ld\)</span> is <em>not</em> an eigenvalue.
+Look for a mistake in solving <span class="math notranslate nohighlight">\(\det(A-\ld I)=0\)</span>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>Eigenvectors for</strong> <span class="math notranslate nohighlight">\(n\)</span> <strong>different</strong> <span class="math notranslate nohighlight">\(\ld\)</span><strong>’s are independent</strong>.
+<strong>Then we can diagonalize</strong> <span class="math notranslate nohighlight">\(A\)</span>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Independent</strong> <span class="math notranslate nohighlight">\(\x\)</span> <strong>from different</strong> <span class="math notranslate nohighlight">\(\ld\)</span>: Eigenvectors
+<span class="math notranslate nohighlight">\(\x_1,\cds,\x_j\)</span> that correspond to distinct (all different)
+eigenvalues are linearly independent.
+An <span class="math notranslate nohighlight">\(n\)</span> by <span class="math notranslate nohighlight">\(n\)</span> matrix that has <span class="math notranslate nohighlight">\(n\)</span> different
+eigenvalues (no repeated <span class="math notranslate nohighlight">\(\ld\)</span>’s) must be diagonalizable.</p>
+</div>
+<p><strong>Proof</strong>: Suppose <span class="math notranslate nohighlight">\(c_1\x_1+c_2\x_2=\0\)</span>.
+Multiply by <span class="math notranslate nohighlight">\(A\)</span> to find <span class="math notranslate nohighlight">\(c_1\ld_1\x_1+c_2\ld_2\x_2=\0\)</span>.
+Multiply by <span class="math notranslate nohighlight">\(\ld_2\)</span> to find <span class="math notranslate nohighlight">\(c_1\ld_2\x_1+c_2\ld_2\x_2=\0\)</span>.
+Now subtract one from the other: Subtraction leaves <span class="math notranslate nohighlight">\((\ld_1-\ld_2)c_1\x_1=\0\)</span>.
+Therefore <span class="math notranslate nohighlight">\(c_1=0\)</span>.</p>
+<blockquote>
+<div><p>Since the <span class="math notranslate nohighlight">\(\ld\)</span>’s are different and <span class="math notranslate nohighlight">\(\x_1\neq\0\)</span>, we are forced to the conclusion that <span class="math notranslate nohighlight">\(c_1=0\)</span>.
+Similarly <span class="math notranslate nohighlight">\(c_2=0\)</span>.
+Only the combination with <span class="math notranslate nohighlight">\(c_1=c_2=0\)</span> gives <span class="math notranslate nohighlight">\(c_1\x_1+c_2\x_2=\0\)</span>.
+So the eigenvectors <span class="math notranslate nohighlight">\(\x_1\)</span> and <span class="math notranslate nohighlight">\(\x_2\)</span> must be independent.</p>
+</div></blockquote>
+<p>This proof extends directly to <span class="math notranslate nohighlight">\(j\)</span> eigenvectors.
+Suppose that <span class="math notranslate nohighlight">\(c_1\x_1+\cds+c_j\x_j=\0\)</span>,
+Multiply by <span class="math notranslate nohighlight">\(A\)</span>, multiply by <span class="math notranslate nohighlight">\(\ld_j\)</span> and subtract.
+This multiplies <span class="math notranslate nohighlight">\(\x_j\)</span> by <span class="math notranslate nohighlight">\(\ld_j-\ld_j=0\)</span>, and <span class="math notranslate nohighlight">\(\x_j\)</span> is gone.
+Now multiply by <span class="math notranslate nohighlight">\(A\)</span> and by <span class="math notranslate nohighlight">\(\ld_{j-1}\)</span> and subtract.
+This removes <span class="math notranslate nohighlight">\(\x_{j-1}\)</span>.
+Eventually only <span class="math notranslate nohighlight">\(\x_1\)</span> is left: We reach
+<span class="math notranslate nohighlight">\((\ld_1-\ld_2)\cds(\ld_1-\ld_j)c_1\x_1=\0\)</span> which forces <span class="math notranslate nohighlight">\(c_1=0\)</span>.</p>
+<p>Similarly every <span class="math notranslate nohighlight">\(c_i=0\)</span>.
+When the <span class="math notranslate nohighlight">\(\ld\)</span>’s are all different, the eigenvectors are independent.
+A full set of eigenvectors can go into the columns of the eigenvector matrix <span class="math notranslate nohighlight">\(X\)</span>.</p>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Question</strong>: When does <span class="math notranslate nohighlight">\(A^k\rightarrow zero\ matrix\)</span>?
+<strong>Answer</strong>: All <span class="math notranslate nohighlight">\(|\ld|&lt;1\)</span>.</p>
+</div>
+<div class="section" id="similar-matrices-same-eigenvalues">
+<h2>Similar Matrices: Same Eigenvalues<a class="headerlink" href="#similar-matrices-same-eigenvalues" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="fibonacci-numbers">
+<h2>Fibonacci numbers<a class="headerlink" href="#fibonacci-numbers" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="matrix-powers-a-k">
+<h2>Matrix Powers <span class="math notranslate nohighlight">\(A^k\)</span><a class="headerlink" href="#matrix-powers-a-k" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="nondiagonalizable-matrices-optional">
+<h2>Nondiagonalizable Matrices (Optional)<a class="headerlink" href="#nondiagonalizable-matrices-optional" title="Permalink to this headline">¶</a></h2>
+</div>
 </div>
 
 

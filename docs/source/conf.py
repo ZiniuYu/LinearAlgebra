@@ -62,6 +62,7 @@ rst_prolog = r'''
     
     \newcommand{\cd}{\cdot}
     \newcommand{\cds}{\cdots}
+    \newcommand{\dds}{\ddots}
     \newcommand{\vds}{\vdots}
     \newcommand{\lv}{\lVert}
     \newcommand{\rv}{\rVert}
@@ -89,6 +90,7 @@ rst_prolog = r'''
     \newcommand{\R}{\boldsymbol{\mathrm{R}}}
 
     \newcommand{\ld}{\lambda}
+    \newcommand{\Ld}{\Lambda}
 
     \newcommand{\bb}{\begin{bmatrix}}
     \newcommand{\eb}{\end{bmatrix}}
