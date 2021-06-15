@@ -13,6 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -29,11 +31,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -310,7 +312,7 @@ If <span class="math notranslate nohighlight">\((A-\ld I)\x=\0\)</span> leads yo
 Look for a mistake in solving <span class="math notranslate nohighlight">\(\det(A-\ld I)=0\)</span>.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p><strong>Eigenvectors for</strong> <span class="math notranslate nohighlight">\(n\)</span> <strong>different</strong> <span class="math notranslate nohighlight">\(\ld\)</span><strong>’s are independent</strong>.
+<p><strong>Eigenvectors for</strong> <span class="math notranslate nohighlight">\(n\)</span> <strong>different</strong> <span class="math notranslate nohighlight">\(\ld\)</span><strong>‘s are independent</strong>.
 <strong>Then we can diagonalize</strong> <span class="math notranslate nohighlight">\(A\)</span>.</p>
 </div>
 <div class="admonition note">
@@ -351,15 +353,166 @@ A full set of eigenvectors can go into the columns of the eigenvector matrix <sp
 </div>
 <div class="section" id="similar-matrices-same-eigenvalues">
 <h2>Similar Matrices: Same Eigenvalues<a class="headerlink" href="#similar-matrices-same-eigenvalues" title="Permalink to this headline">¶</a></h2>
+<p>Suppose the eigenvalue matrix <span class="math notranslate nohighlight">\(\Ld\)</span> is fixed.
+As we change the eigenvector matrix <span class="math notranslate nohighlight">\(X\)</span>, we get a whole family of
+different matrices <span class="math notranslate nohighlight">\(A=X\Ld X\im\)</span>–<em>all with the same eigenvalues in</em>
+<span class="math notranslate nohighlight">\(\Ld\)</span>.
+All those matrices <span class="math notranslate nohighlight">\(A\)</span> (with the same <span class="math notranslate nohighlight">\(\Ld\)</span>) are called <em>similar*</em>.</p>
+<p>This idea extends to matrices that can’t be diagonalized.
+Again we choose one constant matrix <span class="math notranslate nohighlight">\(C\)</span> (not necessariily <span class="math notranslate nohighlight">\(\Ld\)</span>).
+And we look at the whole family of matrices <span class="math notranslate nohighlight">\(A=BCB\im\)</span>, allowing all invertible matrices <span class="math notranslate nohighlight">\(B\)</span>.
+Again those matrices <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(C\)</span> are called <strong>similar</strong>.</p>
+<p>We are using <span class="math notranslate nohighlight">\(C\)</span> instead of <span class="math notranslate nohighlight">\(\Ld\)</span> because <span class="math notranslate nohighlight">\(C\)</span> might not be diagonal.
+We are using <span class="math notranslate nohighlight">\(B\)</span> instead of <span class="math notranslate nohighlight">\(X\)</span> because the columns of <span class="math notranslate nohighlight">\(B\)</span> might not be eigenvectors.
+We only require that <span class="math notranslate nohighlight">\(B\)</span> is invertible–its columns can cantain any basis for <span class="math notranslate nohighlight">\(\R^n\)</span>.
+<strong>Similar matrices</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(C\)</span> <strong>have the same eigenvalues</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>All the matrices</strong> <span class="math notranslate nohighlight">\(A=BCB\im\)</span> <strong>are “similar”</strong>.
+<strong>They all share the eigenvalues of</strong> <span class="math notranslate nohighlight">\(C\)</span>.</p>
+</div>
+<p><strong>Proof</strong>: Suppose <span class="math notranslate nohighlight">\(C\x=\ld\x\)</span>.
+Then <span class="math notranslate nohighlight">\(BCB\im\)</span>ld` with the new eigenvector <span class="math notranslate nohighlight">\(B\x\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[Same\ \ld\quad(BCB\im)(B\x)=BC\x=B\ld\x=\ld(B\x).\]</div>
+<p>A fixed matrix <span class="math notranslate nohighlight">\(C\)</span> produces a family of similar matrices <span class="math notranslate nohighlight">\(BCB\im\)</span>, allowing all <span class="math notranslate nohighlight">\(B\)</span>.
+When <span class="math notranslate nohighlight">\(C\)</span> is the identity matrix, the “family” is very small.
+The only member is <span class="math notranslate nohighlight">\(BIB\im=I\)</span>.
+The identity matrix is the only diagonalizable matrix with all eigenvalues <span class="math notranslate nohighlight">\(\ld=1\)</span>.</p>
+<p>The family is larger when <span class="math notranslate nohighlight">\(\ld=1\)</span> and <span class="math notranslate nohighlight">\(1\)</span> <em>with only one eigenvector</em> (not diagonalizable).
+The simpliest <span class="math notranslate nohighlight">\(C\)</span> is the <em>Jordan form</em>.
+All the similar <span class="math notranslate nohighlight">\(A\)</span>’s have two parameters <span class="math notranslate nohighlight">\(r\)</span> and <span class="math notranslate nohighlight">\(s\)</span>, not
+both zero: always determinant = 1 and trace = 2.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}C=\bb 1&amp;1\\0&amp;1 \eb=\rm{\ Jordan\ form\ gives\ }A=BCB\im=\bb 1-rs&amp;r^2\\-s^2&amp;1+rs \eb.\end{split}\]</div>
 </div>
 <div class="section" id="fibonacci-numbers">
 <h2>Fibonacci numbers<a class="headerlink" href="#fibonacci-numbers" title="Permalink to this headline">¶</a></h2>
+<p><strong>Every new Fibonacci number is the sum of the two previous</strong> <span class="math notranslate nohighlight">\(F\)</span><strong>‘s</strong>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>The sequence</strong> <span class="math notranslate nohighlight">\(0,1,1,2,3,5,8,13,\cds\)</span> <strong>comes from</strong> <span class="math notranslate nohighlight">\(F_{k+2}=F_{k+1}+F_k\)</span>.</p>
+</div>
+<p><strong>Problem: Find the Fibonacci number</strong> <span class="math notranslate nohighlight">\(F_{100}\)</span>: The slow way is to apply the rule <span class="math notranslate nohighlight">\(F_{k+2}=F_{k+1}+F_k\)</span>.
+Linear algebra gives a better way.</p>
+<p>The key is to begin with a matrix equation <span class="math notranslate nohighlight">\(\u_{k+1}=A\u_k\)</span>.
+That is a <em>one-step</em> rule for vectors, while Fibonacci gave a two-step rule for scalars.
+We match those rules by putting two Fibonacci numbers into a vector.
+Then you will see the matrix <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Let <span class="math notranslate nohighlight">\(\u_k=\bb F_{k+1}\\F_k \eb\)</span>.
+The rule <span class="math notranslate nohighlight">\(\begin{matrix}F_{k+2}=F_{k+1}+F_k\\F_{k+1}=F_{k+1}\quad\quad
+\end{matrix}\)</span> is <span class="math notranslate nohighlight">\(\u_{k+1}=\bb 1&amp;1\\1&amp;0 \eb\u_k\)</span>.</p>
+</div>
+<p><strong>Every step multiplies by</strong> <span class="math notranslate nohighlight">\(A=\bb 1&amp;1\\1&amp;0 \eb\)</span>.
+After 100 steps we reach <span class="math notranslate nohighlight">\(\u_{100}=A^{100}\u_0\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\u_0=\bb 1\\0 \eb, \u_1=\bb 1\\1 \eb, \u_2=\bb 2\\1 \eb, \u_3=\bb 3\\2 \eb, \cds, \u_{100}=\bb F_{101}\\F_{100} \eb.\end{split}\]</div>
+<p>Subtract <span class="math notranslate nohighlight">\(\ld\)</span> from the diagonal of <span class="math notranslate nohighlight">\(A\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A=\ld I=\bb 1-\ld&amp;1\\1&amp;-\ld \eb\quad\rm{leads\ to}\quad\det(A-\ld I)=\ld^2-\ld-1.\end{split}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Eigenvalues</strong>: <span class="math notranslate nohighlight">\(\dp\ld_1=\frac{1+\sqrt{5}}{2}\approx 1.618\)</span> and
+<span class="math notranslate nohighlight">\(\dp\ld_2=\frac{1-\sqrt{5}}{2}\approx -.618\)</span>.</p>
+</div>
+<p>These eigenvalues lead to eigenvectors <span class="math notranslate nohighlight">\(\x_1=(\ld_1,1)\)</span> and <span class="math notranslate nohighlight">\(\x_2=(\ld_2,1)\)</span>.
+Step 2 finds the combination of those eigenvectors that gives <span class="math notranslate nohighlight">\(\u_0=(1,0)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb 1\\0 \eb=\frac{1}{\ld_1-\ld_2}\left(\bb\ld_1\\1\eb-\bb\ld_2\\1\eb\right)
+\quad\rm{or}\quad\u_0=\frac{\x_1-\x_2}{\ld_1-\ld_2}.\end{split}\]</div>
+<p>Step 3 multiplies <span class="math notranslate nohighlight">\(u_0\)</span> by <span class="math notranslate nohighlight">\(A^{100}\)</span> to find <span class="math notranslate nohighlight">\(u_{100}\)</span>.
+The eigenvectors <span class="math notranslate nohighlight">\(\x_1\)</span> and <span class="math notranslate nohighlight">\(\x_2\)</span> stay separate!
+They are multiplied by <span class="math notranslate nohighlight">\((\ld_1)^{100}\)</span> and <span class="math notranslate nohighlight">\((\ld_2)^{100}\)</span>:</p>
+<p><strong>100 steps from</strong> <span class="math notranslate nohighlight">\(\u_0\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\u_{100}=\frac{(\ld_1)^{100}\x_1-(\ld_2)^{100}\x_2}{\ld_1-\ld_2}.\]</div>
+<p>We want <span class="math notranslate nohighlight">\(F_{100}=\)</span> second component of <span class="math notranslate nohighlight">\(\u_{100}\)</span>.
+The second components of <span class="math notranslate nohighlight">\(\x_1\)</span> and <span class="math notranslate nohighlight">\(\x_2\)</span> are 1.
+The difference between <span class="math notranslate nohighlight">\(\ld_1=(1+\sqrt{5})/2\)</span> and <span class="math notranslate nohighlight">\(\ld_2=(1-\sqrt{5})/2\)</span> is <span class="math notranslate nohighlight">\(\sqrt{5}\)</span>.
+And <span class="math notranslate nohighlight">\(\ld_2^{100}\approx 0\)</span>.</p>
+<p>100th Fibonacci number <span class="math notranslate nohighlight">\(=\dp\frac{\ld_1^{100}-\ld_2^{100}}{\ld_1-\ld_2}=\)</span>
+nearest integer to <span class="math notranslate nohighlight">\(\dp\frac{1}{\sqrt{5}}\left(\frac{1+\sqrt{5}}{2}\right)^{100}\)</span>.</p>
+<p>Every <span class="math notranslate nohighlight">\(F_k\)</span> is a whole number.
+The ratio <span class="math notranslate nohighlight">\(F_{101}/F_{100}\)</span> must be very close to the limiting ratio <span class="math notranslate nohighlight">\((1+\sqrt{5})/2\)</span>.
+This number is the “<em>golden mean</em>”.</p>
 </div>
 <div class="section" id="matrix-powers-a-k">
 <h2>Matrix Powers <span class="math notranslate nohighlight">\(A^k\)</span><a class="headerlink" href="#matrix-powers-a-k" title="Permalink to this headline">¶</a></h2>
+<p>Fibonacci’s example is a typical difference equation <span class="math notranslate nohighlight">\(\u_{k+1}=A\u_k\)</span>.
+<strong>Each step multiplies by</strong> <span class="math notranslate nohighlight">\(A\)</span>.
+The solution is <span class="math notranslate nohighlight">\(\u_k=A^k\u_0\)</span>.</p>
+<p>The eigenvector matrix <span class="math notranslate nohighlight">\(X\)</span> produces <span class="math notranslate nohighlight">\(A=X\Ld X\im\)</span>.
+This is a factorization of the matrix, like <span class="math notranslate nohighlight">\(A=LU\)</span> or <span class="math notranslate nohighlight">\(A=QR\)</span>.
+The new factorization is perfectly suited to computing powers, because
+<strong>every time</strong> <span class="math notranslate nohighlight">\(X\im\)</span> <strong>multiplies</strong> <span class="math notranslate nohighlight">\(X\)</span> <strong>we get</strong> <span class="math notranslate nohighlight">\(I\)</span>:</p>
+<p><strong>Powers of</strong> <span class="math notranslate nohighlight">\(A\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[A^k\u_0=(X\Ld X\im)\cds(X\Ld X\im)\u_0=X\Ld^kX\im\u_0.\]</div>
+<p>I will split <span class="math notranslate nohighlight">\(X\Ld^kX\im\u_0\)</span> into three steps that show how eigenvalues work:</p>
+<ol class="arabic simple">
+<li><p>Write <span class="math notranslate nohighlight">\(\u_0\)</span> as a combination <span class="math notranslate nohighlight">\(c_1\x_1+\cds+n_n\x_n\)</span> of the eigenvectors.
+Then <span class="math notranslate nohighlight">\(\bs{c}=X\im\u_0\)</span>.</p></li>
+<li><p>Multiply each eigenvector <span class="math notranslate nohighlight">\(\x_i\)</span> by <span class="math notranslate nohighlight">\((\ld_i)^k\)</span>.
+Now we have <span class="math notranslate nohighlight">\(\Ld^kX\im\u_0\)</span>.</p></li>
+<li><p>Add up the pieces <span class="math notranslate nohighlight">\(c_i(\ld_i)^k\x_i\)</span> to find the solution <span class="math notranslate nohighlight">\(\u_kA^k\u_0\)</span>.
+This is <span class="math notranslate nohighlight">\(X\Ld^kX\im\u_0\)</span>.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Solution for</strong> <span class="math notranslate nohighlight">\(\u_{k+1}=A\u_k\)</span>: <span class="math notranslate nohighlight">\(\u_k=A^k\u_0=c_1(\ld_1)^k\x_1+\cds+c_n(\ld_n)^k\x_n\)</span>.</p>
+</div>
+<p>In matrix language <span class="math notranslate nohighlight">\(A^k\)</span> equals <span class="math notranslate nohighlight">\((X\Ld X\im)^k\)</span> which is <span class="math notranslate nohighlight">\(X\)</span> times <span class="math notranslate nohighlight">\(\Ld^k\)</span> times <span class="math notranslate nohighlight">\(X\im\)</span>.
+In Step 1, the eigenvectors in <span class="math notranslate nohighlight">\(X\)</span> lead to the <span class="math notranslate nohighlight">\(c\)</span>’s in the combination <span class="math notranslate nohighlight">\(\u_0=c_1\x_1+\cds+c_n\x_n\)</span>:</p>
+<p><strong>Step 1</strong>: <span class="math notranslate nohighlight">\(\u_0=\bb \\\ \x_1&amp;\cds&amp;\x_n\\\ \eb\bb c_1\\\vds\\c_n \eb\)</span>.
+This says that <span class="math notranslate nohighlight">\(\u_0=X\bs{c}\)</span>.</p>
+<p>The coefficients in Step 1 are <span class="math notranslate nohighlight">\(\bs{c}=X\im\u_0\)</span>.
+Then Step 2 multiplies by <span class="math notranslate nohighlight">\(\Ld^k\)</span>.
+The final result <span class="math notranslate nohighlight">\(\u_k=\sum c_i(\ld_i)^k\x_i\)</span> in Step 3 is the product of
+<span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(\Ld^k\)</span> and <span class="math notranslate nohighlight">\(X\im\u_0\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A^k\u_0=X\Ld^kX\im\u_0=X\Ld^k\bs{c}=\bb \\\ \x_1&amp;\cds&amp;\x_n \\\ \eb
+\bb (\ld_1)^k\\&amp;\dds\\&amp;&amp;(\ld_n)^k \eb\bb c_1\\\vds\\c_n \eb.\end{split}\]</div>
+<p>The result is exactly <span class="math notranslate nohighlight">\(\u_k=c_1(\ld_1)^k\x_1+\cds+c_n(\ld_n)^k\x_n\)</span>.
+It solves <span class="math notranslate nohighlight">\(\u_{k+1}=A\u_k\)</span>.</p>
 </div>
 <div class="section" id="nondiagonalizable-matrices-optional">
 <h2>Nondiagonalizable Matrices (Optional)<a class="headerlink" href="#nondiagonalizable-matrices-optional" title="Permalink to this headline">¶</a></h2>
+<p>Suppose <span class="math notranslate nohighlight">\(\ld\)</span> is an eigenvalue of <span class="math notranslate nohighlight">\(A\)</span>.
+We discover that fact in two ways:</p>
+<p><strong>1. Eigenvectors</strong> (geometric): There are nonzero solutions to <span class="math notranslate nohighlight">\(A\x=\ld\x\)</span>.</p>
+<p><strong>2. Eigenvalues</strong> (algebraic): The determinant of <span class="math notranslate nohighlight">\(A-\ld I\)</span> is zero.</p>
+<p>The number <span class="math notranslate nohighlight">\(\ld\)</span> may be a simple eigenvalue or a multiple eigenvalue, and we want to know its <strong>multiplicity</strong>.
+Most eigenvalues have multiplicity <span class="math notranslate nohighlight">\(M=1\)</span> (simple eigenvalues).
+Then there is a single line of eigenvectors, and <span class="math notranslate nohighlight">\(\det(A-\ld I)\)</span> does not have a double factor.</p>
+<p>For exceptional matrices, an eigenvalue can be <strong>repeated</strong>.
+Then there are two different ways to count its multiplicity.
+Always GM <span class="math notranslate nohighlight">\(\leq\)</span> AM for each <span class="math notranslate nohighlight">\(\ld\)</span>:</p>
+<ol class="arabic simple">
+<li><p>(Geometric Multiplicity = GM): Count the <strong>independent eigenvectors</strong> for <span class="math notranslate nohighlight">\(\ld\)</span>.
+The GM is the dimension of the nullspace of <span class="math notranslate nohighlight">\(A-\ld I\)</span>.</p></li>
+<li><p>(Algebraic Multiplicity = AM): AM counts the <strong>repetitions of</strong> <span class="math notranslate nohighlight">\(\ld\)</span> among the eigenvalues.
+Look at the <span class="math notranslate nohighlight">\(n\)</span> roots of <span class="math notranslate nohighlight">\(\det(A-\ld I)=0\)</span>.</p></li>
+</ol>
+<p>If <span class="math notranslate nohighlight">\(A\)</span> has <span class="math notranslate nohighlight">\(\ld=4,4,4\)</span>, then that eigenvalue has AM = 3 and GM = 1, 2, or 3.</p>
+<p><strong>The shortage of eigenvectors when</strong> GM <strong>is below</strong> AM <strong>means that</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>is not diagonalizable</strong>.</p>
+<hr class="docutils" />
+<p><strong>If</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>is</strong> <span class="math notranslate nohighlight">\(m\)</span> <strong>by</strong> <span class="math notranslate nohighlight">\(n\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(B\)</span> <strong>is</strong>
+<span class="math notranslate nohighlight">\(n\)</span> <strong>by</strong> <span class="math notranslate nohighlight">\(m\)</span>, <strong>then</strong> <span class="math notranslate nohighlight">\(AB\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(BA\)</span>
+<strong>have same nonzero eigenvalues</strong>.</p>
+<p><strong>Proof</strong>: Start with this identity between square matrices (easily checked).
+The first and third matrices are inverses.
+The “size matrix” shows the shapes of all blocks.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb I&amp;-A\\0&amp;I \eb\bb AB&amp;0\\B&amp;0 \eb\bb I&amp;A\\0&amp;I \eb=\bb 0&amp;0\\B&amp;BA \eb\quad
+\bb m \times m&amp;m \times n\\n \times m&amp;n \times n \eb\end{split}\]</div>
+<p>This equation <span class="math notranslate nohighlight">\(D\im ED=F\)</span> says <span class="math notranslate nohighlight">\(F\)</span> <strong>is similar to</strong> <span class="math notranslate nohighlight">\(E\)</span>–they have the same <span class="math notranslate nohighlight">\(m+n\)</span> eigenvalues.</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(E=\bb AB&amp;0\\B&amp;0 \eb\)</span> has the <span class="math notranslate nohighlight">\(m\)</span> eigenvalues of <span class="math notranslate nohighlight">\(AB\)</span>, plus <span class="math notranslate nohighlight">\(n\)</span> zeros</p>
+<p><span class="math notranslate nohighlight">\(F=\bb 0&amp;0\\B&amp;BA \eb\)</span> has the <span class="math notranslate nohighlight">\(n\)</span> eigenvalues of <span class="math notranslate nohighlight">\(BA\)</span>, plus <span class="math notranslate nohighlight">\(m\)</span> zeros</p>
+</div></blockquote>
+<p>So <span class="math notranslate nohighlight">\(AB\)</span> and <span class="math notranslate nohighlight">\(BA\)</span> have the <strong>same eigenvalues</strong> except for <span class="math notranslate nohighlight">\(|n-m|\)</span> zeros.</p>
 </div>
 </div>
 

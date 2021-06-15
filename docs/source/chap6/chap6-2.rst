@@ -178,36 +178,218 @@ To reverse the order in :math:`\Ld`, put the eigenvector :math:`(1,1)` before :m
 Similar Matrices: Same Eigenvalues
 ----------------------------------
 
+Suppose the eigenvalue matrix :math:`\Ld` is fixed.
+As we change the eigenvector matrix :math:`X`, we get a whole family of 
+different matrices :math:`A=X\Ld X\im`--*all with the same eigenvalues in* 
+:math:`\Ld`.
+All those matrices :math:`A` (with the same :math:`\Ld`) are called *similar**.
 
+This idea extends to matrices that can't be diagonalized.
+Again we choose one constant matrix :math:`C` (not necessariily :math:`\Ld`).
+And we look at the whole family of matrices :math:`A=BCB\im`, allowing all invertible matrices :math:`B`.
+Again those matrices :math:`A` and :math:`C` are called **similar**.
 
+We are using :math:`C` instead of :math:`\Ld` because :math:`C` might not be diagonal.
+We are using :math:`B` instead of :math:`X` because the columns of :math:`B` might not be eigenvectors.
+We only require that :math:`B` is invertible--its columns can cantain any basis for :math:`\R^n`.
+**Similar matrices** :math:`A` **and** :math:`C` **have the same eigenvalues**.
 
+.. note::
 
+    **All the matrices** :math:`A=BCB\im` **are "similar"**. 
+    **They all share the eigenvalues of** :math:`C`.
 
+**Proof**: Suppose :math:`C\x=\ld\x`.
+Then :math:`BCB\im`has the same eigenvalue :math:`\ld` with the new eigenvector :math:`B\x`:
 
+.. math::
 
+    Same\ \ld\quad(BCB\im)(B\x)=BC\x=B\ld\x=\ld(B\x).
+
+A fixed matrix :math:`C` produces a family of similar matrices :math:`BCB\im`, allowing all :math:`B`.
+When :math:`C` is the identity matrix, the "family" is very small.
+The only member is :math:`BIB\im=I`.
+The identity matrix is the only diagonalizable matrix with all eigenvalues :math:`\ld=1`.
+
+The family is larger when :math:`\ld=1` and :math:`1` *with only one eigenvector* (not diagonalizable).
+The simpliest :math:`C` is the *Jordan form*.
+All the similar :math:`A`'s have two parameters :math:`r` and :math:`s`, not 
+both zero: always determinant = 1 and trace = 2.
+
+.. math::
+
+    C=\bb 1&1\\0&1 \eb=\rm{\ Jordan\ form\ gives\ }A=BCB\im=\bb 1-rs&r^2\\-s^2&1+rs \eb.
 
 Fibonacci numbers
 -----------------
 
+**Every new Fibonacci number is the sum of the two previous** :math:`F`\ **'s**:
 
+.. note::
 
+    **The sequence** :math:`0,1,1,2,3,5,8,13,\cds` **comes from** :math:`F_{k+2}=F_{k+1}+F_k`.
 
+**Problem: Find the Fibonacci number** :math:`F_{100}`: The slow way is to apply the rule :math:`F_{k+2}=F_{k+1}+F_k`.
+Linear algebra gives a better way.
 
+The key is to begin with a matrix equation :math:`\u_{k+1}=A\u_k`.
+That is a *one-step* rule for vectors, while Fibonacci gave a two-step rule for scalars.
+We match those rules by putting two Fibonacci numbers into a vector.
+Then you will see the matrix :math:`A`.
 
+.. note::
 
+    Let :math:`\u_k=\bb F_{k+1}\\F_k \eb`.
+    The rule :math:`\begin{matrix}F_{k+2}=F_{k+1}+F_k\\F_{k+1}=F_{k+1}\quad\quad
+    \end{matrix}` is :math:`\u_{k+1}=\bb 1&1\\1&0 \eb\u_k`.
 
+**Every step multiplies by** :math:`A=\bb 1&1\\1&0 \eb`.
+After 100 steps we reach :math:`\u_{100}=A^{100}\u_0`:
+
+.. math::
+
+    \u_0=\bb 1\\0 \eb, \u_1=\bb 1\\1 \eb, \u_2=\bb 2\\1 \eb, \u_3=\bb 3\\2 \eb, \cds, \u_{100}=\bb F_{101}\\F_{100} \eb.
+
+Subtract :math:`\ld` from the diagonal of :math:`A`:
+
+.. math::
+
+    A=\ld I=\bb 1-\ld&1\\1&-\ld \eb\quad\rm{leads\ to}\quad\det(A-\ld I)=\ld^2-\ld-1.
+
+.. note::
+
+    **Eigenvalues**: :math:`\dp\ld_1=\frac{1+\sqrt{5}}{2}\approx 1.618` and 
+    :math:`\dp\ld_2=\frac{1-\sqrt{5}}{2}\approx -.618`.
+
+These eigenvalues lead to eigenvectors :math:`\x_1=(\ld_1,1)` and :math:`\x_2=(\ld_2,1)`.
+Step 2 finds the combination of those eigenvectors that gives :math:`\u_0=(1,0)`:
+
+.. math::
+
+    \bb 1\\0 \eb=\frac{1}{\ld_1-\ld_2}\left(\bb\ld_1\\1\eb-\bb\ld_2\\1\eb\right)
+    \quad\rm{or}\quad\u_0=\frac{\x_1-\x_2}{\ld_1-\ld_2}.
+
+Step 3 multiplies :math:`u_0` by :math:`A^{100}` to find :math:`u_{100}`.
+The eigenvectors :math:`\x_1` and :math:`\x_2` stay separate!
+They are multiplied by :math:`(\ld_1)^{100}` and :math:`(\ld_2)^{100}`:
+
+**100 steps from** :math:`\u_0`:
+
+.. math::
+
+    \u_{100}=\frac{(\ld_1)^{100}\x_1-(\ld_2)^{100}\x_2}{\ld_1-\ld_2}.
+
+We want :math:`F_{100}=` second component of :math:`\u_{100}`.
+The second components of :math:`\x_1` and :math:`\x_2` are 1.
+The difference between :math:`\ld_1=(1+\sqrt{5})/2` and :math:`\ld_2=(1-\sqrt{5})/2` is :math:`\sqrt{5}`.
+And :math:`\ld_2^{100}\approx 0`.
+
+100th Fibonacci number :math:`=\dp\frac{\ld_1^{100}-\ld_2^{100}}{\ld_1-\ld_2}=`
+nearest integer to :math:`\dp\frac{1}{\sqrt{5}}\left(\frac{1+\sqrt{5}}{2}\right)^{100}`.
+
+Every :math:`F_k` is a whole number.
+The ratio :math:`F_{101}/F_{100}` must be very close to the limiting ratio :math:`(1+\sqrt{5})/2`.
+This number is the "*golden mean*".
 
 Matrix Powers :math:`A^k`
 -------------------------
 
+Fibonacci's example is a typical difference equation :math:`\u_{k+1}=A\u_k`.
+**Each step multiplies by** :math:`A`.
+The solution is :math:`\u_k=A^k\u_0`.
 
+The eigenvector matrix :math:`X` produces :math:`A=X\Ld X\im`.
+This is a factorization of the matrix, like :math:`A=LU` or :math:`A=QR`.
+The new factorization is perfectly suited to computing powers, because 
+**every time** :math:`X\im` **multiplies** :math:`X` **we get** :math:`I`:
 
+**Powers of** :math:`A`:
 
+.. math::
 
+    A^k\u_0=(X\Ld X\im)\cds(X\Ld X\im)\u_0=X\Ld^kX\im\u_0.
 
+I will split :math:`X\Ld^kX\im\u_0` into three steps that show how eigenvalues work:
 
+#. Write :math:`\u_0` as a combination :math:`c_1\x_1+\cds+n_n\x_n` of the eigenvectors.
+   Then :math:`\bs{c}=X\im\u_0`.
 
+#. Multiply each eigenvector :math:`\x_i` by :math:`(\ld_i)^k`.
+   Now we have :math:`\Ld^kX\im\u_0`.
 
+#. Add up the pieces :math:`c_i(\ld_i)^k\x_i` to find the solution :math:`\u_kA^k\u_0`.
+   This is :math:`X\Ld^kX\im\u_0`.
+
+.. note::
+
+    **Solution for** :math:`\u_{k+1}=A\u_k`: :math:`\u_k=A^k\u_0=c_1(\ld_1)^k\x_1+\cds+c_n(\ld_n)^k\x_n`.
+
+In matrix language :math:`A^k` equals :math:`(X\Ld X\im)^k` which is :math:`X` times :math:`\Ld^k` times :math:`X\im`.
+In Step 1, the eigenvectors in :math:`X` lead to the :math:`c`'s in the combination :math:`\u_0=c_1\x_1+\cds+c_n\x_n`:
+
+**Step 1**: :math:`\u_0=\bb \\\ \x_1&\cds&\x_n\\\ \eb\bb c_1\\\vds\\c_n \eb`.
+This says that :math:`\u_0=X\bs{c}`.
+
+The coefficients in Step 1 are :math:`\bs{c}=X\im\u_0`.
+Then Step 2 multiplies by :math:`\Ld^k`.
+The final result :math:`\u_k=\sum c_i(\ld_i)^k\x_i` in Step 3 is the product of 
+:math:`X` and :math:`\Ld^k` and :math:`X\im\u_0`:
+
+.. math::
+
+    A^k\u_0=X\Ld^kX\im\u_0=X\Ld^k\bs{c}=\bb \\\ \x_1&\cds&\x_n \\\ \eb
+    \bb (\ld_1)^k\\&\dds\\&&(\ld_n)^k \eb\bb c_1\\\vds\\c_n \eb.
+
+The result is exactly :math:`\u_k=c_1(\ld_1)^k\x_1+\cds+c_n(\ld_n)^k\x_n`.
+It solves :math:`\u_{k+1}=A\u_k`.
 
 Nondiagonalizable Matrices (Optional)
 -------------------------------------
+
+Suppose :math:`\ld` is an eigenvalue of :math:`A`.
+We discover that fact in two ways:
+
+**1. Eigenvectors** (geometric): There are nonzero solutions to :math:`A\x=\ld\x`.
+
+**2. Eigenvalues** (algebraic): The determinant of :math:`A-\ld I` is zero.
+
+The number :math:`\ld` may be a simple eigenvalue or a multiple eigenvalue, and we want to know its **multiplicity**.
+Most eigenvalues have multiplicity :math:`M=1` (simple eigenvalues).
+Then there is a single line of eigenvectors, and :math:`\det(A-\ld I)` does not have a double factor.
+
+For exceptional matrices, an eigenvalue can be **repeated**.
+Then there are two different ways to count its multiplicity.
+Always GM :math:`\leq` AM for each :math:`\ld`:
+
+#. (Geometric Multiplicity = GM): Count the **independent eigenvectors** for :math:`\ld`.
+   The GM is the dimension of the nullspace of :math:`A-\ld I`.
+
+#. (Algebraic Multiplicity = AM): AM counts the **repetitions of** :math:`\ld` among the eigenvalues.
+   Look at the :math:`n` roots of :math:`\det(A-\ld I)=0`.
+
+If :math:`A` has :math:`\ld=4,4,4`, then that eigenvalue has AM = 3 and GM = 1, 2, or 3.
+
+**The shortage of eigenvectors when** GM **is below** AM **means that** :math:`A` **is not diagonalizable**.
+
+----
+
+**If** :math:`A` **is** :math:`m` **by** :math:`n` **and** :math:`B` **is** 
+:math:`n` **by** :math:`m`, **then** :math:`AB` **and** :math:`BA` 
+**have same nonzero eigenvalues**.
+
+**Proof**: Start with this identity between square matrices (easily checked).
+The first and third matrices are inverses.
+The "size matrix" shows the shapes of all blocks.
+
+.. math::
+
+    \bb I&-A\\0&I \eb\bb AB&0\\B&0 \eb\bb I&A\\0&I \eb=\bb 0&0\\B&BA \eb\quad
+    \bb m \times m&m \times n\\n \times m&n \times n \eb
+
+This equation :math:`D\im ED=F` says :math:`F` **is similar to** :math:`E`--they have the same :math:`m+n` eigenvalues.
+
+    :math:`E=\bb AB&0\\B&0 \eb` has the :math:`m` eigenvalues of :math:`AB`, plus :math:`n` zeros
+
+    :math:`F=\bb 0&0\\B&BA \eb` has the :math:`n` eigenvalues of :math:`BA`, plus :math:`m` zeros
+
+So :math:`AB` and :math:`BA` have the **same eigenvalues** except for :math:`|n-m|` zeros.

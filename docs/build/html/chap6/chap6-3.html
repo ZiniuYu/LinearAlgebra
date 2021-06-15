@@ -13,6 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -29,11 +31,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -97,7 +99,14 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index6.html">Chapter 6 Eigenvalues and Eigenvectors</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="chap6-1.html">Chapter 6.1 Introduction to Eigenvalues</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chap6-2.html">Chapter 6.2 Diagonalizing a Matrix</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 6.3 Systems of Differential Equations</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 6.3 Systems of Differential Equations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#solution-of-d-boldsymbol-u-dt-a-boldsymbol-u">Solution of <span class="math notranslate nohighlight">\(d\boldsymbol{u}/dt=A\boldsymbol{u}\)</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#second-order-equations">Second Order Equations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#difference-equations-optional">Difference Equations (optional)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stability-of-2-by-2-matrices">Stability of 2 by 2 Matrices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-exponential-of-a-matrix">The Exponential of a Matrix</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="chap6-4.html">Chapter 6.4 Symmetric Matrices</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chap6-5.html">Chapter 6.5 Positive Definite Matrices</a></li>
 </ul>
@@ -205,6 +214,70 @@
 \newcommand{\ppr}{^{\prime\prime}}\end{aligned}\end{align} \]</div>
 <div class="section" id="chapter-6-3-systems-of-differential-equations">
 <h1>Chapter 6.3 Systems of Differential Equations<a class="headerlink" href="#chapter-6-3-systems-of-differential-equations" title="Permalink to this headline">¶</a></h1>
+<p><em>The derivative of</em> <span class="math notranslate nohighlight">\(e^{\ld t}\)</span> <em>is</em> <span class="math notranslate nohighlight">\(\ld e^{\ld t}\)</span>.
+The whole point of the section is this: <strong>To convert constant-coefficient differential equations into linear algebra</strong>.</p>
+<p>The ordinary equations <span class="math notranslate nohighlight">\(\dp\frac{du}{dt}=u\)</span> and <span class="math notranslate nohighlight">\(\dp\frac{du}{dt}=\ld u\)</span> are solved by exponentials:</p>
+<div class="math notranslate nohighlight">
+\[\frac{du}{dt}=u\rm{\ produces\ }u(t)=Ce^t\quad\frac{du}{dt}=\ld u\rm{\ produces\ }u(t)=Ce^{\ld t}.\]</div>
+<p>At time <span class="math notranslate nohighlight">\(t=0\)</span> those solutions include <span class="math notranslate nohighlight">\(e^0=1\)</span>.
+So they both reduce to <span class="math notranslate nohighlight">\(u(0)=C\)</span>.
+This “initial value” tells us the right choice for <span class="math notranslate nohighlight">\(C\)</span>.
+<strong>The solutions that start from the number</strong> <span class="math notranslate nohighlight">\(u(0)\)</span> <strong>at time</strong>
+<span class="math notranslate nohighlight">\(t=0\)</span> <strong>are</strong> <span class="math notranslate nohighlight">\(u(t)=u(0)e^t\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(u(t)=u(0)e^{\ld t}\)</span>.</p>
+<p>Linear algebra moves from 1 by 1 problems to <span class="math notranslate nohighlight">\(n\)</span> by <span class="math notranslate nohighlight">\(n\)</span>.
+The unknown is a vector <span class="math notranslate nohighlight">\(\u\)</span>.
+It starts from the initial vector <span class="math notranslate nohighlight">\(\u(0)\)</span>, which is given.
+The <span class="math notranslate nohighlight">\(n\)</span> equations contain a square matrix <span class="math notranslate nohighlight">\(A\)</span>.
+We expect <span class="math notranslate nohighlight">\(n\)</span> exponents <span class="math notranslate nohighlight">\(e^{\ld t}\)</span> in <span class="math notranslate nohighlight">\(\u(t)\)</span>, from <span class="math notranslate nohighlight">\(n\ \ld\)</span>’s:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>System of</strong> <span class="math notranslate nohighlight">\(n\)</span> <strong>equations</strong>: <span class="math notranslate nohighlight">\(\dp\frac{d\u}{dt}=A\u\)</span>
+starting from the vector <span class="math notranslate nohighlight">\(\u(0)=\bb u_1(0)\\\vds\\u_n(0) \eb\)</span> at
+<span class="math notranslate nohighlight">\(t=0\)</span>.</p>
+</div>
+<p>These differential equations are <em>linear</em>.
+If <span class="math notranslate nohighlight">\(\u(t)\)</span> and <span class="math notranslate nohighlight">\(\v(t)\)</span> are solutions, so is <span class="math notranslate nohighlight">\(C\u(t)+D\v(t)\)</span>.
+We will need <span class="math notranslate nohighlight">\(n\)</span> constants like <span class="math notranslate nohighlight">\(C\)</span> and <span class="math notranslate nohighlight">\(D\)</span> to match the <span class="math notranslate nohighlight">\(n\)</span> components of <span class="math notranslate nohighlight">\(\u(0)\)</span>.
+Our first job is to find <span class="math notranslate nohighlight">\(n\)</span> “pure exponential solutions” <span class="math notranslate nohighlight">\(\u=e^{\ld t}\x\)</span> by using <span class="math notranslate nohighlight">\(A\x=\ld\x\)</span>.</p>
+<p>Notice that <span class="math notranslate nohighlight">\(A\)</span> is a <em>constant</em> matrix.
+In other linear equations, <span class="math notranslate nohighlight">\(A\)</span> changes as <span class="math notranslate nohighlight">\(t\)</span> changes.
+In nonlinear equations, <span class="math notranslate nohighlight">\(A\)</span> changes as <span class="math notranslate nohighlight">\(\u\)</span> changes.
+<span class="math notranslate nohighlight">\(d\u/dt=A\u\)</span> is “linear with constant coefficients”.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>Solve linear constant coefficient equations by exponentials</strong> <span class="math notranslate nohighlight">\(e^{\ld t}\x\)</span>, <strong>when</strong> <span class="math notranslate nohighlight">\(A\x=\ld\x\)</span>.</p>
+</div>
+<div class="section" id="solution-of-d-boldsymbol-u-dt-a-boldsymbol-u">
+<h2>Solution of <span class="math notranslate nohighlight">\(d\boldsymbol{u}/dt=A\boldsymbol{u}\)</span><a class="headerlink" href="#solution-of-d-boldsymbol-u-dt-a-boldsymbol-u" title="Permalink to this headline">¶</a></h2>
+<p>Our pure exponential solution will be <span class="math notranslate nohighlight">\(e^{\ld t}\)</span> times a fixed vector <span class="math notranslate nohighlight">\(\x\)</span>.
+<span class="math notranslate nohighlight">\(\ld\)</span> is an eigenvalue of <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(\x\)</span> <strong>is the eigenvector</strong>.
+Substitute <span class="math notranslate nohighlight">\(\u(t)=e^{\ld t}\x\)</span> into the equation <span class="math notranslate nohighlight">\(d\u/dt=A\u\)</span>, and
+the factor <span class="math notranslate nohighlight">\(e^{\ld t}\)</span> will cancel to leave <span class="math notranslate nohighlight">\(\ld\x=A\x\)</span>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Choose</strong> <span class="math notranslate nohighlight">\(\u=e^{\ld t}\x\)</span> <strong>when</strong> <span class="math notranslate nohighlight">\(A\x=\ld\x\)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\dp\frac{d\u}{dt}=\ld e^{\ld t}\x\)</span> agrees with <span class="math notranslate nohighlight">\(A\u=Ae^{\ld t}\x\)</span>.</p></li>
+</ul>
+</div>
+<p>All components of this special solution <span class="math notranslate nohighlight">\(\u=e^{\ld t}\x\)</span> share the same <span class="math notranslate nohighlight">\(e^{\ld t}\)</span>.
+The solution grows when <span class="math notranslate nohighlight">\(\ld&gt;0\)</span>.
+It decays when <span class="math notranslate nohighlight">\(\ld&lt;0\)</span>.
+If <span class="math notranslate nohighlight">\(\ld\)</span> is a complex number, its real part decides growth or decay.
+The imaginary part <span class="math notranslate nohighlight">\(\omega\)</span> gives oscillation <span class="math notranslate nohighlight">\(e^{i\omega t}\)</span> like a sine wave.</p>
+</div>
+<div class="section" id="second-order-equations">
+<h2>Second Order Equations<a class="headerlink" href="#second-order-equations" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="difference-equations-optional">
+<h2>Difference Equations (optional)<a class="headerlink" href="#difference-equations-optional" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="stability-of-2-by-2-matrices">
+<h2>Stability of 2 by 2 Matrices<a class="headerlink" href="#stability-of-2-by-2-matrices" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="the-exponential-of-a-matrix">
+<h2>The Exponential of a Matrix<a class="headerlink" href="#the-exponential-of-a-matrix" title="Permalink to this headline">¶</a></h2>
+</div>
 </div>
 
 
