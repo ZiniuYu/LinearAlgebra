@@ -13,8 +13,6 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -31,11 +29,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -265,9 +263,97 @@ The solution grows when <span class="math notranslate nohighlight">\(\ld&gt;0\)<
 It decays when <span class="math notranslate nohighlight">\(\ld&lt;0\)</span>.
 If <span class="math notranslate nohighlight">\(\ld\)</span> is a complex number, its real part decides growth or decay.
 The imaginary part <span class="math notranslate nohighlight">\(\omega\)</span> gives oscillation <span class="math notranslate nohighlight">\(e^{i\omega t}\)</span> like a sine wave.</p>
+<p>For <span class="math notranslate nohighlight">\(\dp\frac{d\u}{dt}=A\u=\bb 0&amp;1\\1&amp;0 \eb\u\)</span> starting from
+<span class="math notranslate nohighlight">\(\u(0)=\bb 4\\2 \eb\)</span>, this is a vector equation for <span class="math notranslate nohighlight">\(\u\)</span>.
+It contains two scalar equations for the components <span class="math notranslate nohighlight">\(y\)</span> and <span class="math notranslate nohighlight">\(z\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\frac{d\u}{dt}=A\u\quad\frac{d}{dt}\bb y\\z \eb=\bb 0&amp;1\\1&amp;0 \eb\bb y\\z \eb
+\rm{\ means\ that\ }\frac{dy}{dt}=z\rm{\ and\ }\frac{dz}{dt}=y.\end{split}\]</div>
+<p>The idea of eigenvectors is to combine those equations in a way that gets back to 1 by 1 problems.
+The combinations <span class="math notranslate nohighlight">\(y+z\)</span> and <span class="math notranslate nohighlight">\(y-z\)</span> will do it.
+Add and subtract equations:</p>
+<div class="math notranslate nohighlight">
+\[\frac{d}{dt}(y+z)=z+y\quad\rm{and}\quad\frac{d}{dt}(y-z)=-(y-z).\]</div>
+<p>The combination <span class="math notranslate nohighlight">\(y+z\)</span> grows like <span class="math notranslate nohighlight">\(e^t\)</span>, because it has <span class="math notranslate nohighlight">\(\ld=1\)</span>.
+The combination <span class="math notranslate nohighlight">\(y-z\)</span> decays like <span class="math notranslate nohighlight">\(e^{-1}\)</span>, because it has <span class="math notranslate nohighlight">\(\ld=-1\)</span>.</p>
+<p>This matrix <span class="math notranslate nohighlight">\(A\)</span> has eigenvalues 1 and -1.
+The eigenvectors <span class="math notranslate nohighlight">\(\x\)</span> are <span class="math notranslate nohighlight">\((1,1)\)</span> and <span class="math notranslate nohighlight">\((1,-1)\)</span>.
+The pure exponential solutions <span class="math notranslate nohighlight">\(\u_1\)</span> and <span class="math notranslate nohighlight">\(\u_2\)</span> take the form
+<span class="math notranslate nohighlight">\(e^{\ld t}\x\)</span> with <span class="math notranslate nohighlight">\(\ld_1=1\)</span> and <span class="math notranslate nohighlight">\(\ld_2=-1\)</span>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(\u_1(t)=e^{\ld_1t}\x_1=e^t\bb 1\\1 \eb\)</span> and <span class="math notranslate nohighlight">\(\u_2(t)=e^{\ld_2t}\x_2=e^{-t}\bb 1\\-1 \eb\)</span>.</p>
+</div>
+<p>Notice: These <span class="math notranslate nohighlight">\(\u\)</span>’s satisfy <span class="math notranslate nohighlight">\(A\u_1=\u_1\)</span> and <span class="math notranslate nohighlight">\(A\u_2-\u_2\)</span>, just like <span class="math notranslate nohighlight">\(\x_1\)</span> and <span class="math notranslate nohighlight">\(\x_2\)</span>.
+The factors <span class="math notranslate nohighlight">\(e^t\)</span> and <span class="math notranslate nohighlight">\(e^{-1}\)</span> change with time.
+Those factors give <span class="math notranslate nohighlight">\(d\u_1/dt=\u_1=A\u_1\)</span> and <span class="math notranslate nohighlight">\(d\u_2/dt=-\u_2=A\u_2\)</span>.
+<strong>We have two solutions to</strong> <span class="math notranslate nohighlight">\(d\u/dt=A\u\)</span>.
+To find all other solutions, <strong>multiply those special solutions by any numbers</strong> <span class="math notranslate nohighlight">\(C\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(D\)</span> <strong>and add</strong>:</p>
+<p><strong>Complete solution</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\u(t)=Ce^t\bb 1\\1 \eb+De^{-t}\bb 1\\-1 \eb=\bb Ce^t+De^{-t}\\Ce^t-De^{-t} \eb.\end{split}\]</div>
+<p>With these two constants <span class="math notranslate nohighlight">\(C\)</span> and <span class="math notranslate nohighlight">\(D\)</span>, we can match any starting vector <span class="math notranslate nohighlight">\(\u(0)=(u_1(0),u_2(0))\)</span>.
+Set <span class="math notranslate nohighlight">\(t=0\)</span> and <span class="math notranslate nohighlight">\(e^0=1\)</span>.
+For <span class="math notranslate nohighlight">\(\u(0)=(4,2)\)</span>:</p>
+<p><span class="math notranslate nohighlight">\(\u(0)\)</span> <strong>decides</strong> <span class="math notranslate nohighlight">\(C,D\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}C\bb 1\\1 \eb+D\bb 1\\-1 \eb= \bb 4\\2 \eb\quad\rm{yields}\quad C=3\rm{\ and\ }D=1.\end{split}\]</div>
+<p>The same three steps that solved <span class="math notranslate nohighlight">\(\u_{k+1}=A\u_k\)</span> now solve <span class="math notranslate nohighlight">\(d\u/dt=A\u\)</span>:</p>
+<ol class="arabic">
+<li><p>Wirte <span class="math notranslate nohighlight">\(\u(00\)</span> as a <strong>combination</strong> <span class="math notranslate nohighlight">\(c_1\x_1+\cds+c_n\x_n\)</span> <strong>of the eigenvectors of</strong> <span class="math notranslate nohighlight">\(A\)</span>.</p></li>
+<li><p>Multiply each eigenvector <span class="math notranslate nohighlight">\(\x_i\)</span> by <strong>its growth factor</strong> <span class="math notranslate nohighlight">\(e^{\ld_it}\)</span>.</p></li>
+<li><p>The solution is the same combination of those pure solutions <span class="math notranslate nohighlight">\(e^{\ld t}\x\)</span>:</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(\u(t)=c_1e^{\ld_1t}\x_1+\cds+c_ne^{\ld_nt}\x_n\)</span>.</p>
+</div>
+</div></blockquote>
+</li>
+</ol>
+<p><em>Not included</em>: If two <span class="math notranslate nohighlight">\(\ld\)</span>’s are equal, with only one eigenvector, another solution is needed.
+(It will be <span class="math notranslate nohighlight">\(te^{\ld t}\x\)</span>.
+Step 1 needs to diagonalize <span class="math notranslate nohighlight">\(A=X\Ld X\im\)</span>: a basis of <span class="math notranslate nohighlight">\(n\)</span> eigenvectors.</p>
 </div>
 <div class="section" id="second-order-equations">
 <h2>Second Order Equations<a class="headerlink" href="#second-order-equations" title="Permalink to this headline">¶</a></h2>
+<p><strong>The most important equation in meechanics is</strong> <span class="math notranslate nohighlight">\(my\ppr+by\pr+ky=0\)</span>.
+This is a second-order equation because it contains the second derivative <span class="math notranslate nohighlight">\(y\ppr=d^2y/dt^2\)</span>.
+It is still linear with constant coefficients <span class="math notranslate nohighlight">\(m,b,k\)</span>.</p>
+<p>The method of solution is to substitute <span class="math notranslate nohighlight">\(y=e^{\ld t}\)</span>.
+Each derivative of <span class="math notranslate nohighlight">\(y\)</span> brings down a factor <span class="math notranslate nohighlight">\(\ld\)</span>.
+We want <span class="math notranslate nohighlight">\(y=e^{\ld t}\)</span> to solve the equation:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(\dp m\frac{d^2y}{dt^2}+b\frac{dy}{dt}+ky=0\)</span> becomes <span class="math notranslate nohighlight">\((m\ld^2+b\ld+k)e^{\ld t}=0\)</span>.</p>
+</div>
+<p>Everything depends on <span class="math notranslate nohighlight">\(m\ld^2+b\ld+k=0\)</span>.
+This equation for <span class="math notranslate nohighlight">\(\ld\)</span> has two roots <span class="math notranslate nohighlight">\(\ld_1\)</span> and <span class="math notranslate nohighlight">\(\ld_2\)</span>.
+Then the equation for <span class="math notranslate nohighlight">\(y\)</span> has two pure solutions <span class="math notranslate nohighlight">\(y_1=e^{\ld_1t}\)</span> and <span class="math notranslate nohighlight">\(y_2=e^{\ld_2t}\)</span>.
+Their combinations <span class="math notranslate nohighlight">\(c_1y_1+c_2y_2\)</span> give the complete solution unless <span class="math notranslate nohighlight">\(\ld_1=\ld_2\)</span>.</p>
+<p>We turn the scalar equation (with <span class="math notranslate nohighlight">\(y\ppr\)</span>) into a <em>vector equation for</em>
+<span class="math notranslate nohighlight">\(y\)</span> <em>and</em> <span class="math notranslate nohighlight">\(y\pr\)</span>: first derivative only.
+Suppose <span class="math notranslate nohighlight">\(m=1\)</span>.
+Two equations for <span class="math notranslate nohighlight">\(\u=(y,y\pr)\)</span> give <span class="math notranslate nohighlight">\(d\u/dt=A\u\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{matrix}dy/dt=y\pr\\dy\pr/dt=-ky-by\pr\end{matrix}\quad\rm{converts\ to}
+\quad\frac{d}{dt}\bb y\\y\pr \eb=\bb 0&amp;1\\-k&amp;-b \eb\bb y\\y\pr \eb=A\u.\end{split}\]</div>
+<p>The first equation <span class="math notranslate nohighlight">\(dy/dt=y\pr\)</span> is trivial (but true).
+The second is equation connecting <span class="math notranslate nohighlight">\(y\ppr\)</span> to <span class="math notranslate nohighlight">\(y\pr\)</span> and <span class="math notranslate nohighlight">\(y\)</span>.
+Together they connect <span class="math notranslate nohighlight">\(\u\pr\)</span> to <span class="math notranslate nohighlight">\(\u\)</span>.
+So we solve <span class="math notranslate nohighlight">\(\u\pr=A\u\)</span> by eigenvalues of <span class="math notranslate nohighlight">\(A\)</span>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(A-\ld I=\bb -\ld&amp;1\\-k&amp;-b-\ld \eb\)</span> has determinant <span class="math notranslate nohighlight">\(\ld^2+b\ld+k=0\)</span>.</p>
+</div>
+<p><strong>The euqation for the</strong> <span class="math notranslate nohighlight">\(\ld\)</span>’s <strong>is still</strong> <span class="math notranslate nohighlight">\(\ld^2+b\ld+k=0\)</span>, <strong>since</strong> <span class="math notranslate nohighlight">\(m=1\)</span>.
+The roots <span class="math notranslate nohighlight">\(\ld_1\)</span> and <span class="math notranslate nohighlight">\(\ld_2\)</span> are now <em>eigenvalues of</em> <span class="math notranslate nohighlight">\(A\)</span>.
+The eigenvectors and the solution are:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\x_1=\bb 1\\\ld_1 \eb\quad\x_2=\bb 1\\\ld_2 \eb\quad\u(t)=c_1e^{\ld_1t}\bb 1\\\ld_1 \eb+c_2e^{\ld_2t}\bb 1\\ld_2 \eb.\end{split}\]</div>
+<p>The first component of <span class="math notranslate nohighlight">\(\u(t)\)</span> has <span class="math notranslate nohighlight">\(y=c_1e^{\ld_1t}+c_2e^{\ld_2t}\)</span>–the same solution as before.
+The vector problem is completely consistent with the scalar problem.
+The 2 by 2 matrix <span class="math notranslate nohighlight">\(A\)</span> is called a <em>companion matrix</em>– a companion to the second order equation with <span class="math notranslate nohighlight">\(t\ppr\)</span>.</p>
 </div>
 <div class="section" id="difference-equations-optional">
 <h2>Difference Equations (optional)<a class="headerlink" href="#difference-equations-optional" title="Permalink to this headline">¶</a></h2>
