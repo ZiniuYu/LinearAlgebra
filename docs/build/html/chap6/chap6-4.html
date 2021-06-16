@@ -100,7 +100,12 @@
 <li class="toctree-l2"><a class="reference internal" href="chap6-1.html">Chapter 6.1 Introduction to Eigenvalues</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chap6-2.html">Chapter 6.2 Diagonalizing a Matrix</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chap6-3.html">Chapter 6.3 Systems of Differential Equations</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 6.4 Symmetric Matrices</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 6.4 Symmetric Matrices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#complex-eigenvalues-of-real-matrices">Complex Eigenvalues of Real Matrices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#eigenvalues-versus-pivots">Eigenvalues versus Pivots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#all-symmetric-matrices-are-diagonalizable">All Symmetric Matrices are Diagonalizable</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="chap6-5.html">Chapter 6.5 Positive Definite Matrices</a></li>
 </ul>
 </li>
@@ -207,6 +212,37 @@
 \newcommand{\ppr}{^{\prime\prime}}\end{aligned}\end{align} \]</div>
 <div class="section" id="chapter-6-4-symmetric-matrices">
 <h1>Chapter 6.4 Symmetric Matrices<a class="headerlink" href="#chapter-6-4-symmetric-matrices" title="Permalink to this headline">¶</a></h1>
+<p><strong>What is special about</strong> <span class="math notranslate nohighlight">\(S\x=\ld\x\)</span> <strong>when</strong> <span class="math notranslate nohighlight">\(S\)</span> <strong>is symmetric</strong>?</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>1. A symmetric matrix has only real eigenvalues</strong>.</p>
+<p><strong>2. The eigenvectors can be chosen orthonormal</strong>.</p>
+</div>
+<p>Those <span class="math notranslate nohighlight">\(n\)</span> orthonormal eigenvectors go into the columns of <span class="math notranslate nohighlight">\(X\)</span>.
+Every symmetric matrix can be diagonalized.
+<strong>Its eigenvector matrix</strong> <span class="math notranslate nohighlight">\(X\)</span> <strong>becomes an orthogonal matrix</strong> <span class="math notranslate nohighlight">\(Q\)</span>.
+Orthogonal matrices have <span class="math notranslate nohighlight">\(Q\im=Q^T\)</span>.</p>
+<p>The eigenvectors do not <em>have</em> to be unit vectors.
+Their lengths are chosen to be unit vectors.
+Then <span class="math notranslate nohighlight">\(A=X\Ld X\im\)</span> is in its special and particular form <span class="math notranslate nohighlight">\(S=Q\Ld Q\im\)</span> for symmetric matrices.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>(Spectral Theorem)</strong>: Every symmetric matrix has the factorization
+<span class="math notranslate nohighlight">\(S=Q\Ld Q^T\)</span> with real eigenvalues in <span class="math notranslate nohighlight">\(\Ld\)</span> and orthonormal
+eigenvectors in the columns of <span class="math notranslate nohighlight">\(Q\)</span>:</p>
+<ul class="simple">
+<li><p><strong>Symmetric diagonalization</strong>: <span class="math notranslate nohighlight">\(S=Q\Ld Q\im=Q\Ld Q^T\)</span> with <span class="math notranslate nohighlight">\(Q\im=Q^T\)</span>.</p></li>
+</ul>
+</div>
+<div class="section" id="complex-eigenvalues-of-real-matrices">
+<h2>Complex Eigenvalues of Real Matrices<a class="headerlink" href="#complex-eigenvalues-of-real-matrices" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="eigenvalues-versus-pivots">
+<h2>Eigenvalues versus Pivots<a class="headerlink" href="#eigenvalues-versus-pivots" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="all-symmetric-matrices-are-diagonalizable">
+<h2>All Symmetric Matrices are Diagonalizable<a class="headerlink" href="#all-symmetric-matrices-are-diagonalizable" title="Permalink to this headline">¶</a></h2>
+</div>
 </div>
 
 
