@@ -180,37 +180,198 @@ The first component of :math:`\u(t)` has :math:`y=c_1e^{\ld_1t}+c_2e^{\ld_2t}`--
 The vector problem is completely consistent with the scalar problem.
 The 2 by 2 matrix :math:`A` is called a *companion matrix*-- a companion to the second order equation with :math:`t\ppr`.
 
-
 Difference Equations (optional)
 -------------------------------
 
+To display a circle on a screen, replace :math:`y\ppr=-y` by a **difference equation**.
+Here are three choices using :math:`Y(t+\Delta t)-2Y(t)+Y(t+\Delta t)`.
+Divide by :math:`(\Delta t)^2` to approximate :math:`y\ppr`.
 
+.. note::
 
+    :math:`\dp\begin{matrix}F\\C\\B\end{matrix}\quad
+    \begin{matrix}\rm{Forward\ from\ }n-1\ \ \\\rm{Centered\ at\ time\ }n\quad\
+    \\\rm{Backward\ from\ }n+1\end{matrix}\quad
+    \frac{Y_{n+1}-2Y_n+Y_{n-1}}{(\Delta t)^2}=
+    \begin{matrix}Y_{n-1}\\Y_n\ \ \ \ \\Y_{n+1}\end{matrix}`
 
+The three difference methods *don't* complete a perfect circle in 32 time steps of length :math:`\Delta t=2\pi/32`.
+Those pictures will be explained by eigenvalues:
 
+**Forward** :math:`|\ld|>1` (**spiral out**)
+**Centered** :math:`|\ld|=1` (**best**)
+**Backward** :math:`|\ld|<1` (**spiral in**)
 
+The 2-step equations reduce to 1-step systems :math:`\bs{U}_{n+1}=A\bs{U}_n`.
+Instead of :math:`\u=(y,y\pr)` the discrete unknown is :math:`\bs{U}_n=(Y_n,Z_n)`.
+We take :math:`n` time steps :math:`\Delta t` starting from :math:`\bs{U}_0`:
 
+.. note::
 
+    **Forward**: :math:`\begin{matrix}Y_{n+1}=Y_n+\Delta tZ_n\\
+    Z_{n+1}=Z_n-\Delta tY_n\end{matrix}` becomes 
+    :math:`\bs{U}_{n+1}=\bb 1&\Delta t\\-\Delta t&1\eb\bb Y_n\\Z_n\eb=A\bs{U}_n`.
+
+Those are like :math:`Y\pr=Z` and :math:`Z\pr=-Y`.
+They are first order equations involving times :math:`n` and :math:`n+1`.
+Eliminating :math:`A` would bring back the "forward" second order equation.
+
+.. note::
+
+    **Eigenvales of** :math:`A`: :math:`\ld=1\pm i\Delta t`.
+    **Then** :math:`|\ld|>1` **and** :math:`(Y_n,Z_n)` **spirals out**.
+
+**Backward**: :math:`\begin{matrix}Y_{n+1}=Y_n+\Delta tZ_{n+1}\\
+Z_{n+1}=Z_n-\Delta tY_{n+1}\end{matrix}` is :math:`\bb 1&-\Delta t\\\Delta t&1\eb
+\bb Y_{n+1}\\Z_{n+1}\eb=\bb Y_n\\Z_n \eb=\bs{U}_n`.
+
+That matrix has eigenvalues :math:`1+\pm i\Delta t`.
+But we *inver* it to reach :math:`\bs{U}_{n+1}` from :math:`\bs{U}_n`.
+Then :math:`|ld|<1` explains why *the solution spirals in* to :math`(0,0)` for backward differences.
+
+The second difference :math:`Y_{n+1}-2Y_n+Y_{n-1}` is the **leapfrog method** 
+that "leaps over" that center value :math:`Y_n` and is constantly used.
 
 Stability of 2 by 2 Matrices
 ----------------------------
 
+For the solution of :math:`d\u/dt=A\u`, there is a fundamental question.
+*Does the solution approach* :math:`\u=\0` *as* :math:`t\rightarrow \infty`?
+A solution that includes :math:`e^t` is unstable.
+Stability depends on the eigenvalues of :math:`A`.
 
+The complete solution :math:`\u(t)` is built from pure solutions :math:`e^{\ld t}\x`.
+If the eigenvalue :math:`\ld` is real, *the number* :math:`\ld` *must be negative* 
+for :math:`e^{\ld t}` to approach zero.
+If the eigenvalue is a complex number :math:`\ld=r+is`, *the real part* :math:`r` *must be negavtive*.
+When :math:`e^{\ld t}` splits into :math:`e^{rt}e^{ist}`, the factor :math:`e^{ist}` has absolute value fixed at 1:
 
+.. math::
 
+    e^{ist}=\cos st+i\sin st\quad\rm{has}\quad|e^{ist}|^2=\cos^2st+\sin^2st=1.
 
+The real part of :math:`\ld` controls the growth (:math:`r>0`) or the decay (:math:`r<0`).
 
+**Which matrices have negative eigenvalues?**
+When are the **real parts of the** :math:`\ld`\ **'s all negative?**
 
+.. note::
 
+    **Stability**: :math:`A` is **stable** and :math:`\u(t)\rightarrow\0` when 
+    all eigenvalues :math:`\ld` have **negative real parts**.
+    The 2 by 2 matrix :math:`A=\bb a&b\\c&d \eb` must pass two tests:
+
+    * :math:`\ld_1+\ld_2<0`: The trace :math:`T=a+d` must be negative.
+
+    * :math:`\ld_1\ld_2>0`: The determinant :math:`D=ad-bc` must be positive.
+
+**Reason**: If :math:`\ld`'s are real and negative, their sum is negative.
+This is the trace :math:`T`.
+Their product is positive.
+This is the determinant :math:`D`.
+The argument also goes in the reverse direction.
+If :math:`D=\ld_1\ld_2` is positve, then :math:`\ld_1` and :math:`\ld_2` have the same sign.
+If :math:`T=\ld_1+\ld_2` is negative, that sign will be negative.
+We can test :math:`T` and :math:`D`.
+
+If the :math:`\ld`'s are complex numbers, they must have the form :math:`r+is` and :math:`r-is`.
+Otherwise :math:`T` and :math:`D` will not be real.
+The determinant :math:`D` is automatically positive, since :math:`(r+is)(r-is)=r^2+s^2`.
+The trace :math:`T` is :math:`r+is+r-is=2r`.
+So a negative trace :math:`T` means that the real part is negative and the matrix is stable.
 
 The Exponential of a Matrix
 ---------------------------
 
+**We want to write the solution** :math:`\u(t)` **in a new form** :math:`e^{At}\u(0)`.
+The direct defination of :math:`e^x` is by the infinite series :math:`1+x+\frac{1}{2}x^2+\frac{1}{6}x^3+\cds`.
+Change :math:`x` to a square matrix :math:`At` to define the matrix exponential :math:`e^{At}`:
 
+.. note::
 
+    **Matrix exponential** :math:`e^{At}`: :math:`e^{At}=I+At+\frac{1}{2}(At)^2+\frac{1}{6}(At)^3+\cds`.
 
+    **Its** :math:`t` **derivative is** :math:`Ae^{At}`: :math:`A+A^2t+\frac{1}{2}A^3t^2+\cds=Ae^{At}`.
 
+    **Its eigenvalues are** :math:`e^{\ld t}`: 
+    :math:`(I+At+\frac{1}{2}(At)^2+\cds)\x=(1+\ld t+\frac{1}{2}(\ld )^2+\cds)\x`.
 
+The number that divides :math:`(At)^n` is :math:`n!`.
+The factorials grow quickly.
+The series always converges and its derivative is always :math:`Ae^{At}`.
+Therefore :math:`e^{At}\u(0)` solves the differential equation with one quick 
+formula--*even if there is a shortage of eigenvectors*.
 
+Assume :math:`A` does have :math:`n` independent eigenvectors, so it is diagonalizable.
+Substitute :math:`A=X\Ld X\im` into the series for :math:`e^{At}`.
+Whenever :math:`X\Ld X\im X\Ld X\im` appears, cancel :math:`X\im X` in the middle:
 
+**Use the series**: :math:`e^{At}=I+X\Ld X\im t+\frac{1}{2}(X\Ld X\im t)(X\Ld X\im t)+\cds`
 
+**Factor out** :math:`X` **and** :math:`X\im`: :math:`e^{At}=X[I+\Ld t+\frac{1}{2}(\Ld t)^2+\cds]X\im`
+
+:math:`e^{At}` **is diagonalized**: :math:`e^{At}=Xe^{\Ld t}X\im`.
+
+:math:`e^{At}` has the same eigenvector matrix :math:`X` as :math:`A`.
+Then :math:`\Ld` is a diagonal matrix and so is :math:`e^{\Ld t}`.
+The numbers :math:`e^{\ld_it}` are on the diagonal.
+Multiply :math:`Xe^{\Ld t}X\im\u(0)` to recognize :math:`\u(t)`:
+
+.. math::
+
+    e^{At}\u(0)=Xe^{\Ld t}X\im\u(0)=\bb \\\ \x_1&\cds&\x_n \\\ \eb
+    \bb e^{\ld_1t}\\&\dds\\&&e^{\ld_nt} \eb\bb c_1\\\vds\\c_n \eb.
+
+The solution :math:`e^{At}\u(0)` is the same answer that came in previous equation from three steps:
+
+#. :math:`\u(0)=c_1\x_1+\cds+c_n\x_n=X\bs{c}`.
+   Here we need :math:`n` independent eigenvectors.
+
+#. Multiply each :math:`\x_i` by its growth factor :math:`e^{\ld_it}` to follow it forward in time.
+
+#. The best form of :math:`e^{At}\u(0)` is :math:`\u(t)=c_1e^{\ld_1t}\x_1+\cds+c_ne^{\ld_nt}\x_n`.
+
+For an antisymmetric matrix (:math:`A^T=-A`), its exponential :math:`e^{At}` is an orthogonal matrix.
+The eigenvalues of :math:`A` are :math:`i` and :math:`-i`.
+The eigenvalues of :math:`e^{At}` are :math:`e^{it}` and :math:`e^{-it}`.
+Three rules:
+
+#. :math:`e^{At}` **always has the inverse** :math:`e^{-At}`.
+
+#. **The eigenvalues of** :math:`e^{At}` **are always** :math:`e^{\ld t}`.
+
+#. **When** :math:`A` **is antisymmetric**, :math:`e^{At}` **is orthogonal**.
+   :math:`Inverse = transpose = e^{-At}`.
+
+Antisymmetric is the smae as "skey-symmetric".
+Those matrices have pure imaginary eigenvalues like :math:`i` and :math:`-i`.
+Then :math:`e^{At}` has eigenvalues like :math:`e^{it}` and :math:`e^{-it}`.
+Their absolute value is 1: neutual stability, pure oscillation, energy is conserved.
+So :math:`\lv\u(t)\rv=\lv\u(0)\rv`.
+
+Notes on a Differential Equations Course
+----------------------------------------
+
+1. The second order equation :math:`mu\ppr+bu\pr+ku=0` has major importance in applications.
+   The exponents :math:`\ld` in the solution :math:`u=e^{\ld t}` solve :math:`m\ld^2+b\ld+k=0`.
+   The damping coefficient :math:`b` is crucial:
+
+   **Underdamping**: :math:`b^2<4mk`; **Critical damping**: :math:`b^2=4mk`; **Overdamping**: :math:`b^2>4mk`.
+
+   This decides whether :math:`\ld_2` and :math:`\ld_2` are real roots or repeated roots or complex roots.
+   With complex :math:`\ld`'s the solution :math:`u(t)` oscillates as it decays.
+
+2. Our equation had no forcing term :math:`f(t)`.
+   We were finding the "nullspace solution".
+   To :math:`\u_n(t)` we need to add a particular solution :math:`u_p(t)` that balances the force :math:`f(t)`:
+
+   **Input** :math:`f(t)` **at time** :math:`s`; **Growth factor** 
+   :math:`e^{A(t-s)}`; **Add up output at time** :math:`t`:
+
+   .. math::
+
+       \u_{\rm{particular}}=\int_0^t e^{A(t-s)}f(s)\ ds.
+
+   This solution can also be discovered and studied by *Laplace transform*--that 
+   is the established way to convert linear differential equations to linear 
+   algebra.
