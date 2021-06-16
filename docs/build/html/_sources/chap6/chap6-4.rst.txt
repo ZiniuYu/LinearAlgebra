@@ -54,7 +54,7 @@ Then :math:`Q\im SQ` is :math:`\Ld` and :math:`Q\im=Q^T`.
 
 .. math::
 
-    Q\im SQ=\frac{1}{\sqrt{5}}\bb 2&-1\\1&2 \eb\bb 1&2\\2&4 \eb\frac{1}{\sqrt{5}}\bb 2&1\\-1&2 \eb=\bb 0&0\\0&5 = \Ld.
+    Q\im SQ=\frac{1}{\sqrt{5}}\bb 2&-1\\1&2 \eb\bb 1&2\\2&4 \eb\frac{1}{\sqrt{5}}\bb 2&1\\-1&2 \eb=\bb 0&0\\0&5 \eb=\Ld.
 
 Now comes the :math:`n` by :math:`n` case.
 The :math:`\ld`'s are real when :math:`S=S^T` and :math:`S\x=\ld\x`.
