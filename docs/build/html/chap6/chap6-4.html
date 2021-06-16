@@ -13,8 +13,6 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -31,11 +29,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -234,11 +232,143 @@ eigenvectors in the columns of <span class="math notranslate nohighlight">\(Q\)<
 <li><p><strong>Symmetric diagonalization</strong>: <span class="math notranslate nohighlight">\(S=Q\Ld Q\im=Q\Ld Q^T\)</span> with <span class="math notranslate nohighlight">\(Q\im=Q^T\)</span>.</p></li>
 </ul>
 </div>
+<p>The <em>spectral theorem</em> will be proved in three steps:</p>
+<ol class="arabic simple">
+<li><p>By an example, showing real :math`ld`’s in <span class="math notranslate nohighlight">\(\Ld\)</span> and orthonormal <span class="math notranslate nohighlight">\(\x\)</span>’s in <span class="math notranslate nohighlight">\(Q\)</span>.</p></li>
+<li><p>By a proof of those facts when no eigenvalues are repeated.</p></li>
+<li><p>By a proof that allows repeated eigenvalues.</p></li>
+</ol>
+<p>For <span class="math notranslate nohighlight">\(S=\bb 1&amp;2\\2&amp;4 \eb\)</span>, the determinant of <span class="math notranslate nohighlight">\(S-\ld I\)</span> is <span class="math notranslate nohighlight">\(\ld^2-5\ld\)</span>.
+The eigenvalues are 0 and 5 (<em>both real</em>).
+<span class="math notranslate nohighlight">\(\ld=0\)</span> is an eigenvalue because <span class="math notranslate nohighlight">\(S\)</span> is singular, and <span class="math notranslate nohighlight">\(\ld=5\)</span>
+matches the <em>trace</em> down the diagonal of <span class="math notranslate nohighlight">\(S\)</span>: <span class="math notranslate nohighlight">\(0+5\)</span> agrees with
+<span class="math notranslate nohighlight">\(1+4\)</span>.</p>
+<p>Two eigenvectors are <span class="math notranslate nohighlight">\((2,-1)\)</span> and <span class="math notranslate nohighlight">\((1,2)\)</span>–orthogonal but not yet orthonormal.
+The eigenvector for <span class="math notranslate nohighlight">\(\ld=0\)</span> is in the <em>nullspace</em> of <span class="math notranslate nohighlight">\(A\)</span>.
+The eigenvector for <span class="math notranslate nohighlight">\(\ld=5\)</span> is in the <em>column space</em>.
+The Fundamental Theorem says that the nullspace is perpendicular to the <strong>row space</strong>–not the column space.
+But our matrix is <em>symmetric</em>!
+Its row and column spaces are the same.
+Its eigenvectors <span class="math notranslate nohighlight">\((2,-1)\)</span> and <span class="math notranslate nohighlight">\((1,2)\)</span> must be (and are) perpendicular.</p>
+<p>Divide them by their lengths <span class="math notranslate nohighlight">\(\sqrt{5}\)</span> to get unit vectors.
+Put those unit eigenvectors into the columns of <span class="math notranslate nohighlight">\(Q\)</span>.
+Then <span class="math notranslate nohighlight">\(Q\im SQ\)</span> is <span class="math notranslate nohighlight">\(\Ld\)</span> and <span class="math notranslate nohighlight">\(Q\im=Q^T\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}Q\im SQ=\frac{1}{\sqrt{5}}\bb 2&amp;-1\\1&amp;2 \eb\bb 1&amp;2\\2&amp;4 \eb\frac{1}{\sqrt{5}}\bb 2&amp;1\\-1&amp;2 \eb=\bb 0&amp;0\\0&amp;5 = \Ld.\end{split}\]</div>
+<p>Now comes the <span class="math notranslate nohighlight">\(n\)</span> by <span class="math notranslate nohighlight">\(n\)</span> case.
+The <span class="math notranslate nohighlight">\(\ld\)</span>’s are real when <span class="math notranslate nohighlight">\(S=S^T\)</span> and <span class="math notranslate nohighlight">\(S\x=\ld\x\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Real Eigenvalues</strong>: All the eigenvalues of a real symmetric matrix are real.</p>
+</div>
+<p><strong>Proof</strong>: Suppose that <span class="math notranslate nohighlight">\(S\x=\ld\x\)</span>.
+Until we know otherwise, <span class="math notranslate nohighlight">\(\ld\)</span> might be a complex number <span class="math notranslate nohighlight">\(a+ib\)</span> (<span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> real).
+<em>Its complex conjugate</em> is <span class="math notranslate nohighlight">\(\bar{\ld}=a-ib\)</span>.
+Similarly the components of <span class="math notranslate nohighlight">\(\x\)</span> may be complex numbers, and switching the
+signs of their imaginary parts gives <span class="math notranslate nohighlight">\(\bar{\x}\)</span>.</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\bar{\ld}\)</span> times <span class="math notranslate nohighlight">\(\bar{\x}\)</span> is always the conjugate of <span class="math notranslate nohighlight">\(\ld\)</span> times <span class="math notranslate nohighlight">\(\x\)</span>.
+So we can take conjugates of <span class="math notranslate nohighlight">\(S\x=\ld\x\)</span>, remembering that <span class="math notranslate nohighlight">\(S\)</span> is real:</p>
+<div class="math notranslate nohighlight">
+\[S\x=\ld\x\rm{\ leads\ to\ }S\bar{\x}=\bar{\ld}\bar{\x}.\quad\rm{Transpose\ to}\quad\bar{\x}^TS=\bar{\x}^T\bar{\ld}.\]</div>
+<p>The left sides are the same so the right sides are equal.
+One equation has <span class="math notranslate nohighlight">\(\ld\)</span>, the other has <span class="math notranslate nohighlight">\(\bar{\ld}\)</span>.
+They multiply <span class="math notranslate nohighlight">\(\bar{\x}^T\x=|x_1|^2+|x_2|^2+\cds=\)</span> length squared which is not zero.
+<em>Therefore</em> <span class="math notranslate nohighlight">\(\ld\)</span> <em>must equal</em> <span class="math notranslate nohighlight">\(\bar{\ld}\)</span>, and <span class="math notranslate nohighlight">\(a+ib\)</span> equals <span class="math notranslate nohighlight">\(a-ib\)</span>.
+So <span class="math notranslate nohighlight">\(b=0\)</span> and <span class="math notranslate nohighlight">\(\ld=a=real\)</span>. Q.E.D.</p>
+</div></blockquote>
+<p>The eigenvectors come from solving the real equation <span class="math notranslate nohighlight">\((S-\ld I)\x=\0\)</span>.
+So the <span class="math notranslate nohighlight">\(\x\)</span>’s are also real.
+The important fact is that they are perpendicular.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Orthogonal Eigenvectors</strong>: Eigenvectors of a real symmetric matrix (when
+they correspond to different <span class="math notranslate nohighlight">\(\ld\)</span>’s) are always perpendicular.</p>
+</div>
+<p><strong>Proof</strong>: Suppose <span class="math notranslate nohighlight">\(S\x=\ld_1\x\)</span> and <span class="math notranslate nohighlight">\(S\y=\ld_2\y\)</span>.
+We are assuming here that <span class="math notranslate nohighlight">\(\ld_1\neq\ld_2\)</span>.
+Take dot products of the first equation with <span class="math notranslate nohighlight">\(\y\)</span> and the second with <span class="math notranslate nohighlight">\(\x\)</span>:</p>
+<blockquote>
+<div><p><strong>Use</strong> <span class="math notranslate nohighlight">\(S^T=S\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[(\ld_1\x)^T\y=(S\x)^T\y=\x^TS^T\y=\x^TS\y=\x^T\ld_2\y.\]</div>
+<p>The left side is <span class="math notranslate nohighlight">\(\x^T\ld_1\y\)</span>, the right side is <span class="math notranslate nohighlight">\(\x^T\ld_2\y\)</span>.
+Since <span class="math notranslate nohighlight">\(\ld_1\neq\ld_2\)</span>, this proves that <span class="math notranslate nohighlight">\(\x^T\y=0\)</span>.
+The eigenvector <span class="math notranslate nohighlight">\(\x\)</span> (for <span class="math notranslate nohighlight">\(\ld_1\)</span>) is perpendicualr to the eigenvector <span class="math notranslate nohighlight">\(\y\)</span> (for <span class="math notranslate nohighlight">\(\ld_2\)</span>).</p>
+</div></blockquote>
+<p>The eigenvectors of a 2 by 2 symmetric matrix have a special form:</p>
+<p><strong>Not widely known</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}S=\bb a&amp;b\\b&amp;c \eb\rm{\ has\ }\x1+\bb b\\\ld_1-a \eb\rm{\ and\ }\x_2=\bb \ld_2-c\\b \eb.\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(\x_1\)</span> is perpendicular to <span class="math notranslate nohighlight">\(\x_2\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\x_1^T\x_2=b(\ld_2-c)+(\ld_1-a)b=b(\ld_1+\ld_2-a-c)=0.\]</div>
+<p>This is zero because <span class="math notranslate nohighlight">\(\ld_1+\ld_2\)</span> equals the trace <span class="math notranslate nohighlight">\(a+c\)</span>.
+Thus <span class="math notranslate nohighlight">\(\x_1^T\x_2=0\)</span>.
+This also fits for the special case when <span class="math notranslate nohighlight">\(S=I\)</span>.</p>
+<p><strong>Symmetric matrices</strong> <span class="math notranslate nohighlight">\(S\)</span> <strong>have orthogonal eigenvector matrices</strong> <span class="math notranslate nohighlight">\(Q\)</span>:</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>Symmetry</strong>: <span class="math notranslate nohighlight">\(S=X\Ld X\im\)</span> becomes <span class="math notranslate nohighlight">\(S=Q\Ld Q^T\)</span> with <span class="math notranslate nohighlight">\(Q^TQ=I\)</span>.</p>
+</div>
+<p>This says that every 2 by 2 symmetric matrix is (<strong>rotation</strong>)(<strong>stretch</strong>)(<strong>rotate back</strong>)</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}S=Q\Ld Q^T=\bb \\\ \q_1&amp;\q_2 \\\ \eb\bb \ld_1\\&amp;\ld_2 \eb\bb &amp;\q_1^T&amp;\\&amp;\q_2^T \eb.\end{split}\]</div>
+<p><strong>Columns</strong> <span class="math notranslate nohighlight">\(\q_1\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(\q_2\)</span> <strong>multiply rows</strong>
+<span class="math notranslate nohighlight">\(\ld_1\q_1^T\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(\ld_2\q_2^T\)</span> <strong>to produce</strong>
+<span class="math notranslate nohighlight">\(S=\ld_1\q_1\q_1^T+\ld_2\q_2\q_2^T\)</span>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>Every symmetric matrix</strong>: <span class="math notranslate nohighlight">\(S=Q\Ld Q^T=\ld_1\q_1\q_1^T+\cds+\ld_n\q_n\q_n^T\)</span>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(S\)</span> <strong>has correct eigenvectors</strong>; <strong>Those</strong> <span class="math notranslate nohighlight">\(q\)</span><strong>’s are orthonormal</strong>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(S\q_i=(\ld_1\q_1\q_1^T+\cds+\ld_n\q_n\q_n^T)\q_i=\ld_i\q_i\)</span>.</p></li>
+</ul>
+</div>
 <div class="section" id="complex-eigenvalues-of-real-matrices">
 <h2>Complex Eigenvalues of Real Matrices<a class="headerlink" href="#complex-eigenvalues-of-real-matrices" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>For real matrices, complex</strong> <span class="math notranslate nohighlight">\(\ld\)</span><strong>’s and</strong> <span class="math notranslate nohighlight">\(\x\)</span><strong>’s come in “conjugate pairs.”</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\begin{matrix}\ld=a+ib\\\bar{\ld}=a-ib\end{matrix}\quad\)</span> <strong>If</strong>
+<span class="math notranslate nohighlight">\(A\x=\ld\x\)</span> <strong>then</strong> <span class="math notranslate nohighlight">\(A\bar{\x}=\bar{\ld}{\x}\)</span>.</p></li>
+</ul>
+</div>
+<p><span class="math notranslate nohighlight">\(A=\bb \cos\theta&amp;-\sin\theta\\\sin\theta&amp;\cos\theta\eb\)</span> has
+<span class="math notranslate nohighlight">\(\ld_1=\cos\theta+i\sin\theta\)</span> and <span class="math notranslate nohighlight">\(\ld_2=\cos\theta-i\sin\theta\)</span>.</p>
+<p>Those eigenvalues are conjugate to each other.
+They are <span class="math notranslate nohighlight">\(\ld\)</span> and <span class="math notranslate nohighlight">\(\bar{\ld}\)</span>.
+The eigenvectors must by <span class="math notranslate nohighlight">\(\x\)</span> and <span class="math notranslate nohighlight">\(\bar{\x}\)</span>, because <span class="math notranslate nohighlight">\(A\)</span> is real:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>This is</strong> <span class="math notranslate nohighlight">\(\ld\x\)</span> <span class="math notranslate nohighlight">\(A\x=\bb \cos\theta&amp;-\sin\theta\\
+\sin\theta&amp;\cos\theta\eb\bb 1\\-i \eb=(\cos\theta+i\sin\theta)\bb 1\\-i\eb\)</span>.</p></li>
+<li><p><strong>This is</strong> <span class="math notranslate nohighlight">\(\ld\bar{\x}\)</span> <span class="math notranslate nohighlight">\(A\x=\bb \cos\theta&amp;-\sin\theta\\
+\sin\theta&amp;\cos\theta\eb\bb 1\\i \eb=(\cos\theta-i\sin\theta)\bb 1\\i\eb\)</span>.</p></li>
+</ul>
+</div></blockquote>
+<p>For this rotation matrix the absolute value is <span class="math notranslate nohighlight">\(|\ld|=1\)</span>, because <span class="math notranslate nohighlight">\(\cos^2\theta+\sin^2\theta=1\)</span>.
+<strong>This fact</strong> <span class="math notranslate nohighlight">\(|\ld|=1\)</span> <strong>holds for the eigenvalues of every orthogonal matrix</strong> <span class="math notranslate nohighlight">\(Q\)</span>.</p>
 </div>
 <div class="section" id="eigenvalues-versus-pivots">
 <h2>Eigenvalues versus Pivots<a class="headerlink" href="#eigenvalues-versus-pivots" title="Permalink to this headline">¶</a></h2>
+<p>The only connection between eigenvalues and pivots is:</p>
+<blockquote>
+<div><p><strong>product of pivots = determinant = product of eigenvalues</strong>.</p>
+</div></blockquote>
+<p>We are assuming a full set of pivots <span class="math notranslate nohighlight">\(d_1,\cds,d_n\)</span>.
+There are <span class="math notranslate nohighlight">\(n\)</span> real eigenvalues <span class="math notranslate nohighlight">\(\ld_1,\cds,\ld_n\)</span>.
+The <span class="math notranslate nohighlight">\(d\)</span>’s and <span class="math notranslate nohighlight">\(\ld\)</span>’s are not the same, but they come from the same symmetric matrix.
+<strong>For symmetric matrices the pivots and the eigenvalues have the same signs</strong>:</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>The number of positive eigenvalues of</strong> <span class="math notranslate nohighlight">\(S=S^T\)</span> <strong>equals the number of positive pivots</strong>.</p>
+</div>
+<p>Special case: <span class="math notranslate nohighlight">\(S\)</span> have all <span class="math notranslate nohighlight">\(\ld_i&gt;0\)</span> if and only if all pivots are positive.</p>
 </div>
 <div class="section" id="all-symmetric-matrices-are-diagonalizable">
 <h2>All Symmetric Matrices are Diagonalizable<a class="headerlink" href="#all-symmetric-matrices-are-diagonalizable" title="Permalink to this headline">¶</a></h2>
