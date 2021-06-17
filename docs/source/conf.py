@@ -59,6 +59,7 @@ rst_prolog = r'''
     \newcommand{\bs}{\boldsymbol}
     \newcommand{\dp}{\displaystyle}
     \newcommand{\rm}{\mathrm}
+    \newcommand{\pd}{\partial}
     
     \newcommand{\cd}{\cdot}
     \newcommand{\cds}{\cdots}
