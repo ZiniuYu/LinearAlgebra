@@ -193,5 +193,42 @@ The :math:`d`'s and :math:`\ld`'s are not the same, but they come from the same 
 
 Special case: :math:`S` have all :math:`\ld_i>0` if and only if all pivots are positive.
 
+That special case is an all-important fact for **positive definite matrices**.
+
+When the pivots are divided out of the rows of :math:`U`, then :math:`S=LDL^T`.
+The diagonal pivot matrix :math:`D` goes between the triangular matrices :math:`L` and :math:`L^T`.
+
+.. tip::
+
+    **Watch the eigenvalues of** :math:`LDL^T` **when** :math:`L` **moves to** :math:`I`.
+    :math:`S` **changes to** :math:`D`.
+
+Move :math:`L` toward :math:`I`, by moving the off-diagonal entries to zero.
+The pivots are not changing and not zero.
+The eigenvalues :math:`\ld` of :math:`LDL^T` changes to the eigenvalues :math:`d` of :math:`IDI^T`.
+Since these eigenvalues cannot cross zero as they move into the pivots, their signs cannot change.
+**Same signs for the** :math:`\ld`'s **and** :math:`d`'s.
+
+**This connect the two halves of applied linear algebra--pivots and eigenvalues**.
+
 All Symmetric Matrices are Diagonalizable
 -----------------------------------------
+
+When no eigenvalues of :math:`A` are repeated, the eigenvectors are sure to be independent.
+Then :math:`A` can be diagonalized.
+But a repeated eigenvalue can produce a shortage of eigenvectors.
+This *sometimes* happens for nonsymmetric matrices.
+It *never* happens for symmetric matrices.
+**There are always enough eigenvectors to diagonalize** :math:`S=S^T`.
+
+One idea is to change :math:`S` slightly by a diagonal matrix :math:`\bs{\rm{diag}}(c,2c,\cds,nc)`.
+If :math:`c` is very small, the new symmetric matrix will have no repeated eigenvalues.
+Then we know it has afull set of orthonormal eigenvectors.
+As :math:`c\rightarrow 0` we obtain :math:`n` orthonormal eigenvectors of the 
+original :math:`S`--even if some eigenvalues of that :math:`S` are repeated.
+
+**Schur's Theorem**: Every square :math:`A` factors into :math:`QTQ\im` where 
+:math:`T` is upper triangular and :math:`Q^T=Q\im`.
+If :math:`A` has real eigenvalues then :math:`Q` and :math:`T` can be chosen real: :math:`Q^TQ=I`.
+
+**Singular values come from** :math:`A^TA` **and** :math:`AA^T`.

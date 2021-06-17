@@ -13,6 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -29,11 +31,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -323,7 +325,7 @@ This also fits for the special case when <span class="math notranslate nohighlig
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><span class="math notranslate nohighlight">\(S\)</span> <strong>has correct eigenvectors</strong>; <strong>Those</strong> <span class="math notranslate nohighlight">\(q\)</span><strong>’s are orthonormal</strong>:</p>
+<p><span class="math notranslate nohighlight">\(S\)</span> <strong>has correct eigenvectors</strong>; <strong>Those</strong> <span class="math notranslate nohighlight">\(q\)</span><strong>‘s are orthonormal</strong>:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(S\q_i=(\ld_1\q_1\q_1^T+\cds+\ld_n\q_n\q_n^T)\q_i=\ld_i\q_i\)</span>.</p></li>
 </ul>
@@ -332,7 +334,7 @@ This also fits for the special case when <span class="math notranslate nohighlig
 <h2>Complex Eigenvalues of Real Matrices<a class="headerlink" href="#complex-eigenvalues-of-real-matrices" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><strong>For real matrices, complex</strong> <span class="math notranslate nohighlight">\(\ld\)</span><strong>’s and</strong> <span class="math notranslate nohighlight">\(\x\)</span><strong>’s come in “conjugate pairs.”</strong></p>
+<p><strong>For real matrices, complex</strong> <span class="math notranslate nohighlight">\(\ld\)</span><strong>‘s and</strong> <span class="math notranslate nohighlight">\(\x\)</span><strong>‘s come in “conjugate pairs.”</strong></p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\begin{matrix}\ld=a+ib\\\bar{\ld}=a-ib\end{matrix}\quad\)</span> <strong>If</strong>
 <span class="math notranslate nohighlight">\(A\x=\ld\x\)</span> <strong>then</strong> <span class="math notranslate nohighlight">\(A\bar{\x}=\bar{\ld}{\x}\)</span>.</p></li>
@@ -369,9 +371,38 @@ The <span class="math notranslate nohighlight">\(d\)</span>’s and <span class=
 <p><strong>The number of positive eigenvalues of</strong> <span class="math notranslate nohighlight">\(S=S^T\)</span> <strong>equals the number of positive pivots</strong>.</p>
 </div>
 <p>Special case: <span class="math notranslate nohighlight">\(S\)</span> have all <span class="math notranslate nohighlight">\(\ld_i&gt;0\)</span> if and only if all pivots are positive.</p>
+<p>That special case is an all-important fact for <strong>positive definite matrices</strong>.</p>
+<p>When the pivots are divided out of the rows of <span class="math notranslate nohighlight">\(U\)</span>, then <span class="math notranslate nohighlight">\(S=LDL^T\)</span>.
+The diagonal pivot matrix <span class="math notranslate nohighlight">\(D\)</span> goes between the triangular matrices <span class="math notranslate nohighlight">\(L\)</span> and <span class="math notranslate nohighlight">\(L^T\)</span>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>Watch the eigenvalues of</strong> <span class="math notranslate nohighlight">\(LDL^T\)</span> <strong>when</strong> <span class="math notranslate nohighlight">\(L\)</span> <strong>moves to</strong> <span class="math notranslate nohighlight">\(I\)</span>.
+<span class="math notranslate nohighlight">\(S\)</span> <strong>changes to</strong> <span class="math notranslate nohighlight">\(D\)</span>.</p>
+</div>
+<p>Move <span class="math notranslate nohighlight">\(L\)</span> toward <span class="math notranslate nohighlight">\(I\)</span>, by moving the off-diagonal entries to zero.
+The pivots are not changing and not zero.
+The eigenvalues <span class="math notranslate nohighlight">\(\ld\)</span> of <span class="math notranslate nohighlight">\(LDL^T\)</span> changes to the eigenvalues <span class="math notranslate nohighlight">\(d\)</span> of <span class="math notranslate nohighlight">\(IDI^T\)</span>.
+Since these eigenvalues cannot cross zero as they move into the pivots, their signs cannot change.
+<strong>Same signs for the</strong> <span class="math notranslate nohighlight">\(\ld\)</span>’s <strong>and</strong> <span class="math notranslate nohighlight">\(d\)</span>’s.</p>
+<p><strong>This connect the two halves of applied linear algebra–pivots and eigenvalues</strong>.</p>
 </div>
 <div class="section" id="all-symmetric-matrices-are-diagonalizable">
 <h2>All Symmetric Matrices are Diagonalizable<a class="headerlink" href="#all-symmetric-matrices-are-diagonalizable" title="Permalink to this headline">¶</a></h2>
+<p>When no eigenvalues of <span class="math notranslate nohighlight">\(A\)</span> are repeated, the eigenvectors are sure to be independent.
+Then <span class="math notranslate nohighlight">\(A\)</span> can be diagonalized.
+But a repeated eigenvalue can produce a shortage of eigenvectors.
+This <em>sometimes</em> happens for nonsymmetric matrices.
+It <em>never</em> happens for symmetric matrices.
+<strong>There are always enough eigenvectors to diagonalize</strong> <span class="math notranslate nohighlight">\(S=S^T\)</span>.</p>
+<p>One idea is to change <span class="math notranslate nohighlight">\(S\)</span> slightly by a diagonal matrix <span class="math notranslate nohighlight">\(\bs{\rm{diag}}(c,2c,\cds,nc)\)</span>.
+If <span class="math notranslate nohighlight">\(c\)</span> is very small, the new symmetric matrix will have no repeated eigenvalues.
+Then we know it has afull set of orthonormal eigenvectors.
+As <span class="math notranslate nohighlight">\(c\rightarrow 0\)</span> we obtain <span class="math notranslate nohighlight">\(n\)</span> orthonormal eigenvectors of the
+original <span class="math notranslate nohighlight">\(S\)</span>–even if some eigenvalues of that <span class="math notranslate nohighlight">\(S\)</span> are repeated.</p>
+<p><strong>Schur’s Theorem</strong>: Every square <span class="math notranslate nohighlight">\(A\)</span> factors into <span class="math notranslate nohighlight">\(QTQ\im\)</span> where
+<span class="math notranslate nohighlight">\(T\)</span> is upper triangular and <span class="math notranslate nohighlight">\(Q^T=Q\im\)</span>.
+If <span class="math notranslate nohighlight">\(A\)</span> has real eigenvalues then <span class="math notranslate nohighlight">\(Q\)</span> and <span class="math notranslate nohighlight">\(T\)</span> can be chosen real: <span class="math notranslate nohighlight">\(Q^TQ=I\)</span>.</p>
+<p><strong>Singular values come from</strong> <span class="math notranslate nohighlight">\(A^TA\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(AA^T\)</span>.</p>
 </div>
 </div>
 
