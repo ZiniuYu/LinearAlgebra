@@ -213,8 +213,56 @@
 \newcommand{\ppr}{^{\prime\prime}}\end{aligned}\end{align} \]</div>
 <div class="section" id="chapter-6-5-positive-definite-matrices">
 <h1>Chapter 6.5 Positive Definite Matrices<a class="headerlink" href="#chapter-6-5-positive-definite-matrices" title="Permalink to this headline">¶</a></h1>
+<p>Symmetric matrices with all positive eigenvalues are called <strong>positive definite</strong>.</p>
+<p>Here are two goals of this section:</p>
+<ul class="simple">
+<li><p>To find <em>quick tests</em> on a symmetric matrix that guarantee <em>positive eigenvalues</em>.</p></li>
+<li><p>To explain important applications of positive definiteness.</p></li>
+</ul>
+<p>Every eigenvalue is real because the matrix is symmetric.</p>
+<p><strong>Start with 2 by 2. When does</strong> <span class="math notranslate nohighlight">\(S=\bb a&amp;b\\b&amp;c \eb\)</span> <strong>have</strong> <span class="math notranslate nohighlight">\(\ld_1&gt;0\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(\ld_2&gt;0\)</span>?</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Test: The eigenvalues of</strong> <span class="math notranslate nohighlight">\(S\)</span> <strong>are positive if and only if</strong> <span class="math notranslate nohighlight">\(a &gt; 0\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(ac-b^2&gt;0\)</span>.</p>
+</div>
+<p><em>Proof that the 2 by 2 test is passed when</em> <span class="math notranslate nohighlight">\(\ld_1&gt;0\)</span> <em>and</em> <span class="math notranslate nohighlight">\(\ld_2&gt;0\)</span>.
+Their product <span class="math notranslate nohighlight">\(\ld_1\ld_2\)</span> is the determinant so <span class="math notranslate nohighlight">\(ac-b^2&gt;0\)</span>.
+Their sum <span class="math notranslate nohighlight">\(\ld_1+\ld_2\)</span> is the trace so <span class="math notranslate nohighlight">\(a+c&gt;0\)</span>.
+Then <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(c\)</span> are both positive (if <span class="math notranslate nohighlight">\(a\)</span> or <span class="math notranslate nohighlight">\(c\)</span> is not positive, <span class="math notranslate nohighlight">\(ac-b^2&gt;0\)</span> will fail).</p>
+<p>This test uses the 1 by 1 determinant <span class="math notranslate nohighlight">\(a\)</span> and the 2 by 2 determinant <span class="math notranslate nohighlight">\(ac-b^2\)</span>.
+When <span class="math notranslate nohighlight">\(S\)</span> is 3 by 3, <span class="math notranslate nohighlight">\(\det S&gt;0\)</span> is the third part of the test.
+The next test requires <em>postive pivots</em>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Test: The eigenvalues of</strong> <span class="math notranslate nohighlight">\(S\)</span> <strong>are positive if and only if the pivots are positive</strong>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(a&gt;0\)</span> and <span class="math notranslate nohighlight">\(\dp\frac{ac-b^2}{a}&gt;0\xrightarrow[\text{world}]{\text{hello}}\)</span>.</p></li>
+</ul>
+</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb a&amp;b\\b&amp;c \eb \xrightarrow[\rm{The\ multiplier\ is\ }b/a]
+{\rm{The\ first\ pivot\ is\ }a}\bb a&amp;b\\0&amp;c-\frac{b}{a}b \eb.\end{split}\]</div>
+<p>This connects two big parts of linear algebra.
+<strong>Positive eigenvalues mean positive pivots and vice versa</strong>.
+Each pivot is a ratio of upper left determinant.
+The pivots give a quick test for <span class="math notranslate nohighlight">\(\ld&gt;0\)</span>, and they are a lot faster to compute than the eigenvalues.</p>
 <div class="section" id="energy-based-definition">
 <h2>Energy-based Definition<a class="headerlink" href="#energy-based-definition" title="Permalink to this headline">¶</a></h2>
+<p>From <span class="math notranslate nohighlight">\(S\x=\ld\x\)</span>, nultiply by <span class="math notranslate nohighlight">\(\x^T\)</span> to get <span class="math notranslate nohighlight">\(\x^TS\x=\ld\x^T\x\)</span>.
+The right side is a positive <span class="math notranslate nohighlight">\(\ld\)</span> times a positive number <span class="math notranslate nohighlight">\(\x^T\x=\lv\x\rv^2\)</span>.
+So the left side <span class="math notranslate nohighlight">\(\x^TS\x\)</span> is positive for any eigenvector.</p>
+<p><em>Important point</em>: The new idea is that <span class="math notranslate nohighlight">\(\x^TS\x\)</span>
+<strong>is positive for all nonzero vectors</strong> <span class="math notranslate nohighlight">\(\x\)</span>, not just the eigenvectors.
+In many application this number <span class="math notranslate nohighlight">\(\x^TS\x\)</span> (or <span class="math notranslate nohighlight">\(\frac{1}{2}\x^TS\x\)</span> ) is the <strong>energy</strong> in the system.
+The requirement of positive energy gives <em>another definition</em> of a positive definite matrix.</p>
+<p>Eigenvalues and pivots are two equivalent ways to test the new requirement <span class="math notranslate nohighlight">\(\x^TS\x&gt;0\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Definition</strong>: <span class="math notranslate nohighlight">\(S\)</span> <strong>is positive definite if</strong> <span class="math notranslate nohighlight">\(\x^TS\x&gt;0\)</span> <strong>for every nonzero vector</strong> <span class="math notranslate nohighlight">\(\x\)</span>:</p>
+<ul class="simple">
+<li><p><strong>2 by 2</strong>: <span class="math notranslate nohighlight">\(\x^TS\x=\bb x&amp;y \eb\bb a&amp;b\\b&amp;c \eb\bb x\\y \eb=ax^2+2bxy+cy^2&gt;0\)</span>.</p></li>
+</ul>
+</div>
 </div>
 <div class="section" id="positive-semidefinite-matrices">
 <h2>Positive Semidefinite Matrices<a class="headerlink" href="#positive-semidefinite-matrices" title="Permalink to this headline">¶</a></h2>
