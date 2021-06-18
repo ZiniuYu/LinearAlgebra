@@ -13,6 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -29,11 +31,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -367,9 +369,9 @@ For <span class="math notranslate nohighlight">\(F(x,y,z)\)</span> the matrix <s
 <h2>Table of Eigenvalues and Eigenvectors<a class="headerlink" href="#table-of-eigenvalues-and-eigenvectors" title="Permalink to this headline">¶</a></h2>
 <table class="colwidths-given docutils align-default">
 <colgroup>
-<col style="width: 37%" />
-<col style="width: 26%" />
-<col style="width: 37%" />
+<col style="width: 40%" />
+<col style="width: 25%" />
+<col style="width: 35%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><strong>Symmetric</strong>: <span class="math notranslate nohighlight">\(S^T=S=Q\Ld Q^T\)</span></p></td>
@@ -387,6 +389,22 @@ For <span class="math notranslate nohighlight">\(F(x,y,z)\)</span> the matrix <s
 <tr class="row-even"><td><p><strong>Complex Hermitian</strong>: <span class="math notranslate nohighlight">\(\bar{S}^T=S\)</span></p></td>
 <td><p>real <span class="math notranslate nohighlight">\(\ld\)</span>’s</p></td>
 <td><p>orthogonal <span class="math notranslate nohighlight">\(\bar{\x}_i^T\x_j=0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Positive Definite</strong>: <span class="math notranslate nohighlight">\(\x^TS\x&gt;0\)</span></p></td>
+<td><p>all <span class="math notranslate nohighlight">\(\ld&gt;0\)</span></p></td>
+<td><p>orthogonal since <span class="math notranslate nohighlight">\(S^T=S\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Markov</strong>: <span class="math notranslate nohighlight">\(m_{ij}&gt;0, \sum_{i=1}^nm_{ij}=1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\ld_{\rm{max}}=1\)</span></p></td>
+<td><p>steady state <span class="math notranslate nohighlight">\(\x&gt;0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Similar</strong>: <span class="math notranslate nohighlight">\(A=BCB\im\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\ld(A)=\ld(C)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(B\)</span> times eigenvector of <span class="math notranslate nohighlight">\(C\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Projection</strong>: <span class="math notranslate nohighlight">\(P=P^2=P^T\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\ld=1;0\)</span></p></td>
+<td><p>column space; nullspace</p></td>
 </tr>
 </tbody>
 </table>

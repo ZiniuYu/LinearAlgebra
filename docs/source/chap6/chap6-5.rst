@@ -190,7 +190,7 @@ Table of Eigenvalues and Eigenvectors
 -------------------------------------
 
 .. list-table:: 
-    :widths: 35 25 35
+    :widths: 40 25 35
 
     * - **Symmetric**: :math:`S^T=S=Q\Ld Q^T`
       - real eigenvalues
@@ -204,3 +204,15 @@ Table of Eigenvalues and Eigenvectors
     * - **Complex Hermitian**: :math:`\bar{S}^T=S`
       - real :math:`\ld`'s
       - orthogonal :math:`\bar{\x}_i^T\x_j=0`
+    * - **Positive Definite**: :math:`\x^TS\x>0`
+      - all :math:`\ld>0`
+      - orthogonal since :math:`S^T=S`
+    * - **Markov**: :math:`m_{ij}>0, \sum_{i=1}^nm_{ij}=1`
+      - :math:`\ld_{\rm{max}}=1`
+      - steady state :math:`\x>0`
+    * - **Similar**: :math:`A=BCB\im`
+      - :math:`\ld(A)=\ld(C)`
+      - :math:`B` times eigenvector of :math:`C`\
+    * - **Projection**: :math:`P=P^2=P^T`
+      - :math:`\ld=1;0`
+      - column space; nullspace
