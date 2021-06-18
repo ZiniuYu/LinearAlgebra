@@ -99,7 +99,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../chap6/index6.html">Chapter 6 Eigenvalues and Eigenvectors</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index7.html">Chapter 7 The Singular Value Decomposition (SVD)</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="chap7-1.html">Chapter 7.1 Image Processing by Linear Algebra</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 7.2 Bases and Matrices in the SVD</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 7.2 Bases and Matrices in the SVD</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#proof-of-the-svd">Proof of the SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#an-example-of-the-svd">An Example of the SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#an-extreme-matrix">An Extreme Matrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sigular-value-stability-versus-eigenvalue-instability">Sigular Value Stability versus Eigenvalue Instability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#computing-the-eigenvalues-of-s-and-singular-values-of-a">Computing the Eigenvalues of <span class="math notranslate nohighlight">\(S\)</span> and Singular Values of <span class="math notranslate nohighlight">\(A\)</span></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="chap7-3.html">Chapter 7.3 Principal Component Analysis (PCA by the SVD)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chap7-4.html">Chapter 7.4 The Geometry of the SVD</a></li>
 </ul>
@@ -201,7 +208,8 @@
 \newcommand{\C}{\boldsymbol{C}}
 \newcommand{\N}{\boldsymbol{N}}\\\newcommand{\R}{\boldsymbol{\mathrm{R}}}\\\newcommand{\ld}{\lambda}
 \newcommand{\Ld}{\Lambda}
-\newcommand{\sg}{\sigma}\\\newcommand{\bb}{\begin{bmatrix}}
+\newcommand{\sg}{\sigma}
+\newcommand{\Sg}{\Sigma}\\\newcommand{\bb}{\begin{bmatrix}}
 \newcommand{\eb}{\end{bmatrix}}
 \newcommand{\bv}{\begin{vmatrix}}
 \newcommand{\ev}{\end{vmatrix}}\\\newcommand{\im}{^{-1}}
@@ -209,6 +217,117 @@
 \newcommand{\ppr}{^{\prime\prime}}\end{aligned}\end{align} \]</div>
 <div class="section" id="chapter-7-2-bases-and-matrices-in-the-svd">
 <h1>Chapter 7.2 Bases and Matrices in the SVD<a class="headerlink" href="#chapter-7-2-bases-and-matrices-in-the-svd" title="Permalink to this headline">¶</a></h1>
+<p><span class="math notranslate nohighlight">\(A\)</span> is any <span class="math notranslate nohighlight">\(m\)</span> by <span class="math notranslate nohighlight">\(n\)</span> matrix, square or rectangular.
+Its rank is <span class="math notranslate nohighlight">\(r\)</span>.
+We will daigonalize this <span class="math notranslate nohighlight">\(A\)</span>, but not by <span class="math notranslate nohighlight">\(X\im AX\)</span>.
+The eigenvectors in <span class="math notranslate nohighlight">\(X\)</span> have three big problems: They are usually not
+orthogonal, there are not always enough eigenvectors, and <span class="math notranslate nohighlight">\(A\x=\ld\x\)</span>
+requires <span class="math notranslate nohighlight">\(A\)</span> to be a square matrix.
+The <strong>singular vectors</strong> of <span class="math notranslate nohighlight">\(A\)</span> solve all those problems in a perfect way.</p>
+<p>We want from the SVD are <strong>the right bases for the four subspaces</strong>.
+The steps to find those basis vectors will be described <strong>in order of importance</strong>.</p>
+<p>The price we pay is to have <strong>two sets of singular vectors</strong>, <span class="math notranslate nohighlight">\(\u\)</span>’s and <span class="math notranslate nohighlight">\(\v\)</span>’s.
+The <span class="math notranslate nohighlight">\(\u\)</span>’s are in <span class="math notranslate nohighlight">\(\R^m\)</span> and the <span class="math notranslate nohighlight">\(\v\)</span>’s are in <span class="math notranslate nohighlight">\(\R^n\)</span>.
+They will be the columns of an <span class="math notranslate nohighlight">\(m\)</span> by <span class="math notranslate nohighlight">\(m\)</span> matrix <span class="math notranslate nohighlight">\(\bs{U}\)</span> and
+an <span class="math notranslate nohighlight">\(n\)</span> by <span class="math notranslate nohighlight">\(n\)</span> matrix <span class="math notranslate nohighlight">\(\bs{V}\)</span>.</p>
+<p><strong>Using vectors</strong>: The <span class="math notranslate nohighlight">\(\u\)</span>’s and <span class="math notranslate nohighlight">\(\v\)</span>’s give bases for the four fundamental subspaces:</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\u_1,\cds,\u_r\)</span> is an orthonormal basis for the <strong>column space</strong></p></li>
+<li><p><span class="math notranslate nohighlight">\(\u_{r+1},\cds,\u_m\)</span> is an orthonormal basis for the <strong>left nullspace</strong> <span class="math notranslate nohighlight">\(\N(A^T)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\v_1,\cds,\v_r\)</span> is an orthonormal basis for the <strong>row space</strong></p></li>
+<li><p><span class="math notranslate nohighlight">\(\v_{r+1},\cds,\v_n\)</span> is an orthonormal basis for the <strong>nullspace</strong> <span class="math notranslate nohighlight">\(\N(A)\)</span>.</p></li>
+</ul>
+</div>
+<p>More than just orthogonality, these basis vectors diagonalize the matrix <span class="math notranslate nohighlight">\(A\)</span>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>“</strong><span class="math notranslate nohighlight">\(A\)</span> <strong>is diagonalized”</strong>: <span class="math notranslate nohighlight">\(A\v_1=\sg_1\u_1\quad A\v_2=\sg_2\u_2\quad\cds\quad A\v_r=\sg_r\u_r\)</span>.</p>
+</div>
+<p>Those <strong>singular values</strong> <span class="math notranslate nohighlight">\(\sg_1\)</span> <strong>to</strong> <span class="math notranslate nohighlight">\(\sg_r\)</span> will be positive
+numbers: <span class="math notranslate nohighlight">\(\sg_i\)</span> <em>is the length of</em> <span class="math notranslate nohighlight">\(A\v_i\)</span>.
+The <span class="math notranslate nohighlight">\(\sg\)</span>’s go into a diagonal matrix that is otherwise zero.
+That matrix is <span class="math notranslate nohighlight">\(\Sg\)</span>.</p>
+</div></blockquote>
+<p><strong>Using matrices</strong>: Since the <span class="math notranslate nohighlight">\(\u\)</span>’s are orthonormal, the matrix
+<span class="math notranslate nohighlight">\(U_r\)</span> with those <span class="math notranslate nohighlight">\(r\)</span> columns has <span class="math notranslate nohighlight">\(U_r^TU_r=I\)</span>.
+Since the <span class="math notranslate nohighlight">\(\v\)</span>’s are orthonormal, the matrix <span class="math notranslate nohighlight">\(V_r\)</span> has <span class="math notranslate nohighlight">\(V_r^TV_r=I\)</span>.
+Then the equations <span class="math notranslate nohighlight">\(A\v_i=\sg_i\u_i\)</span> tell us column by column that <span class="math notranslate nohighlight">\(AV_r=U_r\Sg_r\)</span>:</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}AV_r=U_r\Sg_r\quad A\bb \\\ \v_1&amp;\cds&amp;v_r \\\ \eb=\bb \\\ \u_1&amp;\cds&amp;\u_r \\\ \eb\bb \sg_1\\&amp;\dds\\&amp;&amp;\sg_r \eb.\end{split}\]</div>
+<p>Those <span class="math notranslate nohighlight">\(\v\)</span>’s and <span class="math notranslate nohighlight">\(\u\)</span>’s account for the row space and column space of <span class="math notranslate nohighlight">\(A\)</span>.
+We have <span class="math notranslate nohighlight">\(n-r\)</span> more <span class="math notranslate nohighlight">\(\v\)</span>’s and <span class="math notranslate nohighlight">\(m-r\)</span> more <span class="math notranslate nohighlight">\(\u\)</span>’s, from
+the nullspace <span class="math notranslate nohighlight">\(\N(A)\)</span> and the left nullspace <span class="math notranslate nohighlight">\(\N(A^T)\)</span>.
+They are automatically orthogonal to the first <span class="math notranslate nohighlight">\(\v\)</span>’s and <span class="math notranslate nohighlight">\(\u\)</span>’s
+(because the whole nullspace are orthogonal).
+We now include all the <span class="math notranslate nohighlight">\(\v\)</span>’s and <span class="math notranslate nohighlight">\(\u\)</span>’s in <span class="math notranslate nohighlight">\(V\)</span> and <span class="math notranslate nohighlight">\(U\)</span>, so these matrices become <em>square</em>.
+<strong>We still have</strong> <span class="math notranslate nohighlight">\(AV=U\Sg\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}AV=U\Sg\quad A\bb \\\ \v_1\ \cds\ \v_r\ \cds\ \v_n \\\ \eb=
+\bb \\\ \u_1\ \cds\ \u_r\ \cds\ \u_m \\\ \eb\bb \sg_1\\&amp;\dds\\&amp;&amp;\sg_r&amp;&amp; \\\ \eb.\end{split}\]</div>
+<p>The new <span class="math notranslate nohighlight">\(\Sg\)</span> is <span class="math notranslate nohighlight">\(m\)</span> by <span class="math notranslate nohighlight">\(n\)</span>.
+It is just the <span class="math notranslate nohighlight">\(r\)</span> by <span class="math notranslate nohighlight">\(r\)</span> matrix with <span class="math notranslate nohighlight">\(m-r\)</span> extra zero rows and <span class="math notranslate nohighlight">\(n-r\)</span> new zero columns.
+The real change is in the shapes of <span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(V\)</span>.
+Those are square matrices and <span class="math notranslate nohighlight">\(V\im=V^T\)</span>.
+So <span class="math notranslate nohighlight">\(AV=U\Sg\)</span> becomes <span class="math notranslate nohighlight">\(A=U\Sg V^T\)</span>.
+This is the <strong>Singular Value Decomposition</strong>.
+I can multiply columns <span class="math notranslate nohighlight">\(\u_i\sg_i\)</span> from <span class="math notranslate nohighlight">\(U\Sg\)</span> by rows of <span class="math notranslate nohighlight">\(V^T\)</span>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>SVD</strong>: <span class="math notranslate nohighlight">\(A=U\Sg V^T=\u_1\sg_1\v_1^T+\cds+\u_r\sg_r\v_r^T\)</span>.</p>
+</div>
+<p>We will see that each <span class="math notranslate nohighlight">\(\sg_i^2\)</span> is an eigenvalue of <span class="math notranslate nohighlight">\(A^TA\)</span> and also <span class="math notranslate nohighlight">\(AA^T\)</span>.
+When we put the singular values in descending order,
+<span class="math notranslate nohighlight">\(\sg_1\geq\sg_2\geq\cds\sg_r&gt;0\)</span>, the splitting gives the <span class="math notranslate nohighlight">\(r\)</span>
+rank-one pieces of <span class="math notranslate nohighlight">\(A\)</span> <strong>in order of importance</strong>.</p>
+</div></blockquote>
+<p>When is <span class="math notranslate nohighlight">\(A=U\Sg V^T\)</span> (singular values) the <em>same</em> as <span class="math notranslate nohighlight">\(X\Ld X\im\)</span> (eigenvalues)?</p>
+<p><span class="math notranslate nohighlight">\(A\)</span> needs orthonormal eigenvalues to allow <span class="math notranslate nohighlight">\(X=U=V\)</span>.
+<span class="math notranslate nohighlight">\(A\)</span> also needs eigenvalues <span class="math notranslate nohighlight">\(\ld\geq 0\)</span> if <span class="math notranslate nohighlight">\(\Ld=\Sg\)</span>.
+So <span class="math notranslate nohighlight">\(A\)</span> must be a <strong>positive semidefinite (or difinite) symmetric matrix</strong>.
+Only then will <span class="math notranslate nohighlight">\(A=X\Ld X\im\)</span> which is also <span class="math notranslate nohighlight">\(Q\Ld Q^T\)</span> coincide with <span class="math notranslate nohighlight">\(A=U\Ld V^T\)</span>.</p>
+<div class="section" id="proof-of-the-svd">
+<h2>Proof of the SVD<a class="headerlink" href="#proof-of-the-svd" title="Permalink to this headline">¶</a></h2>
+<p>We need to show how those <span class="math notranslate nohighlight">\(\u\)</span>’s and <span class="math notranslate nohighlight">\(\v\)</span>’s can be constructed.
+The <span class="math notranslate nohighlight">\(\v\)</span>’s will be <strong>orthonormal eigenvectors of</strong> <span class="math notranslate nohighlight">\(A^TA\)</span>.
+This must be true because we are aiming for</p>
+<div class="math notranslate nohighlight">
+\[A^TA=(U\Sg V^T)^T(U\Sg V)^T=V\Sg^TU^TU\Sg V^T=V\Sg^T\Sg V^T.\]</div>
+<p>On the right you see the eigenvector matrix <span class="math notranslate nohighlight">\(V\)</span> for the symmetric positive (semi) definite matrix <span class="math notranslate nohighlight">\(A^TA\)</span>.
+And (<span class="math notranslate nohighlight">\(\Sg^T\Sg\)</span>) must be the eigenvalue matrix of (<span class="math notranslate nohighlight">\(A^TA\)</span>): <em>Each</em> <span class="math notranslate nohighlight">\(\sg^2\)</span> <em>is</em> <span class="math notranslate nohighlight">\(\ld(A^TA)\)</span>.</p>
+<p>Now <span class="math notranslate nohighlight">\(A\v_i=\sg_i\u_i\)</span> tells us the unit vectors <span class="math notranslate nohighlight">\(\u_1\)</span> to <span class="math notranslate nohighlight">\(\u_r\)</span>.
+This is the key equation.
+The essential point–the whole reason that the SVD succeeds–is that those unit
+vectors <span class="math notranslate nohighlight">\(\u_1\)</span> to <span class="math notranslate nohighlight">\(\u_r\)</span> are automatically orthogonal to each other
+(<em>because the</em> <span class="math notranslate nohighlight">\(\v\)</span>’s <em>are orthogonal</em>):</p>
+<p><strong>Key step</strong> <span class="math notranslate nohighlight">\(i\neq j\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\u_i^T\u_j=\left(\frac{A\v_i}{\sg_i}\right)^T\left(\frac{A\v_j}{\sg_j}\right)
+=\frac{\v_i^TA^TA\v_j}{\sg_i\sg_j}=\frac{\sg_j^2}{\sg_i\sg_j}\v_i^T\v_j
+=\bs{\rm{zero}}.\]</div>
+<p>The <span class="math notranslate nohighlight">\(\v\)</span>’s are eigenvectors of <span class="math notranslate nohighlight">\(A^TA\)</span> (symmetric).
+They are orthogonal and now the <span class="math notranslate nohighlight">\(\u\)</span>’s are also orthogonal.
+<em>Actually those</em> <span class="math notranslate nohighlight">\(\u\)</span>’s <em>will be eigenvectors of</em> <span class="math notranslate nohighlight">\(AA^T\)</span>.</p>
+<p>Finally we complete the <span class="math notranslate nohighlight">\(\v\)</span>’s and <span class="math notranslate nohighlight">\(\u\)</span>’s to <span class="math notranslate nohighlight">\(n\)</span> <span class="math notranslate nohighlight">\(\v\)</span>’s
+and <span class="math notranslate nohighlight">\(m\)</span> <span class="math notranslate nohighlight">\(\u\)</span>’s with any orthonormal bases for the nullspace
+<span class="math notranslate nohighlight">\(\N(A)\)</span> and <span class="math notranslate nohighlight">\(\N(A^T)\)</span>.
+We have found <span class="math notranslate nohighlight">\(V\)</span> and <span class="math notranslate nohighlight">\(\Sg\)</span> and <span class="math notranslate nohighlight">\(U\)</span> in <span class="math notranslate nohighlight">\(A=U\Sg V^T\)</span>.</p>
+</div>
+<div class="section" id="an-example-of-the-svd">
+<h2>An Example of the SVD<a class="headerlink" href="#an-example-of-the-svd" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="an-extreme-matrix">
+<h2>An Extreme Matrix<a class="headerlink" href="#an-extreme-matrix" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="sigular-value-stability-versus-eigenvalue-instability">
+<h2>Sigular Value Stability versus Eigenvalue Instability<a class="headerlink" href="#sigular-value-stability-versus-eigenvalue-instability" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="computing-the-eigenvalues-of-s-and-singular-values-of-a">
+<h2>Computing the Eigenvalues of <span class="math notranslate nohighlight">\(S\)</span> and Singular Values of <span class="math notranslate nohighlight">\(A\)</span><a class="headerlink" href="#computing-the-eigenvalues-of-s-and-singular-values-of-a" title="Permalink to this headline">¶</a></h2>
+</div>
 </div>
 
 

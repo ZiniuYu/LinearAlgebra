@@ -40,7 +40,7 @@ We use the **row form** of matrix multiplication.
     The first component of :math:`A\x` above is :math:`(-1)(2) + (2)(4) + (2)(-2)`.
 
     The :math:`i`\ th component of :math:`A\x` is 
-    :math:`(row\ i) \cd \x = a_{i1}x_1 + a_{i2}x_2 + \cds + a_{in}x_n = \Sigma_{j=1}^n a_{ij}x_j`.
+    :math:`(row\ i) \cd \x = a_{i1}x_1 + a_{i2}x_2 + \cds + a_{in}x_n = \Sg_{j=1}^n a_{ij}x_j`.
 
 General rule: :math:`A_{ij} = A(i,j)` is in **row i**, **column j**.
 
