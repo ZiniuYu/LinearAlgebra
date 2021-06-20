@@ -126,33 +126,150 @@ We have found :math:`V` and :math:`\Sg` and :math:`U` in :math:`A=U\Sg V^T`.
 An Example of the SVD
 ---------------------
 
+For a rank 2 matrix :math:`A=\bb 3&0\\4&5 \eb`:
 
+.. math::
 
+    A^TA=\bb 25&20\\20&25 \eb\quad AA^T=\bb 9&12\\12&41 \eb.
 
+Those have the same trace 50 and the same eigenvalues :math:`\sg_1^2=45` and :math:`\sg_2^2=5`.
+The square roots are :math:`\sg_1=\sqrt{45}` and :math:`\sg_2=\sqrt{5}`.
+Then :math:`\sg_1\sg_2=15` and this is t he determinant of :math:`A`.
 
+**Right singular vectors**:
 
+.. math::
 
+    \v_1=\frac{1}{\sqrt{2}}\bb 1\\1 \eb\quad\v_2=\frac{1}{\sqrt{2}}\bb -1\\1 \eb.
 
+**Left singular vectors**:
+
+.. math::
+    \u_i=\frac{A\v_i}{\sg_i}.
+
+Now compute :math:`A\v_1` and :math:`A\v_2` which will be 
+:math:`\sg_1\u_1=\sqrt{45}\u_1` and :math:`\sg_2\u_2=\sqrt{5}\u_2`:
+
+.. math::
+
+    A\v_1=\frac{3}{\sqrt{2}}\bb 1\\3 \eb=\sqrt{45}\frac{1}{\sqrt{10}}\bb 1\\3 \eb=\sg_1\u_1
+
+    A\v_2=\frac{1}{\sqrt{2}}\bb -3\\1 \eb=\sqrt{5}\frac{1}{\sqrt{10}}\bb -3\\1 \eb=\sg_2\u_2
+
+.. note::
+
+    :math:`\dp U=\frac{1}{\sqrt{10}}\bb 1&-3\\3&1 \eb\quad
+    \Sg=\bb \sqrt{45}\\&\sqrt{5} \eb\quad V=\frac{1}{\sqrt{2}}\bb 1&-1\\1&1 \eb`.
+
+:math:`U` and :math:`V` contain orthonormal bases for the column space and the 
+row space (both spaces are just :math:`\R^2`).
+The matrix :math:`A` splits into a combination of two rank-one matrices, columns times rows:
+
+.. math::
+
+    \sg_1\u_1\v_1^T+\sg_2\u_2\v_2^T=\frac{\sqrt{45}}{\sqrt{20}}\bb 1&1\\3&3 \eb+
+    \frac{\sqrt{5}}{\sqrt{20}}\bb 3&-3\\-1&1 \eb=\bb 3&0\\4&5 \eb=A.
 
 An Extreme Matrix
 -----------------
 
+The matrix :math:`A` is badly lopsided (strictly triangular).
+All its eigenvalues are zero with the only eigenvector :math:`(1,0,0,0)`.
+The singular values are :math:`\sg=3,2,1` and singular vectors are columns of :math:`I`:
 
+.. math::
 
+    A=\bb 0&1&0&0\\0&0&2&0\\0&0&0&3\\0&0&0&0 \eb.
 
+:math:`A^TA` and :math:`AA^T` are diagonal:
 
+.. math::
 
+    A^TA=\bb 0&0&0&0\\0&1&0&0\\0&0&4&0\\0&0&0&9 \eb \quad AA^T=\bb 1&0&0&0\\0&4&0&0\\0&0&9&0\\0&0&0&0 \eb.
 
+The eigenvectors (:math:`\u`'s for :math:`AA^T` and :math:`\v`'s for :math:`A^TA`) 
+go in decreasing order :math:`\sg_1^2>\sg_2^2>\sg_3^2` of the eigenvalues.
+Those eigenvalues are :math:`\sg^2=9,4,1`.
 
+.. math::
+
+    U=\bb 0&0&1&0\\0&1&0&0\\1&0&0&0\\0&0&0&1\eb\quad\Sg=\bb 3\\&2\\&&1\\&&&0 \eb
+    \quad V=\bb 0&0&0&1\\0&0&1&0\\0&1&0&0\\1&0&0&0 \eb.
+
+.. note::
+
+    :math:`A=U\Sg V^T=3\u_1\v_1^T+2\u_2\v_2^T+1\u_3\v_3^T`.
+
+*Note*: Removing the zero row of :math:`A` (now :math:`3\times 4`) just removes 
+the last row of :math:`\Sg` and also the last row and column of :math:`U`.
+Then :math:`(3\times 4)=U\Sg V^T=(3\times 3)(3\times 4)(4\times 4)`.
+The SVD is totally adapted to rectangular matrices.
 
 Sigular Value Stability versus Eigenvalue Instability
 -----------------------------------------------------
 
+**The singular values of any matrix are stable**.
 
+Singular Vectors of :math:`A` and Eigenvectors of :math:`S=A^TA`
+----------------------------------------------------------------
 
+We have proved the SVD *all at once*.
+The singular vectors :math:`\v_i` are the eigenvectors :math:`\q_i` of :math:`S=A^TA`.
+The eigenvalues :math:`\ld_i` of :math:`S` are the same as :math:`\sg_i^2` for :math:`A`.
+The rank :math:`r` of :math:`S` equals the rank of :math:`A`.
+The expansions in eigenvectors and singular vectors are perfectly parallel.
 
+.. note::
 
+    * **Symmetric** :math:`S`: :math:`S=Q\Ld Q^T=\ld_1\q_1\q_1^T+\ld_2\q_2\q_2^T+\cds+\ld_r\q_r\q_r^T`.
 
+    * **Any matrix** :math:`A`: :math:`A=U\Sg V^T=\sg_1\u_1\v_1^T+\sg_2\u_2\v_2^T+\cds+\sg_r\u_r\v_r^T`.
+
+The :math:`\q`'s are orthonormal, the :math:`\u`'s are orthonormal, the :math:`\v`'s are orthonormal.
+
+If :math:`\ld` is a *double* eigenvalue of :math:`S`, we can and must find *two* orthonormal eigenvectors.
+We want to understand the eigenvalues :math:`\ld` (of :math:`S`) and the singular
+values :math:`\sg` (of :math:`A`) **one at a time instead of all at once**.
+
+Start with the larget eigenvalue :math:`\ld_1` of :math:`S`.
+It solves this problem"
+
+    :math:`\dp\ld_1=\rm{maximum\ ratio\ }\frac{\x^TS\x}{\x^T\x}`.
+    The winning vector is :math:`\x_1=\q_1` with :math:`S\q_1=\ld_1\q_1`.
+
+    Compare with the largest singular value :math:`\sg_1` of :math:`A`.
+    It solves this problem:
+
+    :math:`\dp\sg_1=\rm{maximum\ ratio\ }\frac{\lv A\x \rv}{\lv\x\rv}`.
+    The winning vector is :math:`\x=\v_1` with :math:`A\v_1=\sg_1\u_1`.
+
+This "one at a time approach" applies also to :math:`\ld_2` and :math:`\sg_2`.
+But not all :math:`\x`'s are allowed:
+
+    :math:`\dp\ld_2=\rm{maximum\ ratio\ }\frac{\x^TS\x}{\x^T\x}` among all :math:`\x`'s with :math:`\q_A^T\x=0`.
+    :math:`\x=\q_2` will win.
+
+    :math:`\dp\sg_2=\rm{maximum\ ratio\ }\frac{\lv A\x \rv}{\lv\x\rv}` among all :math:`\x`'s with :math:`\v_1^T\x=0`.
+    :math:`\x=\v_2` will win.
+
+When :math:`S=A^TA` we find :math:`\ld_1=\sg_1^2` and :math:`\ld_2=\sg_2^2`.
+
+Start with the ratio :math:`r(\x)=\x^TS\x/\x^T\x`.
+This is called the *Rayleigh quotient*.
+To maximize :math:`r(\x)`, set its partial derivatives to zero: :math:`\pd r/\pd x_i=0` for :math:`i=1,\cds,n`.
+Those derivatives are messy and here is the result: one vector equation for the winning :math:`\x`:
+
+* **The derivatives of** :math:`\dp r(\x)=\frac{\x^TS\x}{\x^T\x}` **are zero when** :math:`S\x=r(\x)\x`.
+
+So the winning :math:`\x` is an eigenvector of :math:`S`.
+The maximum ratio :math:`r(\x)` is the largest eigenvalue :math:`\ld_1` of :math:`S`.
+Notice the connection to :math:`S=A^TA`:
+
+* Maximizing :math:`\dp\frac{\lv A\x \rv}{\lv\x\rv}` also maximizes 
+  :math:`\dp\left(\frac{\lv A\x \rv}{\lv\x\rv}\right)^2=\frac{\x^TA^TA\x}{\x^T\x}
+  =\frac{\x^TS\x}{\x^T\x}`.
+
+So the winning :math:`\x=\v_1` is the same as the top eigenvector :math:`\q_1` of :math:`S=A^TA`.
 
 
 

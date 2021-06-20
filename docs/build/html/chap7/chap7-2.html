@@ -13,8 +13,6 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -31,11 +29,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -104,6 +102,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#an-example-of-the-svd">An Example of the SVD</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#an-extreme-matrix">An Extreme Matrix</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#sigular-value-stability-versus-eigenvalue-instability">Sigular Value Stability versus Eigenvalue Instability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#singular-vectors-of-a-and-eigenvectors-of-s-a-ta">Singular Vectors of <span class="math notranslate nohighlight">\(A\)</span> and Eigenvectors of <span class="math notranslate nohighlight">\(S=A^TA\)</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#computing-the-eigenvalues-of-s-and-singular-values-of-a">Computing the Eigenvalues of <span class="math notranslate nohighlight">\(S\)</span> and Singular Values of <span class="math notranslate nohighlight">\(A\)</span></a></li>
 </ul>
 </li>
@@ -318,12 +317,116 @@ We have found <span class="math notranslate nohighlight">\(V\)</span> and <span 
 </div>
 <div class="section" id="an-example-of-the-svd">
 <h2>An Example of the SVD<a class="headerlink" href="#an-example-of-the-svd" title="Permalink to this headline">¶</a></h2>
+<p>For a rank 2 matrix <span class="math notranslate nohighlight">\(A=\bb 3&amp;0\\4&amp;5 \eb\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A^TA=\bb 25&amp;20\\20&amp;25 \eb\quad AA^T=\bb 9&amp;12\\12&amp;41 \eb.\end{split}\]</div>
+<p>Those have the same trace 50 and the same eigenvalues <span class="math notranslate nohighlight">\(\sg_1^2=45\)</span> and <span class="math notranslate nohighlight">\(\sg_2^2=5\)</span>.
+The square roots are <span class="math notranslate nohighlight">\(\sg_1=\sqrt{45}\)</span> and <span class="math notranslate nohighlight">\(\sg_2=\sqrt{5}\)</span>.
+Then <span class="math notranslate nohighlight">\(\sg_1\sg_2=15\)</span> and this is t he determinant of <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p><strong>Right singular vectors</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\v_1=\frac{1}{\sqrt{2}}\bb 1\\1 \eb\quad\v_2=\frac{1}{\sqrt{2}}\bb -1\\1 \eb.\end{split}\]</div>
+<p><strong>Left singular vectors</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\u_i=\frac{A\v_i}{\sg_i}.\]</div>
+<p>Now compute <span class="math notranslate nohighlight">\(A\v_1\)</span> and <span class="math notranslate nohighlight">\(A\v_2\)</span> which will be
+<span class="math notranslate nohighlight">\(\sg_1\u_1=\sqrt{45}\u_1\)</span> and <span class="math notranslate nohighlight">\(\sg_2\u_2=\sqrt{5}\u_2\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\begin{split}A\v_1=\frac{3}{\sqrt{2}}\bb 1\\3 \eb=\sqrt{45}\frac{1}{\sqrt{10}}\bb 1\\3 \eb=\sg_1\u_1\end{split}\\\begin{split}A\v_2=\frac{1}{\sqrt{2}}\bb -3\\1 \eb=\sqrt{5}\frac{1}{\sqrt{10}}\bb -3\\1 \eb=\sg_2\u_2\end{split}\end{aligned}\end{align} \]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(\dp U=\frac{1}{\sqrt{10}}\bb 1&amp;-3\\3&amp;1 \eb\quad
+\Sg=\bb \sqrt{45}\\&amp;\sqrt{5} \eb\quad V=\frac{1}{\sqrt{2}}\bb 1&amp;-1\\1&amp;1 \eb\)</span>.</p>
+</div>
+<p><span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(V\)</span> contain orthonormal bases for the column space and the
+row space (both spaces are just <span class="math notranslate nohighlight">\(\R^2\)</span>).
+The matrix <span class="math notranslate nohighlight">\(A\)</span> splits into a combination of two rank-one matrices, columns times rows:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\sg_1\u_1\v_1^T+\sg_2\u_2\v_2^T=\frac{\sqrt{45}}{\sqrt{20}}\bb 1&amp;1\\3&amp;3 \eb+
+\frac{\sqrt{5}}{\sqrt{20}}\bb 3&amp;-3\\-1&amp;1 \eb=\bb 3&amp;0\\4&amp;5 \eb=A.\end{split}\]</div>
 </div>
 <div class="section" id="an-extreme-matrix">
 <h2>An Extreme Matrix<a class="headerlink" href="#an-extreme-matrix" title="Permalink to this headline">¶</a></h2>
+<p>The matrix <span class="math notranslate nohighlight">\(A\)</span> is badly lopsided (strictly triangular).
+All its eigenvalues are zero with the only eigenvector <span class="math notranslate nohighlight">\((1,0,0,0)\)</span>.
+The singular values are <span class="math notranslate nohighlight">\(\sg=3,2,1\)</span> and singular vectors are columns of <span class="math notranslate nohighlight">\(I\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A=\bb 0&amp;1&amp;0&amp;0\\0&amp;0&amp;2&amp;0\\0&amp;0&amp;0&amp;3\\0&amp;0&amp;0&amp;0 \eb.\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(A^TA\)</span> and <span class="math notranslate nohighlight">\(AA^T\)</span> are diagonal:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A^TA=\bb 0&amp;0&amp;0&amp;0\\0&amp;1&amp;0&amp;0\\0&amp;0&amp;4&amp;0\\0&amp;0&amp;0&amp;9 \eb \quad AA^T=\bb 1&amp;0&amp;0&amp;0\\0&amp;4&amp;0&amp;0\\0&amp;0&amp;9&amp;0\\0&amp;0&amp;0&amp;0 \eb.\end{split}\]</div>
+<p>The eigenvectors (<span class="math notranslate nohighlight">\(\u\)</span>’s for <span class="math notranslate nohighlight">\(AA^T\)</span> and <span class="math notranslate nohighlight">\(\v\)</span>’s for <span class="math notranslate nohighlight">\(A^TA\)</span>)
+go in decreasing order <span class="math notranslate nohighlight">\(\sg_1^2&gt;\sg_2^2&gt;\sg_3^2\)</span> of the eigenvalues.
+Those eigenvalues are <span class="math notranslate nohighlight">\(\sg^2=9,4,1\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}U=\bb 0&amp;0&amp;1&amp;0\\0&amp;1&amp;0&amp;0\\1&amp;0&amp;0&amp;0\\0&amp;0&amp;0&amp;1\eb\quad\Sg=\bb 3\\&amp;2\\&amp;&amp;1\\&amp;&amp;&amp;0 \eb
+\quad V=\bb 0&amp;0&amp;0&amp;1\\0&amp;0&amp;1&amp;0\\0&amp;1&amp;0&amp;0\\1&amp;0&amp;0&amp;0 \eb.\end{split}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(A=U\Sg V^T=3\u_1\v_1^T+2\u_2\v_2^T+1\u_3\v_3^T\)</span>.</p>
+</div>
+<p><em>Note</em>: Removing the zero row of <span class="math notranslate nohighlight">\(A\)</span> (now <span class="math notranslate nohighlight">\(3\times 4\)</span>) just removes
+the last row of <span class="math notranslate nohighlight">\(\Sg\)</span> and also the last row and column of <span class="math notranslate nohighlight">\(U\)</span>.
+Then <span class="math notranslate nohighlight">\((3\times 4)=U\Sg V^T=(3\times 3)(3\times 4)(4\times 4)\)</span>.
+The SVD is totally adapted to rectangular matrices.</p>
 </div>
 <div class="section" id="sigular-value-stability-versus-eigenvalue-instability">
 <h2>Sigular Value Stability versus Eigenvalue Instability<a class="headerlink" href="#sigular-value-stability-versus-eigenvalue-instability" title="Permalink to this headline">¶</a></h2>
+<p><strong>The singular values of any matrix are stable</strong>.</p>
+</div>
+<div class="section" id="singular-vectors-of-a-and-eigenvectors-of-s-a-ta">
+<h2>Singular Vectors of <span class="math notranslate nohighlight">\(A\)</span> and Eigenvectors of <span class="math notranslate nohighlight">\(S=A^TA\)</span><a class="headerlink" href="#singular-vectors-of-a-and-eigenvectors-of-s-a-ta" title="Permalink to this headline">¶</a></h2>
+<p>We have proved the SVD <em>all at once</em>.
+The singular vectors <span class="math notranslate nohighlight">\(\v_i\)</span> are the eigenvectors <span class="math notranslate nohighlight">\(\q_i\)</span> of <span class="math notranslate nohighlight">\(S=A^TA\)</span>.
+The eigenvalues <span class="math notranslate nohighlight">\(\ld_i\)</span> of <span class="math notranslate nohighlight">\(S\)</span> are the same as <span class="math notranslate nohighlight">\(\sg_i^2\)</span> for <span class="math notranslate nohighlight">\(A\)</span>.
+The rank <span class="math notranslate nohighlight">\(r\)</span> of <span class="math notranslate nohighlight">\(S\)</span> equals the rank of <span class="math notranslate nohighlight">\(A\)</span>.
+The expansions in eigenvectors and singular vectors are perfectly parallel.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p><strong>Symmetric</strong> <span class="math notranslate nohighlight">\(S\)</span>: <span class="math notranslate nohighlight">\(S=Q\Ld Q^T=\ld_1\q_1\q_1^T+\ld_2\q_2\q_2^T+\cds+\ld_r\q_r\q_r^T\)</span>.</p></li>
+<li><p><strong>Any matrix</strong> <span class="math notranslate nohighlight">\(A\)</span>: <span class="math notranslate nohighlight">\(A=U\Sg V^T=\sg_1\u_1\v_1^T+\sg_2\u_2\v_2^T+\cds+\sg_r\u_r\v_r^T\)</span>.</p></li>
+</ul>
+</div>
+<p>The <span class="math notranslate nohighlight">\(\q\)</span>’s are orthonormal, the <span class="math notranslate nohighlight">\(\u\)</span>’s are orthonormal, the <span class="math notranslate nohighlight">\(\v\)</span>’s are orthonormal.</p>
+<p>If <span class="math notranslate nohighlight">\(\ld\)</span> is a <em>double</em> eigenvalue of <span class="math notranslate nohighlight">\(S\)</span>, we can and must find <em>two</em> orthonormal eigenvectors.
+We want to understand the eigenvalues <span class="math notranslate nohighlight">\(\ld\)</span> (of <span class="math notranslate nohighlight">\(S\)</span>) and the singular
+values <span class="math notranslate nohighlight">\(\sg\)</span> (of <span class="math notranslate nohighlight">\(A\)</span>) <strong>one at a time instead of all at once</strong>.</p>
+<p>Start with the larget eigenvalue <span class="math notranslate nohighlight">\(\ld_1\)</span> of <span class="math notranslate nohighlight">\(S\)</span>.
+It solves this problem”</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\dp\ld_1=\rm{maximum\ ratio\ }\frac{\x^TS\x}{\x^T\x}\)</span>.
+The winning vector is <span class="math notranslate nohighlight">\(\x_1=\q_1\)</span> with <span class="math notranslate nohighlight">\(S\q_1=\ld_1\q_1\)</span>.</p>
+<p>Compare with the largest singular value <span class="math notranslate nohighlight">\(\sg_1\)</span> of <span class="math notranslate nohighlight">\(A\)</span>.
+It solves this problem:</p>
+<p><span class="math notranslate nohighlight">\(\dp\sg_1=\rm{maximum\ ratio\ }\frac{\lv A\x \rv}{\lv\x\rv}\)</span>.
+The winning vector is <span class="math notranslate nohighlight">\(\x=\v_1\)</span> with <span class="math notranslate nohighlight">\(A\v_1=\sg_1\u_1\)</span>.</p>
+</div></blockquote>
+<p>This “one at a time approach” applies also to <span class="math notranslate nohighlight">\(\ld_2\)</span> and <span class="math notranslate nohighlight">\(\sg_2\)</span>.
+But not all <span class="math notranslate nohighlight">\(\x\)</span>’s are allowed:</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\dp\ld_2=\rm{maximum\ ratio\ }\frac{\x^TS\x}{\x^T\x}\)</span> among all <span class="math notranslate nohighlight">\(\x\)</span>’s with <span class="math notranslate nohighlight">\(\q_A^T\x=0\)</span>.
+<span class="math notranslate nohighlight">\(\x=\q_2\)</span> will win.</p>
+<p><span class="math notranslate nohighlight">\(\dp\sg_2=\rm{maximum\ ratio\ }\frac{\lv A\x \rv}{\lv\x\rv}\)</span> among all <span class="math notranslate nohighlight">\(\x\)</span>’s with <span class="math notranslate nohighlight">\(\v_1^T\x=0\)</span>.
+<span class="math notranslate nohighlight">\(\x=\v_2\)</span> will win.</p>
+</div></blockquote>
+<p>When <span class="math notranslate nohighlight">\(S=A^TA\)</span> we find <span class="math notranslate nohighlight">\(\ld_1=\sg_1^2\)</span> and <span class="math notranslate nohighlight">\(\ld_2=\sg_2^2\)</span>.</p>
+<p>Start with the ratio <span class="math notranslate nohighlight">\(r(\x)=\x^TS\x/\x^T\x\)</span>.
+This is called the <em>Rayleigh quotient</em>.
+To maximize <span class="math notranslate nohighlight">\(r(\x)\)</span>, set its partial derivatives to zero: <span class="math notranslate nohighlight">\(\pd r/\pd x_i=0\)</span> for <span class="math notranslate nohighlight">\(i=1,\cds,n\)</span>.
+Those derivatives are messy and here is the result: one vector equation for the winning <span class="math notranslate nohighlight">\(\x\)</span>:</p>
+<ul class="simple">
+<li><p><strong>The derivatives of</strong> <span class="math notranslate nohighlight">\(\dp r(\x)=\frac{\x^TS\x}{\x^T\x}\)</span> <strong>are zero when</strong> <span class="math notranslate nohighlight">\(S\x=r(\x)\x\)</span>.</p></li>
+</ul>
+<p>So the winning <span class="math notranslate nohighlight">\(\x\)</span> is an eigenvector of <span class="math notranslate nohighlight">\(S\)</span>.
+The maximum ratio <span class="math notranslate nohighlight">\(r(\x)\)</span> is the largest eigenvalue <span class="math notranslate nohighlight">\(\ld_1\)</span> of <span class="math notranslate nohighlight">\(S\)</span>.
+Notice the connection to <span class="math notranslate nohighlight">\(S=A^TA\)</span>:</p>
+<ul class="simple">
+<li><p>Maximizing <span class="math notranslate nohighlight">\(\dp\frac{\lv A\x \rv}{\lv\x\rv}\)</span> also maximizes
+<span class="math notranslate nohighlight">\(\dp\left(\frac{\lv A\x \rv}{\lv\x\rv}\right)^2=\frac{\x^TA^TA\x}{\x^T\x}
+=\frac{\x^TS\x}{\x^T\x}\)</span>.</p></li>
+</ul>
+<p>So the winning <span class="math notranslate nohighlight">\(\x=\v_1\)</span> is the same as the top eigenvector <span class="math notranslate nohighlight">\(\q_1\)</span> of <span class="math notranslate nohighlight">\(S=A^TA\)</span>.</p>
 </div>
 <div class="section" id="computing-the-eigenvalues-of-s-and-singular-values-of-a">
 <h2>Computing the Eigenvalues of <span class="math notranslate nohighlight">\(S\)</span> and Singular Values of <span class="math notranslate nohighlight">\(A\)</span><a class="headerlink" href="#computing-the-eigenvalues-of-s-and-singular-values-of-a" title="Permalink to this headline">¶</a></h2>
