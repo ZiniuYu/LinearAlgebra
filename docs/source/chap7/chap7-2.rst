@@ -259,19 +259,47 @@ This is called the *Rayleigh quotient*.
 To maximize :math:`r(\x)`, set its partial derivatives to zero: :math:`\pd r/\pd x_i=0` for :math:`i=1,\cds,n`.
 Those derivatives are messy and here is the result: one vector equation for the winning :math:`\x`:
 
-* **The derivatives of** :math:`\dp r(\x)=\frac{\x^TS\x}{\x^T\x}` **are zero when** :math:`S\x=r(\x)\x`.
+.. math:: 
+    
+    \rm{The\ derivatives\ of\ }r(\x)=\frac{\x^TS\x}{\x^T\x}\rm{\ are\ zero\ when\ }S\x=r(\x)\x
 
 So the winning :math:`\x` is an eigenvector of :math:`S`.
 The maximum ratio :math:`r(\x)` is the largest eigenvalue :math:`\ld_1` of :math:`S`.
 Notice the connection to :math:`S=A^TA`:
 
-* Maximizing :math:`\dp\frac{\lv A\x \rv}{\lv\x\rv}` also maximizes 
-  :math:`\dp\left(\frac{\lv A\x \rv}{\lv\x\rv}\right)^2=\frac{\x^TA^TA\x}{\x^T\x}
-  =\frac{\x^TS\x}{\x^T\x}`.
+.. math::
+    \rm{Maximizing\ }\frac{\lv A\x \rv}{\lv\x\rv}\rm{\ also\ maximizes\ }\left(
+    \frac{\lv A\x \rv}{\lv\x\rv}\right)^2=\frac{\x^TA^TA\x}{\x^T\x}=
+    \frac{\x^TS\x}{\x^T\x}
 
 So the winning :math:`\x=\v_1` is the same as the top eigenvector :math:`\q_1` of :math:`S=A^TA`.
 
+Now we explain why :math:`\q_1` and :math:`v_2` are the winning vectors.
 
+Start with any orthogoonal matrix :math:`Q_1` that has :math:`\q_1` in its first column.
+The other :math:`n-1` orthonormal columns just have to be orthogonal to :math:`\q_1`.
+Then use :math:`S\q_1=\ld_1\q_1`:
+
+.. math::
+
+    SQ_1=S\bb \q_1\ \q_2\ \cds\ \q_n \eb=\bb \q_1\ \q_2\ \cds\ \q_n \eb
+    \bb \ld_1&\w_T\\\0&S_{n-1} \eb=Q_1\bb \ld_1&\w^T\\\0&S_{n-1} \eb.
+
+Multiply by :math:`Q_1^T`, remember :math:`Q_1^TQ_1=I`, and recognize that :math:`Q_1^TSQ_1` is symmetric like :math:`S`:
+
+.. math::
+
+    \rm{The\ symmetry\ of\ }Q_1^TSQ_1=\bb \ld_1&\w^T\\\0&S_{n-1} \eb
+    \rm{\ forces\ }\w=\0\rm{\ and\ }S_{n-1}^T=S_{n-1}.
+
+The requirement :math:`\q_1^T\x=0` has reduced the maximum problem to size :math:`n-1`.
+The largest eigenvalue of :math:`S_{n-1}` will be the *second largest* for :math:`S`.
+It is :math:`\ld_2`.
+The winning vector will be the eigenvector :math:`\q_2` with :math:`S\q_2=\ld_2\q_2`.
+
+Use induction to produce all the eigenvectors :math:`\q_1,\cds,\q_n` and their eigenvalues :math:`\ld_1,\cds,\ld_n`.
+The Spectiral Theorem :math:`S=Q\Ld Q^T` is proved even with repeated eigenvalues.
+All symmetric matrices can be diagonalized.
 
 Computing the Eigenvalues of :math:`S` and Singular Values of :math:`A`
 -----------------------------------------------------------------------

@@ -13,6 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -29,11 +31,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -415,18 +417,34 @@ But not all <span class="math notranslate nohighlight">\(\x\)</span>’s are all
 This is called the <em>Rayleigh quotient</em>.
 To maximize <span class="math notranslate nohighlight">\(r(\x)\)</span>, set its partial derivatives to zero: <span class="math notranslate nohighlight">\(\pd r/\pd x_i=0\)</span> for <span class="math notranslate nohighlight">\(i=1,\cds,n\)</span>.
 Those derivatives are messy and here is the result: one vector equation for the winning <span class="math notranslate nohighlight">\(\x\)</span>:</p>
-<ul class="simple">
-<li><p><strong>The derivatives of</strong> <span class="math notranslate nohighlight">\(\dp r(\x)=\frac{\x^TS\x}{\x^T\x}\)</span> <strong>are zero when</strong> <span class="math notranslate nohighlight">\(S\x=r(\x)\x\)</span>.</p></li>
-</ul>
+<div class="math notranslate nohighlight">
+\[\rm{The\ derivatives\ of\ }r(\x)=\frac{\x^TS\x}{\x^T\x}\rm{\ are\ zero\ when\ }S\x=r(\x)\x\]</div>
 <p>So the winning <span class="math notranslate nohighlight">\(\x\)</span> is an eigenvector of <span class="math notranslate nohighlight">\(S\)</span>.
 The maximum ratio <span class="math notranslate nohighlight">\(r(\x)\)</span> is the largest eigenvalue <span class="math notranslate nohighlight">\(\ld_1\)</span> of <span class="math notranslate nohighlight">\(S\)</span>.
 Notice the connection to <span class="math notranslate nohighlight">\(S=A^TA\)</span>:</p>
-<ul class="simple">
-<li><p>Maximizing <span class="math notranslate nohighlight">\(\dp\frac{\lv A\x \rv}{\lv\x\rv}\)</span> also maximizes
-<span class="math notranslate nohighlight">\(\dp\left(\frac{\lv A\x \rv}{\lv\x\rv}\right)^2=\frac{\x^TA^TA\x}{\x^T\x}
-=\frac{\x^TS\x}{\x^T\x}\)</span>.</p></li>
-</ul>
+<div class="math notranslate nohighlight">
+\[\rm{Maximizing\ }\frac{\lv A\x \rv}{\lv\x\rv}\rm{\ also\ maximizes\ }\left(
+\frac{\lv A\x \rv}{\lv\x\rv}\right)^2=\frac{\x^TA^TA\x}{\x^T\x}=
+\frac{\x^TS\x}{\x^T\x}\]</div>
 <p>So the winning <span class="math notranslate nohighlight">\(\x=\v_1\)</span> is the same as the top eigenvector <span class="math notranslate nohighlight">\(\q_1\)</span> of <span class="math notranslate nohighlight">\(S=A^TA\)</span>.</p>
+<p>Now we explain why <span class="math notranslate nohighlight">\(\q_1\)</span> and <span class="math notranslate nohighlight">\(v_2\)</span> are the winning vectors.</p>
+<p>Start with any orthogoonal matrix <span class="math notranslate nohighlight">\(Q_1\)</span> that has <span class="math notranslate nohighlight">\(\q_1\)</span> in its first column.
+The other <span class="math notranslate nohighlight">\(n-1\)</span> orthonormal columns just have to be orthogonal to <span class="math notranslate nohighlight">\(\q_1\)</span>.
+Then use <span class="math notranslate nohighlight">\(S\q_1=\ld_1\q_1\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}SQ_1=S\bb \q_1\ \q_2\ \cds\ \q_n \eb=\bb \q_1\ \q_2\ \cds\ \q_n \eb
+\bb \ld_1&amp;\w_T\\\0&amp;S_{n-1} \eb=Q_1\bb \ld_1&amp;\w^T\\\0&amp;S_{n-1} \eb.\end{split}\]</div>
+<p>Multiply by <span class="math notranslate nohighlight">\(Q_1^T\)</span>, remember <span class="math notranslate nohighlight">\(Q_1^TQ_1=I\)</span>, and recognize that <span class="math notranslate nohighlight">\(Q_1^TSQ_1\)</span> is symmetric like <span class="math notranslate nohighlight">\(S\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\rm{The\ symmetry\ of\ }Q_1^TSQ_1=\bb \ld_1&amp;\w^T\\\0&amp;S_{n-1} \eb
+\rm{\ forces\ }\w=\0\rm{\ and\ }S_{n-1}^T=S_{n-1}.\end{split}\]</div>
+<p>The requirement <span class="math notranslate nohighlight">\(\q_1^T\x=0\)</span> has reduced the maximum problem to size <span class="math notranslate nohighlight">\(n-1\)</span>.
+The largest eigenvalue of <span class="math notranslate nohighlight">\(S_{n-1}\)</span> will be the <em>second largest</em> for <span class="math notranslate nohighlight">\(S\)</span>.
+It is <span class="math notranslate nohighlight">\(\ld_2\)</span>.
+The winning vector will be the eigenvector <span class="math notranslate nohighlight">\(\q_2\)</span> with <span class="math notranslate nohighlight">\(S\q_2=\ld_2\q_2\)</span>.</p>
+<p>Use induction to produce all the eigenvectors <span class="math notranslate nohighlight">\(\q_1,\cds,\q_n\)</span> and their eigenvalues <span class="math notranslate nohighlight">\(\ld_1,\cds,\ld_n\)</span>.
+The Spectiral Theorem <span class="math notranslate nohighlight">\(S=Q\Ld Q^T\)</span> is proved even with repeated eigenvalues.
+All symmetric matrices can be diagonalized.</p>
 </div>
 <div class="section" id="computing-the-eigenvalues-of-s-and-singular-values-of-a">
 <h2>Computing the Eigenvalues of <span class="math notranslate nohighlight">\(S\)</span> and Singular Values of <span class="math notranslate nohighlight">\(A\)</span><a class="headerlink" href="#computing-the-eigenvalues-of-s-and-singular-values-of-a" title="Permalink to this headline">¶</a></h2>

@@ -66,7 +66,7 @@ Rows 1 and 3 stay the same:
 .. math::
 
     \bb 1&0&0 \\ -2&1&0 \\ 0&0&1 \eb \bb 2\\8\\10 \eb = \bb 2\\4\\10 \eb \quad
-    \bb 1&0&0 \\ -2&1&0 \\ 0&0&1 \eb \bb b_1\\b_2\\b_3 \eb == \bb b_1 \\b_2-2b_1\\b_3 \eb
+    \bb 1&0&0\\-2&1&0\\0&0&1 \eb\bb b_1\\b_2\\b_3 \eb=\bb b_1\\b_2-2b_1\\b_3 \eb
 
 .. note::
 
