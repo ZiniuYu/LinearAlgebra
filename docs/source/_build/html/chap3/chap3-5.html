@@ -41,7 +41,7 @@
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="About" href="../about.html" />
+    <link rel="next" title="Chapter 4 Orthogonality" href="../chap4/index4.html" />
     <link rel="prev" title="Chapter 3.4 Independece, Basis and Dimension" href="chap3-4.html" /> 
 </head>
 
@@ -91,14 +91,24 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../chap1/index1.html">Chapter 1 Introduction to Vectors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../chap2/index2.html">Chapter 2 Solving Linear Equations</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index3.html">Chapter 3 Vector Spacese and Subspaces</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index3.html">Chapter 3 Vector Spaces and Subspaces</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="chap3-1.html">Chapter 3.1 Spaces of Vectors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="chap3-2.html">Chapter 3.2 The Nullspace of <span class="math notranslate nohighlight">\(A\)</span>: Solving <span class="math notranslate nohighlight">\(Ax = 0\)</span> and <span class="math notranslate nohighlight">\(Rx=0\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap3-2.html">Chapter 3.2 The Nullspace of <span class="math notranslate nohighlight">\(A\)</span>: Solving <span class="math notranslate nohighlight">\(A\boldsymbol{x} = 0\)</span> and <span class="math notranslate nohighlight">\(R\boldsymbol{x}=0\)</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="chap3-3.html">Chapter 3.3 The Complete Solution to <span class="math notranslate nohighlight">\(Ax=b\)</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="chap3-4.html">Chapter 3.4 Independece, Basis and Dimension</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 3.5 Dimensions of the Four Subspaces</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 3.5 Dimensions of the Four Subspaces</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-four-subspaces-for-r">The Four Subspaces for <span class="math notranslate nohighlight">\(R\)</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-four-subspaces-for-a">The Four Subspaces for <span class="math notranslate nohighlight">\(A\)</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rank-one-matrics-review">Rank One Matrics (Review)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rank-two-matrices-rank-one-plus-rank-one">Rank Two Matrices = Rank One plus Rank One</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../chap4/index4.html">Chapter 4 Orthogonality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap5/index5.html">Chapter 5 Determinants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap6/index6.html">Chapter 6 Eigenvalues and Eigenvectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap7/index7.html">Chapter 7 The Singular Value Decomposition (SVD)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
 </ul>
 
@@ -148,7 +158,7 @@
     
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
-          <li><a href="index3.html">Chapter 3 Vector Spacese and Subspaces</a> &raquo;</li>
+          <li><a href="index3.html">Chapter 3 Vector Spaces and Subspaces</a> &raquo;</li>
         
       <li>Chapter 3.5 Dimensions of the Four Subspaces</li>
     
@@ -172,22 +182,207 @@
   <div class="math notranslate nohighlight">
 \[ \begin{align}\begin{aligned}\newcommand{\bs}{\boldsymbol}
 \newcommand{\dp}{\displaystyle}
-\newcommand{\rm}{\mathrm}\\\newcommand{\cd}{\cdot}
+\newcommand{\rm}{\mathrm}
+\newcommand{\pd}{\partial}\\\newcommand{\cd}{\cdot}
 \newcommand{\cds}{\cdots}
+\newcommand{\dds}{\ddots}
+\newcommand{\vds}{\vdots}
 \newcommand{\lv}{\lVert}
-\newcommand{\rv}{\rVert}\\\newcommand{\0}{\boldsymbol{0}}
+\newcommand{\rv}{\rVert}
+\newcommand{\wh}{\widehat}\\\newcommand{\0}{\boldsymbol{0}}
+\newcommand{\a}{\boldsymbol{a}}
 \newcommand{\b}{\boldsymbol{b}}
 \newcommand{\e}{\boldsymbol{e}}
 \newcommand{\i}{\boldsymbol{i}}
 \newcommand{\j}{\boldsymbol{j}}
+\newcommand{\p}{\boldsymbol{p}}
+\newcommand{\q}{\boldsymbol{q}}
 \newcommand{\u}{\boldsymbol{u}}
 \newcommand{\v}{\boldsymbol{v}}
 \newcommand{\w}{\boldsymbol{w}}
 \newcommand{\x}{\boldsymbol{x}}
-\newcommand{\y}{\boldsymbol{y}}\\\newcommand{\N}{\boldsymbol{N}}\\\newcommand{\R}{\boldsymbol{\mathrm{R}}}\\\newcommand{\bb}{\begin{bmatrix}}
-\newcommand{\eb}{\end{bmatrix}}\\\newcommand{\im}{^{-1}}\end{aligned}\end{align} \]</div>
+\newcommand{\y}{\boldsymbol{y}}\\\newcommand{\A}{\boldsymbol{A}}
+\newcommand{\B}{\boldsymbol{B}}
+\newcommand{\C}{\boldsymbol{C}}
+\newcommand{\N}{\boldsymbol{N}}\\\newcommand{\R}{\boldsymbol{\mathrm{R}}}\\\newcommand{\ld}{\lambda}
+\newcommand{\Ld}{\Lambda}
+\newcommand{\sg}{\sigma}
+\newcommand{\Sg}{\Sigma}\\\newcommand{\bb}{\begin{bmatrix}}
+\newcommand{\eb}{\end{bmatrix}}
+\newcommand{\bv}{\begin{vmatrix}}
+\newcommand{\ev}{\end{vmatrix}}\\\newcommand{\im}{^{-1}}
+\newcommand{\pr}{^{\prime}}
+\newcommand{\ppr}{^{\prime\prime}}\end{aligned}\end{align} \]</div>
 <div class="section" id="chapter-3-5-dimensions-of-the-four-subspaces">
 <h1>Chapter 3.5 Dimensions of the Four Subspaces<a class="headerlink" href="#chapter-3-5-dimensions-of-the-four-subspaces" title="Permalink to this headline">¶</a></h1>
+<p>The <strong>rank</strong> of a matrix is the number of pivots.
+The <strong>dimension</strong> of a subspace is the number of vectors in a basis.
+<em>The rank of</em> <span class="math notranslate nohighlight">\(A\)</span> <em>reveals the dimensions of all four fundamental subspaces</em>.</p>
+<p>Two subspaces come directly from <span class="math notranslate nohighlight">\(A\)</span>, and the other two from <span class="math notranslate nohighlight">\(A^T\)</span>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Four Fundamental Subspaces</strong>:</p>
+<ol class="arabic simple">
+<li><p>The <strong>row space</strong> is <span class="math notranslate nohighlight">\(\bs{C}(A^T)\)</span>, a subspace of <span class="math notranslate nohighlight">\(\R^n\)</span>.</p></li>
+<li><p>The <strong>column space</strong> is <span class="math notranslate nohighlight">\(\bs{C}(A^T)\)</span>, a subspace of <span class="math notranslate nohighlight">\(\R^n\)</span>.</p></li>
+<li><p>The <strong>nullspace</strong> is <span class="math notranslate nohighlight">\(\bs{C}(A^T)\)</span>, a subspace of <span class="math notranslate nohighlight">\(\R^n\)</span>.</p></li>
+<li><p>The <strong>left nullspace</strong> is <span class="math notranslate nohighlight">\(\bs{C}(A^T)\)</span>, a subspace of <span class="math notranslate nohighlight">\(\R^n\)</span>.</p></li>
+</ol>
+</div>
+<p><em>The row space of</em> <span class="math notranslate nohighlight">\(A\)</span> <em>is the column space of</em> <span class="math notranslate nohighlight">\(A^T\)</span>.</p>
+<p>Four the left nullspace we solve <span class="math notranslate nohighlight">\(A^T\y=\0\)</span>–that system is <span class="math notranslate nohighlight">\(n\)</span> by <span class="math notranslate nohighlight">\(m\)</span>.
+<em>This is the nullspace of</em> <span class="math notranslate nohighlight">\(A^T\)</span>.</p>
+<p>Part 1 of the Fundamental Theorem finds the dimensions of the four subspaces.
+<strong>The row space and column space have the same dimension</strong> <span class="math notranslate nohighlight">\(r\)</span>.
+This number <span class="math notranslate nohighlight">\(r\)</span> is the <strong>rank</strong> of the matrix.</p>
+<p><span class="math notranslate nohighlight">\(\bs{N}(A)\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(\bs{N}(A^T)\)</span> <strong>have dimensions</strong> <span class="math notranslate nohighlight">\(n-r\)</span>
+<strong>and</strong> <span class="math notranslate nohighlight">\(m-r\)</span>, <strong>to make up the full</strong> <span class="math notranslate nohighlight">\(n\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(m\)</span>.</p>
+<p>Part 2 of the Fundamental Theorem will describe how the four subspaces fit together.</p>
+<div class="section" id="the-four-subspaces-for-r">
+<h2>The Four Subspaces for <span class="math notranslate nohighlight">\(R\)</span><a class="headerlink" href="#the-four-subspaces-for-r" title="Permalink to this headline">¶</a></h2>
+<p>Suppose <span class="math notranslate nohighlight">\(A\)</span> is reduced to its row echelon form <span class="math notranslate nohighlight">\(R\)</span>.
+The main point is that <em>the four dimensions are the smae for</em> <span class="math notranslate nohighlight">\(A\)</span> <em>and</em> <span class="math notranslate nohighlight">\(R\)</span>.</p>
+<p>As a specific 3 by 5 example, look at the four subspaces for this echelon matrix <span class="math notranslate nohighlight">\(R\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}R = \bb 1&amp;3&amp;5&amp;0&amp;7\\0&amp;0&amp;0&amp;1&amp;2\\0&amp;0&amp;0&amp;0&amp;0 \eb.\end{split}\]</div>
+<p>The rank of this matrix is <span class="math notranslate nohighlight">\(r=2\)</span> (<em>two pivots</em>).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>1.</strong> The <strong>row space</strong> of <span class="math notranslate nohighlight">\(R\)</span> has dimension 2, matching the rank.</p>
+</div>
+<p>The first two rows are a basis.
+Rows 1 and 2 span the row space <span class="math notranslate nohighlight">\(\bs{C}(R^T)\)</span>.</p>
+<p>The pivot rows 1 and 2 are independent.
+If we look only at the pivot columns, we see the <span class="math notranslate nohighlight">\(r\)</span> by <span class="math notranslate nohighlight">\(r\)</span> identity matrix.
+So the <span class="math notranslate nohighlight">\(r\)</span> pivot rows are a basis for the row space.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>The dimension of the row space is the rank</strong> <span class="math notranslate nohighlight">\(r\)</span>.
+<strong>The nonzero rows of</strong> <span class="math notranslate nohighlight">\(R\)</span> <strong>form a basis</strong>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>2.</strong> The <strong>column space</strong> of <span class="math notranslate nohighlight">\(R\)</span> also has dimension <span class="math notranslate nohighlight">\(r=2\)</span>.</p>
+</div>
+<p>The pivot columns 1 and 4 form a basis for <span class="math notranslate nohighlight">\(\bs{C}(R)\)</span>.
+They are independent because they start with the <span class="math notranslate nohighlight">\(r\)</span> by <span class="math notranslate nohighlight">\(r\)</span> identity matrix.
+Every other (free) column is a combination of the pivot columns.</p>
+<blockquote>
+<div><p>Column 2 is 3 (column 1). The special solution is <span class="math notranslate nohighlight">\((-3,1,0,0,0)\)</span>.</p>
+<p>Column 3 is 5 (column 1). The special solution is <span class="math notranslate nohighlight">\((-5,0,1,0,0)\)</span>.</p>
+<p>Column 5 is 7 (column 1) + 2 (column 4). The special solution is <span class="math notranslate nohighlight">\((-7,0,0,-2,1)\)</span>.</p>
+</div></blockquote>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>The dimension of the column space is the rank</strong> <span class="math notranslate nohighlight">\(r\)</span>.
+<strong>The pivot columns form a basis</strong>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>3.</strong> The <strong>nullspace</strong> of <span class="math notranslate nohighlight">\(R\)</span> has dimension <span class="math notranslate nohighlight">\(n-r=5-2\)</span>.
+There are <span class="math notranslate nohighlight">\(n-r=3\)</span> free variables.
+Here <span class="math notranslate nohighlight">\(x_2,x_3,x_5\)</span> are free (no pivots in those columns).
+They yield the three special solutions to <span class="math notranslate nohighlight">\(R\x=\0\)</span>.
+Set a free variable to 1, and solve for <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_4\)</span>.</p>
+</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bs{s}_2 = \bb -3\\1\\0\\0\\0 \eb \quad
+\bs{s}_3 = \bb -5\\0\\1\\0\\0 \eb \quad
+\bs{s}_5 = \bb -7\\0\\0\\-2\\1 \eb \quad\end{split}\]</div>
+<p>With <span class="math notranslate nohighlight">\(n\)</span> variables and <span class="math notranslate nohighlight">\(r\)</span> pivots, that leaves <span class="math notranslate nohighlight">\(n-r\)</span> free variables and special solutions.
+The special solutions are independent, because they contain the identity matrix in rows 2, 3, 5.
+So <span class="math notranslate nohighlight">\(\bs{N}(R)\)</span> has dimension <span class="math notranslate nohighlight">\(n-r\)</span>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>The nullspace has dimension</strong> <span class="math notranslate nohighlight">\(n-r\)</span>.
+<strong>The special solutions form a basis</strong>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>4.</strong> The <strong>nullspace of</strong> <span class="math notranslate nohighlight">\(R^T\)</span> (<strong>left nullspace of</strong> <span class="math notranslate nohighlight">\(R\)</span>) has dimension <span class="math notranslate nohighlight">\(m-r=3-2\)</span>.</p>
+</div>
+<p>The equation <span class="math notranslate nohighlight">\(R^T\y=\0\)</span> looks for combinations of the columns of
+<span class="math notranslate nohighlight">\(R^T\)</span> (<em>the rows of</em> <span class="math notranslate nohighlight">\(R\)</span>) that produce zero.
+<strong>The nullspace of</strong> <span class="math notranslate nohighlight">\(R^T\)</span> <strong>contains all vectors</strong> <span class="math notranslate nohighlight">\(\y=(0,0,y_3)\)</span>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>If</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>is</strong> <span class="math notranslate nohighlight">\(m\)</span> <strong>by</strong> <span class="math notranslate nohighlight">\(n\)</span> <strong>of rank</strong> <span class="math notranslate nohighlight">\(r\)</span>,
+<strong>its left nullsapce has dimension</strong> <span class="math notranslate nohighlight">\(m-r\)</span>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>In</strong> <span class="math notranslate nohighlight">\(\R^n\)</span> <strong>the row space and nullspace have dimensions</strong> <span class="math notranslate nohighlight">\(r\)</span> and <span class="math notranslate nohighlight">\(n-r\)</span> (adding to <span class="math notranslate nohighlight">\(n\)</span>).</p>
+<p><strong>In</strong> <span class="math notranslate nohighlight">\(\R^m\)</span> <strong>the column space and left nullspace have dimensions</strong>
+<span class="math notranslate nohighlight">\(r\)</span> and <span class="math notranslate nohighlight">\(m-r\)</span> (total <span class="math notranslate nohighlight">\(m\)</span>).</p>
+</div>
+</div>
+<div class="section" id="the-four-subspaces-for-a">
+<h2>The Four Subspaces for <span class="math notranslate nohighlight">\(A\)</span><a class="headerlink" href="#the-four-subspaces-for-a" title="Permalink to this headline">¶</a></h2>
+<p><strong>The subspace dimensions for</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>are the same as for</strong> <span class="math notranslate nohighlight">\(R\)</span>.</p>
+<p><strong>This</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>reduces to</strong> <span class="math notranslate nohighlight">\(R\)</span> (Notice <span class="math notranslate nohighlight">\(\bs{C}(A)\neq\bs{C}(R)\)</span>!):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A=\bb 1&amp;3&amp;5&amp;0&amp;7\\0&amp;0&amp;0&amp;1&amp;2\\1&amp;3&amp;5&amp;1&amp;9 \eb\end{split}\]</div>
+<p><strong>1.</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>has the same row space as</strong> <span class="math notranslate nohighlight">\(R\)</span>.
+<strong>Same dimension</strong> <span class="math notranslate nohighlight">\(r\)</span> <strong>and same basis</strong>.</p>
+<blockquote>
+<div><p>Every row of <span class="math notranslate nohighlight">\(A\)</span> is a combination of the rows of <span class="math notranslate nohighlight">\(R\)</span> and vice versa.
+Elimination changes rows, but not row <em>spaces</em>.
+The good <span class="math notranslate nohighlight">\(r\)</span> rows of <span class="math notranslate nohighlight">\(A\)</span> are the ones that end up as pivot rows in <span class="math notranslate nohighlight">\(R\)</span>.</p>
+</div></blockquote>
+<p><strong>2.</strong> <strong>The column space of</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>has dimension</strong> <span class="math notranslate nohighlight">\(r\)</span>.
+<strong>The column rank equals the row rank</strong>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>Rank Theorem</strong>: <strong>The number of independent columns = the number of independent rows</strong>.</p>
+</div>
+<p>The <strong>same</strong> combinations of the columns are zero (or nonzero) for <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(R\)</span>.
+Dependent in <span class="math notranslate nohighlight">\(A \Leftrightarrow\)</span> depedent in <span class="math notranslate nohighlight">\(R\)</span>.
+<span class="math notranslate nohighlight">\(A\x=\0\)</span> <em>exactly when</em> <span class="math notranslate nohighlight">\(R\x=\0\)</span>.
+The column spaces are different, but their <em>dimensions</em> are the same–equal to <span class="math notranslate nohighlight">\(r\)</span>.</p>
+<p>The <span class="math notranslate nohighlight">\(r\)</span> pivot columns of <span class="math notranslate nohighlight">\(A\)</span> are a basis for <em>its</em> column space <span class="math notranslate nohighlight">\(\bs{C}(A)\)</span>.</p>
+<p><strong>3.</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>has the same nullsapce as</strong> <span class="math notranslate nohighlight">\(R\)</span>.
+<strong>Same dimension</strong> <span class="math notranslate nohighlight">\(n-r\)</span> <strong>and same basis</strong>.</p>
+<p>The elimination steps don’t change the soluions.
+The special solutions are a basis for this nullspace (As we always knew).
+There are <span class="math notranslate nohighlight">\(n-r\)</span> free variables, so the dimension of the nullsapce is <span class="math notranslate nohighlight">\(n-r\)</span>.
+This is the <strong>Counting Theorem</strong>: <span class="math notranslate nohighlight">\(r+(n-r)=n\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>(<strong>dimension of column space</strong>) + (<strong>dimension of nullspace</strong>) = <strong>dimension of</strong> <span class="math notranslate nohighlight">\(\R^n\)</span>.</p>
+</div>
+<p><strong>4.</strong> <strong>The left nullspace of</strong> <span class="math notranslate nohighlight">\(A\)</span> (the nullspace of <span class="math notranslate nohighlight">\(A^T\)</span>) <strong>has dimension</strong> <span class="math notranslate nohighlight">\(m-r\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Fundamental Theorem of Linear Algebra, Part 1</strong>:</p>
+<ul class="simple">
+<li><p><strong>The column space and row space both have dimension</strong> <span class="math notranslate nohighlight">\(r\)</span>.</p></li>
+<li><p><strong>The nullspaces have dimensions</strong> <span class="math notranslate nohighlight">\(n-r\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(m-r\)</span>.</p></li>
+</ul>
+</div>
+<p>Graph are <em>the most important model in discrete applied mathematics</em>.</p>
+</div>
+<div class="section" id="rank-one-matrics-review">
+<h2>Rank One Matrics (Review)<a class="headerlink" href="#rank-one-matrics-review" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Every rank one matrix is one column times one row</strong> <span class="math notranslate nohighlight">\(A=\u\v^T\)</span>.</p>
+</div>
+</div>
+<div class="section" id="rank-two-matrices-rank-one-plus-rank-one">
+<h2>Rank Two Matrices = Rank One plus Rank One<a class="headerlink" href="#rank-two-matrices-rank-one-plus-rank-one" title="Permalink to this headline">¶</a></h2>
+<p>Some elimination matrix <span class="math notranslate nohighlight">\(E\)</span> simplifies <span class="math notranslate nohighlight">\(A\)</span> to <span class="math notranslate nohighlight">\(\bs{EA=R}\)</span>.
+Then the inverse matrix <span class="math notranslate nohighlight">\(C=E^{-1}\)</span> connects <span class="math notranslate nohighlight">\(R\)</span> back to <span class="math notranslate nohighlight">\(\bs{A+CR}\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(R\)</span> <strong>has the same row space as</strong> <span class="math notranslate nohighlight">\(A\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A=\bb 1&amp;0&amp;3\\1&amp;1&amp;7\\4&amp;2&amp;20 \eb=\bb 1&amp;0&amp;0\\1&amp;1&amp;0\\4&amp;2&amp;1 \eb\bb 1&amp;0&amp;3\\0&amp;1&amp;4\\0&amp;0&amp;0 \eb=CR.\end{split}\]</div>
+<p><strong>Matrix</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>rank two</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A=\bb &amp;&amp;\\\u_1&amp;\u_2&amp;\u_3\\&amp;&amp; \eb\bb &amp;\v_1^T&amp;\\&amp;\v_2^T&amp;\\&amp;\rm{zero\ row}&amp;\eb
+=\u_1\v_1^T+\u_2\v_2^T=(\rm{rank\ }1)+(\rm{rank\ }1)\end{split}\]</div>
+<p><em>Every rank</em> <span class="math notranslate nohighlight">\(r\)</span> <em>matrix is a sum of</em> <span class="math notranslate nohighlight">\(r\)</span> <em>rank one matrices</em>:
+Pivot columns of <span class="math notranslate nohighlight">\(A\)</span> times nonzero rows of <span class="math notranslate nohighlight">\(R\)</span>.
+The row <span class="math notranslate nohighlight">\(\bb 0&amp;0&amp;0 \eb\)</span> simply disappeared.</p>
+</div>
 </div>
 
 
@@ -196,7 +391,7 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="../about.html" class="btn btn-neutral float-right" title="About" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../chap4/index4.html" class="btn btn-neutral float-right" title="Chapter 4 Orthogonality" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
         <a href="chap3-4.html" class="btn btn-neutral float-left" title="Chapter 3.4 Independece, Basis and Dimension" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 

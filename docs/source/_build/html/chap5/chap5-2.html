@@ -1,0 +1,468 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Chapter 5.2 Permutations and Cofactors &mdash; LinearAlgebra  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapter 5.3 Cramer’s Rule, Inverses, and Volumes" href="chap5-3.html" />
+    <link rel="prev" title="Chapter 5.1 The Properties of Determinants" href="chap5-1.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> LinearAlgebra
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../chap1/index1.html">Chapter 1 Introduction to Vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap2/index2.html">Chapter 2 Solving Linear Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap3/index3.html">Chapter 3 Vector Spaces and Subspaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap4/index4.html">Chapter 4 Orthogonality</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index5.html">Chapter 5 Determinants</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="chap5-1.html">Chapter 5.1 The Properties of Determinants</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 5.2 Permutations and Cofactors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-pivot-formula">The Pivot Formula</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-big-formula-for-determinants">The Big Formula for Determinants</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#determinant-by-cofactors">Determinant by Cofactors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="chap5-3.html">Chapter 5.3 Cramer’s Rule, Inverses, and Volumes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../chap6/index6.html">Chapter 6 Eigenvalues and Eigenvectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap7/index7.html">Chapter 7 The Singular Value Decomposition (SVD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">LinearAlgebra</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index5.html">Chapter 5 Determinants</a> &raquo;</li>
+        
+      <li>Chapter 5.2 Permutations and Cofactors</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/chap5/chap5-2.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\newcommand{\bs}{\boldsymbol}
+\newcommand{\dp}{\displaystyle}
+\newcommand{\rm}{\mathrm}
+\newcommand{\pd}{\partial}\\\newcommand{\cd}{\cdot}
+\newcommand{\cds}{\cdots}
+\newcommand{\dds}{\ddots}
+\newcommand{\vds}{\vdots}
+\newcommand{\lv}{\lVert}
+\newcommand{\rv}{\rVert}
+\newcommand{\wh}{\widehat}\\\newcommand{\0}{\boldsymbol{0}}
+\newcommand{\a}{\boldsymbol{a}}
+\newcommand{\b}{\boldsymbol{b}}
+\newcommand{\e}{\boldsymbol{e}}
+\newcommand{\i}{\boldsymbol{i}}
+\newcommand{\j}{\boldsymbol{j}}
+\newcommand{\p}{\boldsymbol{p}}
+\newcommand{\q}{\boldsymbol{q}}
+\newcommand{\u}{\boldsymbol{u}}
+\newcommand{\v}{\boldsymbol{v}}
+\newcommand{\w}{\boldsymbol{w}}
+\newcommand{\x}{\boldsymbol{x}}
+\newcommand{\y}{\boldsymbol{y}}\\\newcommand{\A}{\boldsymbol{A}}
+\newcommand{\B}{\boldsymbol{B}}
+\newcommand{\C}{\boldsymbol{C}}
+\newcommand{\N}{\boldsymbol{N}}\\\newcommand{\R}{\boldsymbol{\mathrm{R}}}\\\newcommand{\ld}{\lambda}
+\newcommand{\Ld}{\Lambda}
+\newcommand{\sg}{\sigma}
+\newcommand{\Sg}{\Sigma}\\\newcommand{\bb}{\begin{bmatrix}}
+\newcommand{\eb}{\end{bmatrix}}
+\newcommand{\bv}{\begin{vmatrix}}
+\newcommand{\ev}{\end{vmatrix}}\\\newcommand{\im}{^{-1}}
+\newcommand{\pr}{^{\prime}}
+\newcommand{\ppr}{^{\prime\prime}}\end{aligned}\end{align} \]</div>
+<div class="section" id="chapter-5-2-permutations-and-cofactors">
+<h1>Chapter 5.2 Permutations and Cofactors<a class="headerlink" href="#chapter-5-2-permutations-and-cofactors" title="Permalink to this headline">¶</a></h1>
+<div class="math notranslate nohighlight">
+\[\begin{split}A=\bb 2&amp;-1&amp;0&amp;0\\-1&amp;2&amp;-1&amp;0\\0&amp;-1&amp;2&amp;-1\\0&amp;0&amp;-1&amp;2 \eb\quad\rm{has}\quad\det A=5.\end{split}\]</div>
+<p>We can find this determinant in all three ways: <strong>pivots</strong>, <strong>big formula</strong>, <strong>cofactors</strong>.</p>
+<ol class="arabic simple">
+<li><p>The product of the pivots is <span class="math notranslate nohighlight">\(2\cd\frac{3}{2}\cd\frac{4}{3}\cd\frac{5}{4}\)</span>.
+Cancellation produces 5.</p></li>
+<li><p>The “big formula” has <span class="math notranslate nohighlight">\(4!=24\)</span> terms.
+Only five terms are nonzero:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\det A=16-4-4-4+1=5.\]</div>
+<ol class="arabic simple" start="3">
+<li><p>The numbers <span class="math notranslate nohighlight">\(2,-1,0,0\)</span> in the first row multiply their cofactors <span class="math notranslate nohighlight">\(4,3,2,1\)</span> from the other rows.
+That gives <span class="math notranslate nohighlight">\(2\cd 4-1\cd 3=5\)</span>.
+Those cofactors are 3 by 3 determinants.
+Cofactors use the rows and columns that are <em>not</em> used by the entry in the first row.</p></li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>Every term in a determinant uses each row and column once!</strong></p>
+</div>
+<div class="section" id="the-pivot-formula">
+<h2>The Pivot Formula<a class="headerlink" href="#the-pivot-formula" title="Permalink to this headline">¶</a></h2>
+<p>When elimination leads to <span class="math notranslate nohighlight">\(A=LU\)</span>, the pivots <span class="math notranslate nohighlight">\(d_1,\cds,d_n\)</span> are on
+the diagonal of the upper triangular <span class="math notranslate nohighlight">\(U\)</span>.
+If no row exchanges are involved, <strong>multiply those pivots</strong> to find the determinant:</p>
+<div class="math notranslate nohighlight">
+\[\det A=(\det L)(\det U)=(1)(d_1 d_2\cds d_n).\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\((\det P)(\det A)=(\det L)(\det U)\)</span> gives <span class="math notranslate nohighlight">\(\det A=\pm(d_1 d_2 \cds d_n)\)</span>.</p>
+</div>
+<p>The first pivots of this tridiagonal matrix <span class="math notranslate nohighlight">\(A\)</span> are <span class="math notranslate nohighlight">\(2,\frac{3}{2},\frac{4}{3}\)</span>.
+The next are <span class="math notranslate nohighlight">\(\frac{5}{4}\)</span> and <span class="math notranslate nohighlight">\(\frac{6}{5}\)</span> and eventually <span class="math notranslate nohighlight">\(\frac{n+1}{n}\)</span>.
+Factoring this <span class="math notranslate nohighlight">\(n\)</span> by <span class="math notranslate nohighlight">\(n\)</span> matrix reveals its determinant:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb 2&amp;-1\\-1&amp;2&amp;-1\\&amp;-1&amp;2&amp;\cd\\&amp;&amp;\cd&amp;\cd&amp;-1\\&amp;&amp;&amp;-1&amp;2 \eb=
+\bb 1\\-\frac{1}{2}&amp;1\\&amp;-\frac{2}{3}&amp;1\\&amp;&amp;\cd&amp;\cd\\&amp;&amp;&amp;-\frac{n-1}{n}&amp;1 \eb
+\bb 2&amp;-1\\&amp;\frac{3}{2}&amp;-1\\&amp;&amp;\frac{4}{3}&amp;-1\\&amp;&amp;&amp;\cd&amp;\cd\\&amp;&amp;&amp;&amp;\frac{n+1}{n} \eb.\end{split}\]</div>
+<p>The pivots are on the diagonal of <span class="math notranslate nohighlight">\(U\)</span> (the last matrix).
+<em>The</em> <span class="math notranslate nohighlight">\(n\)</span> <em>by</em> <span class="math notranslate nohighlight">\(n\)</span> <em>determinant is</em> <span class="math notranslate nohighlight">\(n+1\)</span>:</p>
+<p><strong>-1, 2, -1 matrix</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\det A=(2)\left(\frac{3}{2}\right)\left(\frac{4}{3}\right)\cds\left(\frac{n+1}{n}\right)=n+1.\]</div>
+<p>Important point: The first pivots depend only on the <em>upper left corner</em> of the original matrix <span class="math notranslate nohighlight">\(A\)</span>.
+This is a rule for all matrices without row exchanges.</p>
+<blockquote>
+<div><p>The first <span class="math notranslate nohighlight">\(k\)</span> pivots come from the <span class="math notranslate nohighlight">\(k\)</span> by <span class="math notranslate nohighlight">\(k\)</span> matrix
+<span class="math notranslate nohighlight">\(A_k\)</span> in the top left corner of <span class="math notranslate nohighlight">\(A\)</span>.
+<strong>The determinant of that corner submatrix</strong> <span class="math notranslate nohighlight">\(A_k\)</span> <strong>is</strong>
+<span class="math notranslate nohighlight">\(d_1d_2\cds d_k\)</span> (<strong>first</strong> <span class="math notranslate nohighlight">\(k\)</span> <strong>pivots</strong>).</p>
+</div></blockquote>
+<p>Elimination deals with the matrix <span class="math notranslate nohighlight">\(A_k\)</span> in the upper left corner while starting on the whole matrix.
+We assume no row exchanges–then <span class="math notranslate nohighlight">\(A=LU\)</span> and <span class="math notranslate nohighlight">\(A_k=L_kU_k\)</span>.
+Dividing one determinant by the previous determinant (<span class="math notranslate nohighlight">\(\det A_k\)</span> divided
+by <span class="math notranslate nohighlight">\(\det A_{k-1}\)</span>) cancels everything but the latest pivot <span class="math notranslate nohighlight">\(d_k\)</span>.
+<strong>Each pivot is a ratio of determinants</strong>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Pivots from determinants</strong>: <strong>The</strong> <span class="math notranslate nohighlight">\(k\)</span><strong>th pivot is</strong>
+<span class="math notranslate nohighlight">\(\dp d_k=\frac{d_1d_2\cds d_k}{d_1d_2\cds d_{k-1}}=\frac{\det A_k}{\det A_{k-1}}\)</span></p>
+</div>
+<p><em>We don’t need row exchanges when all the upper left submatrices have</em> <span class="math notranslate nohighlight">\(\det A_k\neq 0\)</span>.</p>
+</div>
+<div class="section" id="the-big-formula-for-determinants">
+<h2>The Big Formula for Determinants<a class="headerlink" href="#the-big-formula-for-determinants" title="Permalink to this headline">¶</a></h2>
+<p><strong>The formula has ** :math:`n!` **terms</strong>.
+Half the terms have minus signs (as in <span class="math notranslate nohighlight">\(-bc\)</span>).
+The other half have plus signs (as in <span class="math notranslate nohighlight">\(ad\)</span>).
+For <span class="math notranslate nohighlight">\(n=3\)</span> there are <span class="math notranslate nohighlight">\(3!=(3)(2)(1)=6\)</span> terms:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>3 by 3 determinant: <span class="math notranslate nohighlight">\(\bv a_{11}&amp;a_{12}&amp;a_{13}\\a_{21}&amp;a_{22}&amp;a_{23}
+\\a_{31}&amp;a_{32}&amp;a_{33} \ev=
+\begin{matrix}+a_{11}a_{22}a_{33}+a_{12}a_{23}a_{31}+a_{13}a_{21}a_{32}\\
+-a_{11}a_{23}a_{32}-a_{12}a_{21}a_{33}-a_{13}a_{22}a_{31}\end{matrix}\)</span>.</p>
+</div>
+<p>Notice the pattern.
+Each product like <span class="math notranslate nohighlight">\(a_{11}a_{23}a_{32}\)</span> has <strong>one entry from each row</strong>.
+It also has <strong>one entry from each column</strong>.
+The column order 1, 3, 2 means that this particular term comes with a minus sign.
+The column 3, 1, 2 in <span class="math notranslate nohighlight">\(a_{13}a_{21}a_{32}\)</span> has a plus sign.
+It will be “permutations” that tell us the sign.</p>
+<p>To derive the big formula I start with <span class="math notranslate nohighlight">\(n=2\)</span>.
+The goal is to reach <span class="math notranslate nohighlight">\(ad-bc\)</span> in a systematic way.
+Break each row into two simpler rows:</p>
+<div class="math notranslate nohighlight">
+\[\bb a&amp;b \eb=\bb a&amp;0 \eb+\bb 0&amp;b \eb\quad\rm{and}\quad\bb c&amp;d \eb=\bb c&amp;0 \eb+\bb 0&amp;d \eb.\]</div>
+<p>Now apply linearity, first in row 1 (with row 2 fixed) and then in row 2 (with row 1 fixed):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bv a&amp;b\\c&amp;d \ev=\bv a&amp;0\\c&amp;d \ev+\bv 0&amp;b\\c&amp;d \ev=\bv a&amp;0\\c&amp;0 \ev+\bv a&amp;0\\0&amp;d \ev+\bv 0&amp;b\\c&amp;0 \ev+\bv 0&amp;b\\0&amp;d \ev.\end{split}\]</div>
+<p>The last line has <span class="math notranslate nohighlight">\(2^2=4\)</span> determinants.
+The first and fourth are zero because one row is a multiple of the other row.
+We are left with <span class="math notranslate nohighlight">\(2!=2\)</span> determinants to compute:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bv a&amp;0\\c&amp;d \ev+\bv 0&amp;b\\c&amp;d \ev=ad\bv 1&amp;0\\0&amp;1 \ev+bc\bv 0&amp;1\\1&amp;0 \ev=ad-bc.\end{split}\]</div>
+<p>The splitting led to permutation matrices.
+Their determinants give a plus or minus sign.
+The permutation tells the column sequence.
+In this case the column order is (1,2) or (2,1).</p>
+<p>Now try <span class="math notranslate nohighlight">\(n=3\)</span>.
+We pay attention only when <strong>the entries</strong> <span class="math notranslate nohighlight">\(a_{ij}\)</span> <strong>come rom different columns</strong>, like <span class="math notranslate nohighlight">\((3,1,2)\)</span>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(\bv a_{11}&amp;a_{12}&amp;a_{13}\\a_{21}&amp;a_{22}&amp;a_{23}\\a_{31}&amp;a_{32}&amp;a_{33}
+\ev=\begin{matrix}\bv a_{11}\\&amp;a_{22}\\&amp;&amp;a_{33} \ev+\bv &amp;a_{12}\\&amp;&amp;a_{23}
+\\a_{31} \ev+\bv &amp;&amp;a_{13}\\a_{21}\\&amp;a_{32} \ev \\
++\bv a_{11}\\&amp;&amp;a_{23}\\&amp;a_{32} \ev+\bv &amp;a_{12}\\a_{21}\\&amp;&amp;a_{33} \ev+\bv
+&amp;&amp;a_{13}\\&amp;a_{22}\\a_{31} \ev\end{matrix}\)</span>.</p>
+</div>
+<p><strong>There are</strong> <span class="math notranslate nohighlight">\(3!=6\)</span> <strong>ways to order the columns, so six determinants</strong>.
+The six permutations of <span class="math notranslate nohighlight">\((1,2,3)\)</span> include the identity permutation  <span class="math notranslate nohighlight">\((1,2,3)\)</span> from <span class="math notranslate nohighlight">\(P=I\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\bs{\rm{Column\ numbers}} = (1,2,3),(2,3,1),(3,1,2),(1,3,2),(2,1,3),(3,2,1).\]</div>
+<p>The last three are <em>odd permutations</em> (one exchange).
+The first three are <em>even permutations</em> (0 or 2 exchanges).
+Factor out the <span class="math notranslate nohighlight">\(a_{ij}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\begin{split}\det A=a_{11}a_{22}a_{33}\bv 1\\&amp;1\\&amp;&amp;1 \ev+a_{12}a_{23}a_{31}\bv &amp;1\\&amp;&amp;1\\1
+\ev+a_{13}a_{21}a_{32}\bv &amp;&amp;1\\1\\&amp;1 \ev\end{split}\\\begin{split}+a_{11}a_{23}a_{32}\bv 1\\&amp;&amp;1\\&amp;1 \ev+a_{12}a_{21}a_{33}\bv &amp;1\\1\\&amp;&amp;1 \ev+
+a_{13}a_{22}a_{31}\bv &amp;&amp;1\\&amp;1\\1 \ev.\end{split}\end{aligned}\end{align} \]</div>
+<p>The first three (even) permutations have <span class="math notranslate nohighlight">\(\det P=+1\)</span>, the last three (odd) permutations have <span class="math notranslate nohighlight">\(\det P=-1\)</span>.</p>
+<p>Now you can see the <span class="math notranslate nohighlight">\(n\)</span> by <span class="math notranslate nohighlight">\(n\)</span> formula.
+There are <span class="math notranslate nohighlight">\(n!\)</span> orderings of the columns.
+The columns <span class="math notranslate nohighlight">\((1,2,\cds,n)\)</span> go in each possible order <span class="math notranslate nohighlight">\((\alpha,\beta,\cds,\omega)\)</span>.
+Taking <span class="math notranslate nohighlight">\(a_{1\alpha}\)</span> from row 1 and <span class="math notranslate nohighlight">\(a_{2\beta}\)</span> from row 2 and
+eventually <span class="math notranslate nohighlight">\(a_{n\omega}\)</span> from row <span class="math notranslate nohighlight">\(n\)</span>, the determinant contains the
+product <span class="math notranslate nohighlight">\(a_{1\alpha}a_{2\beta}\cds a_{n\omega}\)</span> times <span class="math notranslate nohighlight">\(+1\)</span> or
+<span class="math notranslate nohighlight">\(-1\)</span>.</p>
+<p>The determinant of <span class="math notranslate nohighlight">\(A\)</span> is the sum of these <span class="math notranslate nohighlight">\(n!\)</span> simple determinants, times 1 or -1.
+The simple determinants <span class="math notranslate nohighlight">\(a_{1\alpha}a_{2\beta}\cds a_{n\omega}\)</span> choose <strong>one entry from every row and column</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>BIG FORMULA</strong>: <span class="math notranslate nohighlight">\(\det A=\)</span> sum over all <span class="math notranslate nohighlight">\(n!\)</span> column permutations
+<span class="math notranslate nohighlight">\(P=(\alpha,\beta,\cds,\omega)=\sum(\det P)a_{1\alpha}a_{2\beta}\cds a_{n\omega}\)</span>.</p>
+</div>
+</div>
+<div class="section" id="determinant-by-cofactors">
+<h2>Determinant by Cofactors<a class="headerlink" href="#determinant-by-cofactors" title="Permalink to this headline">¶</a></h2>
+<p><strong>When you separate out the factor</strong> <span class="math notranslate nohighlight">\(a_{11}\)</span> <strong>or</strong> <span class="math notranslate nohighlight">\(a_{12}\)</span> <strong>or</strong>
+<span class="math notranslate nohighlight">\(a_{1\alpha}\)</span> <strong>that comes from the first row</strong>, you see linearity.
+For 3 by 3, separate the usual 6 terms of the determinant into 3 pairs:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(\det A=a_{11}(a_{22}a_{33}-a_{23}a_{32})+a_{12}(a_{23}a_{31}-a_{21}a_{33})+a_{13}(a_{21}a_{32}-a_{22}a_{31})\)</span>.</p>
+</div>
+<p>Those three quantities in parentheses are called “<strong>cofactors</strong>”.
+They are <strong>2 by 2 determinants</strong>, from row 2 and 3.
+The first row contributes the factors <span class="math notranslate nohighlight">\(a_{11},a_{12},a_{13}\)</span>.
+<em>The lower rows contribute the cofactors</em> <span class="math notranslate nohighlight">\(C_{11},C_{12},C_{13}\)</span>.
+Certainly the determinant <span class="math notranslate nohighlight">\(a_{11}C_{11}+a_{12}C_{12}+a_{13}C_{13}\)</span> depends linearly on <span class="math notranslate nohighlight">\(a_{11},a_{12},a_{13}\)</span>.</p>
+<p>The cofactor of <span class="math notranslate nohighlight">\(a_{11}\)</span> is <span class="math notranslate nohighlight">\(C_{11}=a_{22}a_{33}-a_{23}a_{32}\)</span>.
+You can see it in this splitting:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bv a_{11}&amp;a_{12}&amp;a_{13}\\a_{21}&amp;a_{22}&amp;a_{23}\\a_{31}&amp;a_{32}&amp;a_{33} \ev=
+\bv a_{11}\\&amp;a_{22}&amp;a_{23}\\&amp;a_{32}&amp;a_{33} \ev+
+\bv &amp;a_{12}&amp;\\a_{21}&amp;&amp;a_{23}\\a_{31}&amp;&amp;a_{33} \ev+
+\bv &amp;&amp;a_{13}\\a_{21}&amp;a_{22}&amp;\\a_{31}&amp;a_{32}&amp; \ev.\end{split}\]</div>
+<p>We are still choosing <strong>one entry from each row and column</strong>.
+Since <span class="math notranslate nohighlight">\(a_{11}\)</span> uses up row 1 and column 1, that leaves a 2 by 2 determinant as its cofactor.</p>
+<p>The sign pattern for cofactors along the first row is <em>plus-minus-plus-minus</em>.
+<strong>You cross out row 1 and column</strong> <span class="math notranslate nohighlight">\(j\)</span> <strong>to get a submatrix</strong> <span class="math notranslate nohighlight">\(M_{1j}\)</span> <strong>of size</strong> <span class="math notranslate nohighlight">\(n-1\)</span>.
+Multiply its determinant by the sign <span class="math notranslate nohighlight">\((-1)^{1+j}\)</span> to get the cofactor:</p>
+<blockquote>
+<div><p>The cofactors along row 1 are <span class="math notranslate nohighlight">\(C_{1j}=(-1)^{1+j}\det M_{1j}\)</span>.</p>
+<p><strong>The cofactor expansion is</strong> <span class="math notranslate nohighlight">\(\det A=a_{11}C_{11}+a_{12}+C_{12}+\cds+a_{1n}C_{1n}\)</span>.</p>
+</div></blockquote>
+<p><strong>Note</strong>: What ever is possible for row 1 is possible for row <span class="math notranslate nohighlight">\(i\)</span>.
+The entries <span class="math notranslate nohighlight">\(a_{ij}\)</span> in that row also have cofactors <span class="math notranslate nohighlight">\(C_{ij}\)</span>.
+Those are determinants of order <span class="math notranslate nohighlight">\(n-1\)</span>, multiplied by <span class="math notranslate nohighlight">\((-1)^{i+j}\)</span>.
+Since <span class="math notranslate nohighlight">\(a_{ij}\)</span> accounts for row <span class="math notranslate nohighlight">\(i\)</span> and column <span class="math notranslate nohighlight">\(j\)</span>,
+<strong>the submatrix</strong> <span class="math notranslate nohighlight">\(M_{ij}\)</span> <strong>throws out row</strong> <span class="math notranslate nohighlight">\(i\)</span> <strong>and column</strong>
+<span class="math notranslate nohighlight">\(j\)</span>.
+The sign matrix shows the <span class="math notranslate nohighlight">\(\pm\)</span> pattern:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb +&amp;-&amp;+&amp;-\\-&amp;+&amp;-&amp;+\\+&amp;-&amp;+&amp;-\\-&amp;+&amp;-&amp;+ \eb.\end{split}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The determinant is the dot product of any row <span class="math notranslate nohighlight">\(i\)</span> of <span class="math notranslate nohighlight">\(A\)</span> with its cofactors using other rows:</p>
+<ul class="simple">
+<li><p><strong>COFACTOR FORMULA</strong>: <span class="math notranslate nohighlight">\(\det A=a_{i1}C_{i1}+a_{i2}C_{i2}+\cds+a_{in}C_{in}\)</span>.</p></li>
+</ul>
+<p>Each cofactor <span class="math notranslate nohighlight">\(C_{ij}\)</span> (order <span class="math notranslate nohighlight">\(n-1\)</span>, without row <span class="math notranslate nohighlight">\(i\)</span> and
+column <span class="math notranslate nohighlight">\(j\)</span>) includes its correct sign:</p>
+<ul class="simple">
+<li><p><strong>Cofactor</strong>: <span class="math notranslate nohighlight">\(C_{ij}=(-1)^{i+j}\det M_{ij}\)</span>.</p></li>
+</ul>
+</div>
+<p>A determinant of order <span class="math notranslate nohighlight">\(n\)</span> is a combination of determinants of order <span class="math notranslate nohighlight">\(n-1\)</span>.
+Each subdeterminant breaks into determinants of order <span class="math notranslate nohighlight">\(n-2\)</span>.
+<em>We could define all determinants via equation</em>.
+This rule goes from order <span class="math notranslate nohighlight">\(n\)</span> to <span class="math notranslate nohighlight">\(n-1\)</span> to <span class="math notranslate nohighlight">\(n-2\)</span> and eventually to order 1.
+Define the 1 by 1 determinant <span class="math notranslate nohighlight">\(\bv a \ev\)</span> to be the number <span class="math notranslate nohighlight">\(a\)</span>.
+Then the cofactor method is complete.</p>
+<p>We preferred to construct <span class="math notranslate nohighlight">\(\det A\)</span> from its properties (linearity, sign reversal <span class="math notranslate nohighlight">\(\det I=1\)</span>).
+One last formula comes from the rule that <span class="math notranslate nohighlight">\(\det A=\det A^T\)</span>.
+We can expand in cofactors, <em>down a column</em> instead of across a row.
+Down column <span class="math notranslate nohighlight">\(j\)</span> the entries are <span class="math notranslate nohighlight">\(a_{1j}\)</span> to <span class="math notranslate nohighlight">\(a_{nj}\)</span>.
+The cofactors are <span class="math notranslate nohighlight">\(C_{1j}\)</span> to <span class="math notranslate nohighlight">\(C_{nj}\)</span>.
+The determinant is the dot product:</p>
+<p><strong>Cofactors down column</strong> <span class="math notranslate nohighlight">\(j\)</span>: <span class="math notranslate nohighlight">\(\det A=a_{1j}C_{1j}+a_{2j}C_{2j}+\cds+a_{nj}C_{nj}\)</span>.</p>
+<p><strong>Cofactors are useful when matrices have many zeros</strong>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="chap5-3.html" class="btn btn-neutral float-right" title="Chapter 5.3 Cramer’s Rule, Inverses, and Volumes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="chap5-1.html" class="btn btn-neutral float-left" title="Chapter 5.1 The Properties of Determinants" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Ziniu Yu.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -42,7 +42,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Chapter 3.4 Independece, Basis and Dimension" href="chap3-4.html" />
-    <link rel="prev" title="Chapter 3.2 The Nullspace of \(A\): Solving \(Ax = 0\) and \(Rx=0\)" href="chap3-2.html" /> 
+    <link rel="prev" title="Chapter 3.2 The Nullspace of \(A\): Solving \(A\boldsymbol{x} = 0\) and \(R\boldsymbol{x}=0\)" href="chap3-2.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -91,14 +91,22 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../chap1/index1.html">Chapter 1 Introduction to Vectors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../chap2/index2.html">Chapter 2 Solving Linear Equations</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index3.html">Chapter 3 Vector Spacese and Subspaces</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index3.html">Chapter 3 Vector Spaces and Subspaces</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="chap3-1.html">Chapter 3.1 Spaces of Vectors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="chap3-2.html">Chapter 3.2 The Nullspace of <span class="math notranslate nohighlight">\(A\)</span>: Solving <span class="math notranslate nohighlight">\(Ax = 0\)</span> and <span class="math notranslate nohighlight">\(Rx=0\)</span></a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 3.3 The Complete Solution to <span class="math notranslate nohighlight">\(Ax=b\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap3-2.html">Chapter 3.2 The Nullspace of <span class="math notranslate nohighlight">\(A\)</span>: Solving <span class="math notranslate nohighlight">\(A\boldsymbol{x} = 0\)</span> and <span class="math notranslate nohighlight">\(R\boldsymbol{x}=0\)</span></a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 3.3 The Complete Solution to <span class="math notranslate nohighlight">\(Ax=b\)</span></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#one-particular-solution-ax-p-b">One Particular Solution <span class="math notranslate nohighlight">\(Ax_p=b\)</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-complete-solution">The Complete Solution</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="chap3-4.html">Chapter 3.4 Independece, Basis and Dimension</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chap3-5.html">Chapter 3.5 Dimensions of the Four Subspaces</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../chap4/index4.html">Chapter 4 Orthogonality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap5/index5.html">Chapter 5 Determinants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap6/index6.html">Chapter 6 Eigenvalues and Eigenvectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap7/index7.html">Chapter 7 The Singular Value Decomposition (SVD)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
 </ul>
 
@@ -148,7 +156,7 @@
     
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
-          <li><a href="index3.html">Chapter 3 Vector Spacese and Subspaces</a> &raquo;</li>
+          <li><a href="index3.html">Chapter 3 Vector Spaces and Subspaces</a> &raquo;</li>
         
       <li>Chapter 3.3 The Complete Solution to <span class="math notranslate nohighlight">\(Ax=b\)</span></li>
     
@@ -172,22 +180,186 @@
   <div class="math notranslate nohighlight">
 \[ \begin{align}\begin{aligned}\newcommand{\bs}{\boldsymbol}
 \newcommand{\dp}{\displaystyle}
-\newcommand{\rm}{\mathrm}\\\newcommand{\cd}{\cdot}
+\newcommand{\rm}{\mathrm}
+\newcommand{\pd}{\partial}\\\newcommand{\cd}{\cdot}
 \newcommand{\cds}{\cdots}
+\newcommand{\dds}{\ddots}
+\newcommand{\vds}{\vdots}
 \newcommand{\lv}{\lVert}
-\newcommand{\rv}{\rVert}\\\newcommand{\0}{\boldsymbol{0}}
+\newcommand{\rv}{\rVert}
+\newcommand{\wh}{\widehat}\\\newcommand{\0}{\boldsymbol{0}}
+\newcommand{\a}{\boldsymbol{a}}
 \newcommand{\b}{\boldsymbol{b}}
 \newcommand{\e}{\boldsymbol{e}}
 \newcommand{\i}{\boldsymbol{i}}
 \newcommand{\j}{\boldsymbol{j}}
+\newcommand{\p}{\boldsymbol{p}}
+\newcommand{\q}{\boldsymbol{q}}
 \newcommand{\u}{\boldsymbol{u}}
 \newcommand{\v}{\boldsymbol{v}}
 \newcommand{\w}{\boldsymbol{w}}
 \newcommand{\x}{\boldsymbol{x}}
-\newcommand{\y}{\boldsymbol{y}}\\\newcommand{\N}{\boldsymbol{N}}\\\newcommand{\R}{\boldsymbol{\mathrm{R}}}\\\newcommand{\bb}{\begin{bmatrix}}
-\newcommand{\eb}{\end{bmatrix}}\\\newcommand{\im}{^{-1}}\end{aligned}\end{align} \]</div>
+\newcommand{\y}{\boldsymbol{y}}\\\newcommand{\A}{\boldsymbol{A}}
+\newcommand{\B}{\boldsymbol{B}}
+\newcommand{\C}{\boldsymbol{C}}
+\newcommand{\N}{\boldsymbol{N}}\\\newcommand{\R}{\boldsymbol{\mathrm{R}}}\\\newcommand{\ld}{\lambda}
+\newcommand{\Ld}{\Lambda}
+\newcommand{\sg}{\sigma}
+\newcommand{\Sg}{\Sigma}\\\newcommand{\bb}{\begin{bmatrix}}
+\newcommand{\eb}{\end{bmatrix}}
+\newcommand{\bv}{\begin{vmatrix}}
+\newcommand{\ev}{\end{vmatrix}}\\\newcommand{\im}{^{-1}}
+\newcommand{\pr}{^{\prime}}
+\newcommand{\ppr}{^{\prime\prime}}\end{aligned}\end{align} \]</div>
 <div class="section" id="chapter-3-3-the-complete-solution-to-ax-b">
 <h1>Chapter 3.3 The Complete Solution to <span class="math notranslate nohighlight">\(Ax=b\)</span><a class="headerlink" href="#chapter-3-3-the-complete-solution-to-ax-b" title="Permalink to this headline">¶</a></h1>
+<p>The last section totally solved <span class="math notranslate nohighlight">\(A\x=\0\)</span>.
+Elimination converted the problem to <span class="math notranslate nohighlight">\(R\x=\0\)</span>.
+Now the right side <span class="math notranslate nohighlight">\(\b\)</span> is not zero.
+<span class="math notranslate nohighlight">\(A\x=\b\)</span> is reduced to a simple system <span class="math notranslate nohighlight">\(R\x=\bs{d}\)</span> with the same solutions.
+One way to organize that is to <strong>add</strong> <span class="math notranslate nohighlight">\(\b\)</span> <strong>as an extra column of the matrix</strong>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb 1&amp;3&amp;0&amp;2\\0&amp;0&amp;1&amp;4\\1&amp;3&amp;1&amp;6 \eb\bb x_1\\x_2\\x_3\\x_4 \eb=\bb 1\\6\\7 \eb
+\quad\begin{matrix} \rm{has\ the}\\\rm{augmented}\\\rm{matrix} \end{matrix}
+\quad\bb 1&amp;3&amp;0&amp;2&amp;1\\0&amp;0&amp;1&amp;4&amp;6\\1&amp;3&amp;1&amp;6&amp;7 \eb=\bb A&amp;\b \eb\end{split}\]</div>
+<p>When we apply the usual elimination steps to <span class="math notranslate nohighlight">\(A\)</span>, reacehing <span class="math notranslate nohighlight">\(R\)</span>, we also apply them to <span class="math notranslate nohighlight">\(\b\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb 1&amp;3&amp;0&amp;2\\0&amp;0&amp;1&amp;4\\0&amp;0&amp;0&amp;0 \eb\bb x_1\\x_2\\x_3\\x_4 \eb=\bb 1\\6\\0 \eb
+\quad\begin{matrix} \rm{has\ the}\\\rm{augmented}\\\rm{matrix} \end{matrix}
+\quad\bb 1&amp;3&amp;0&amp;2&amp;1\\0&amp;0&amp;1&amp;4&amp;6\\0&amp;0&amp;0&amp;0&amp;0 \eb=\bb R&amp;\bs{d} \eb\end{split}\]</div>
+<p>The very last zero is crucial.
+The third equation has become <span class="math notranslate nohighlight">\(0=0\)</span>.
+So the equations can be solved.</p>
+<p>Here are the same augmented matrices for a general <span class="math notranslate nohighlight">\(\b = (b_1,b_2,b)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb A&amp;\b \eb=\bb 1&amp;3&amp;0&amp;2&amp;b_1\\0&amp;0&amp;1&amp;4&amp;b_2\\1&amp;3&amp;1&amp;6&amp;b_3 \eb\rightarrow
+\bb 1&amp;3&amp;0&amp;2&amp;b_1\\0&amp;0&amp;1&amp;4&amp;b_2\\0&amp;0&amp;0&amp;0&amp;b_3-b_1-b_2 \eb=\bb R&amp;\bs{d} \eb\end{split}\]</div>
+<p>Now we get <span class="math notranslate nohighlight">\(0=0\)</span> in the third equation only of <span class="math notranslate nohighlight">\(b_3-b_1-b_2=0\)</span>.
+This is <span class="math notranslate nohighlight">\(b_1+b_2=b_3\)</span>.</p>
+<div class="section" id="one-particular-solution-ax-p-b">
+<h2>One Particular Solution <span class="math notranslate nohighlight">\(Ax_p=b\)</span><a class="headerlink" href="#one-particular-solution-ax-p-b" title="Permalink to this headline">¶</a></h2>
+<p>For an easy solution <span class="math notranslate nohighlight">\(\x_p\)</span>, <em>choose the free variables to be zero</em>: <span class="math notranslate nohighlight">\(x_2=x_4=0\)</span>.
+Then the two nonzero equations give the two pivot variables <span class="math notranslate nohighlight">\(x_1=1\)</span> and <span class="math notranslate nohighlight">\(x_3=6\)</span>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>For a solution to exist, zero rows in</strong> <span class="math notranslate nohighlight">\(R\)</span> <strong>must also be zero in</strong> <span class="math notranslate nohighlight">\(\bs{d}\)</span>.
+<strong>Since</strong> <span class="math notranslate nohighlight">\(I\)</span> <strong>is in the pivot rows and pivot columns of</strong> <span class="math notranslate nohighlight">\(R\)</span>,
+<strong>the pivot variables in</strong> <span class="math notranslate nohighlight">\(x_{\rm{particular}}\)</span> <strong>come from</strong>
+<span class="math notranslate nohighlight">\(\bs{d}\)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(R\x_p=\bb 1&amp;3&amp;0&amp;2\\0&amp;0&amp;1&amp;4\\0&amp;0&amp;0&amp;0 \eb\bb 1\\0\\6\\0 \eb=\bb 1\\6\\0 \eb\)</span></p></li>
+</ul>
+</div>
+<p>Notice how we <em>choose</em> the free variables (as zero) and <em>solve</em> for the pivot variables.
+When the free variables are zero, the pivot variables for <span class="math notranslate nohighlight">\(\x_p\)</span> are
+already seen in the right side vector <span class="math notranslate nohighlight">\(\bs{d}\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(\x_{\rm{particular}}\)</span>: The particular solution solves <span class="math notranslate nohighlight">\(A\x_p=\b\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\x_{\rm{nullspace}}\)</span>: The <span class="math notranslate nohighlight">\(n-r\)</span> special solutions solve <span class="math notranslate nohighlight">\(A\x_n=\0\)</span>.</p>
+</div>
+<p>That particular solution is <span class="math notranslate nohighlight">\((1,0,6,0)\)</span>.
+The two special (nullspace) solutions to <span class="math notranslate nohighlight">\(R\x=\0\)</span> come from the two free
+columns of <span class="math notranslate nohighlight">\(R\)</span>, by reversing signs of 3, 2, and 4.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Complete solution one</strong> <span class="math notranslate nohighlight">\(\x_p\)</span> <strong>many</strong> <span class="math notranslate nohighlight">\(\x_n\)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\x=\x_p+\x_n=\bb 1\\0\\6\\0 \eb+x_2\bb -3\\1\\0\\0 \eb+x_4\bb -2\\0\\-4\\1 \eb\)</span>.</p></li>
+</ul>
+</div>
+<p><strong>Question</strong>: Suppose <span class="math notranslate nohighlight">\(A\)</span> is a square invertible matrix, <span class="math notranslate nohighlight">\(m=n=r\)</span>.
+Whar are <span class="math notranslate nohighlight">\(\x_p\)</span> and <span class="math notranslate nohighlight">\(\x_n\)</span>?</p>
+<p><strong>Answer</strong>: The particular solution is the one and <em>only</em> solution <span class="math notranslate nohighlight">\(\x_p=A^{-1}\b\)</span>.
+There are no special solutions or free variables.
+<span class="math notranslate nohighlight">\(R=I\)</span> has no zero rows.</p>
+<p>The only vector in the nullspace is <span class="math notranslate nohighlight">\(\x_n=\0\)</span>.
+The complete solution is <span class="math notranslate nohighlight">\(\x=\x_p+\x_n=A^{-1}\b+\0\)</span>.</p>
+<p>An important case: <span class="math notranslate nohighlight">\(A\)</span> has <em>full column rank</em>.
+Every column has a pivot.
+<em>The rank is</em> <span class="math notranslate nohighlight">\(r=n\)</span>.
+The matrix is tall and thin (<span class="math notranslate nohighlight">\(m\geq n\)</span>).
+Row reduction puts <span class="math notranslate nohighlight">\(I\)</span> at the top, when <span class="math notranslate nohighlight">\(A\)</span> is reduced to <span class="math notranslate nohighlight">\(R\)</span> with rank <span class="math notranslate nohighlight">\(n\)</span>:</p>
+<p><strong>Full Column Rank</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}R=\bb I\\0 \eb=\bb n\rm{\ by\ }n\rm{\ identity\ matrix}\\m-n \rm{\ rows\ of\ zeros}\eb.\end{split}\]</div>
+<p>There are no free columnso r free variables.
+The nullspace is <span class="math notranslate nohighlight">\(\bs{\rm{Z}}\)</span> = {zero vector}.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Every matrix <span class="math notranslate nohighlight">\(A\)</span> with <strong>full column rank</strong> <span class="math notranslate nohighlight">\((r=n)\)</span> has all these properties:</p>
+<ol class="arabic simple">
+<li><p>All columns of <span class="math notranslate nohighlight">\(A\)</span> are pivot columns.</p></li>
+<li><p>There are no free variables or special solutions.</p></li>
+<li><p>The nullspace <span class="math notranslate nohighlight">\(\bs{N}(A)\)</span> contains only the zero vector <span class="math notranslate nohighlight">\(\x=\0\)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(A\x=\b\)</span> has a solution (it might not) then it has only <em>one solution</em>.</p></li>
+</ol>
+</div>
+<p>In the essential language of the next section, this <span class="math notranslate nohighlight">\(A\)</span> has <strong>independent columns</strong>.
+<span class="math notranslate nohighlight">\(A\x=\0\)</span> only happens when <span class="math notranslate nohighlight">\(\x=\0\)</span>.
+<em>The square matrix</em> <span class="math notranslate nohighlight">\(A^TA\)</span> <em>is invertible when the rank is</em> <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<p>In this case the nullspace of <span class="math notranslate nohighlight">\(A\)</span>) has shrunk to the zero vector.
+The solution to <span class="math notranslate nohighlight">\(A\x=\b\)</span> is <em>unique</em> (if it exists).
+There will be <span class="math notranslate nohighlight">\(m-n\)</span> zero rows in <span class="math notranslate nohighlight">\(R\)</span>.
+So there are <span class="math notranslate nohighlight">\(m-n\)</span> conditions on <span class="math notranslate nohighlight">\(\b\)</span> in order to have <span class="math notranslate nohighlight">\(0=0\)</span>
+in those rows, and <span class="math notranslate nohighlight">\(\b\)</span> in the column space.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>With full column rank, <span class="math notranslate nohighlight">\(A\x=\b\)</span> has <em>one</em> solution or <em>no</em> solution (<span class="math notranslate nohighlight">\(m&gt;n\)</span> is overdetermined).</p>
+</div>
+</div>
+<div class="section" id="the-complete-solution">
+<h2>The Complete Solution<a class="headerlink" href="#the-complete-solution" title="Permalink to this headline">¶</a></h2>
+<p>The other extreme case is full row rank.
+Now <span class="math notranslate nohighlight">\(A\x=\b\)</span> has <em>one or infinitely many</em> solutions.
+In this case <span class="math notranslate nohighlight">\(A\)</span> must be <em>short and wide</em> <span class="math notranslate nohighlight">\((m\leq n)\)</span>.
+<strong>A matrix has full row rank if</strong> <span class="math notranslate nohighlight">\(\bs{r=m}\)</span>.</p>
+<p><strong>Full row rank</strong> (rank <span class="math notranslate nohighlight">\(r=m=2\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}x+y+z&amp;=3\\x+2y-z&amp;=4\end{aligned}\end{align} \]</div>
+<p>The particular solution will be one point on the line.
+Adding the nullspace vectors <span class="math notranslate nohighlight">\(\x_n\)</span> will move us along the line.
+Then <span class="math notranslate nohighlight">\(\x=\x_p+\x_n\)</span> gives the whole line of solutions.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Complete solution = <em>one</em> particular solution + <em>all</em> nullspace solutions.</p>
+</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb 1&amp;1&amp;1&amp;3\\1&amp;2&amp;-1&amp;4 \eb\rightarrow\bb 1&amp;1&amp;1&amp;3\\0&amp;1&amp;-2&amp;1 \eb\rightarrow\bb 1&amp;0&amp;3&amp;2\\0&amp;1&amp;-2&amp;1 \eb=\bb R&amp;\bs{d} \eb.\end{split}\]</div>
+<p><em>The particular solution has free variable</em> <span class="math notranslate nohighlight">\(x_3=0\)</span>.
+The special solution has <span class="math notranslate nohighlight">\(x_3=1\)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\x_{\rm{particular}}\)</span> comes directly from <span class="math notranslate nohighlight">\(\bs{d}\)</span> on the right side: <span class="math notranslate nohighlight">\(\x_p=(2,1,0)\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\x_{\rm{special}}\)</span> comes from the third column (free column) of <span class="math notranslate nohighlight">\(R\)</span>: <span class="math notranslate nohighlight">\(\bs{s}=(-3,2,1)\)</span>.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Complete solution</strong>: <span class="math notranslate nohighlight">\(\x=\x_p+\x_n=\bb 2\\1\\0 \eb+x_3\bb -3\\2\\1\eb\)</span>.</p>
+</div>
+<p>If <span class="math notranslate nohighlight">\(m&lt;n\)</span> the equation <span class="math notranslate nohighlight">\(A\x=\b\)</span> is <strong>underdetermined</strong> (many solutions).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Every matrix <span class="math notranslate nohighlight">\(A\)</span> with <strong>full row rank</strong> <span class="math notranslate nohighlight">\(\bs{r=m}\)</span> has all these properties:</p>
+<ol class="arabic simple">
+<li><p>All rows have pivots, and <span class="math notranslate nohighlight">\(R\)</span> <strong>has no zero rows</strong>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(A\x=\b\)</span> has a <strong>solution for every right side</strong> <span class="math notranslate nohighlight">\(\b\)</span>.</p></li>
+<li><p>The column space is the whole space <span class="math notranslate nohighlight">\(\bs{R}^m\)</span>.</p></li>
+<li><p>There are <span class="math notranslate nohighlight">\(n-r=n-m\)</span> special solutions in the nullspace of <span class="math notranslate nohighlight">\(A\)</span>.</p></li>
+</ol>
+</div>
+<p>In this case with <span class="math notranslate nohighlight">\(m\)</span> pivots, the rows are “<strong>linearly independent</strong>”.
+So the columns of <span class="math notranslate nohighlight">\(A^T\)</span> are linearly independent.
+The nullspace of <span class="math notranslate nohighlight">\(A^T\)</span> is the zero vector.</p>
+<p><strong>The four possibilities for linear equations depend on the rank</strong> <span class="math notranslate nohighlight">\(\bs{r}\)</span>.
+The reduced <span class="math notranslate nohighlight">\(R\)</span> will fall in the same category as the matrix <span class="math notranslate nohighlight">\(A\)</span>.
+<span class="math notranslate nohighlight">\(F\)</span> is the free part of <span class="math notranslate nohighlight">\(R\)</span>:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(r=m\)</span> and <span class="math notranslate nohighlight">\(r=n\)</span> <em>Square and invertible</em> <span class="math notranslate nohighlight">\(A\x=\b\)</span> has 1 solution: <span class="math notranslate nohighlight">\(R=\bb I \eb\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(r=m\)</span> and <span class="math notranslate nohighlight">\(r&lt;n\)</span> <em>Short and wide</em> <span class="math notranslate nohighlight">\(A\x=\b\)</span> has <span class="math notranslate nohighlight">\(\infty\)</span> solution: <span class="math notranslate nohighlight">\(R=\bb I&amp;F \eb\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(r&lt;m\)</span> and <span class="math notranslate nohighlight">\(r=n\)</span> <em>Tall and thin</em> <span class="math notranslate nohighlight">\(A\x=\b\)</span> has 0 or 1 solution: <span class="math notranslate nohighlight">\(R=\bb I\\0 \eb\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(r&lt;m\)</span> and <span class="math notranslate nohighlight">\(r&lt;n\)</span> <em>Not full rank</em> <span class="math notranslate nohighlight">\(A\x=\b\)</span> has 0 or <span class="math notranslate nohighlight">\(\infty\)</span> solution: <span class="math notranslate nohighlight">\(R=\bb I&amp;F\\0&amp;0 \eb\)</span>.</p></li>
+</ol>
+</div>
 </div>
 
 
@@ -197,7 +369,7 @@
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
         <a href="chap3-4.html" class="btn btn-neutral float-right" title="Chapter 3.4 Independece, Basis and Dimension" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="chap3-2.html" class="btn btn-neutral float-left" title="Chapter 3.2 The Nullspace of \(A\): Solving \(Ax = 0\) and \(Rx=0\)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="chap3-2.html" class="btn btn-neutral float-left" title="Chapter 3.2 The Nullspace of \(A\): Solving \(A\boldsymbol{x} = 0\) and \(R\boldsymbol{x}=0\)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

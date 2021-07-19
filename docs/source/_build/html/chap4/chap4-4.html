@@ -1,0 +1,492 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Chapter 4.4 Orthonormal Bases and Gram-Schmidt &mdash; LinearAlgebra  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapter 5 Determinants" href="../chap5/index5.html" />
+    <link rel="prev" title="Chapter 4.3 Least Squares Approximations" href="chap4-3.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> LinearAlgebra
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../chap1/index1.html">Chapter 1 Introduction to Vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap2/index2.html">Chapter 2 Solving Linear Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap3/index3.html">Chapter 3 Vector Spaces and Subspaces</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index4.html">Chapter 4 Orthogonality</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="chap4-1.html">Chapter 4.1 Orthogonality of the Four Subspaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap4-2.html">Chapter 4.2 Projections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap4-3.html">Chapter 4.3 Least Squares Approximations</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 4.4 Orthonormal Bases and Gram-Schmidt</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#projections-using-orthonormal-bases-q-replaces-a">Projections Using Orthonormal Bases: <span class="math notranslate nohighlight">\(Q\)</span> Replaces <span class="math notranslate nohighlight">\(A\)</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-gram-schmidt-process">The Gram-Schmidt Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-factorization-a-qr">The Factorization <span class="math notranslate nohighlight">\(A=QR\)</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../chap5/index5.html">Chapter 5 Determinants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap6/index6.html">Chapter 6 Eigenvalues and Eigenvectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap7/index7.html">Chapter 7 The Singular Value Decomposition (SVD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">LinearAlgebra</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index4.html">Chapter 4 Orthogonality</a> &raquo;</li>
+        
+      <li>Chapter 4.4 Orthonormal Bases and Gram-Schmidt</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/chap4/chap4-4.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\newcommand{\bs}{\boldsymbol}
+\newcommand{\dp}{\displaystyle}
+\newcommand{\rm}{\mathrm}
+\newcommand{\pd}{\partial}\\\newcommand{\cd}{\cdot}
+\newcommand{\cds}{\cdots}
+\newcommand{\dds}{\ddots}
+\newcommand{\vds}{\vdots}
+\newcommand{\lv}{\lVert}
+\newcommand{\rv}{\rVert}
+\newcommand{\wh}{\widehat}\\\newcommand{\0}{\boldsymbol{0}}
+\newcommand{\a}{\boldsymbol{a}}
+\newcommand{\b}{\boldsymbol{b}}
+\newcommand{\e}{\boldsymbol{e}}
+\newcommand{\i}{\boldsymbol{i}}
+\newcommand{\j}{\boldsymbol{j}}
+\newcommand{\p}{\boldsymbol{p}}
+\newcommand{\q}{\boldsymbol{q}}
+\newcommand{\u}{\boldsymbol{u}}
+\newcommand{\v}{\boldsymbol{v}}
+\newcommand{\w}{\boldsymbol{w}}
+\newcommand{\x}{\boldsymbol{x}}
+\newcommand{\y}{\boldsymbol{y}}\\\newcommand{\A}{\boldsymbol{A}}
+\newcommand{\B}{\boldsymbol{B}}
+\newcommand{\C}{\boldsymbol{C}}
+\newcommand{\N}{\boldsymbol{N}}\\\newcommand{\R}{\boldsymbol{\mathrm{R}}}\\\newcommand{\ld}{\lambda}
+\newcommand{\Ld}{\Lambda}
+\newcommand{\sg}{\sigma}
+\newcommand{\Sg}{\Sigma}\\\newcommand{\bb}{\begin{bmatrix}}
+\newcommand{\eb}{\end{bmatrix}}
+\newcommand{\bv}{\begin{vmatrix}}
+\newcommand{\ev}{\end{vmatrix}}\\\newcommand{\im}{^{-1}}
+\newcommand{\pr}{^{\prime}}
+\newcommand{\ppr}{^{\prime\prime}}\end{aligned}\end{align} \]</div>
+<div class="section" id="chapter-4-4-orthonormal-bases-and-gram-schmidt">
+<h1>Chapter 4.4 Orthonormal Bases and Gram-Schmidt<a class="headerlink" href="#chapter-4-4-orthonormal-bases-and-gram-schmidt" title="Permalink to this headline">¶</a></h1>
+<p>The vectors <span class="math notranslate nohighlight">\(\q_1,\cds,\q_n\)</span> are <strong>orthogonal</strong> when their dot products <span class="math notranslate nohighlight">\(\q_i\cd\q_j\)</span> are zero.
+More exactly <span class="math notranslate nohighlight">\(\q_i^T\q_j=0\)</span> whenever <span class="math notranslate nohighlight">\(i\neq j\)</span>.
+With one more step–just <em>divide each vector by its length</em>–the vectors become <strong>orthogonal unit vectors</strong>.
+Their lengths are all 1 (normal).
+Then the basis is called <strong>orthonormal</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>DEFINITION</strong>: The vectors <span class="math notranslate nohighlight">\(\q_1,\cds,\q_n\)</span> are <strong>orthonormal</strong> if:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\q_i^T\q_j=\left\{\begin{matrix}0\quad\rm{\ when\ } i \neq j\quad(\rm{orthogonal\ vectors})\ \ \ \quad\\1\quad\rm{\ when\ } i = j\quad(\rm{unit\ vectors}: \lv \q_i \rv=1)\end{matrix}\right.\)</span>.</p></li>
+</ul>
+<p>A matrix with orthonormal columns is assigned the special letter <span class="math notranslate nohighlight">\(Q\)</span>.</p>
+</div>
+<p><strong>The matrix</strong> <span class="math notranslate nohighlight">\(Q\)</span> <strong>is easy to work with because</strong> <span class="math notranslate nohighlight">\(Q^TQ=I\)</span>.
+<span class="math notranslate nohighlight">\(Q\)</span> is not required to be square.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>A matrix</strong> <span class="math notranslate nohighlight">\(Q\)</span> <strong>with orthonormal columns satisfies</strong> <span class="math notranslate nohighlight">\(Q^TQ=I\)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(Q^TQ=\bb -\q_1^T-\\-\q_2^T-\\\vds\\-\q_n^T- \eb\bb |&amp;|&amp;&amp;|\\\q_1&amp;\q_2&amp;\cds&amp;\q_n\\|&amp;|&amp;&amp;| \eb=\bb 1&amp;0&amp;\cds&amp;0\\0&amp;1&amp;\cds&amp;0\\\vds&amp;\vds&amp;\ddots&amp;\vds\\0&amp;0&amp;\cds&amp;1 \eb=I\)</span>.</p></li>
+</ul>
+</div>
+<p>When row <span class="math notranslate nohighlight">\(i\)</span> of <span class="math notranslate nohighlight">\(Q^T\)</span> multiplies column <span class="math notranslate nohighlight">\(j\)</span> of <span class="math notranslate nohighlight">\(Q\)</span>, the dot product is <span class="math notranslate nohighlight">\(\q_i^T\q_j\)</span>.
+Off the diagonal (<span class="math notranslate nohighlight">\(i\neq j\)</span>) that dot product is zero by orthogonality.
+On the diagonal (<span class="math notranslate nohighlight">\(i=j\)</span>) the unit vectors give <span class="math notranslate nohighlight">\(\q_i^T\q_i=\lv\q_i\rv^2=1\)</span>.
+Often <span class="math notranslate nohighlight">\(Q\)</span> is rectangular (math:<cite>m&gt;n</cite>).
+Sometimes <span class="math notranslate nohighlight">\(m=n\)</span>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>When</strong> <span class="math notranslate nohighlight">\(Q\)</span> <strong>is square</strong>, <span class="math notranslate nohighlight">\(Q^TQ=I\)</span> <strong>means that</strong> <span class="math notranslate nohighlight">\(Q^T=Q\im\)</span>: <strong>transpose</strong> = <strong>inverse</strong>.</p>
+</div>
+<p>If the columns are only orthogonal (not unit vectors), dot products still give a
+diagonal matrix (not the identity matrix).
+This diagonal matrix is almost as good as <span class="math notranslate nohighlight">\(I\)</span>.</p>
+<p><em>To repeat</em>: <span class="math notranslate nohighlight">\(Q^TQ=I\)</span> even when <span class="math notranslate nohighlight">\(Q\)</span> is rectangular.
+In that case <span class="math notranslate nohighlight">\(Q^T\)</span> is only an inverse from the left.
+For square matrices we also have <span class="math notranslate nohighlight">\(QQ^T=I\)</span>, so <span class="math notranslate nohighlight">\(Q^T\)</span> is the two-sided inverse of <span class="math notranslate nohighlight">\(Q\)</span>.
+The rows of a square <span class="math notranslate nohighlight">\(Q\)</span> are orthonormal like the columns.
+<strong>The inverse is the transpose</strong>.
+In this square case we call <span class="math notranslate nohighlight">\(Q\)</span> an <strong>orthogonal matrix</strong>.</p>
+<p><strong>Rotation</strong>: <span class="math notranslate nohighlight">\(Q\)</span> rotates every vector in the plane by the angle <span class="math notranslate nohighlight">\(\theta\)</span>:</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}Q=\bb \cos\theta&amp;-\sin\theta\\\sin\theta&amp;\cos\theta \eb\quad\rm{and}\quad
+Q^T=Q\im =\bb \cos\theta&amp;\sin\theta\\-\sin\theta&amp;\cos\theta\eb.\end{split}\]</div>
+<p>Those columns give an <strong>orthonormal basis</strong> for the plane <span class="math notranslate nohighlight">\(\R^2\)</span>.</p>
+</div></blockquote>
+<p><strong>Permutation</strong>: These matrices change the order to <span class="math notranslate nohighlight">\((y,z,x)\)</span> and <span class="math notranslate nohighlight">\((y,x)\)</span>:</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}\bb 0&amp;1&amp;0\\0&amp;0&amp;1\\1&amp;0&amp;0 \eb\bb x\\y\\z \eb=\bb y\\z\\x \eb\quad\rm{and}\quad
+\bb 0&amp;1\\1&amp;0 \eb\bb x\\y \eb=\bb y\\x \eb.\end{split}\]</div>
+<p><em>The inverse of a permutation matrix is its transpose</em>: <span class="math notranslate nohighlight">\(Q\im=Q^T\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb 0&amp;0&amp;1\\1&amp;0&amp;0\\0&amp;1&amp;0 \eb\bb y\\\\x \eb=\bb x\\y\\z \eb\quad\rm{and}\quad
+\bb 0&amp;1\\1&amp;0 \eb\bb y\\x \eb=\bb x\\y \eb.\end{split}\]</div>
+</div></blockquote>
+<p><strong>Every permutation matrix is an orthogonal matrix</strong>.</p>
+<p><strong>Reflection</strong>: If <span class="math notranslate nohighlight">\(\u\)</span> is any unit vector, set <span class="math notranslate nohighlight">\(Q=I-2\u\u^T\)</span>.
+Notice that <span class="math notranslate nohighlight">\(\u\u^T\)</span> is a matrix while <span class="math notranslate nohighlight">\(\u^T\u\)</span> is the number <span class="math notranslate nohighlight">\(\lv\u\rv^2=1\)</span>.
+Then <span class="math notranslate nohighlight">\(Q^T\)</span> and <span class="math notranslate nohighlight">\(Q\im\)</span> both equal <span class="math notranslate nohighlight">\(Q\)</span>:</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[Q^T=I-2\u\u^T=Q \quad\rm{and}\quad Q^TQ=I-4\u\u^T+4\u\u^T\u\u^T=I.\]</div>
+<p>Reflection matrices <span class="math notranslate nohighlight">\(I-2\u\u^T\)</span> are symmetric and also orthogonal.
+Notice <span class="math notranslate nohighlight">\(\u^T\u=1\)</span> inside <span class="math notranslate nohighlight">\(4\u\u^T\u\u^T\)</span>.</p>
+</div></blockquote>
+<p>Rotations preserve the length of every vector.
+So do reflections.
+So do permutations.
+So does multiplication by any orthogonal matrix <span class="math notranslate nohighlight">\(Q\)</span>–<strong>lengths and angles don’t change</strong>.</p>
+<p><strong>Proof</strong>: <span class="math notranslate nohighlight">\(\lv Q\x\rv^2\)</span> equals <span class="math notranslate nohighlight">\(\lv\x\rv^2\)</span> because <span class="math notranslate nohighlight">\((Q\x)^T(Q\x)=\x^TQ^TQ\x=\x^TI\x=\x^T\x\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>If</strong> <span class="math notranslate nohighlight">\(Q\)</span> <strong>has orthonormal columns</strong> <span class="math notranslate nohighlight">\((Q^TQ=I)\)</span>, <strong>it leaves lengths unchanged</strong>:</p>
+<ul class="simple">
+<li><p><strong>Same length for</strong> <span class="math notranslate nohighlight">\(Q\x\)</span>: <span class="math notranslate nohighlight">\(\lv Q\x\rv=\lv\x\rv\)</span> <strong>for every vector</strong> <span class="math notranslate nohighlight">\(\x\)</span>.</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(Q\)</span> also preserves dot products: <span class="math notranslate nohighlight">\((Q\x)^T(Q\y)=\x^TQ^TQ\y=\x^T\y\)</span>.
+Just use <span class="math notranslate nohighlight">\(Q^TQ=I\)</span>.</p>
+</div>
+<div class="section" id="projections-using-orthonormal-bases-q-replaces-a">
+<h2>Projections Using Orthonormal Bases: <span class="math notranslate nohighlight">\(Q\)</span> Replaces <span class="math notranslate nohighlight">\(A\)</span><a class="headerlink" href="#projections-using-orthonormal-bases-q-replaces-a" title="Permalink to this headline">¶</a></h2>
+<p><strong>Suppose the basis vectors are actually orthonormal</strong>.
+The <span class="math notranslate nohighlight">\(\a\)</span>’s become the <span class="math notranslate nohighlight">\(\q\)</span>’s.
+Then <span class="math notranslate nohighlight">\(A^TA\)</span> <em>simplifies to</em> <span class="math notranslate nohighlight">\(Q^TQ=I\)</span>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>The least squares solution of</strong> <span class="math notranslate nohighlight">\(Q\x=\b\)</span> <strong>is</strong> <span class="math notranslate nohighlight">\(\wh{\x}=Q^T\b\)</span>.
+<strong>The projection matrix is</strong> <span class="math notranslate nohighlight">\(QQ^T\)</span>.</p>
+</div>
+<p>There are no matrices to invert.
+The “coupling matrix” or “correlation matirx” <span class="math notranslate nohighlight">\(A^TA\)</span> is now <span class="math notranslate nohighlight">\(Q^TQ=I\)</span>.
+There is no coupling.
+When <span class="math notranslate nohighlight">\(A\)</span> is <span class="math notranslate nohighlight">\(Q\)</span>, with orthonormal columns, here is <span class="math notranslate nohighlight">\(\p=Q\wh{\x}=QQ^T\b\)</span>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Projection onto</strong> <span class="math notranslate nohighlight">\(\q\)</span><strong>’s</strong>:
+<span class="math notranslate nohighlight">\(\p=\bb |&amp;&amp;|\\\q_1&amp;\cds&amp;\q_n\\|&amp;&amp;| \eb\bb \q_1^T\b\\\vds\\\q_n^T\b \eb
+=\q_1(\q_1^T\b)+\cds+\q_n(\q_n^T\b)\)</span>.</p>
+</div>
+<p><strong>Important case</strong>: When <span class="math notranslate nohighlight">\(Q\)</span> is square and <span class="math notranslate nohighlight">\(m=n\)</span>, the subspace is the whole space.
+Then <span class="math notranslate nohighlight">\(Q^T=Q\im\)</span> and <span class="math notranslate nohighlight">\(\wh{\x}=Q^T\b\)</span> is the same as <span class="math notranslate nohighlight">\(\x=Q\im\b\)</span>.
+The solution is exact.
+The projection of <span class="math notranslate nohighlight">\(\b\)</span> onto the whole space is <span class="math notranslate nohighlight">\(\b\)</span> itself.
+In this case <span class="math notranslate nohighlight">\(\p=\b\)</span> and <span class="math notranslate nohighlight">\(P=QQ^T=I\)</span>.</p>
+<p>When <span class="math notranslate nohighlight">\(\p=\b\)</span>, our formula assembles <span class="math notranslate nohighlight">\(\b\)</span> out of its 1-dimensional projections.
+If <span class="math notranslate nohighlight">\(\q_1,\cds,\q_n\)</span> is an orthonormal basis for the whole space, then <span class="math notranslate nohighlight">\(Q\)</span> is square.
+Every <span class="math notranslate nohighlight">\(\b=QQ^T\b\)</span> <em>is the sum of its components along the</em> <span class="math notranslate nohighlight">\(\q\)</span>’s:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(\b=\q_1(\q_1^T\b)+\q_2(\q_2^T\b)+\cds+\q_n(\q_n^T\b)\)</span>.</p>
+</div>
+<p><strong>Transforms</strong>: <span class="math notranslate nohighlight">\(QQ^T=I\)</span> is the foundation of Fourier series and all the
+great “transforms” of applied mathematics.
+They break vectors <span class="math notranslate nohighlight">\(\b\)</span> or functions <span class="math notranslate nohighlight">\(f(x)\)</span> into perpendicular pieces.
+By adding the pieces, the inverse transform puts <span class="math notranslate nohighlight">\(\b\)</span> and <span class="math notranslate nohighlight">\(f(x)\)</span> back together.</p>
+</div>
+<div class="section" id="the-gram-schmidt-process">
+<h2>The Gram-Schmidt Process<a class="headerlink" href="#the-gram-schmidt-process" title="Permalink to this headline">¶</a></h2>
+<p>Start with three independent vectors <span class="math notranslate nohighlight">\(\a,\b,\C\)</span>.
+We intend to construct three orthogonal vectors <span class="math notranslate nohighlight">\(\A,\B,\C\)</span>.
+Then (at the end may be easiest) we divide <span class="math notranslate nohighlight">\(\A,\B,\C\)</span> by their lengths.
+That produces three orthonormal vectors <span class="math notranslate nohighlight">\(\q_1=\A/\lv\A\rv,\q_2=\B/\lv\B\rv,\q_3=\C/\lv\C\rv\)</span>.</p>
+<p><strong>Gram-Schmidt</strong>: Begin by choosing <span class="math notranslate nohighlight">\(\A=\a\)</span>.
+This first direction is accepted as it comes.
+The next direction <span class="math notranslate nohighlight">\(\B\)</span> must be perpendicular to <span class="math notranslate nohighlight">\(\A\)</span>.
+<strong>Start with</strong> <span class="math notranslate nohighlight">\(\b\)</span> <strong>and subtract its projection along</strong> <span class="math notranslate nohighlight">\(\A\)</span>.
+This leaves the perpendicular part, which is the orthogonal vector <span class="math notranslate nohighlight">\(\B\)</span>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>First Gram-Schmidt step</strong>: <span class="math notranslate nohighlight">\(\dp \B=\b-\frac{\A^T\b}{\A^T\A}\A\)</span>.</p>
+</div>
+<p>Multiply the equation by <span class="math notranslate nohighlight">\(\A^T\)</span> to verify that <span class="math notranslate nohighlight">\(\A^T\B=\A^T\b-\A^T\b=0\)</span>.
+This vector <span class="math notranslate nohighlight">\(\B\)</span> is what we have called the error vector <span class="math notranslate nohighlight">\(\e\)</span>, perpendicular to <span class="math notranslate nohighlight">\(\A\)</span>.
+Notice that <span class="math notranslate nohighlight">\(\B\)</span> is not zero (otherwise <span class="math notranslate nohighlight">\(\a\)</span> and <span class="math notranslate nohighlight">\(\b\)</span> would be dependent).
+The directions <span class="math notranslate nohighlight">\(\A\)</span> and <span class="math notranslate nohighlight">\(\B\)</span> are now set.</p>
+<p>The third direction starts with <span class="math notranslate nohighlight">\(\C\)</span>.
+This is not a combination of <span class="math notranslate nohighlight">\(\A\)</span> and <span class="math notranslate nohighlight">\(\B\)</span> (because <span class="math notranslate nohighlight">\(\C\)</span> is
+not a combination of <span class="math notranslate nohighlight">\(\a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>).
+But most likely <span class="math notranslate nohighlight">\(\C\)</span> is not perpendicular to <span class="math notranslate nohighlight">\(\A\)</span> and <span class="math notranslate nohighlight">\(\B\)</span>.
+So subtract off its components in those two directions to get a perpendicular direction <span class="math notranslate nohighlight">\(\C\)</span>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Next Gram-Schmidt step</strong>: <span class="math notranslate nohighlight">\(\dp \C=\C-\frac{\A^T\C}{\A^T\A}\A-\frac{\B^T\C}{\B^T\B}\B\)</span>.</p>
+</div>
+<p>This is the one and only idea of the Gram-Schmidt process.
+<strong>Subtract from every new vector its projections in the directions already set</strong>.
+That idea is repeated at every step.
+If we had a fourth vector <span class="math notranslate nohighlight">\(\bs{d}\)</span>, we would subtract three projections
+onto <span class="math notranslate nohighlight">\(\A,\B,\C\)</span> to get <span class="math notranslate nohighlight">\(\bs{D}\)</span>.</p>
+<p>At the end, or <em>immediately when each one is found</em>, divide the orthogonal
+vectors <span class="math notranslate nohighlight">\(\A,\B,\C,\bs{D}\)</span> by their lengths.
+The resulting vectors <span class="math notranslate nohighlight">\(\q_1,\q_2,\q_3,\q_4\)</span> are orthonormal.</p>
+</div>
+<div class="section" id="the-factorization-a-qr">
+<h2>The Factorization <span class="math notranslate nohighlight">\(A=QR\)</span><a class="headerlink" href="#the-factorization-a-qr" title="Permalink to this headline">¶</a></h2>
+<p>We started with a matrix <span class="math notranslate nohighlight">\(A\)</span>, whose columns were <span class="math notranslate nohighlight">\(\a,\b,\C\)</span>.
+We ended with a matrix <span class="math notranslate nohighlight">\(Q\)</span>, whose columns are <span class="math notranslate nohighlight">\(\q_1,\q_2,\q_3\)</span>.
+Since the vectors <span class="math notranslate nohighlight">\(\a,\b,\C\)</span> are combinations of the <span class="math notranslate nohighlight">\(\q\)</span>’s (and
+vice versa), there must be a third matrix connecting <span class="math notranslate nohighlight">\(A\)</span> to <span class="math notranslate nohighlight">\(Q\)</span>.
+This third matrix is the triangular <span class="math notranslate nohighlight">\(R\)</span> in <span class="math notranslate nohighlight">\(A=QR\)</span>.</p>
+<ul class="simple">
+<li><p>The vectors <span class="math notranslate nohighlight">\(\a\)</span> and <span class="math notranslate nohighlight">\(\A\)</span> and <span class="math notranslate nohighlight">\(\q_1\)</span> are all along a single line.</p></li>
+<li><p>The vectors <span class="math notranslate nohighlight">\(\a,\b\)</span> and <span class="math notranslate nohighlight">\(\A,\B\)</span> amd <span class="math notranslate nohighlight">\(\q_1,\q_2\)</span> are all in the smae plane.</p></li>
+<li><p>The vectors <span class="math notranslate nohighlight">\(\a,\b,\C\)</span> and <span class="math notranslate nohighlight">\(\A,\B,\C\)</span> and <span class="math notranslate nohighlight">\(\q_1,\q_2,\q_3\)</span> are in one subspace.</p></li>
+</ul>
+<p>At every step <span class="math notranslate nohighlight">\(\a_1,\cds,\a_k\)</span> are combinations of <span class="math notranslate nohighlight">\(\q_1,\cds,\q_k\)</span>.
+Later <span class="math notranslate nohighlight">\(\q\)</span>’s are not involved.
+The connecting matrix <span class="math notranslate nohighlight">\(R\)</span> is <strong>triangular</strong>, and we have <span class="math notranslate nohighlight">\(A=QR\)</span>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(\bb \\\a&amp;\b&amp;\C\\\ \eb=\bb \\\q_1&amp;\q_2&amp;\q_3\\\ \eb
+\bb\q_1^T\a&amp;\q_1^T\b&amp;\q_1^T\C\\&amp;\q_2^T\b&amp;\q_2^T\C\\&amp;&amp;\q_3^T\C\eb\)</span>
+or <span class="math notranslate nohighlight">\(A=QR\)</span>.</p>
+</div>
+<p><span class="math notranslate nohighlight">\(A=QR\)</span> is Gram-Schmidt in a nutshell.
+Multiply by <span class="math notranslate nohighlight">\(Q^T\)</span> to recognize <span class="math notranslate nohighlight">\(R=Q^TA\)</span> above.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Gram-Schmidt</strong>: From independent vectors <span class="math notranslate nohighlight">\(\a_1,\cds,\a_n\)</span>,
+Gram-Schmidt constructs orthonormal vectors <span class="math notranslate nohighlight">\(\q_1,\cds,\q_n\)</span>.
+The matrices with these columns satisfy <span class="math notranslate nohighlight">\(A=QR\)</span>.
+Then <span class="math notranslate nohighlight">\(R=Q^TA\)</span> is <strong>upper triangular</strong> because later <span class="math notranslate nohighlight">\(\q\)</span>’s are orthogonal to earlier <span class="math notranslate nohighlight">\(\a\)</span>’s.</p>
+</div>
+<p>Any <span class="math notranslate nohighlight">\(m\)</span> by <span class="math notranslate nohighlight">\(n\)</span> matrix <span class="math notranslate nohighlight">\(A\)</span> with independent columns can be factored into <span class="math notranslate nohighlight">\(A=QR\)</span>.
+The <span class="math notranslate nohighlight">\(m\)</span> by <span class="math notranslate nohighlight">\(n\)</span> matrix <span class="math notranslate nohighlight">\(Q\)</span> has orthonormal columns, and the
+square matrix <span class="math notranslate nohighlight">\(R\)</span> is upper triangular with positive diagonal.
+We must not forget why this is usefull for least squares: <span class="math notranslate nohighlight">\(\bs{A^TA=(QR)^TQR=R^TQ^TQR=R^TR}\)</span>.
+The least squares equation <span class="math notranslate nohighlight">\(A^TA\wh{\x}=A^T\b\)</span> simplifies to <span class="math notranslate nohighlight">\(R^TR\wh{\x}=R^TQ^T\b\)</span>.
+Then finally we reach <span class="math notranslate nohighlight">\(R\wh{\x}=Q^T\b\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Least squares</strong>: <span class="math notranslate nohighlight">\(R^TR\wh{\x}=R^TQ^T\b\)</span> or <span class="math notranslate nohighlight">\(R\wh{\x}=Q^T\b\)</span> or <span class="math notranslate nohighlight">\(\wh{\x}R\im Q^T\b\)</span>.</p>
+</div>
+<p>Instead of solving <span class="math notranslate nohighlight">\(A\x=\b\)</span>, which is impossible, we solve
+<span class="math notranslate nohighlight">\(R\wh{\x}=Q^T\b\)</span> by back substitution–which is very fast.
+The real cost is the <span class="math notranslate nohighlight">\(mn^2\)</span> multiplications in the Gram-Schmidt process,
+which are needed to construct the orthogonal <span class="math notranslate nohighlight">\(Q\)</span> and the triangular
+<span class="math notranslate nohighlight">\(R\)</span> with <span class="math notranslate nohighlight">\(A=QR\)</span>.</p>
+<p>Below is an informal code.
+The last line of that code normalizes <span class="math notranslate nohighlight">\(\v\)</span> (divides by
+<span class="math notranslate nohighlight">\(r_{jj}=\lv\lv\rv\)</span>) to get the unit vector <span class="math notranslate nohighlight">\(\q_j\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[r_{kj}=\sum_{i=1}^{m}q_{ik}v_{ij}\rm{\ and\ }v_{ij}=v_{ij}-q_{ik}r_{kj}
+\rm{\ and\ }r_{jj}=\left(\sum_{i=1}^{m}v_{ij}^2\right)^{1/2}\rm{\ and\ }
+q_{ij}=\frac{v_{ij}}{r_{jj}}.\]</div>
+<p>Starting from <span class="math notranslate nohighlight">\(\a,\b,\C=\a_1,\a_2,\a_3\)</span> this code will construct
+<span class="math notranslate nohighlight">\(\q_1\)</span>, then <span class="math notranslate nohighlight">\(\B,\q_2\)</span>, then <span class="math notranslate nohighlight">\(\C,\q_3\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\q_1=\a_1/\lv\a_1\rv\quad\B=\a_2-(\q_1^T\a_2)\q_1\quad\q_2=\B/\lv\B\rv\\\C^*=\a_3-(\q_1^T\a_3)\q_1\quad\C=\C^*-(\q_2^T\C^*)\q_2\quad\q_3=\C/\lv\C\rv\end{aligned}\end{align} \]</div>
+<div class="highlight-MATLAB notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="nb">j</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">n</span>
+    <span class="n">V</span> <span class="p">=</span> <span class="n">A</span><span class="p">(:,</span><span class="nb">j</span><span class="p">);</span><span class="n"></span>
+<span class="n">    for </span><span class="s">i = 1:j-1</span><span class="p"></span>
+        <span class="n">R</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="nb">j</span><span class="p">)</span> <span class="p">=</span> <span class="n">Q</span><span class="p">(:,</span><span class="nb">i</span><span class="p">)</span><span class="o">&#39;</span> <span class="o">*</span> <span class="n">v</span><span class="p">;</span>
+        <span class="n">v</span> <span class="p">=</span> <span class="n">v</span> <span class="o">-</span> <span class="n">R</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="nb">j</span><span class="p">)</span> <span class="o">*</span> <span class="n">Q</span><span class="p">(:,</span> <span class="nb">i</span><span class="p">);</span><span class="n"></span>
+<span class="n">    end</span>
+<span class="n">    </span><span class="s">R(j,j) = norm(v)</span><span class="p">;</span>
+    <span class="n">Q</span><span class="p">(:,</span><span class="nb">j</span><span class="p">)</span> <span class="p">=</span> <span class="n">v</span><span class="o">/</span><span class="n">R</span><span class="p">(</span><span class="nb">j</span><span class="p">,</span><span class="nb">j</span><span class="p">);</span><span class="n"></span>
+<span class="n">end</span>
+</pre></div>
+</div>
+<p>To recover column <span class="math notranslate nohighlight">\(j\)</span> of <span class="math notranslate nohighlight">\(A\)</span>, undo the last step and the middle steps of the code:</p>
+<div class="math notranslate nohighlight">
+\[R(j,i)\q_j=(\v\rm{\ minus\ its\ projections})=(\rm{column\ }j\rm{\ of\ }A)-\sum_{i=1}^{j-1}R(i,j)\q_i.\]</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../chap5/index5.html" class="btn btn-neutral float-right" title="Chapter 5 Determinants" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="chap4-3.html" class="btn btn-neutral float-left" title="Chapter 4.3 Least Squares Approximations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Ziniu Yu.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

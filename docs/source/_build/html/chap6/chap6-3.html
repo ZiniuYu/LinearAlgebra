@@ -1,0 +1,573 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Chapter 6.3 Systems of Differential Equations &mdash; LinearAlgebra  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapter 6.4 Symmetric Matrices" href="chap6-4.html" />
+    <link rel="prev" title="Chapter 6.2 Diagonalizing a Matrix" href="chap6-2.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> LinearAlgebra
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../chap1/index1.html">Chapter 1 Introduction to Vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap2/index2.html">Chapter 2 Solving Linear Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap3/index3.html">Chapter 3 Vector Spaces and Subspaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap4/index4.html">Chapter 4 Orthogonality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap5/index5.html">Chapter 5 Determinants</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index6.html">Chapter 6 Eigenvalues and Eigenvectors</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="chap6-1.html">Chapter 6.1 Introduction to Eigenvalues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap6-2.html">Chapter 6.2 Diagonalizing a Matrix</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 6.3 Systems of Differential Equations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#solution-of-d-boldsymbol-u-dt-a-boldsymbol-u">Solution of <span class="math notranslate nohighlight">\(d\boldsymbol{u}/dt=A\boldsymbol{u}\)</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#second-order-equations">Second Order Equations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#difference-equations-optional">Difference Equations (optional)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stability-of-2-by-2-matrices">Stability of 2 by 2 Matrices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-exponential-of-a-matrix">The Exponential of a Matrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#notes-on-a-differential-equations-course">Notes on a Differential Equations Course</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="chap6-4.html">Chapter 6.4 Symmetric Matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap6-5.html">Chapter 6.5 Positive Definite Matrices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../chap7/index7.html">Chapter 7 The Singular Value Decomposition (SVD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">LinearAlgebra</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index6.html">Chapter 6 Eigenvalues and Eigenvectors</a> &raquo;</li>
+        
+      <li>Chapter 6.3 Systems of Differential Equations</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/chap6/chap6-3.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\newcommand{\bs}{\boldsymbol}
+\newcommand{\dp}{\displaystyle}
+\newcommand{\rm}{\mathrm}
+\newcommand{\pd}{\partial}\\\newcommand{\cd}{\cdot}
+\newcommand{\cds}{\cdots}
+\newcommand{\dds}{\ddots}
+\newcommand{\vds}{\vdots}
+\newcommand{\lv}{\lVert}
+\newcommand{\rv}{\rVert}
+\newcommand{\wh}{\widehat}\\\newcommand{\0}{\boldsymbol{0}}
+\newcommand{\a}{\boldsymbol{a}}
+\newcommand{\b}{\boldsymbol{b}}
+\newcommand{\e}{\boldsymbol{e}}
+\newcommand{\i}{\boldsymbol{i}}
+\newcommand{\j}{\boldsymbol{j}}
+\newcommand{\p}{\boldsymbol{p}}
+\newcommand{\q}{\boldsymbol{q}}
+\newcommand{\u}{\boldsymbol{u}}
+\newcommand{\v}{\boldsymbol{v}}
+\newcommand{\w}{\boldsymbol{w}}
+\newcommand{\x}{\boldsymbol{x}}
+\newcommand{\y}{\boldsymbol{y}}\\\newcommand{\A}{\boldsymbol{A}}
+\newcommand{\B}{\boldsymbol{B}}
+\newcommand{\C}{\boldsymbol{C}}
+\newcommand{\N}{\boldsymbol{N}}\\\newcommand{\R}{\boldsymbol{\mathrm{R}}}\\\newcommand{\ld}{\lambda}
+\newcommand{\Ld}{\Lambda}
+\newcommand{\sg}{\sigma}
+\newcommand{\Sg}{\Sigma}\\\newcommand{\bb}{\begin{bmatrix}}
+\newcommand{\eb}{\end{bmatrix}}
+\newcommand{\bv}{\begin{vmatrix}}
+\newcommand{\ev}{\end{vmatrix}}\\\newcommand{\im}{^{-1}}
+\newcommand{\pr}{^{\prime}}
+\newcommand{\ppr}{^{\prime\prime}}\end{aligned}\end{align} \]</div>
+<div class="section" id="chapter-6-3-systems-of-differential-equations">
+<h1>Chapter 6.3 Systems of Differential Equations<a class="headerlink" href="#chapter-6-3-systems-of-differential-equations" title="Permalink to this headline">¶</a></h1>
+<p><em>The derivative of</em> <span class="math notranslate nohighlight">\(e^{\ld t}\)</span> <em>is</em> <span class="math notranslate nohighlight">\(\ld e^{\ld t}\)</span>.
+The whole point of the section is this: <strong>To convert constant-coefficient differential equations into linear algebra</strong>.</p>
+<p>The ordinary equations <span class="math notranslate nohighlight">\(\dp\frac{du}{dt}=u\)</span> and <span class="math notranslate nohighlight">\(\dp\frac{du}{dt}=\ld u\)</span> are solved by exponentials:</p>
+<div class="math notranslate nohighlight">
+\[\frac{du}{dt}=u\rm{\ produces\ }u(t)=Ce^t\quad\frac{du}{dt}=\ld u\rm{\ produces\ }u(t)=Ce^{\ld t}.\]</div>
+<p>At time <span class="math notranslate nohighlight">\(t=0\)</span> those solutions include <span class="math notranslate nohighlight">\(e^0=1\)</span>.
+So they both reduce to <span class="math notranslate nohighlight">\(u(0)=C\)</span>.
+This “initial value” tells us the right choice for <span class="math notranslate nohighlight">\(C\)</span>.
+<strong>The solutions that start from the number</strong> <span class="math notranslate nohighlight">\(u(0)\)</span> <strong>at time</strong>
+<span class="math notranslate nohighlight">\(t=0\)</span> <strong>are</strong> <span class="math notranslate nohighlight">\(u(t)=u(0)e^t\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(u(t)=u(0)e^{\ld t}\)</span>.</p>
+<p>Linear algebra moves from 1 by 1 problems to <span class="math notranslate nohighlight">\(n\)</span> by <span class="math notranslate nohighlight">\(n\)</span>.
+The unknown is a vector <span class="math notranslate nohighlight">\(\u\)</span>.
+It starts from the initial vector <span class="math notranslate nohighlight">\(\u(0)\)</span>, which is given.
+The <span class="math notranslate nohighlight">\(n\)</span> equations contain a square matrix <span class="math notranslate nohighlight">\(A\)</span>.
+We expect <span class="math notranslate nohighlight">\(n\)</span> exponents <span class="math notranslate nohighlight">\(e^{\ld t}\)</span> in <span class="math notranslate nohighlight">\(\u(t)\)</span>, from <span class="math notranslate nohighlight">\(n\ \ld\)</span>’s:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>System of</strong> <span class="math notranslate nohighlight">\(n\)</span> <strong>equations</strong>: <span class="math notranslate nohighlight">\(\dp\frac{d\u}{dt}=A\u\)</span>
+starting from the vector <span class="math notranslate nohighlight">\(\u(0)=\bb u_1(0)\\\vds\\u_n(0) \eb\)</span> at
+<span class="math notranslate nohighlight">\(t=0\)</span>.</p>
+</div>
+<p>These differential equations are <em>linear</em>.
+If <span class="math notranslate nohighlight">\(\u(t)\)</span> and <span class="math notranslate nohighlight">\(\v(t)\)</span> are solutions, so is <span class="math notranslate nohighlight">\(C\u(t)+D\v(t)\)</span>.
+We will need <span class="math notranslate nohighlight">\(n\)</span> constants like <span class="math notranslate nohighlight">\(C\)</span> and <span class="math notranslate nohighlight">\(D\)</span> to match the <span class="math notranslate nohighlight">\(n\)</span> components of <span class="math notranslate nohighlight">\(\u(0)\)</span>.
+Our first job is to find <span class="math notranslate nohighlight">\(n\)</span> “pure exponential solutions” <span class="math notranslate nohighlight">\(\u=e^{\ld t}\x\)</span> by using <span class="math notranslate nohighlight">\(A\x=\ld\x\)</span>.</p>
+<p>Notice that <span class="math notranslate nohighlight">\(A\)</span> is a <em>constant</em> matrix.
+In other linear equations, <span class="math notranslate nohighlight">\(A\)</span> changes as <span class="math notranslate nohighlight">\(t\)</span> changes.
+In nonlinear equations, <span class="math notranslate nohighlight">\(A\)</span> changes as <span class="math notranslate nohighlight">\(\u\)</span> changes.
+<span class="math notranslate nohighlight">\(d\u/dt=A\u\)</span> is “linear with constant coefficients”.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>Solve linear constant coefficient equations by exponentials</strong> <span class="math notranslate nohighlight">\(e^{\ld t}\x\)</span>, <strong>when</strong> <span class="math notranslate nohighlight">\(A\x=\ld\x\)</span>.</p>
+</div>
+<div class="section" id="solution-of-d-boldsymbol-u-dt-a-boldsymbol-u">
+<h2>Solution of <span class="math notranslate nohighlight">\(d\boldsymbol{u}/dt=A\boldsymbol{u}\)</span><a class="headerlink" href="#solution-of-d-boldsymbol-u-dt-a-boldsymbol-u" title="Permalink to this headline">¶</a></h2>
+<p>Our pure exponential solution will be <span class="math notranslate nohighlight">\(e^{\ld t}\)</span> times a fixed vector <span class="math notranslate nohighlight">\(\x\)</span>.
+<span class="math notranslate nohighlight">\(\ld\)</span> is an eigenvalue of <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(\x\)</span> <strong>is the eigenvector</strong>.
+Substitute <span class="math notranslate nohighlight">\(\u(t)=e^{\ld t}\x\)</span> into the equation <span class="math notranslate nohighlight">\(d\u/dt=A\u\)</span>, and
+the factor <span class="math notranslate nohighlight">\(e^{\ld t}\)</span> will cancel to leave <span class="math notranslate nohighlight">\(\ld\x=A\x\)</span>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Choose</strong> <span class="math notranslate nohighlight">\(\u=e^{\ld t}\x\)</span> <strong>when</strong> <span class="math notranslate nohighlight">\(A\x=\ld\x\)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\dp\frac{d\u}{dt}=\ld e^{\ld t}\x\)</span> agrees with <span class="math notranslate nohighlight">\(A\u=Ae^{\ld t}\x\)</span>.</p></li>
+</ul>
+</div>
+<p>All components of this special solution <span class="math notranslate nohighlight">\(\u=e^{\ld t}\x\)</span> share the same <span class="math notranslate nohighlight">\(e^{\ld t}\)</span>.
+The solution grows when <span class="math notranslate nohighlight">\(\ld&gt;0\)</span>.
+It decays when <span class="math notranslate nohighlight">\(\ld&lt;0\)</span>.
+If <span class="math notranslate nohighlight">\(\ld\)</span> is a complex number, its real part decides growth or decay.
+The imaginary part <span class="math notranslate nohighlight">\(\omega\)</span> gives oscillation <span class="math notranslate nohighlight">\(e^{i\omega t}\)</span> like a sine wave.</p>
+<p>For <span class="math notranslate nohighlight">\(\dp\frac{d\u}{dt}=A\u=\bb 0&amp;1\\1&amp;0 \eb\u\)</span> starting from
+<span class="math notranslate nohighlight">\(\u(0)=\bb 4\\2 \eb\)</span>, this is a vector equation for <span class="math notranslate nohighlight">\(\u\)</span>.
+It contains two scalar equations for the components <span class="math notranslate nohighlight">\(y\)</span> and <span class="math notranslate nohighlight">\(z\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\frac{d\u}{dt}=A\u\quad\frac{d}{dt}\bb y\\z \eb=\bb 0&amp;1\\1&amp;0 \eb\bb y\\z \eb
+\rm{\ means\ that\ }\frac{dy}{dt}=z\rm{\ and\ }\frac{dz}{dt}=y.\end{split}\]</div>
+<p>The idea of eigenvectors is to combine those equations in a way that gets back to 1 by 1 problems.
+The combinations <span class="math notranslate nohighlight">\(y+z\)</span> and <span class="math notranslate nohighlight">\(y-z\)</span> will do it.
+Add and subtract equations:</p>
+<div class="math notranslate nohighlight">
+\[\frac{d}{dt}(y+z)=z+y\quad\rm{and}\quad\frac{d}{dt}(y-z)=-(y-z).\]</div>
+<p>The combination <span class="math notranslate nohighlight">\(y+z\)</span> grows like <span class="math notranslate nohighlight">\(e^t\)</span>, because it has <span class="math notranslate nohighlight">\(\ld=1\)</span>.
+The combination <span class="math notranslate nohighlight">\(y-z\)</span> decays like <span class="math notranslate nohighlight">\(e^{-1}\)</span>, because it has <span class="math notranslate nohighlight">\(\ld=-1\)</span>.</p>
+<p>This matrix <span class="math notranslate nohighlight">\(A\)</span> has eigenvalues 1 and -1.
+The eigenvectors <span class="math notranslate nohighlight">\(\x\)</span> are <span class="math notranslate nohighlight">\((1,1)\)</span> and <span class="math notranslate nohighlight">\((1,-1)\)</span>.
+The pure exponential solutions <span class="math notranslate nohighlight">\(\u_1\)</span> and <span class="math notranslate nohighlight">\(\u_2\)</span> take the form
+<span class="math notranslate nohighlight">\(e^{\ld t}\x\)</span> with <span class="math notranslate nohighlight">\(\ld_1=1\)</span> and <span class="math notranslate nohighlight">\(\ld_2=-1\)</span>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(\u_1(t)=e^{\ld_1t}\x_1=e^t\bb 1\\1 \eb\)</span> and <span class="math notranslate nohighlight">\(\u_2(t)=e^{\ld_2t}\x_2=e^{-t}\bb 1\\-1 \eb\)</span>.</p>
+</div>
+<p>Notice: These <span class="math notranslate nohighlight">\(\u\)</span>’s satisfy <span class="math notranslate nohighlight">\(A\u_1=\u_1\)</span> and <span class="math notranslate nohighlight">\(A\u_2-\u_2\)</span>, just like <span class="math notranslate nohighlight">\(\x_1\)</span> and <span class="math notranslate nohighlight">\(\x_2\)</span>.
+The factors <span class="math notranslate nohighlight">\(e^t\)</span> and <span class="math notranslate nohighlight">\(e^{-1}\)</span> change with time.
+Those factors give <span class="math notranslate nohighlight">\(d\u_1/dt=\u_1=A\u_1\)</span> and <span class="math notranslate nohighlight">\(d\u_2/dt=-\u_2=A\u_2\)</span>.
+<strong>We have two solutions to</strong> <span class="math notranslate nohighlight">\(d\u/dt=A\u\)</span>.
+To find all other solutions, <strong>multiply those special solutions by any numbers</strong> <span class="math notranslate nohighlight">\(C\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(D\)</span> <strong>and add</strong>:</p>
+<p><strong>Complete solution</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\u(t)=Ce^t\bb 1\\1 \eb+De^{-t}\bb 1\\-1 \eb=\bb Ce^t+De^{-t}\\Ce^t-De^{-t} \eb.\end{split}\]</div>
+<p>With these two constants <span class="math notranslate nohighlight">\(C\)</span> and <span class="math notranslate nohighlight">\(D\)</span>, we can match any starting vector <span class="math notranslate nohighlight">\(\u(0)=(u_1(0),u_2(0))\)</span>.
+Set <span class="math notranslate nohighlight">\(t=0\)</span> and <span class="math notranslate nohighlight">\(e^0=1\)</span>.
+For <span class="math notranslate nohighlight">\(\u(0)=(4,2)\)</span>:</p>
+<p><span class="math notranslate nohighlight">\(\u(0)\)</span> <strong>decides</strong> <span class="math notranslate nohighlight">\(C,D\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}C\bb 1\\1 \eb+D\bb 1\\-1 \eb= \bb 4\\2 \eb\quad\rm{yields}\quad C=3\rm{\ and\ }D=1.\end{split}\]</div>
+<p>The same three steps that solved <span class="math notranslate nohighlight">\(\u_{k+1}=A\u_k\)</span> now solve <span class="math notranslate nohighlight">\(d\u/dt=A\u\)</span>:</p>
+<ol class="arabic">
+<li><p>Wirte <span class="math notranslate nohighlight">\(\u(00\)</span> as a <strong>combination</strong> <span class="math notranslate nohighlight">\(c_1\x_1+\cds+c_n\x_n\)</span> <strong>of the eigenvectors of</strong> <span class="math notranslate nohighlight">\(A\)</span>.</p></li>
+<li><p>Multiply each eigenvector <span class="math notranslate nohighlight">\(\x_i\)</span> by <strong>its growth factor</strong> <span class="math notranslate nohighlight">\(e^{\ld_it}\)</span>.</p></li>
+<li><p>The solution is the same combination of those pure solutions <span class="math notranslate nohighlight">\(e^{\ld t}\x\)</span>:</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(\u(t)=c_1e^{\ld_1t}\x_1+\cds+c_ne^{\ld_nt}\x_n\)</span>.</p>
+</div>
+</div></blockquote>
+</li>
+</ol>
+<p><em>Not included</em>: If two <span class="math notranslate nohighlight">\(\ld\)</span>’s are equal, with only one eigenvector, another solution is needed.
+(It will be <span class="math notranslate nohighlight">\(te^{\ld t}\x\)</span>.
+Step 1 needs to diagonalize <span class="math notranslate nohighlight">\(A=X\Ld X\im\)</span>: a basis of <span class="math notranslate nohighlight">\(n\)</span> eigenvectors.</p>
+</div>
+<div class="section" id="second-order-equations">
+<h2>Second Order Equations<a class="headerlink" href="#second-order-equations" title="Permalink to this headline">¶</a></h2>
+<p><strong>The most important equation in meechanics is</strong> <span class="math notranslate nohighlight">\(my\ppr+by\pr+ky=0\)</span>.
+This is a second-order equation because it contains the second derivative <span class="math notranslate nohighlight">\(y\ppr=d^2y/dt^2\)</span>.
+It is still linear with constant coefficients <span class="math notranslate nohighlight">\(m,b,k\)</span>.</p>
+<p>The method of solution is to substitute <span class="math notranslate nohighlight">\(y=e^{\ld t}\)</span>.
+Each derivative of <span class="math notranslate nohighlight">\(y\)</span> brings down a factor <span class="math notranslate nohighlight">\(\ld\)</span>.
+We want <span class="math notranslate nohighlight">\(y=e^{\ld t}\)</span> to solve the equation:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(\dp m\frac{d^2y}{dt^2}+b\frac{dy}{dt}+ky=0\)</span> becomes <span class="math notranslate nohighlight">\((m\ld^2+b\ld+k)e^{\ld t}=0\)</span>.</p>
+</div>
+<p>Everything depends on <span class="math notranslate nohighlight">\(m\ld^2+b\ld+k=0\)</span>.
+This equation for <span class="math notranslate nohighlight">\(\ld\)</span> has two roots <span class="math notranslate nohighlight">\(\ld_1\)</span> and <span class="math notranslate nohighlight">\(\ld_2\)</span>.
+Then the equation for <span class="math notranslate nohighlight">\(y\)</span> has two pure solutions <span class="math notranslate nohighlight">\(y_1=e^{\ld_1t}\)</span> and <span class="math notranslate nohighlight">\(y_2=e^{\ld_2t}\)</span>.
+Their combinations <span class="math notranslate nohighlight">\(c_1y_1+c_2y_2\)</span> give the complete solution unless <span class="math notranslate nohighlight">\(\ld_1=\ld_2\)</span>.</p>
+<p>We turn the scalar equation (with <span class="math notranslate nohighlight">\(y\ppr\)</span>) into a <em>vector equation for</em>
+<span class="math notranslate nohighlight">\(y\)</span> <em>and</em> <span class="math notranslate nohighlight">\(y\pr\)</span>: first derivative only.
+Suppose <span class="math notranslate nohighlight">\(m=1\)</span>.
+Two equations for <span class="math notranslate nohighlight">\(\u=(y,y\pr)\)</span> give <span class="math notranslate nohighlight">\(d\u/dt=A\u\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{matrix}dy/dt=y\pr\\dy\pr/dt=-ky-by\pr\end{matrix}\quad\rm{converts\ to}
+\quad\frac{d}{dt}\bb y\\y\pr \eb=\bb 0&amp;1\\-k&amp;-b \eb\bb y\\y\pr \eb=A\u.\end{split}\]</div>
+<p>The first equation <span class="math notranslate nohighlight">\(dy/dt=y\pr\)</span> is trivial (but true).
+The second is equation connecting <span class="math notranslate nohighlight">\(y\ppr\)</span> to <span class="math notranslate nohighlight">\(y\pr\)</span> and <span class="math notranslate nohighlight">\(y\)</span>.
+Together they connect <span class="math notranslate nohighlight">\(\u\pr\)</span> to <span class="math notranslate nohighlight">\(\u\)</span>.
+So we solve <span class="math notranslate nohighlight">\(\u\pr=A\u\)</span> by eigenvalues of <span class="math notranslate nohighlight">\(A\)</span>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(A-\ld I=\bb -\ld&amp;1\\-k&amp;-b-\ld \eb\)</span> has determinant <span class="math notranslate nohighlight">\(\ld^2+b\ld+k=0\)</span>.</p>
+</div>
+<p><strong>The euqation for the</strong> <span class="math notranslate nohighlight">\(\ld\)</span>’s <strong>is still</strong> <span class="math notranslate nohighlight">\(\ld^2+b\ld+k=0\)</span>, <strong>since</strong> <span class="math notranslate nohighlight">\(m=1\)</span>.
+The roots <span class="math notranslate nohighlight">\(\ld_1\)</span> and <span class="math notranslate nohighlight">\(\ld_2\)</span> are now <em>eigenvalues of</em> <span class="math notranslate nohighlight">\(A\)</span>.
+The eigenvectors and the solution are:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\x_1=\bb 1\\\ld_1 \eb\quad\x_2=\bb 1\\\ld_2 \eb\quad\u(t)=c_1e^{\ld_1t}\bb 1\\\ld_1 \eb+c_2e^{\ld_2t}\bb 1\\ld_2 \eb.\end{split}\]</div>
+<p>The first component of <span class="math notranslate nohighlight">\(\u(t)\)</span> has <span class="math notranslate nohighlight">\(y=c_1e^{\ld_1t}+c_2e^{\ld_2t}\)</span>–the same solution as before.
+The vector problem is completely consistent with the scalar problem.
+The 2 by 2 matrix <span class="math notranslate nohighlight">\(A\)</span> is called a <em>companion matrix</em>– a companion to the second order equation with <span class="math notranslate nohighlight">\(t\ppr\)</span>.</p>
+</div>
+<div class="section" id="difference-equations-optional">
+<h2>Difference Equations (optional)<a class="headerlink" href="#difference-equations-optional" title="Permalink to this headline">¶</a></h2>
+<p>To display a circle on a screen, replace <span class="math notranslate nohighlight">\(y\ppr=-y\)</span> by a <strong>difference equation</strong>.
+Here are three choices using <span class="math notranslate nohighlight">\(Y(t+\Delta t)-2Y(t)+Y(t+\Delta t)\)</span>.
+Divide by <span class="math notranslate nohighlight">\((\Delta t)^2\)</span> to approximate <span class="math notranslate nohighlight">\(y\ppr\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(\dp\begin{matrix}F\\C\\B\end{matrix}\quad
+\begin{matrix}\rm{Forward\ from\ }n-1\ \ \\\rm{Centered\ at\ time\ }n\quad\
+\\\rm{Backward\ from\ }n+1\end{matrix}\quad
+\frac{Y_{n+1}-2Y_n+Y_{n-1}}{(\Delta t)^2}=
+\begin{matrix}Y_{n-1}\\Y_n\ \ \ \ \\Y_{n+1}\end{matrix}\)</span></p>
+</div>
+<p>The three difference methods <em>don’t</em> complete a perfect circle in 32 time steps of length <span class="math notranslate nohighlight">\(\Delta t=2\pi/32\)</span>.
+Those pictures will be explained by eigenvalues:</p>
+<p><strong>Forward</strong> <span class="math notranslate nohighlight">\(|\ld|&gt;1\)</span> (<strong>spiral out</strong>)
+<strong>Centered</strong> <span class="math notranslate nohighlight">\(|\ld|=1\)</span> (<strong>best</strong>)
+<strong>Backward</strong> <span class="math notranslate nohighlight">\(|\ld|&lt;1\)</span> (<strong>spiral in</strong>)</p>
+<p>The 2-step equations reduce to 1-step systems <span class="math notranslate nohighlight">\(\bs{U}_{n+1}=A\bs{U}_n\)</span>.
+Instead of <span class="math notranslate nohighlight">\(\u=(y,y\pr)\)</span> the discrete unknown is <span class="math notranslate nohighlight">\(\bs{U}_n=(Y_n,Z_n)\)</span>.
+We take <span class="math notranslate nohighlight">\(n\)</span> time steps <span class="math notranslate nohighlight">\(\Delta t\)</span> starting from <span class="math notranslate nohighlight">\(\bs{U}_0\)</span>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Forward</strong>: <span class="math notranslate nohighlight">\(\begin{matrix}Y_{n+1}=Y_n+\Delta tZ_n\\
+Z_{n+1}=Z_n-\Delta tY_n\end{matrix}\)</span> becomes
+<span class="math notranslate nohighlight">\(\bs{U}_{n+1}=\bb 1&amp;\Delta t\\-\Delta t&amp;1\eb\bb Y_n\\Z_n\eb=A\bs{U}_n\)</span>.</p>
+</div>
+<p>Those are like <span class="math notranslate nohighlight">\(Y\pr=Z\)</span> and <span class="math notranslate nohighlight">\(Z\pr=-Y\)</span>.
+They are first order equations involving times <span class="math notranslate nohighlight">\(n\)</span> and <span class="math notranslate nohighlight">\(n+1\)</span>.
+Eliminating <span class="math notranslate nohighlight">\(A\)</span> would bring back the “forward” second order equation.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Eigenvales of</strong> <span class="math notranslate nohighlight">\(A\)</span>: <span class="math notranslate nohighlight">\(\ld=1\pm i\Delta t\)</span>.
+<strong>Then</strong> <span class="math notranslate nohighlight">\(|\ld|&gt;1\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\((Y_n,Z_n)\)</span> <strong>spirals out</strong>.</p>
+</div>
+<p><strong>Backward</strong>: <span class="math notranslate nohighlight">\(\begin{matrix}Y_{n+1}=Y_n+\Delta tZ_{n+1}\\
+Z_{n+1}=Z_n-\Delta tY_{n+1}\end{matrix}\)</span> is <span class="math notranslate nohighlight">\(\bb 1&amp;-\Delta t\\\Delta t&amp;1\eb
+\bb Y_{n+1}\\Z_{n+1}\eb=\bb Y_n\\Z_n \eb=\bs{U}_n\)</span>.</p>
+<p>That matrix has eigenvalues <span class="math notranslate nohighlight">\(1+\pm i\Delta t\)</span>.
+But we <em>inver</em> it to reach <span class="math notranslate nohighlight">\(\bs{U}_{n+1}\)</span> from <span class="math notranslate nohighlight">\(\bs{U}_n\)</span>.
+Then <span class="math notranslate nohighlight">\(|ld|&lt;1\)</span> explains why <em>the solution spirals in</em> to :math`(0,0)` for backward differences.</p>
+<p>The second difference <span class="math notranslate nohighlight">\(Y_{n+1}-2Y_n+Y_{n-1}\)</span> is the <strong>leapfrog method</strong>
+that “leaps over” that center value <span class="math notranslate nohighlight">\(Y_n\)</span> and is constantly used.</p>
+</div>
+<div class="section" id="stability-of-2-by-2-matrices">
+<h2>Stability of 2 by 2 Matrices<a class="headerlink" href="#stability-of-2-by-2-matrices" title="Permalink to this headline">¶</a></h2>
+<p>For the solution of <span class="math notranslate nohighlight">\(d\u/dt=A\u\)</span>, there is a fundamental question.
+<em>Does the solution approach</em> <span class="math notranslate nohighlight">\(\u=\0\)</span> <em>as</em> <span class="math notranslate nohighlight">\(t\rightarrow \infty\)</span>?
+A solution that includes <span class="math notranslate nohighlight">\(e^t\)</span> is unstable.
+Stability depends on the eigenvalues of <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p>The complete solution <span class="math notranslate nohighlight">\(\u(t)\)</span> is built from pure solutions <span class="math notranslate nohighlight">\(e^{\ld t}\x\)</span>.
+If the eigenvalue <span class="math notranslate nohighlight">\(\ld\)</span> is real, <em>the number</em> <span class="math notranslate nohighlight">\(\ld\)</span> <em>must be negative</em>
+for <span class="math notranslate nohighlight">\(e^{\ld t}\)</span> to approach zero.
+If the eigenvalue is a complex number <span class="math notranslate nohighlight">\(\ld=r+is\)</span>, <em>the real part</em> <span class="math notranslate nohighlight">\(r\)</span> <em>must be negavtive</em>.
+When <span class="math notranslate nohighlight">\(e^{\ld t}\)</span> splits into <span class="math notranslate nohighlight">\(e^{rt}e^{ist}\)</span>, the factor <span class="math notranslate nohighlight">\(e^{ist}\)</span> has absolute value fixed at 1:</p>
+<div class="math notranslate nohighlight">
+\[e^{ist}=\cos st+i\sin st\quad\rm{has}\quad|e^{ist}|^2=\cos^2st+\sin^2st=1.\]</div>
+<p>The real part of <span class="math notranslate nohighlight">\(\ld\)</span> controls the growth (<span class="math notranslate nohighlight">\(r&gt;0\)</span>) or the decay (<span class="math notranslate nohighlight">\(r&lt;0\)</span>).</p>
+<p><strong>Which matrices have negative eigenvalues?</strong>
+When are the <strong>real parts of the</strong> <span class="math notranslate nohighlight">\(\ld\)</span><strong>’s all negative?</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Stability</strong>: <span class="math notranslate nohighlight">\(A\)</span> is <strong>stable</strong> and <span class="math notranslate nohighlight">\(\u(t)\rightarrow\0\)</span> when
+all eigenvalues <span class="math notranslate nohighlight">\(\ld\)</span> have <strong>negative real parts</strong>.
+The 2 by 2 matrix <span class="math notranslate nohighlight">\(A=\bb a&amp;b\\c&amp;d \eb\)</span> must pass two tests:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\ld_1+\ld_2&lt;0\)</span>: The trace <span class="math notranslate nohighlight">\(T=a+d\)</span> must be negative.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\ld_1\ld_2&gt;0\)</span>: The determinant <span class="math notranslate nohighlight">\(D=ad-bc\)</span> must be positive.</p></li>
+</ul>
+</div>
+<p><strong>Reason</strong>: If <span class="math notranslate nohighlight">\(\ld\)</span>’s are real and negative, their sum is negative.
+This is the trace <span class="math notranslate nohighlight">\(T\)</span>.
+Their product is positive.
+This is the determinant <span class="math notranslate nohighlight">\(D\)</span>.
+The argument also goes in the reverse direction.
+If <span class="math notranslate nohighlight">\(D=\ld_1\ld_2\)</span> is positve, then <span class="math notranslate nohighlight">\(\ld_1\)</span> and <span class="math notranslate nohighlight">\(\ld_2\)</span> have the same sign.
+If <span class="math notranslate nohighlight">\(T=\ld_1+\ld_2\)</span> is negative, that sign will be negative.
+We can test <span class="math notranslate nohighlight">\(T\)</span> and <span class="math notranslate nohighlight">\(D\)</span>.</p>
+<p>If the <span class="math notranslate nohighlight">\(\ld\)</span>’s are complex numbers, they must have the form <span class="math notranslate nohighlight">\(r+is\)</span> and <span class="math notranslate nohighlight">\(r-is\)</span>.
+Otherwise <span class="math notranslate nohighlight">\(T\)</span> and <span class="math notranslate nohighlight">\(D\)</span> will not be real.
+The determinant <span class="math notranslate nohighlight">\(D\)</span> is automatically positive, since <span class="math notranslate nohighlight">\((r+is)(r-is)=r^2+s^2\)</span>.
+The trace <span class="math notranslate nohighlight">\(T\)</span> is <span class="math notranslate nohighlight">\(r+is+r-is=2r\)</span>.
+So a negative trace <span class="math notranslate nohighlight">\(T\)</span> means that the real part is negative and the matrix is stable.</p>
+</div>
+<div class="section" id="the-exponential-of-a-matrix">
+<h2>The Exponential of a Matrix<a class="headerlink" href="#the-exponential-of-a-matrix" title="Permalink to this headline">¶</a></h2>
+<p><strong>We want to write the solution</strong> <span class="math notranslate nohighlight">\(\u(t)\)</span> <strong>in a new form</strong> <span class="math notranslate nohighlight">\(e^{At}\u(0)\)</span>.
+The direct defination of <span class="math notranslate nohighlight">\(e^x\)</span> is by the infinite series <span class="math notranslate nohighlight">\(1+x+\frac{1}{2}x^2+\frac{1}{6}x^3+\cds\)</span>.
+Change <span class="math notranslate nohighlight">\(x\)</span> to a square matrix <span class="math notranslate nohighlight">\(At\)</span> to define the matrix exponential <span class="math notranslate nohighlight">\(e^{At}\)</span>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Matrix exponential</strong> <span class="math notranslate nohighlight">\(e^{At}\)</span>: <span class="math notranslate nohighlight">\(e^{At}=I+At+\frac{1}{2}(At)^2+\frac{1}{6}(At)^3+\cds\)</span>.</p>
+<p><strong>Its</strong> <span class="math notranslate nohighlight">\(t\)</span> <strong>derivative is</strong> <span class="math notranslate nohighlight">\(Ae^{At}\)</span>: <span class="math notranslate nohighlight">\(A+A^2t+\frac{1}{2}A^3t^2+\cds=Ae^{At}\)</span>.</p>
+<p><strong>Its eigenvalues are</strong> <span class="math notranslate nohighlight">\(e^{\ld t}\)</span>:
+<span class="math notranslate nohighlight">\((I+At+\frac{1}{2}(At)^2+\cds)\x=(1+\ld t+\frac{1}{2}(\ld )^2+\cds)\x\)</span>.</p>
+</div>
+<p>The number that divides <span class="math notranslate nohighlight">\((At)^n\)</span> is <span class="math notranslate nohighlight">\(n!\)</span>.
+The factorials grow quickly.
+The series always converges and its derivative is always <span class="math notranslate nohighlight">\(Ae^{At}\)</span>.
+Therefore <span class="math notranslate nohighlight">\(e^{At}\u(0)\)</span> solves the differential equation with one quick
+formula–<em>even if there is a shortage of eigenvectors</em>.</p>
+<p>Assume <span class="math notranslate nohighlight">\(A\)</span> does have <span class="math notranslate nohighlight">\(n\)</span> independent eigenvectors, so it is diagonalizable.
+Substitute <span class="math notranslate nohighlight">\(A=X\Ld X\im\)</span> into the series for <span class="math notranslate nohighlight">\(e^{At}\)</span>.
+Whenever <span class="math notranslate nohighlight">\(X\Ld X\im X\Ld X\im\)</span> appears, cancel <span class="math notranslate nohighlight">\(X\im X\)</span> in the middle:</p>
+<p><strong>Use the series</strong>: <span class="math notranslate nohighlight">\(e^{At}=I+X\Ld X\im t+\frac{1}{2}(X\Ld X\im t)(X\Ld X\im t)+\cds\)</span></p>
+<p><strong>Factor out</strong> <span class="math notranslate nohighlight">\(X\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(X\im\)</span>: <span class="math notranslate nohighlight">\(e^{At}=X[I+\Ld t+\frac{1}{2}(\Ld t)^2+\cds]X\im\)</span></p>
+<p><span class="math notranslate nohighlight">\(e^{At}\)</span> <strong>is diagonalized</strong>: <span class="math notranslate nohighlight">\(e^{At}=Xe^{\Ld t}X\im\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(e^{At}\)</span> has the same eigenvector matrix <span class="math notranslate nohighlight">\(X\)</span> as <span class="math notranslate nohighlight">\(A\)</span>.
+Then <span class="math notranslate nohighlight">\(\Ld\)</span> is a diagonal matrix and so is <span class="math notranslate nohighlight">\(e^{\Ld t}\)</span>.
+The numbers <span class="math notranslate nohighlight">\(e^{\ld_it}\)</span> are on the diagonal.
+Multiply <span class="math notranslate nohighlight">\(Xe^{\Ld t}X\im\u(0)\)</span> to recognize <span class="math notranslate nohighlight">\(\u(t)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}e^{At}\u(0)=Xe^{\Ld t}X\im\u(0)=\bb \\\ \x_1&amp;\cds&amp;\x_n \\\ \eb
+\bb e^{\ld_1t}\\&amp;\dds\\&amp;&amp;e^{\ld_nt} \eb\bb c_1\\\vds\\c_n \eb.\end{split}\]</div>
+<p>The solution <span class="math notranslate nohighlight">\(e^{At}\u(0)\)</span> is the same answer that came in previous equation from three steps:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(\u(0)=c_1\x_1+\cds+c_n\x_n=X\bs{c}\)</span>.
+Here we need <span class="math notranslate nohighlight">\(n\)</span> independent eigenvectors.</p></li>
+<li><p>Multiply each <span class="math notranslate nohighlight">\(\x_i\)</span> by its growth factor <span class="math notranslate nohighlight">\(e^{\ld_it}\)</span> to follow it forward in time.</p></li>
+<li><p>The best form of <span class="math notranslate nohighlight">\(e^{At}\u(0)\)</span> is <span class="math notranslate nohighlight">\(\u(t)=c_1e^{\ld_1t}\x_1+\cds+c_ne^{\ld_nt}\x_n\)</span>.</p></li>
+</ol>
+<p>For an antisymmetric matrix (<span class="math notranslate nohighlight">\(A^T=-A\)</span>), its exponential <span class="math notranslate nohighlight">\(e^{At}\)</span> is an orthogonal matrix.
+The eigenvalues of <span class="math notranslate nohighlight">\(A\)</span> are <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(-i\)</span>.
+The eigenvalues of <span class="math notranslate nohighlight">\(e^{At}\)</span> are <span class="math notranslate nohighlight">\(e^{it}\)</span> and <span class="math notranslate nohighlight">\(e^{-it}\)</span>.
+Three rules:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(e^{At}\)</span> <strong>always has the inverse</strong> <span class="math notranslate nohighlight">\(e^{-At}\)</span>.</p></li>
+<li><p><strong>The eigenvalues of</strong> <span class="math notranslate nohighlight">\(e^{At}\)</span> <strong>are always</strong> <span class="math notranslate nohighlight">\(e^{\ld t}\)</span>.</p></li>
+<li><p><strong>When</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>is antisymmetric</strong>, <span class="math notranslate nohighlight">\(e^{At}\)</span> <strong>is orthogonal</strong>.
+<span class="math notranslate nohighlight">\(Inverse = transpose = e^{-At}\)</span>.</p></li>
+</ol>
+<p>Antisymmetric is the smae as “skey-symmetric”.
+Those matrices have pure imaginary eigenvalues like <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(-i\)</span>.
+Then <span class="math notranslate nohighlight">\(e^{At}\)</span> has eigenvalues like <span class="math notranslate nohighlight">\(e^{it}\)</span> and <span class="math notranslate nohighlight">\(e^{-it}\)</span>.
+Their absolute value is 1: neutual stability, pure oscillation, energy is conserved.
+So <span class="math notranslate nohighlight">\(\lv\u(t)\rv=\lv\u(0)\rv\)</span>.</p>
+</div>
+<div class="section" id="notes-on-a-differential-equations-course">
+<h2>Notes on a Differential Equations Course<a class="headerlink" href="#notes-on-a-differential-equations-course" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p>The second order equation <span class="math notranslate nohighlight">\(mu\ppr+bu\pr+ku=0\)</span> has major importance in applications.
+The exponents <span class="math notranslate nohighlight">\(\ld\)</span> in the solution <span class="math notranslate nohighlight">\(u=e^{\ld t}\)</span> solve <span class="math notranslate nohighlight">\(m\ld^2+b\ld+k=0\)</span>.
+The damping coefficient <span class="math notranslate nohighlight">\(b\)</span> is crucial:</p>
+<p><strong>Underdamping</strong>: <span class="math notranslate nohighlight">\(b^2&lt;4mk\)</span>; <strong>Critical damping</strong>: <span class="math notranslate nohighlight">\(b^2=4mk\)</span>; <strong>Overdamping</strong>: <span class="math notranslate nohighlight">\(b^2&gt;4mk\)</span>.</p>
+<p>This decides whether <span class="math notranslate nohighlight">\(\ld_2\)</span> and <span class="math notranslate nohighlight">\(\ld_2\)</span> are real roots or repeated roots or complex roots.
+With complex <span class="math notranslate nohighlight">\(\ld\)</span>’s the solution <span class="math notranslate nohighlight">\(u(t)\)</span> oscillates as it decays.</p>
+</li>
+<li><p>Our equation had no forcing term <span class="math notranslate nohighlight">\(f(t)\)</span>.
+We were finding the “nullspace solution”.
+To <span class="math notranslate nohighlight">\(\u_n(t)\)</span> we need to add a particular solution <span class="math notranslate nohighlight">\(u_p(t)\)</span> that balances the force <span class="math notranslate nohighlight">\(f(t)\)</span>:</p>
+<p><strong>Input</strong> <span class="math notranslate nohighlight">\(f(t)\)</span> <strong>at time</strong> <span class="math notranslate nohighlight">\(s\)</span>; <strong>Growth factor</strong>
+<span class="math notranslate nohighlight">\(e^{A(t-s)}\)</span>; <strong>Add up output at time</strong> <span class="math notranslate nohighlight">\(t\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\u_{\rm{particular}}=\int_0^t e^{A(t-s)}f(s)\ ds.\]</div>
+<p>This solution can also be discovered and studied by <em>Laplace transform</em>–that
+is the established way to convert linear differential equations to linear
+algebra.</p>
+</li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="chap6-4.html" class="btn btn-neutral float-right" title="Chapter 6.4 Symmetric Matrices" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="chap6-2.html" class="btn btn-neutral float-left" title="Chapter 6.2 Diagonalizing a Matrix" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Ziniu Yu.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

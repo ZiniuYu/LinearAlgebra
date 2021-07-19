@@ -94,7 +94,7 @@
 <li class="toctree-l2"><a class="reference internal" href="chap2-1.html">Chapter 2.1 Vectors and linear Equations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chap2-2.html">Chapter 2.2 The idea of Elimination</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 2.3 Elimination Using Matrices</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#matrix-times-vectors-and-ax-b">Matrix times Vectors and <span class="math notranslate nohighlight">\(Ax = b\)</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#matrix-times-vectors-and-a-boldsymbol-x-boldsymbol-b">Matrix times Vectors and <span class="math notranslate nohighlight">\(A\boldsymbol{x} = \boldsymbol{b}\)</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#the-matrix-form-of-one-elimination-step">The Matrix Form of One Elimination Step</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#matrix-multiplication">Matrix Multiplication</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#the-matrix-p-ij-for-a-row-exchange">The Matrix <span class="math notranslate nohighlight">\(P_{ij}\)</span> for a Row Exchange</a></li>
@@ -107,7 +107,11 @@
 <li class="toctree-l2"><a class="reference internal" href="chap2-7.html">Chapter 2.7 Transposes and Permutations</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../chap3/index3.html">Chapter 3 Vector Spacese and Subspaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap3/index3.html">Chapter 3 Vector Spaces and Subspaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap4/index4.html">Chapter 4 Orthogonality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap5/index5.html">Chapter 5 Determinants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap6/index6.html">Chapter 6 Eigenvalues and Eigenvectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap7/index7.html">Chapter 7 The Singular Value Decomposition (SVD)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
 </ul>
 
@@ -181,20 +185,37 @@
   <div class="math notranslate nohighlight">
 \[ \begin{align}\begin{aligned}\newcommand{\bs}{\boldsymbol}
 \newcommand{\dp}{\displaystyle}
-\newcommand{\rm}{\mathrm}\\\newcommand{\cd}{\cdot}
+\newcommand{\rm}{\mathrm}
+\newcommand{\pd}{\partial}\\\newcommand{\cd}{\cdot}
 \newcommand{\cds}{\cdots}
+\newcommand{\dds}{\ddots}
+\newcommand{\vds}{\vdots}
 \newcommand{\lv}{\lVert}
-\newcommand{\rv}{\rVert}\\\newcommand{\0}{\boldsymbol{0}}
+\newcommand{\rv}{\rVert}
+\newcommand{\wh}{\widehat}\\\newcommand{\0}{\boldsymbol{0}}
+\newcommand{\a}{\boldsymbol{a}}
 \newcommand{\b}{\boldsymbol{b}}
 \newcommand{\e}{\boldsymbol{e}}
 \newcommand{\i}{\boldsymbol{i}}
 \newcommand{\j}{\boldsymbol{j}}
+\newcommand{\p}{\boldsymbol{p}}
+\newcommand{\q}{\boldsymbol{q}}
 \newcommand{\u}{\boldsymbol{u}}
 \newcommand{\v}{\boldsymbol{v}}
 \newcommand{\w}{\boldsymbol{w}}
 \newcommand{\x}{\boldsymbol{x}}
-\newcommand{\y}{\boldsymbol{y}}\\\newcommand{\N}{\boldsymbol{N}}\\\newcommand{\R}{\boldsymbol{\mathrm{R}}}\\\newcommand{\bb}{\begin{bmatrix}}
-\newcommand{\eb}{\end{bmatrix}}\\\newcommand{\im}{^{-1}}\end{aligned}\end{align} \]</div>
+\newcommand{\y}{\boldsymbol{y}}\\\newcommand{\A}{\boldsymbol{A}}
+\newcommand{\B}{\boldsymbol{B}}
+\newcommand{\C}{\boldsymbol{C}}
+\newcommand{\N}{\boldsymbol{N}}\\\newcommand{\R}{\boldsymbol{\mathrm{R}}}\\\newcommand{\ld}{\lambda}
+\newcommand{\Ld}{\Lambda}
+\newcommand{\sg}{\sigma}
+\newcommand{\Sg}{\Sigma}\\\newcommand{\bb}{\begin{bmatrix}}
+\newcommand{\eb}{\end{bmatrix}}
+\newcommand{\bv}{\begin{vmatrix}}
+\newcommand{\ev}{\end{vmatrix}}\\\newcommand{\im}{^{-1}}
+\newcommand{\pr}{^{\prime}}
+\newcommand{\ppr}{^{\prime\prime}}\end{aligned}\end{align} \]</div>
 <div class="section" id="chapter-2-3-elimination-using-matrices">
 <h1>Chapter 2.3 Elimination Using Matrices<a class="headerlink" href="#chapter-2-3-elimination-using-matrices" title="Permalink to this headline">¶</a></h1>
 <ol class="arabic simple">
@@ -203,8 +224,8 @@
 <li><p>To see how each <span class="math notranslate nohighlight">\(E_{ij}\)</span> is inverted by its inverse matrix <span class="math notranslate nohighlight">\(E_{ij}^{-1}\)</span>.</p></li>
 <li><p>To assemble all those inverse <span class="math notranslate nohighlight">\(E_{ij}^{-1}\)</span> (in the right order) into <span class="math notranslate nohighlight">\(L\)</span>.</p></li>
 </ol>
-<div class="section" id="matrix-times-vectors-and-ax-b">
-<h2>Matrix times Vectors and <span class="math notranslate nohighlight">\(Ax = b\)</span><a class="headerlink" href="#matrix-times-vectors-and-ax-b" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="matrix-times-vectors-and-a-boldsymbol-x-boldsymbol-b">
+<h2>Matrix times Vectors and <span class="math notranslate nohighlight">\(A\boldsymbol{x} = \boldsymbol{b}\)</span><a class="headerlink" href="#matrix-times-vectors-and-a-boldsymbol-x-boldsymbol-b" title="Permalink to this headline">¶</a></h2>
 <p>The 3 by 3 example in the previous section has the short form <span class="math notranslate nohighlight">\(A\x=\b\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[ \begin{align}\begin{aligned}2x_1+4x_2-2x_3 &amp;= 2\\4x_1+9x_2-3x_3 &amp;= 8\\-2x_1-3x_2+7x_3 &amp;= 10\end{aligned}\end{align} \]</div>
@@ -241,7 +262,7 @@ It subtracts <span class="math notranslate nohighlight">\(2b_1\)</span> from <sp
 Rows 1 and 3 stay the same:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\bb 1&amp;0&amp;0 \\ -2&amp;1&amp;0 \\ 0&amp;0&amp;1 \eb \bb 2\\8\\10 \eb = \bb 2\\4\\10 \eb \quad
-\bb 1&amp;0&amp;0 \\ -2&amp;1&amp;0 \\ 0&amp;0&amp;1 \eb \bb b_1\\b_2\\b_3 \eb == \bb b_1 \\b_2-2b_1\\b_3 \eb\end{split}\]</div>
+\bb 1&amp;0&amp;0\\-2&amp;1&amp;0\\0&amp;0&amp;1 \eb\bb b_1\\b_2\\b_3 \eb=\bb b_1\\b_2-2b_1\\b_3 \eb\end{split}\]</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The <strong>idendity matrix</strong> has 1’s on the diagonal and otherwise 0’s.

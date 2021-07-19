@@ -1,0 +1,405 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Chapter 4.1 Orthogonality of the Four Subspaces &mdash; LinearAlgebra  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapter 4.2 Projections" href="chap4-2.html" />
+    <link rel="prev" title="Chapter 4 Orthogonality" href="index4.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> LinearAlgebra
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../chap1/index1.html">Chapter 1 Introduction to Vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap2/index2.html">Chapter 2 Solving Linear Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap3/index3.html">Chapter 3 Vector Spaces and Subspaces</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index4.html">Chapter 4 Orthogonality</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 4.1 Orthogonality of the Four Subspaces</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#orthogonal-complements">Orthogonal Complements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#drawing-the-big-picture">Drawing the Big Picture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#combining-bases-from-subspaces">Combining Bases from Subspaces</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="chap4-2.html">Chapter 4.2 Projections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap4-3.html">Chapter 4.3 Least Squares Approximations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap4-4.html">Chapter 4.4 Orthonormal Bases and Gram-Schmidt</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../chap5/index5.html">Chapter 5 Determinants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap6/index6.html">Chapter 6 Eigenvalues and Eigenvectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap7/index7.html">Chapter 7 The Singular Value Decomposition (SVD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">LinearAlgebra</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index4.html">Chapter 4 Orthogonality</a> &raquo;</li>
+        
+      <li>Chapter 4.1 Orthogonality of the Four Subspaces</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/chap4/chap4-1.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\newcommand{\bs}{\boldsymbol}
+\newcommand{\dp}{\displaystyle}
+\newcommand{\rm}{\mathrm}
+\newcommand{\pd}{\partial}\\\newcommand{\cd}{\cdot}
+\newcommand{\cds}{\cdots}
+\newcommand{\dds}{\ddots}
+\newcommand{\vds}{\vdots}
+\newcommand{\lv}{\lVert}
+\newcommand{\rv}{\rVert}
+\newcommand{\wh}{\widehat}\\\newcommand{\0}{\boldsymbol{0}}
+\newcommand{\a}{\boldsymbol{a}}
+\newcommand{\b}{\boldsymbol{b}}
+\newcommand{\e}{\boldsymbol{e}}
+\newcommand{\i}{\boldsymbol{i}}
+\newcommand{\j}{\boldsymbol{j}}
+\newcommand{\p}{\boldsymbol{p}}
+\newcommand{\q}{\boldsymbol{q}}
+\newcommand{\u}{\boldsymbol{u}}
+\newcommand{\v}{\boldsymbol{v}}
+\newcommand{\w}{\boldsymbol{w}}
+\newcommand{\x}{\boldsymbol{x}}
+\newcommand{\y}{\boldsymbol{y}}\\\newcommand{\A}{\boldsymbol{A}}
+\newcommand{\B}{\boldsymbol{B}}
+\newcommand{\C}{\boldsymbol{C}}
+\newcommand{\N}{\boldsymbol{N}}\\\newcommand{\R}{\boldsymbol{\mathrm{R}}}\\\newcommand{\ld}{\lambda}
+\newcommand{\Ld}{\Lambda}
+\newcommand{\sg}{\sigma}
+\newcommand{\Sg}{\Sigma}\\\newcommand{\bb}{\begin{bmatrix}}
+\newcommand{\eb}{\end{bmatrix}}
+\newcommand{\bv}{\begin{vmatrix}}
+\newcommand{\ev}{\end{vmatrix}}\\\newcommand{\im}{^{-1}}
+\newcommand{\pr}{^{\prime}}
+\newcommand{\ppr}{^{\prime\prime}}\end{aligned}\end{align} \]</div>
+<div class="section" id="chapter-4-1-orthogonality-of-the-four-subspaces">
+<h1>Chapter 4.1 Orthogonality of the Four Subspaces<a class="headerlink" href="#chapter-4-1-orthogonality-of-the-four-subspaces" title="Permalink to this headline">¶</a></h1>
+<p>Two vectors are orthogonal when their dot product is zero: <span class="math notranslate nohighlight">\(\v\cd\w=\v^T\w=0\)</span>.
+This chapter moves to <strong>orthogonal subspaces</strong> and <strong>orthogonal bases</strong> and <strong>orthogonal matrices</strong>.
+Thank of <span class="math notranslate nohighlight">\(a^2+b^2=c^2\)</span> for a <em>right triangle</em> with sides <span class="math notranslate nohighlight">\(\v\)</span> and <span class="math notranslate nohighlight">\(\w\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Orthogonal vectors</strong>: <span class="math notranslate nohighlight">\(\v^T\w=0\)</span> and <span class="math notranslate nohighlight">\(\lv\v\rv^2+\lv\w\rv^2=\lv\v+\w\rv^2\)</span>.</p>
+</div>
+<p>The right side is <span class="math notranslate nohighlight">\((\v+\w)^T(\v+\w)\)</span>.
+This equals <span class="math notranslate nohighlight">\(\v^T\v+\w^T\w\)</span> when <span class="math notranslate nohighlight">\(\v^T\w=\w^T\v=0\)</span>.</p>
+<p><strong>The row space is perpendicular to the nullsapce</strong>.
+Every row of <span class="math notranslate nohighlight">\(A\)</span> is perpendicular to every solution of <span class="math notranslate nohighlight">\(A\x=\0\)</span>.
+This perpendicularity of subspaces is Part2 of the Fundamental Theorem of Linear Algebra.</p>
+<p><strong>The column space is perpendicular to the nullspace of</strong> <span class="math notranslate nohighlight">\(A^T\)</span>.
+When <span class="math notranslate nohighlight">\(\b\)</span> is outside the column space–when we want to solve <span class="math notranslate nohighlight">\(A\x=\b\)</span>
+and con’t do it–then this nullspace of <span class="math notranslate nohighlight">\(A^T\)</span> comes into its own.
+It contains the error <span class="math notranslate nohighlight">\(\e=\b-A\x\)</span> in the “least-squares” solution.
+Least squares is the key application of linear algebra in this chapter.</p>
+<p><strong>The row space and nullspace are orthogonal subspaces inside</strong> <span class="math notranslate nohighlight">\(\R^n\)</span>.</p>
+<p><strong>DEFINITION</strong>: Two subspaces <span class="math notranslate nohighlight">\(\bs{V}\)</span> and <span class="math notranslate nohighlight">\(\bs{W}\)</span> of a vector
+space are <strong>orthogonal</strong> if every vector <span class="math notranslate nohighlight">\(\v\)</span> in <span class="math notranslate nohighlight">\(\bs{V}\)</span> is
+perpendicular to every vector <span class="math notranslate nohighlight">\(\w\)</span> in <span class="math notranslate nohighlight">\(\bs{W}\)</span>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Orthogonal subspaces</strong>: <span class="math notranslate nohighlight">\(\v^T\w=0\)</span> for all <span class="math notranslate nohighlight">\(\v\)</span> in <span class="math notranslate nohighlight">\(\bs{V}\)</span> and all <span class="math notranslate nohighlight">\(\w\)</span> in <span class="math notranslate nohighlight">\(\bs{W}\)</span>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Every vector <span class="math notranslate nohighlight">\(\x\)</span> in the nullspace is perpendicular to every row of <span class="math notranslate nohighlight">\(A\)</span>, because <span class="math notranslate nohighlight">\(A\x=\0\)</span>.
+<strong>The nullspace</strong> <span class="math notranslate nohighlight">\(\bs{N}(A)\)</span> <strong>and the row space</strong> <span class="math notranslate nohighlight">\(\bs{C}(A^T)\)</span>
+<strong>are orthogonal subspaces of</strong> <span class="math notranslate nohighlight">\(\R^n\)</span>.</p>
+</div>
+<p>Look at <span class="math notranslate nohighlight">\(A\x=\0\)</span>.
+Each row multiplies <span class="math notranslate nohighlight">\(\x\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A\x=\bb &amp;\rm{row\ }1&amp;\\&amp;\vdots&amp;\\&amp;\rm{row\ }m&amp; \eb\bb \\ \x \\ \ \eb
+=\bb 0\\\vdots\\0 \eb \quad
+\begin{matrix} \leftarrow \\ \\ \leftarrow \end{matrix} \quad
+\begin{matrix} (\rm{row\ }1)\cd\x \rm{\ is\ zero} \\ \\
+(\rm{row\ }m)\cd\x \rm{\ is\ zero} \end{matrix}\end{split}\]</div>
+<p>The first equation says that row 1 is perpendicular to <span class="math notranslate nohighlight">\(\x\)</span>.
+The last equation says that row <span class="math notranslate nohighlight">\(m\)</span> is perpendicular to <span class="math notranslate nohighlight">\(\x\)</span>.
+<em>Every row has a zero dot product with</em> <span class="math notranslate nohighlight">\(\x\)</span>.
+Then <span class="math notranslate nohighlight">\(\x\)</span> is also perpendicular to every <em>combination</em> of the rows.
+The whole row space <span class="math notranslate nohighlight">\(\bs{C}(A^T)\)</span> is orthogonal to <span class="math notranslate nohighlight">\(\bs{N}(A)\)</span>.</p>
+<p>The vectors in the row space are combinations <span class="math notranslate nohighlight">\(A^T\y\)</span> of the rows.
+Take the dot product of <span class="math notranslate nohighlight">\(A^T\y\)</span> with any <span class="math notranslate nohighlight">\(\x\)</span> in the nullspace.
+<em>These vectors are perpendicular</em>.</p>
+<p><strong>Nullspace orthogonal to row space</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\x^T(A^T\y) = (A\x)^T\y = \0^T\y =0.\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Every vector <span class="math notranslate nohighlight">\(\y\)</span> in the nullspace of <span class="math notranslate nohighlight">\(A^T\)</span> is perpendicular to every column of <span class="math notranslate nohighlight">\(A\)</span>.
+<strong>The left nullspace</strong> <span class="math notranslate nohighlight">\(\bs{N}(A^T)\)</span> <strong>and the column space</strong>
+<span class="math notranslate nohighlight">\(\bs{C}(A)\)</span> <strong>are orthogonal in</strong> <span class="math notranslate nohighlight">\(\R^m\)</span>.</p>
+</div>
+<div class="section" id="orthogonal-complements">
+<h2>Orthogonal Complements<a class="headerlink" href="#orthogonal-complements" title="Permalink to this headline">¶</a></h2>
+<p><strong>Important</strong>: The fundamental subspaces are more than just orthogonal (in pairs).
+Their dimensions are also right.
+Two lines could be perpendicular in <span class="math notranslate nohighlight">\(\R^3\)</span>,
+<strong>but those lines could not be the row space and nullspace of a 3 by 3 matrix</strong>.</p>
+<p><strong>DEFINITION</strong>: The <strong>orthogonal complement</strong> of a subspace <span class="math notranslate nohighlight">\(\bs{V}\)</span>
+contains <strong>every</strong> vector that is perpendicular to <span class="math notranslate nohighlight">\(\bs{V}\)</span>.
+This orthogonal subspace is denoted by <span class="math notranslate nohighlight">\(\bs{V}^{\perp}\)</span>.</p>
+<p>By this definition, the nullspace is the orthogonal complement of the row space.
+<em>Every</em> <span class="math notranslate nohighlight">\(\x\)</span> that is perpendicular to the rows satisfies <span class="math notranslate nohighlight">\(A\x=\0\)</span>, and lies in the nullspace.
+The reverse is also true.
+<strong>If</strong> <span class="math notranslate nohighlight">\(\v\)</span> <strong>is orthogonal to the nullspace, it must be in the row space</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Fundamental Theorem of Linear Algebra, Part 2</strong>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\bs{N}(A)\)</span> <strong>is the orthogonal complement of the row space</strong> <span class="math notranslate nohighlight">\(\bs{C}(A^T)\)</span> (<strong>in</strong> <span class="math notranslate nohighlight">\(\R^n\)</span>).</p></li>
+<li><p><span class="math notranslate nohighlight">\(\bs{N}(A^T)\)</span> <strong>is the orthogonal complement of the column space</strong> <span class="math notranslate nohighlight">\(\bs{C}(A)\)</span> (<strong>in</strong> <span class="math notranslate nohighlight">\(\R^m\)</span>).</p></li>
+</ul>
+</div>
+<p>Part 1 gave the dimensions of the subspaces.
+Part 2 gives the <span class="math notranslate nohighlight">\(90^{\circ}\)</span> angles between them.
+The point of “complements” is that every <span class="math notranslate nohighlight">\(\x\)</span> can be split into a
+<em>row space component</em> <span class="math notranslate nohighlight">\(\x_r\)</span> and a <em>nullspace component</em> <span class="math notranslate nohighlight">\(\x_n\)</span>.
+When <span class="math notranslate nohighlight">\(A\)</span> multiplies <span class="math notranslate nohighlight">\(\x=\x_r=\x_n\)</span>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The nullspace omponent goes to zero: <span class="math notranslate nohighlight">\(A\x_n=\0\)</span>.</p></li>
+<li><p>The row space component goes to the column space: <span class="math notranslate nohighlight">\(A\x_r=A\x\)</span>.</p></li>
+</ul>
+</div></blockquote>
+<p><em>Every vector</em> <span class="math notranslate nohighlight">\(\b\)</span> <em>in the column space comes from one and only one vector</em> <span class="math notranslate nohighlight">\(\x_r\)</span> <em>in the row space</em>.</p>
+<p><strong>Proof</strong>: If <span class="math notranslate nohighlight">\(A\x_r=A\x^{\pr}_r\)</span>, the difference <span class="math notranslate nohighlight">\(\x_r-\x^{\pr}_r\)</span> is in the nullspace.
+It is also in the row space, where <span class="math notranslate nohighlight">\(\x_r\)</span> and <span class="math notranslate nohighlight">\(\x^{\pr}_r\)</span> came from.
+This difference must be the zero vector, because the nullspace and row space are perpendicular.
+Therefore <span class="math notranslate nohighlight">\(\x_r = \x^{\pr}_r\)</span>.</p>
+<p>There is an <span class="math notranslate nohighlight">\(r\)</span> by <span class="math notranslate nohighlight">\(r\)</span> invertible matrix hiding inside <span class="math notranslate nohighlight">\(A\)</span>, if we throw away the two nullspaces.
+<strong>From the row space to the column space</strong>, <span class="math notranslate nohighlight">\(A\)</span> <strong>is invertible</strong>.</p>
+<p>Every matrix can be diagonalized, when we choose the right bases for <span class="math notranslate nohighlight">\(\R^n\)</span> and <span class="math notranslate nohighlight">\(\R^m\)</span>.
+This <strong>Singular Value Decomposition</strong> has become extremely important in applications.</p>
+<p>A row of <span class="math notranslate nohighlight">\(A\)</span> can’t be in the nullspace of <span class="math notranslate nohighlight">\(A\)</span> (except for a zero row).
+The only vector in two orthogonal subspaces is the zero vector.
+<strong>If a vector</strong> <span class="math notranslate nohighlight">\(\v\)</span> <strong>is orthogonal to itself then</strong> <span class="math notranslate nohighlight">\(\v\)</span> <strong>is the zero vector</strong>.</p>
+</div>
+<div class="section" id="drawing-the-big-picture">
+<h2>Drawing the Big Picture<a class="headerlink" href="#drawing-the-big-picture" title="Permalink to this headline">¶</a></h2>
+<p>Refer to the textbook Page 199.</p>
+</div>
+<div class="section" id="combining-bases-from-subspaces">
+<h2>Combining Bases from Subspaces<a class="headerlink" href="#combining-bases-from-subspaces" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Any <span class="math notranslate nohighlight">\(n\)</span> independent vectors in <span class="math notranslate nohighlight">\(\R^n\)</span> must span <span class="math notranslate nohighlight">\(\R^n\)</span>. So they are a basis.</p></li>
+<li><p>Any <span class="math notranslate nohighlight">\(n\)</span> vectors that span <span class="math notranslate nohighlight">\(\R^n\)</span> must be independent. So they are a basis.</p></li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>If the <span class="math notranslate nohighlight">\(n\)</span> columns of <span class="math notranslate nohighlight">\(A\)</span> are independent, they space <span class="math notranslate nohighlight">\(\R^n\)</span>. So <span class="math notranslate nohighlight">\(A\x=\b\)</span> is solvable.</p></li>
+<li><p>If the <span class="math notranslate nohighlight">\(n\)</span> columns span <span class="math notranslate nohighlight">\(\R^n\)</span>, they are independent. So <span class="math notranslate nohighlight">\(A\x=\b\)</span> has only one solution.</p></li>
+</ul>
+</div>
+<p>Uniqueness implies existence and existence implies uniqueness.
+<strong>Then</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>is invertible</strong>.If there are no free variables, the solution <span class="math notranslate nohighlight">\(\x\)</span> is unique.
+There must be <span class="math notranslate nohighlight">\(n\)</span> pivot columns.
+Then back substitution solves <span class="math notranslate nohighlight">\(A\x=\b\)</span> (the solution exists).</p>
+<p>Starting in the opposite direction, suppose that <span class="math notranslate nohighlight">\(A\x=\b\)</span> can solved for
+every <span class="math notranslate nohighlight">\(\b\)</span> (<em>existence of solutions</em>).
+Then elimination produced no zero rows.
+There are <span class="math notranslate nohighlight">\(n\)</span> pivots and no free variables.
+The nullspace contains only <span class="math notranslate nohighlight">\(\x=\0\)</span> (<em>uniqueness of solutions</em>).</p>
+<p>With bases for the row space and the nullspace, we have <span class="math notranslate nohighlight">\(r+(n-r)=n\)</span> vectors.
+This is the right number.
+Those <span class="math notranslate nohighlight">\(n\)</span> vectors are independent.
+<em>Therefore they span</em> <span class="math notranslate nohighlight">\(\R^n\)</span>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Each <span class="math notranslate nohighlight">\(\x\)</span> is the sum <span class="math notranslate nohighlight">\(\x_r+\x_n\)</span> of a row space vector <span class="math notranslate nohighlight">\(\x_r\)</span> and a nullspace vector <span class="math notranslate nohighlight">\(\x_n\)</span>.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="chap4-2.html" class="btn btn-neutral float-right" title="Chapter 4.2 Projections" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index4.html" class="btn btn-neutral float-left" title="Chapter 4 Orthogonality" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Ziniu Yu.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

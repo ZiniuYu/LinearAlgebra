@@ -1,0 +1,463 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Chapter 6.5 Positive Definite Matrices &mdash; LinearAlgebra  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapter 7 The Singular Value Decomposition (SVD)" href="../chap7/index7.html" />
+    <link rel="prev" title="Chapter 6.4 Symmetric Matrices" href="chap6-4.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> LinearAlgebra
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../chap1/index1.html">Chapter 1 Introduction to Vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap2/index2.html">Chapter 2 Solving Linear Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap3/index3.html">Chapter 3 Vector Spaces and Subspaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap4/index4.html">Chapter 4 Orthogonality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap5/index5.html">Chapter 5 Determinants</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index6.html">Chapter 6 Eigenvalues and Eigenvectors</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="chap6-1.html">Chapter 6.1 Introduction to Eigenvalues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap6-2.html">Chapter 6.2 Diagonalizing a Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap6-3.html">Chapter 6.3 Systems of Differential Equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap6-4.html">Chapter 6.4 Symmetric Matrices</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 6.5 Positive Definite Matrices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#energy-based-definition">Energy-based Definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#positive-semidefinite-matrices">Positive Semidefinite Matrices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-ellipse-ax-2-2bxy-xy-2-1">The Ellipse <span class="math notranslate nohighlight">\(ax^2+2bxy+xy^2=1\)</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#important-application-test-for-a-minimum">Important Application: Test for a Minimum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#table-of-eigenvalues-and-eigenvectors">Table of Eigenvalues and Eigenvectors</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../chap7/index7.html">Chapter 7 The Singular Value Decomposition (SVD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">LinearAlgebra</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index6.html">Chapter 6 Eigenvalues and Eigenvectors</a> &raquo;</li>
+        
+      <li>Chapter 6.5 Positive Definite Matrices</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/chap6/chap6-5.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\newcommand{\bs}{\boldsymbol}
+\newcommand{\dp}{\displaystyle}
+\newcommand{\rm}{\mathrm}
+\newcommand{\pd}{\partial}\\\newcommand{\cd}{\cdot}
+\newcommand{\cds}{\cdots}
+\newcommand{\dds}{\ddots}
+\newcommand{\vds}{\vdots}
+\newcommand{\lv}{\lVert}
+\newcommand{\rv}{\rVert}
+\newcommand{\wh}{\widehat}\\\newcommand{\0}{\boldsymbol{0}}
+\newcommand{\a}{\boldsymbol{a}}
+\newcommand{\b}{\boldsymbol{b}}
+\newcommand{\e}{\boldsymbol{e}}
+\newcommand{\i}{\boldsymbol{i}}
+\newcommand{\j}{\boldsymbol{j}}
+\newcommand{\p}{\boldsymbol{p}}
+\newcommand{\q}{\boldsymbol{q}}
+\newcommand{\u}{\boldsymbol{u}}
+\newcommand{\v}{\boldsymbol{v}}
+\newcommand{\w}{\boldsymbol{w}}
+\newcommand{\x}{\boldsymbol{x}}
+\newcommand{\y}{\boldsymbol{y}}\\\newcommand{\A}{\boldsymbol{A}}
+\newcommand{\B}{\boldsymbol{B}}
+\newcommand{\C}{\boldsymbol{C}}
+\newcommand{\N}{\boldsymbol{N}}\\\newcommand{\R}{\boldsymbol{\mathrm{R}}}\\\newcommand{\ld}{\lambda}
+\newcommand{\Ld}{\Lambda}
+\newcommand{\sg}{\sigma}
+\newcommand{\Sg}{\Sigma}\\\newcommand{\bb}{\begin{bmatrix}}
+\newcommand{\eb}{\end{bmatrix}}
+\newcommand{\bv}{\begin{vmatrix}}
+\newcommand{\ev}{\end{vmatrix}}\\\newcommand{\im}{^{-1}}
+\newcommand{\pr}{^{\prime}}
+\newcommand{\ppr}{^{\prime\prime}}\end{aligned}\end{align} \]</div>
+<div class="section" id="chapter-6-5-positive-definite-matrices">
+<h1>Chapter 6.5 Positive Definite Matrices<a class="headerlink" href="#chapter-6-5-positive-definite-matrices" title="Permalink to this headline">¶</a></h1>
+<p>Symmetric matrices with all positive eigenvalues are called <strong>positive definite</strong>.</p>
+<p>Here are two goals of this section:</p>
+<ul class="simple">
+<li><p>To find <em>quick tests</em> on a symmetric matrix that guarantee <em>positive eigenvalues</em>.</p></li>
+<li><p>To explain important applications of positive definiteness.</p></li>
+</ul>
+<p>Every eigenvalue is real because the matrix is symmetric.</p>
+<p><strong>Start with 2 by 2. When does</strong> <span class="math notranslate nohighlight">\(S=\bb a&amp;b\\b&amp;c \eb\)</span> <strong>have</strong> <span class="math notranslate nohighlight">\(\ld_1&gt;0\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(\ld_2&gt;0\)</span>?</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Test: The eigenvalues of</strong> <span class="math notranslate nohighlight">\(S\)</span> <strong>are positive if and only if</strong> <span class="math notranslate nohighlight">\(a &gt; 0\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(ac-b^2&gt;0\)</span>.</p>
+</div>
+<p><em>Proof that the 2 by 2 test is passed when</em> <span class="math notranslate nohighlight">\(\ld_1&gt;0\)</span> <em>and</em> <span class="math notranslate nohighlight">\(\ld_2&gt;0\)</span>.
+Their product <span class="math notranslate nohighlight">\(\ld_1\ld_2\)</span> is the determinant so <span class="math notranslate nohighlight">\(ac-b^2&gt;0\)</span>.
+Their sum <span class="math notranslate nohighlight">\(\ld_1+\ld_2\)</span> is the trace so <span class="math notranslate nohighlight">\(a+c&gt;0\)</span>.
+Then <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(c\)</span> are both positive (if <span class="math notranslate nohighlight">\(a\)</span> or <span class="math notranslate nohighlight">\(c\)</span> is not positive, <span class="math notranslate nohighlight">\(ac-b^2&gt;0\)</span> will fail).</p>
+<p>This test uses the 1 by 1 determinant <span class="math notranslate nohighlight">\(a\)</span> and the 2 by 2 determinant <span class="math notranslate nohighlight">\(ac-b^2\)</span>.
+When <span class="math notranslate nohighlight">\(S\)</span> is 3 by 3, <span class="math notranslate nohighlight">\(\det S&gt;0\)</span> is the third part of the test.
+The next test requires <em>postive pivots</em>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Test: The eigenvalues of</strong> <span class="math notranslate nohighlight">\(S\)</span> <strong>are positive if and only if the pivots are positive</strong>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(a&gt;0\)</span> and <span class="math notranslate nohighlight">\(\dp\frac{ac-b^2}{a}&gt;0\xrightarrow[\text{world}]{\text{hello}}\)</span>.</p></li>
+</ul>
+</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb a&amp;b\\b&amp;c \eb \xrightarrow[\rm{The\ multiplier\ is\ }b/a]
+{\rm{The\ first\ pivot\ is\ }a}\bb a&amp;b\\0&amp;c-\frac{b}{a}b \eb.\end{split}\]</div>
+<p>This connects two big parts of linear algebra.
+<strong>Positive eigenvalues mean positive pivots and vice versa</strong>.
+Each pivot is a ratio of upper left determinant.
+The pivots give a quick test for <span class="math notranslate nohighlight">\(\ld&gt;0\)</span>, and they are a lot faster to compute than the eigenvalues.</p>
+<div class="section" id="energy-based-definition">
+<h2>Energy-based Definition<a class="headerlink" href="#energy-based-definition" title="Permalink to this headline">¶</a></h2>
+<p>From <span class="math notranslate nohighlight">\(S\x=\ld\x\)</span>, nultiply by <span class="math notranslate nohighlight">\(\x^T\)</span> to get <span class="math notranslate nohighlight">\(\x^TS\x=\ld\x^T\x\)</span>.
+The right side is a positive <span class="math notranslate nohighlight">\(\ld\)</span> times a positive number <span class="math notranslate nohighlight">\(\x^T\x=\lv\x\rv^2\)</span>.
+So the left side <span class="math notranslate nohighlight">\(\x^TS\x\)</span> is positive for any eigenvector.</p>
+<p><em>Important point</em>: The new idea is that <span class="math notranslate nohighlight">\(\x^TS\x\)</span>
+<strong>is positive for all nonzero vectors</strong> <span class="math notranslate nohighlight">\(\x\)</span>, not just the eigenvectors.
+In many application this number <span class="math notranslate nohighlight">\(\x^TS\x\)</span> (or <span class="math notranslate nohighlight">\(\frac{1}{2}\x^TS\x\)</span> ) is the <strong>energy</strong> in the system.
+The requirement of positive energy gives <em>another definition</em> of a positive definite matrix.</p>
+<p>Eigenvalues and pivots are two equivalent ways to test the new requirement <span class="math notranslate nohighlight">\(\x^TS\x&gt;0\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Definition</strong>: <span class="math notranslate nohighlight">\(S\)</span> <strong>is positive definite if</strong> <span class="math notranslate nohighlight">\(\x^TS\x&gt;0\)</span> <strong>for every nonzero vector</strong> <span class="math notranslate nohighlight">\(\x\)</span>:</p>
+<ul class="simple">
+<li><p><strong>2 by 2</strong>: <span class="math notranslate nohighlight">\(\x^TS\x=\bb x&amp;y \eb\bb a&amp;b\\b&amp;c \eb\bb x\\y \eb=ax^2+2bxy+cy^2&gt;0\)</span>.</p></li>
+</ul>
+</div>
+<p>The four entries <span class="math notranslate nohighlight">\(a,b,b,c\)</span> give the four parts of <span class="math notranslate nohighlight">\(\x^TS\x\)</span>.
+From <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(c\)</span> come the pure squares <span class="math notranslate nohighlight">\(ax^2\)</span> and <span class="math notranslate nohighlight">\(xy^2\)</span>.
+From <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(b\)</span> off the diagonal come the cross terms <span class="math notranslate nohighlight">\(bxy\)</span> and <span class="math notranslate nohighlight">\(byx\)</span> (the same).
+Adding those four parts gives <span class="math notranslate nohighlight">\(\x^TS\x\)</span>.
+This energy-based definition leads to a basic fact:</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>If</strong> <span class="math notranslate nohighlight">\(S\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(T\)</span> <strong>are symmetric positive deffinite</strong>, <strong>so is</strong> <span class="math notranslate nohighlight">\(S+T\)</span>.</p>
+</div>
+<p><strong>Reason</strong>, <span class="math notranslate nohighlight">\(\x^T(S+T)\x\)</span> is simply <span class="math notranslate nohighlight">\(\x^TS\x+\x^T\x\)</span>.
+Those two terms are positive (for <span class="math notranslate nohighlight">\(\x\neq\0\)</span>) so <span class="math notranslate nohighlight">\(S+T\)</span> is also positive definite.</p>
+<p><span class="math notranslate nohighlight">\(\x^TS\x\)</span> also connects with our final way to recognize a positive definite matrix.
+For any matrix <span class="math notranslate nohighlight">\(A\)</span>, possibly rectangular, we know that <span class="math notranslate nohighlight">\(S=A^TA\)</span> is square and symmetric.</p>
+<blockquote>
+<div><p><strong>Test: If the columns of</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>are independent, then</strong> <span class="math notranslate nohighlight">\(S=A^TA\)</span> <strong>is positive definite</strong>.</p>
+</div></blockquote>
+<p><span class="math notranslate nohighlight">\(\x^TS\x=\x^TA^TA\x=(A\x)^T(A\x)=\lv A\x \rv^2\)</span>.
+The vector <span class="math notranslate nohighlight">\(A\x\)</span> is not zero when <span class="math notranslate nohighlight">\(\x\neq\0\)</span> (this is the meaning of independent columns).
+Then <span class="math notranslate nohighlight">\(\x^TS\x\)</span> is the positive number <span class="math notranslate nohighlight">\(\lv A\x \rv^2\)</span> and the matrix <span class="math notranslate nohighlight">\(S\)</span> is positive definite.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>When a symmetric matrix</strong> <span class="math notranslate nohighlight">\(S\)</span> <strong>has one of these five properties, it has them all:</strong></p>
+<ol class="arabic simple">
+<li><p>All <span class="math notranslate nohighlight">\(n\)</span> <strong>pivots</strong> of <span class="math notranslate nohighlight">\(S\)</span> are positive.</p></li>
+<li><p>All <span class="math notranslate nohighlight">\(n\)</span> <strong>upper left determinants</strong> are positive.</p></li>
+<li><p>All <span class="math notranslate nohighlight">\(n\)</span> <strong>eigenvalues</strong> of <span class="math notranslate nohighlight">\(S\)</span> are positive.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\x^TS\x\)</span> is positive except at <span class="math notranslate nohighlight">\(\x=\0\)</span>.
+This is the <strong>energy-based</strong> definition.</p></li>
+<li><p><span class="math notranslate nohighlight">\(S\)</span> eequals <span class="math notranslate nohighlight">\(A^TA\)</span> for a matrix <span class="math notranslate nohighlight">\(A\)</span> with <strong>independent columns</strong>.</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="positive-semidefinite-matrices">
+<h2>Positive Semidefinite Matrices<a class="headerlink" href="#positive-semidefinite-matrices" title="Permalink to this headline">¶</a></h2>
+<p>Often we are at the edge of positive definiteness.
+The determinant is zero.
+The smallest eigenvalue is zero.
+The energy in its eigenvector is <span class="math notranslate nohighlight">\(\x^TS\x=\x^T0\x=0\)</span>.
+These matrices on the edge are called <em>positive semidefinite</em>.</p>
+<p>The matrix <span class="math notranslate nohighlight">\(S=\bb 1&amp;2\\2&amp;4 \eb\)</span> factors into <span class="math notranslate nohighlight">\(A^TA\)</span> with <strong>dependent columns</strong> in <span class="math notranslate nohighlight">\(A\)</span>:</p>
+<p><strong>Dependent columns in</strong> <span class="math notranslate nohighlight">\(A\)</span>; <strong>Positive semidefinite</strong> <span class="math notranslate nohighlight">\(S\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb 1&amp;2\\2&amp;4 \eb=\bb 1&amp;0\\2&amp;0 \eb\bb 1&amp;2\\0&amp;0 \eb=A^TA.\end{split}\]</div>
+<p>If 4 is increased by any small number, the matrix <span class="math notranslate nohighlight">\(S\)</span> will become positive definite.</p>
+<p>Positive semidefinite matrices have all <span class="math notranslate nohighlight">\(\ld\geq 0\)</span> and all <span class="math notranslate nohighlight">\(\x^TS\x\geq 0\)</span>.
+Those weak inequalities (<span class="math notranslate nohighlight">\(\geq\)</span> <strong>instead of</strong> <span class="math notranslate nohighlight">\(&gt;\)</span>) include positive
+definite <span class="math notranslate nohighlight">\(S\)</span> and also the singular matrices at the edge.</p>
+</div>
+<div class="section" id="the-ellipse-ax-2-2bxy-xy-2-1">
+<h2>The Ellipse <span class="math notranslate nohighlight">\(ax^2+2bxy+xy^2=1\)</span><a class="headerlink" href="#the-ellipse-ax-2-2bxy-xy-2-1" title="Permalink to this headline">¶</a></h2>
+<p>Think of a tilted ellipse <span class="math notranslate nohighlight">\(\x^TS\x=1\)</span>.
+Its center is <span class="math notranslate nohighlight">\((0,0)\)</span>.
+Turn it to line up with the coordinate axes (<span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> axes).
+These two pictures show the geometry behind the factorization <span class="math notranslate nohighlight">\(S=Q\Ld Q\im=Q\Ld Q^T\)</span>:</p>
+<ol class="arabic simple">
+<li><p>The tilted ellipse is associated with <span class="math notranslate nohighlight">\(S\)</span>.
+Its equation is <span class="math notranslate nohighlight">\(\x^TS\x=1\)</span>.</p></li>
+<li><p>The lined-up ellipse is associated with <span class="math notranslate nohighlight">\(\Ld\)</span>.
+Its equation is <span class="math notranslate nohighlight">\(\bs{X}^T\Ld\bs{X}=1\)</span>.</p></li>
+<li><p>The rotation matrix that lines up the ellipse is the eigenvector matrix <span class="math notranslate nohighlight">\(Q\)</span>.</p></li>
+</ol>
+<p><strong>The axes of the tilted ellipse point along those eigenvectors</strong>.
+This explains why <span class="math notranslate nohighlight">\(S=Q\Ld Q^T\)</span> is called the “principal axis theorem”–it displays the axes.
+Not only the axis directions (from the eigenvectors) but also the axis lengths (from the eigenvalues).
+Notice: The <em>bigger</em> eigenvalue <span class="math notranslate nohighlight">\(\ld_1\)</span> gives the <em>shorter</em> axis.</p>
+<p>In the <span class="math notranslate nohighlight">\(xy\)</span> system, the axes are along the eigenvectors of <span class="math notranslate nohighlight">\(S\)</span>.
+In the <span class="math notranslate nohighlight">\(XY\)</span> system, the <strong>axes are along the eigenvectors of</strong> <span class="math notranslate nohighlight">\(\Ld\)</span>–the coordinate axes.
+All comes from <span class="math notranslate nohighlight">\(S=Q\Ld Q^T\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(S=Q\Ld Q^T\)</span> is positive definite when all <span class="math notranslate nohighlight">\(\ld_i&gt;0\)</span>.
+The graph of <span class="math notranslate nohighlight">\(\x^TS\x=1\)</span> is an ellipse:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\bb x&amp;y \eb Q\Ld Q^T\bb x\\y \eb=\bb X&amp;Y \eb\Ld\bb X\\Y \eb=\ld_1X^2+\ld_2Y^2=1\)</span>.</p></li>
+</ul>
+<p>The axes point along eigenvectors of <span class="math notranslate nohighlight">\(S\)</span>.
+The half-lengths are <span class="math notranslate nohighlight">\(1/\sqrt{\ld_1}\)</span> and <span class="math notranslate nohighlight">\(1/\sqrt{\ld_2}\)</span>.</p>
+</div>
+<p><span class="math notranslate nohighlight">\(S=I\)</span> gives the circle <span class="math notranslate nohighlight">\(x^2+y^2=1\)</span>.
+If one eigenvalue is negative, the ellipse changes to a <em>hyperbola8.
+The sum of squares becomes a *difference of squares</em>.
+For a negative definite matrix like <span class="math notranslate nohighlight">\(S=-I\)</span>, with both <span class="math notranslate nohighlight">\(\ld\)</span>’s
+negative, the graph of <span class="math notranslate nohighlight">\(-x^2-y^2=1\)</span> has no points at all.</p>
+<p>If <span class="math notranslate nohighlight">\(S\)</span> is <span class="math notranslate nohighlight">\(n\)</span> by <span class="math notranslate nohighlight">\(n\)</span>, <span class="math notranslate nohighlight">\(\x^TS\x=1\)</span> is an “ellipsoid” in <span class="math notranslate nohighlight">\(\R^n\)</span>.
+Its axes are the eigenvectors of <span class="math notranslate nohighlight">\(S\)</span>.</p>
+</div>
+<div class="section" id="important-application-test-for-a-minimum">
+<h2>Important Application: Test for a Minimum<a class="headerlink" href="#important-application-test-for-a-minimum" title="Permalink to this headline">¶</a></h2>
+<p>For <span class="math notranslate nohighlight">\(f(x)\)</span>, the test for a minimum comes from calculus: <span class="math notranslate nohighlight">\(df/dx\)</span> is zero and <span class="math notranslate nohighlight">\(d^2f/dx^2&gt;0\)</span>.
+Two variables in <span class="math notranslate nohighlight">\(F(x,y)\)</span> produce a symmetric matrix <span class="math notranslate nohighlight">\(S\)</span>.
+It contains <em>four second derivatives</em>.
+<strong>Positive</strong> <span class="math notranslate nohighlight">\(d^2f/dx^2\)</span> <strong>changes to positive definite</strong> <span class="math notranslate nohighlight">\(S\)</span>:</p>
+<p><strong>Second derivatives</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}S=\bb \pd^2F/\pd x^2&amp;\pd^2F/\pd x\pd y\\\pd^2F/\pd y\pd x&amp;\pd^2F/\pd y^2 \eb.\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(F(x,y)\)</span> <strong>has a minimum if</strong> <span class="math notranslate nohighlight">\(\pd F/\pd x=\pd F/\pd y=0\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(S\)</span> <strong>is positive definite</strong>.</p>
+<p>Reason: <span class="math notranslate nohighlight">\(S\)</span> reveals the all-important terms <span class="math notranslate nohighlight">\(ax^2+2bxy+cy^2\)</span> near <span class="math notranslate nohighlight">\((x,y)=(0,0)\)</span>.
+The second derivatives of <span class="math notranslate nohighlight">\(F\)</span> are <span class="math notranslate nohighlight">\(2a,2b,2b,2c\)</span>.
+For <span class="math notranslate nohighlight">\(F(x,y,z)\)</span> the matrix <span class="math notranslate nohighlight">\(S\)</span> will be 3 by 3.</p>
+</div>
+<div class="section" id="table-of-eigenvalues-and-eigenvectors">
+<h2>Table of Eigenvalues and Eigenvectors<a class="headerlink" href="#table-of-eigenvalues-and-eigenvectors" title="Permalink to this headline">¶</a></h2>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 40%" />
+<col style="width: 25%" />
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Symmetric</strong>: <span class="math notranslate nohighlight">\(S^T=S=Q\Ld Q^T\)</span></p></td>
+<td><p>real eigenvalues</p></td>
+<td><p>orthogonal <span class="math notranslate nohighlight">\(\x_i^T\x_j=0\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Orthogonal</strong>: <span class="math notranslate nohighlight">\(Q^T=Q\im\)</span></p></td>
+<td><p>all <span class="math notranslate nohighlight">\(|\ld|=1\)</span></p></td>
+<td><p>orthogonal <span class="math notranslate nohighlight">\(\bar{\x}_i^T\x_j=0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Skew-symmetric</strong>: <span class="math notranslate nohighlight">\(A^T=-A\)</span></p></td>
+<td><p>imaginary <span class="math notranslate nohighlight">\(\ld\)</span>’s</p></td>
+<td><p>orthogonal <span class="math notranslate nohighlight">\(\bar{\x}_i^T\x_j=0\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Complex Hermitian</strong>: <span class="math notranslate nohighlight">\(\bar{S}^T=S\)</span></p></td>
+<td><p>real <span class="math notranslate nohighlight">\(\ld\)</span>’s</p></td>
+<td><p>orthogonal <span class="math notranslate nohighlight">\(\bar{\x}_i^T\x_j=0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Positive Definite</strong>: <span class="math notranslate nohighlight">\(\x^TS\x&gt;0\)</span></p></td>
+<td><p>all <span class="math notranslate nohighlight">\(\ld&gt;0\)</span></p></td>
+<td><p>orthogonal since <span class="math notranslate nohighlight">\(S^T=S\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Markov</strong>: <span class="math notranslate nohighlight">\(m_{ij}&gt;0, \sum_{i=1}^nm_{ij}=1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\ld_{\rm{max}}=1\)</span></p></td>
+<td><p>steady state <span class="math notranslate nohighlight">\(\x&gt;0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Similar</strong>: <span class="math notranslate nohighlight">\(A=BCB\im\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\ld(A)=\ld(C)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(B\)</span> times eigenvector of <span class="math notranslate nohighlight">\(C\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Projection</strong>: <span class="math notranslate nohighlight">\(P=P^2=P^T\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\ld=1;0\)</span></p></td>
+<td><p>column space; nullspace</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../chap7/index7.html" class="btn btn-neutral float-right" title="Chapter 7 The Singular Value Decomposition (SVD)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="chap6-4.html" class="btn btn-neutral float-left" title="Chapter 6.4 Symmetric Matrices" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Ziniu Yu.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

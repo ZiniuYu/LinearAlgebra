@@ -100,7 +100,11 @@
 <li class="toctree-l2"><a class="reference internal" href="chap2-7.html">Chapter 2.7 Transposes and Permutations</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../chap3/index3.html">Chapter 3 Vector Spacese and Subspaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap3/index3.html">Chapter 3 Vector Spaces and Subspaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap4/index4.html">Chapter 4 Orthogonality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap5/index5.html">Chapter 5 Determinants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap6/index6.html">Chapter 6 Eigenvalues and Eigenvectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap7/index7.html">Chapter 7 The Singular Value Decomposition (SVD)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
 </ul>
 
@@ -172,20 +176,37 @@
   <div class="math notranslate nohighlight">
 \[ \begin{align}\begin{aligned}\newcommand{\bs}{\boldsymbol}
 \newcommand{\dp}{\displaystyle}
-\newcommand{\rm}{\mathrm}\\\newcommand{\cd}{\cdot}
+\newcommand{\rm}{\mathrm}
+\newcommand{\pd}{\partial}\\\newcommand{\cd}{\cdot}
 \newcommand{\cds}{\cdots}
+\newcommand{\dds}{\ddots}
+\newcommand{\vds}{\vdots}
 \newcommand{\lv}{\lVert}
-\newcommand{\rv}{\rVert}\\\newcommand{\0}{\boldsymbol{0}}
+\newcommand{\rv}{\rVert}
+\newcommand{\wh}{\widehat}\\\newcommand{\0}{\boldsymbol{0}}
+\newcommand{\a}{\boldsymbol{a}}
 \newcommand{\b}{\boldsymbol{b}}
 \newcommand{\e}{\boldsymbol{e}}
 \newcommand{\i}{\boldsymbol{i}}
 \newcommand{\j}{\boldsymbol{j}}
+\newcommand{\p}{\boldsymbol{p}}
+\newcommand{\q}{\boldsymbol{q}}
 \newcommand{\u}{\boldsymbol{u}}
 \newcommand{\v}{\boldsymbol{v}}
 \newcommand{\w}{\boldsymbol{w}}
 \newcommand{\x}{\boldsymbol{x}}
-\newcommand{\y}{\boldsymbol{y}}\\\newcommand{\N}{\boldsymbol{N}}\\\newcommand{\R}{\boldsymbol{\mathrm{R}}}\\\newcommand{\bb}{\begin{bmatrix}}
-\newcommand{\eb}{\end{bmatrix}}\\\newcommand{\im}{^{-1}}\end{aligned}\end{align} \]</div>
+\newcommand{\y}{\boldsymbol{y}}\\\newcommand{\A}{\boldsymbol{A}}
+\newcommand{\B}{\boldsymbol{B}}
+\newcommand{\C}{\boldsymbol{C}}
+\newcommand{\N}{\boldsymbol{N}}\\\newcommand{\R}{\boldsymbol{\mathrm{R}}}\\\newcommand{\ld}{\lambda}
+\newcommand{\Ld}{\Lambda}
+\newcommand{\sg}{\sigma}
+\newcommand{\Sg}{\Sigma}\\\newcommand{\bb}{\begin{bmatrix}}
+\newcommand{\eb}{\end{bmatrix}}
+\newcommand{\bv}{\begin{vmatrix}}
+\newcommand{\ev}{\end{vmatrix}}\\\newcommand{\im}{^{-1}}
+\newcommand{\pr}{^{\prime}}
+\newcommand{\ppr}{^{\prime\prime}}\end{aligned}\end{align} \]</div>
 <div class="section" id="chapter-2-solving-linear-equations">
 <h1>Chapter 2 Solving Linear Equations<a class="headerlink" href="#chapter-2-solving-linear-equations" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
@@ -205,7 +226,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="chap2-3.html">Chapter 2.3 Elimination Using Matrices</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="chap2-3.html#matrix-times-vectors-and-ax-b">Matrix times Vectors and <span class="math notranslate nohighlight">\(Ax = b\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap2-3.html#matrix-times-vectors-and-a-boldsymbol-x-boldsymbol-b">Matrix times Vectors and <span class="math notranslate nohighlight">\(A\boldsymbol{x} = \boldsymbol{b}\)</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="chap2-3.html#the-matrix-form-of-one-elimination-step">The Matrix Form of One Elimination Step</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chap2-3.html#matrix-multiplication">Matrix Multiplication</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chap2-3.html#the-matrix-p-ij-for-a-row-exchange">The Matrix <span class="math notranslate nohighlight">\(P_{ij}\)</span> for a Row Exchange</a></li>

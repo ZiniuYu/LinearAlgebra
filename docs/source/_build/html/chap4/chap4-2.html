@@ -1,0 +1,464 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Chapter 4.2 Projections &mdash; LinearAlgebra  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapter 4.3 Least Squares Approximations" href="chap4-3.html" />
+    <link rel="prev" title="Chapter 4.1 Orthogonality of the Four Subspaces" href="chap4-1.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> LinearAlgebra
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../chap1/index1.html">Chapter 1 Introduction to Vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap2/index2.html">Chapter 2 Solving Linear Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap3/index3.html">Chapter 3 Vector Spaces and Subspaces</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index4.html">Chapter 4 Orthogonality</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="chap4-1.html">Chapter 4.1 Orthogonality of the Four Subspaces</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 4.2 Projections</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#projection-onto-a-line">Projection Onto a Line</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#projection-onto-a-subspace">Projection Onto a Subspace</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="chap4-3.html">Chapter 4.3 Least Squares Approximations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap4-4.html">Chapter 4.4 Orthonormal Bases and Gram-Schmidt</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../chap5/index5.html">Chapter 5 Determinants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap6/index6.html">Chapter 6 Eigenvalues and Eigenvectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap7/index7.html">Chapter 7 The Singular Value Decomposition (SVD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">LinearAlgebra</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index4.html">Chapter 4 Orthogonality</a> &raquo;</li>
+        
+      <li>Chapter 4.2 Projections</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/chap4/chap4-2.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\newcommand{\bs}{\boldsymbol}
+\newcommand{\dp}{\displaystyle}
+\newcommand{\rm}{\mathrm}
+\newcommand{\pd}{\partial}\\\newcommand{\cd}{\cdot}
+\newcommand{\cds}{\cdots}
+\newcommand{\dds}{\ddots}
+\newcommand{\vds}{\vdots}
+\newcommand{\lv}{\lVert}
+\newcommand{\rv}{\rVert}
+\newcommand{\wh}{\widehat}\\\newcommand{\0}{\boldsymbol{0}}
+\newcommand{\a}{\boldsymbol{a}}
+\newcommand{\b}{\boldsymbol{b}}
+\newcommand{\e}{\boldsymbol{e}}
+\newcommand{\i}{\boldsymbol{i}}
+\newcommand{\j}{\boldsymbol{j}}
+\newcommand{\p}{\boldsymbol{p}}
+\newcommand{\q}{\boldsymbol{q}}
+\newcommand{\u}{\boldsymbol{u}}
+\newcommand{\v}{\boldsymbol{v}}
+\newcommand{\w}{\boldsymbol{w}}
+\newcommand{\x}{\boldsymbol{x}}
+\newcommand{\y}{\boldsymbol{y}}\\\newcommand{\A}{\boldsymbol{A}}
+\newcommand{\B}{\boldsymbol{B}}
+\newcommand{\C}{\boldsymbol{C}}
+\newcommand{\N}{\boldsymbol{N}}\\\newcommand{\R}{\boldsymbol{\mathrm{R}}}\\\newcommand{\ld}{\lambda}
+\newcommand{\Ld}{\Lambda}
+\newcommand{\sg}{\sigma}
+\newcommand{\Sg}{\Sigma}\\\newcommand{\bb}{\begin{bmatrix}}
+\newcommand{\eb}{\end{bmatrix}}
+\newcommand{\bv}{\begin{vmatrix}}
+\newcommand{\ev}{\end{vmatrix}}\\\newcommand{\im}{^{-1}}
+\newcommand{\pr}{^{\prime}}
+\newcommand{\ppr}{^{\prime\prime}}\end{aligned}\end{align} \]</div>
+<div class="section" id="chapter-4-2-projections">
+<h1>Chapter 4.2 Projections<a class="headerlink" href="#chapter-4-2-projections" title="Permalink to this headline">¶</a></h1>
+<p>The projection of <span class="math notranslate nohighlight">\(\b\)</span> is <span class="math notranslate nohighlight">\(P\b\)</span>.</p>
+<ol class="arabic simple">
+<li><p>What are the projection of <span class="math notranslate nohighlight">\(\b=(2,3,4)\)</span> onto the <span class="math notranslate nohighlight">\(z\)</span> axis and the <span class="math notranslate nohighlight">\(xy\)</span> plane?</p></li>
+<li><p>What matrices <span class="math notranslate nohighlight">\(P_1\)</span> and <span class="math notranslate nohighlight">\(P_2\)</span> produce those projections onto a line and a plane?</p></li>
+</ol>
+<p>When <span class="math notranslate nohighlight">\(\b\)</span> is projected onto a line, <strong>its projection</strong> <span class="math notranslate nohighlight">\(p\)</span> <strong>is the part of</strong> <span class="math notranslate nohighlight">\(\b\)</span> <strong>along that line</strong>.
+If <span class="math notranslate nohighlight">\(\b\)</span> is projected onto a plane, <span class="math notranslate nohighlight">\(\p\)</span> is the part in that plane.
+<strong>The projection</strong> <span class="math notranslate nohighlight">\(\p\)</span> <strong>is</strong> <span class="math notranslate nohighlight">\(P\b\)</span>.</p>
+<p>The projection matrix <span class="math notranslate nohighlight">\(P\)</span> multiplies <span class="math notranslate nohighlight">\(\b\)</span> to give <span class="math notranslate nohighlight">\(\p\)</span>.</p>
+<p>The projection onto the <span class="math notranslate nohighlight">\(z\)</span> axis we call <span class="math notranslate nohighlight">\(\p_1\)</span>.
+The second projection drops straight down to the <span class="math notranslate nohighlight">\(xy\)</span> plane.
+Start with <span class="math notranslate nohighlight">\(\b=(2,3,4)\)</span>.
+The projection across gives <span class="math notranslate nohighlight">\(\p_1=(0,0,4)\)</span>.
+The projection down gives <span class="math notranslate nohighlight">\(\p_2=(2,3,0)\)</span>.
+Those are the parts of <span class="math notranslate nohighlight">\(\b\)</span> along the <span class="math notranslate nohighlight">\(z\)</span> axis and in the <span class="math notranslate nohighlight">\(xy\)</span> plane.</p>
+<p><strong>Projection Matirx</strong> Onto the <span class="math notranslate nohighlight">\(z\)</span> axis:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}P_1 = \bb 0&amp;0&amp;0\\0&amp;0&amp;0\\0&amp;0&amp;1 \eb.\end{split}\]</div>
+<p><strong>Projection Matirx</strong> Onto the <span class="math notranslate nohighlight">\(xy\)</span> plane:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}P_2 = \bb 1&amp;0&amp;0\\0&amp;1&amp;0\\0&amp;0&amp;0 \eb.\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(P_1\)</span> picks out the <span class="math notranslate nohighlight">\(z\)</span> component of every vector.
+<span class="math notranslate nohighlight">\(P_2\)</span> picks out the <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> components.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\p_1=P_1\b=\bb 0&amp;0&amp;0\\0&amp;0&amp;0\\0&amp;0&amp;1 \eb\bb x\\y\\z \eb=\bb 0\\0\\z \eb\quad
+\p_2=P_2\b=\bb 1&amp;0&amp;0\\0&amp;1&amp;0\\0&amp;0&amp;0 \eb\bb x\\y\\z \eb=\bb x\\y\\0 \eb.\end{split}\]</div>
+<p>In this case the projections <span class="math notranslate nohighlight">\(p_1\)</span> and <span class="math notranslate nohighlight">\(p_2\)</span> are perpendicular.
+The <span class="math notranslate nohighlight">\(xy\)</span> plane and the <span class="math notranslate nohighlight">\(z\)</span> axis are <strong>orthogonal subspaces</strong>.
+More than just orthogonal, the line and plane are <strong>orthogonal complements</strong>.
+The projections <span class="math notranslate nohighlight">\(\p_1\)</span> and <span class="math notranslate nohighlight">\(\p_2\)</span> are exactly those two parts of <span class="math notranslate nohighlight">\(\b\)</span>:</p>
+<ul class="simple">
+<li><p>The vectors give <span class="math notranslate nohighlight">\(\p_1+\p_2=\b\)</span>.</p></li>
+<li><p>The matrices give <span class="math notranslate nohighlight">\(P_1+P_2=I\)</span>.</p></li>
+</ul>
+<p>Our problem is <strong>to project any</strong> <span class="math notranslate nohighlight">\(\b\)</span> <strong>onto the column space of any</strong> <span class="math notranslate nohighlight">\(m\)</span> <strong>by</strong> <span class="math notranslate nohighlight">\(n\)</span> <strong>matrix</strong>.
+Start with a line (dimension <span class="math notranslate nohighlight">\(n=1\)</span>).
+The matrix <span class="math notranslate nohighlight">\(A\)</span> will have only one column.
+Call it <span class="math notranslate nohighlight">\(\a\)</span>.</p>
+<div class="section" id="projection-onto-a-line">
+<h2>Projection Onto a Line<a class="headerlink" href="#projection-onto-a-line" title="Permalink to this headline">¶</a></h2>
+<p>A line goes through the origin in the direction of <span class="math notranslate nohighlight">\(\a=(a_1,\cds,a_m)\)</span>.
+Along that line, we want the point <span class="math notranslate nohighlight">\(\p\)</span> closest to <span class="math notranslate nohighlight">\(\b=(b_1,\cds,b_m)\)</span>.
+The key to projection is orthogonality: <strong>The line from</strong> <span class="math notranslate nohighlight">\(\b\)</span> <strong>to</strong>
+<span class="math notranslate nohighlight">\(\p\)</span> <strong>is perpendicular to the vector</strong> <span class="math notranslate nohighlight">\(\a\)</span>.
+We now compute <span class="math notranslate nohighlight">\(\p\)</span> by algebra.</p>
+<p>The projection <span class="math notranslate nohighlight">\(\p\)</span> will be some multiple of <span class="math notranslate nohighlight">\(\a\)</span>.
+Call it <span class="math notranslate nohighlight">\(\p=\wh{x}\a=\)</span> “<span class="math notranslate nohighlight">\(x\)</span> hat” times <span class="math notranslate nohighlight">\(\a\)</span>.
+Computing this number <span class="math notranslate nohighlight">\(\wh{x}\)</span> will give the vector <span class="math notranslate nohighlight">\(\p\)</span>.
+Then from the formula for <span class="math notranslate nohighlight">\(\p\)</span>, we will read off the projection matrix <span class="math notranslate nohighlight">\(P\)</span>.
+These three steps will lead to all projection matrices: <strong>find</strong> <span class="math notranslate nohighlight">\(\wh{x}\)</span>,
+<strong>then find the vector</strong> <span class="math notranslate nohighlight">\(\p\)</span>, <strong>then find the matrix</strong> <span class="math notranslate nohighlight">\(P\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\b-\p\)</span> is the “error” <span class="math notranslate nohighlight">\(\e=\b-\wh{x}\a\)</span>.
+It is perpendicular to <span class="math notranslate nohighlight">\(\a\)</span>–this will determine <span class="math notranslate nohighlight">\(\wh{x}\)</span>.
+Use the fact that <span class="math notranslate nohighlight">\(\b-\wh{x}\a\)</span> <strong>is perpendicular to</strong> <span class="math notranslate nohighlight">\(\a\)</span> when their dot product is zero:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Projecting <span class="math notranslate nohighlight">\(\b\)</span> onto <span class="math notranslate nohighlight">\(\a\)</span> with error <span class="math notranslate nohighlight">\(\e=\b-\wh{x}\a\)</span>:
+<span class="math notranslate nohighlight">\(\a\cd(\b-\wh{x}\a)=0\)</span> or <span class="math notranslate nohighlight">\(\a\cd\b-\wh{x}\a\cd\a=0\)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\dp\wh{x}=\frac{\a\cd\b}{\a\cd\a}=\frac{\a^T\b}{\a^T\a}\)</span>.</p></li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>The projection of</strong> <span class="math notranslate nohighlight">\(\b\)</span> <strong>onto the line through</strong> <span class="math notranslate nohighlight">\(\a\)</span>
+<strong>is the vector</strong>: <span class="math notranslate nohighlight">\(\dp\p=\wh{x}\a=\frac{\a^T\b}{\a^T\a}\a\)</span>.</p>
+<ul class="simple">
+<li><p>Special case 1: If <span class="math notranslate nohighlight">\(\b=\a\)</span> then <span class="math notranslate nohighlight">\(\wh{x}=1\)</span>. The projection of <span class="math notranslate nohighlight">\(\a\)</span> onto <span class="math notranslate nohighlight">\(\a\)</span> is itself. <span class="math notranslate nohighlight">\(P\a=\a\)</span>.</p></li>
+<li><p>Special case 2: If <span class="math notranslate nohighlight">\(\b\)</span> is perpendicular to <span class="math notranslate nohighlight">\(\a\)</span> then <span class="math notranslate nohighlight">\(\a^T\b=0\)</span>. The projection is <span class="math notranslate nohighlight">\(\p=\0\)</span>.</p></li>
+</ul>
+</div>
+<p>Look at the right triangle of <span class="math notranslate nohighlight">\(\b,\p,\e\)</span>.
+The vector <span class="math notranslate nohighlight">\(\b\)</span> is split into two parts–its component along the line is
+<span class="math notranslate nohighlight">\(\p\)</span>, its perpendicular part is <span class="math notranslate nohighlight">\(\e\)</span>.
+Those two sides <span class="math notranslate nohighlight">\(\p\)</span> and <span class="math notranslate nohighlight">\(\e\)</span> have length
+<span class="math notranslate nohighlight">\(\lv\p\rv=\lv\b\rv\cos\theta\)</span> and <span class="math notranslate nohighlight">\(\lv\e\rv=\lv\b\rv\sin\theta\)</span>.
+Trigonometry matches the dot product:</p>
+<div class="math notranslate nohighlight">
+\[\p=\frac{\a^T\b}{\a^T\a}\a\rm{\ has\ length\ }\lv\p\rv=
+\frac{\lv\a\rv\lv\b\rv\cos\theta}{\lv\a\rv^2}\lv\a\rv=\lv\b\rv\cos\theta.\]</div>
+<p>The dot product is alot simpler than getting involved with <span class="math notranslate nohighlight">\(\cos\theta\)</span> and the length of <span class="math notranslate nohighlight">\(\b\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Projection matrix</strong> <span class="math notranslate nohighlight">\(P\)</span>: <span class="math notranslate nohighlight">\(\dp\p=\a\wh{x}=\a\frac{\a^T\b}{\a^T\a}=P\b\)</span>
+when the matrix is <span class="math notranslate nohighlight">\(\dp P=\frac{\a\a^T}{\a^T\a}\)</span>.</p>
+</div>
+<p><span class="math notranslate nohighlight">\(P\)</span> is a column times a row!
+The column is <span class="math notranslate nohighlight">\(\a\)</span>, the row is <span class="math notranslate nohighlight">\(\a^T\)</span>.
+Then divide by the number <span class="math notranslate nohighlight">\(\a^T\a\)</span>.
+The projection matrix <span class="math notranslate nohighlight">\(P\)</span> is <span class="math notranslate nohighlight">\(m\)</span> by <span class="math notranslate nohighlight">\(m\)</span>, but <strong>its rank is one</strong>.
+We are projecting onto a one-dimensional subspace, the line through <span class="math notranslate nohighlight">\(\a\)</span>.
+<em>That line is the column space of</em> <span class="math notranslate nohighlight">\(P\)</span>.</p>
+<p><strong>Projecting a second time doesn’t change anything, so</strong> <span class="math notranslate nohighlight">\(P^2=P\)</span>.</p>
+<p>Note that <span class="math notranslate nohighlight">\((I-P)\b=\b-\p=\e\)</span>.
+<strong>When</strong> <span class="math notranslate nohighlight">\(P\)</span> <strong>projects onto one subspace</strong>, <span class="math notranslate nohighlight">\(I-P\)</span> <strong>projects onto the perpendicular subspace</strong>.
+Here <span class="math notranslate nohighlight">\(I-P\)</span> projects onto the plane perpendicular to <span class="math notranslate nohighlight">\(\a\)</span>.</p>
+</div>
+<div class="section" id="projection-onto-a-subspace">
+<h2>Projection Onto a Subspace<a class="headerlink" href="#projection-onto-a-subspace" title="Permalink to this headline">¶</a></h2>
+<p>Start with <span class="math notranslate nohighlight">\(n\)</span> vectors <span class="math notranslate nohighlight">\(\a_1,\cds,\a_n\)</span> in <span class="math notranslate nohighlight">\(\R^m\)</span>.
+Assume that these <span class="math notranslate nohighlight">\(\a\)</span>’s are linearly independent.</p>
+<p><strong>Problem: Find the combination</strong> <span class="math notranslate nohighlight">\(\p=\wh{x}_1\a_1+\cds+\wh{x}_n\a_n\)</span> <strong>closest to a given vector</strong> <span class="math notranslate nohighlight">\(\b\)</span>.
+We are projecting each <span class="math notranslate nohighlight">\(\b\)</span> in <span class="math notranslate nohighlight">\(\R^m\)</span> onto the subspace spanned by the <span class="math notranslate nohighlight">\(\a\)</span>’s.</p>
+<p>With <span class="math notranslate nohighlight">\(n=1\)</span> (one vector <span class="math notranslate nohighlight">\(\a_1\)</span>) this is projection onto a line.
+The line is the column space of <span class="math notranslate nohighlight">\(A\)</span>, which has just one column.
+In general the matrix <span class="math notranslate nohighlight">\(A\)</span> has <span class="math notranslate nohighlight">\(n\)</span> columns <span class="math notranslate nohighlight">\(\a_1,\cds,\a_n\)</span>.</p>
+<p>The combination in <span class="math notranslate nohighlight">\(\R^m\)</span> are the vectors <span class="math notranslate nohighlight">\(A\x\)</span> in the column space.
+We are looking for the particular combination <span class="math notranslate nohighlight">\(\p=A\wh{\x}\)</span>.
+That choise is <span class="math notranslate nohighlight">\(\wh{x}=\a^T\b/\a^T\a\)</span> when <span class="math notranslate nohighlight">\(n=1\)</span>.</p>
+<p>We compute projections onto <span class="math notranslate nohighlight">\(n\)</span>-dimensional subspaces in three steps as
+before: <strong>Find the vector</strong> <span class="math notranslate nohighlight">\(\wh{\x}\)</span>, <strong>find the projection</strong>
+<span class="math notranslate nohighlight">\(\p=A\wh{\x}\)</span>, <strong>find the proection matrix</strong> <span class="math notranslate nohighlight">\(P\)</span>.</p>
+<p><strong>The error vector</strong> <span class="math notranslate nohighlight">\(\b-A\wh{\x}\)</span> <strong>is perpendicular to the subspaces</strong>.
+It makes a right angle with all the vectors <span class="math notranslate nohighlight">\(\a_1,\cds,\a_n\)</span> in the base:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(\begin{matrix}\a_1^T(\b-A\wh{\x})=0\\\vdots\\\a_n^T(\b-A\wh{\x})=0\end{matrix}\quad\)</span>
+or <span class="math notranslate nohighlight">\(\quad\bb -&amp;\a_1^T&amp;-\\&amp;\vdots&amp;\\-&amp;\a_n^T&amp;- \eb\bb \\\b-A\wh{\x}\\\ \eb=\bb \\\0\\\ \eb\)</span>.</p>
+</div>
+<p>The matrix with those rows <span class="math notranslate nohighlight">\(\a_i^T\)</span> is <span class="math notranslate nohighlight">\(A^T\)</span>.
+The <span class="math notranslate nohighlight">\(n\)</span> equations are exactly <span class="math notranslate nohighlight">\(A^T(\b-A\wh{\x})=\0\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The combination <span class="math notranslate nohighlight">\(\p=\wh{x}_1\a_1+\cds+\wh{x}_n\a_n=A\wh{\x}\)</span> that is
+closest to <span class="math notranslate nohighlight">\(\b\)</span> comes from <span class="math notranslate nohighlight">\(\wh{\x}\)</span>:</p>
+<ul class="simple">
+<li><p><strong>Find</strong> <span class="math notranslate nohighlight">\(\wh{\x}\ (n \times 1):\quad A^T(\b-A\wh{\x})=\0\quad\rm{or}\quad A^A\wh{\x}=A^T\b\)</span>.</p></li>
+</ul>
+<p>This symmetric matrix <span class="math notranslate nohighlight">\(A^TA\)</span> is <span class="math notranslate nohighlight">\(n\)</span> by <span class="math notranslate nohighlight">\(n\)</span>.
+It is invertible if the <span class="math notranslate nohighlight">\(\a\)</span>’s are independent.
+The solution is <span class="math notranslate nohighlight">\(\wh{\x}=(A^TA)^{-1}A^T\b\)</span>.
+The <strong>projection</strong> of <span class="math notranslate nohighlight">\(\b\)</span> onto the subspace is <span class="math notranslate nohighlight">\(\p\)</span>:</p>
+<ul class="simple">
+<li><p><strong>Find</strong> <span class="math notranslate nohighlight">\(\p\ (m \times 1):\quad \p=A\wh{\x}=A(A^TA)^{-1}A^T\b\)</span>.</p></li>
+</ul>
+<p>The next formula picks out the <strong>projection matrix</strong> that is multiplying <span class="math notranslate nohighlight">\(\b\)</span>:</p>
+<ul class="simple">
+<li><p><strong>Find</strong> <span class="math notranslate nohighlight">\(P\ (m \times m):\quad P=A(A^TA)^{-1}A^T\)</span>.</p></li>
+</ul>
+</div>
+<p>Compare with projection onto a line, when <span class="math notranslate nohighlight">\(A\)</span> has only one column: <span class="math notranslate nohighlight">\(A^A\)</span> is <span class="math notranslate nohighlight">\(\a^T\a\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>For</strong> <span class="math notranslate nohighlight">\(n=1\)</span>: <span class="math notranslate nohighlight">\(\dp\wh{x}=\frac{\a^T\b}{\a^T\a}\)</span> and
+<span class="math notranslate nohighlight">\(\dp\p=\a\frac{\a^T\b}{\a^T\a}\)</span> and <span class="math notranslate nohighlight">\(\dp P=\frac{\a\a^T}{\a^T\a}\)</span>.</p>
+</div>
+<p>The key step was <span class="math notranslate nohighlight">\(A^T(\b-A\wh{\x})=\0\)</span>.
+We used geometry (<span class="math notranslate nohighlight">\(\e\)</span> is orthogonal to each <span class="math notranslate nohighlight">\(\a\)</span>).
+<em>Linear algebra gives this “normal equation” too</em>, in a very quick and beautiful way:</p>
+<ol class="arabic simple">
+<li><p>Our subspace is the column space of <span class="math notranslate nohighlight">\(A\)</span>.</p></li>
+<li><p>The error vector <span class="math notranslate nohighlight">\(\b-A\wh{\x}\)</span> is perpendicular to that column space.</p></li>
+<li><p>Therefore <span class="math notranslate nohighlight">\(\b-A\wh{\x}\)</span> is in the nullspace of <span class="math notranslate nohighlight">\(A^T\)</span>! This means <span class="math notranslate nohighlight">\(A^T(\b-A\wh{\x})=\0\)</span>.</p></li>
+</ol>
+<p>The left nullspace is important in projections.
+That nullspace of <span class="math notranslate nohighlight">\(A^T\)</span> contains the error vector <span class="math notranslate nohighlight">\(\e-\b-A\wh{\x}\)</span>.
+The vector <span class="math notranslate nohighlight">\(\b\)</span> is being split into the projection <span class="math notranslate nohighlight">\(\p\)</span> and the error <span class="math notranslate nohighlight">\(\e=\b-\p\)</span>.
+Projection produces a right triangle with sides <span class="math notranslate nohighlight">\(\p,\e,\b\)</span>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The matrix <span class="math notranslate nohighlight">\(P=A(A^TA)^{-1}A^T\)</span> is deceptive.
+You cannot split <span class="math notranslate nohighlight">\((A^TA)^{-1}\)</span> into <span class="math notranslate nohighlight">\(A^{-1}\)</span> times <span class="math notranslate nohighlight">\((A^T)^{-1}\)</span>.
+<strong>The matrix</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>is rectangular</strong>.
+<strong>It has no inverse matrix</strong>.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><span class="math notranslate nohighlight">\(A^TA\)</span> <strong>is invertible if and only if</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>has linearly independent columns</strong>.</p>
+</div>
+<p><strong>Proof</strong>: <span class="math notranslate nohighlight">\(A^TA\)</span> is a square matrix (<span class="math notranslate nohighlight">\(n\)</span> by <span class="math notranslate nohighlight">\(n\)</span>).
+For every matrix <span class="math notranslate nohighlight">\(A\)</span>, we will now show that <span class="math notranslate nohighlight">\(A^TA\)</span> <strong>has the same nullsapce as</strong> math:<cite>A</cite>.</p>
+<blockquote>
+<div><p>Let <span class="math notranslate nohighlight">\(A\)</span> be any matrix.
+If <span class="math notranslate nohighlight">\(\x\)</span> is in tis nullspace, then <span class="math notranslate nohighlight">\(A\x=\0\)</span>.
+Multiplying by <span class="math notranslate nohighlight">\(A^T\)</span> gives <span class="math notranslate nohighlight">\(A^TA\x=\0\)</span>.
+So <span class="math notranslate nohighlight">\(\x\)</span> is also in the nullsapce of <span class="math notranslate nohighlight">\(A^TA\)</span>.</p>
+<p><strong>From</strong> <span class="math notranslate nohighlight">\(A^TA\x=\0\)</span> <strong>we must prove</strong> <span class="math notranslate nohighlight">\(A\x=\0\)</span>.
+Since we can’t multiply by <span class="math notranslate nohighlight">\((A^T)^{-1}\)</span>, which generally doesn’t exist.
+Just multiply by <span class="math notranslate nohighlight">\(\x^T\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[(\x^T)A^TA\x=0 \quad\rm{or}\quad (A\x)^T(A\x)=0 \quad\rm{or}\quad \lv A\x\rv ^2=0.\]</div>
+<p>We have shown: If <span class="math notranslate nohighlight">\(A^TA\x=\0\)</span> then <span class="math notranslate nohighlight">\(A\x\)</span> has length zero.
+Therefore <span class="math notranslate nohighlight">\(A\x=\0\)</span>.
+Every vector <span class="math notranslate nohighlight">\(\x\)</span> in one nullspace is in the other nullspace.
+If <span class="math notranslate nohighlight">\(A^TA\)</span> has dependent column, so has <span class="math notranslate nohighlight">\(A\)</span>.
+If <span class="math notranslate nohighlight">\(A^TA\)</span> has independent columns, so has <span class="math notranslate nohighlight">\(A\)</span>.
+This is the good case: <span class="math notranslate nohighlight">\(A^TA\)</span> is invertible.</p>
+</div></blockquote>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>When <span class="math notranslate nohighlight">\(A\)</span> has independent columns, <span class="math notranslate nohighlight">\(A^TA\)</span> is square, symmetric, and invertible.</p>
+</div>
+<p><strong>Very brief summary</strong>: To find the projection <span class="math notranslate nohighlight">\(\p=\wh{x}_1\a_1+\cds+\wh{x}_n\a_n\)</span>, solve <span class="math notranslate nohighlight">\(A^TA\wh{\x}=A^T\b\)</span>.
+This gives <span class="math notranslate nohighlight">\(\wh{\x}\)</span>.
+The projection is <span class="math notranslate nohighlight">\(\p=A\wh{\x}\)</span> and the error is <span class="math notranslate nohighlight">\(\e=\b-p=\b-A\wh{\x}\)</span>.
+The projection matrix <span class="math notranslate nohighlight">\(P=A(A^TA)^{1}A^T\)</span> gives <span class="math notranslate nohighlight">\(\p=P\b\)</span>.</p>
+<p><strong>This matrix satsfies</strong> <span class="math notranslate nohighlight">\(P^2=P\)</span>.
+<strong>The distance from</strong> <span class="math notranslate nohighlight">\(\b\)</span> <strong>to the subspace</strong> <span class="math notranslate nohighlight">\(\bs{C}(A)\)</span> <strong>is</strong> <span class="math notranslate nohighlight">\(\lv\e\rv\)</span>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="chap4-3.html" class="btn btn-neutral float-right" title="Chapter 4.3 Least Squares Approximations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="chap4-1.html" class="btn btn-neutral float-left" title="Chapter 4.1 Orthogonality of the Four Subspaces" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Ziniu Yu.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

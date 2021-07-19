@@ -1,0 +1,441 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Chapter 4.3 Least Squares Approximations &mdash; LinearAlgebra  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapter 4.4 Orthonormal Bases and Gram-Schmidt" href="chap4-4.html" />
+    <link rel="prev" title="Chapter 4.2 Projections" href="chap4-2.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> LinearAlgebra
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../chap1/index1.html">Chapter 1 Introduction to Vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap2/index2.html">Chapter 2 Solving Linear Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap3/index3.html">Chapter 3 Vector Spaces and Subspaces</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index4.html">Chapter 4 Orthogonality</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="chap4-1.html">Chapter 4.1 Orthogonality of the Four Subspaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap4-2.html">Chapter 4.2 Projections</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 4.3 Least Squares Approximations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#minimizing-the-error">Minimizing the Error</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-big-picture-for-least-squares">The Big Picture for Least Squares</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fitting-a-straight-line">Fitting a Straight Line</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dependent-columns-in-a-what-is-widehat-boldsymbol-x">Dependent Columns in <span class="math notranslate nohighlight">\(A\)</span>: What is <span class="math notranslate nohighlight">\(\widehat{\boldsymbol{x}}\)</span>?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fitting-by-a-parabola">Fitting by a Parabola</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="chap4-4.html">Chapter 4.4 Orthonormal Bases and Gram-Schmidt</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../chap5/index5.html">Chapter 5 Determinants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap6/index6.html">Chapter 6 Eigenvalues and Eigenvectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap7/index7.html">Chapter 7 The Singular Value Decomposition (SVD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">LinearAlgebra</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index4.html">Chapter 4 Orthogonality</a> &raquo;</li>
+        
+      <li>Chapter 4.3 Least Squares Approximations</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/chap4/chap4-3.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\newcommand{\bs}{\boldsymbol}
+\newcommand{\dp}{\displaystyle}
+\newcommand{\rm}{\mathrm}
+\newcommand{\pd}{\partial}\\\newcommand{\cd}{\cdot}
+\newcommand{\cds}{\cdots}
+\newcommand{\dds}{\ddots}
+\newcommand{\vds}{\vdots}
+\newcommand{\lv}{\lVert}
+\newcommand{\rv}{\rVert}
+\newcommand{\wh}{\widehat}\\\newcommand{\0}{\boldsymbol{0}}
+\newcommand{\a}{\boldsymbol{a}}
+\newcommand{\b}{\boldsymbol{b}}
+\newcommand{\e}{\boldsymbol{e}}
+\newcommand{\i}{\boldsymbol{i}}
+\newcommand{\j}{\boldsymbol{j}}
+\newcommand{\p}{\boldsymbol{p}}
+\newcommand{\q}{\boldsymbol{q}}
+\newcommand{\u}{\boldsymbol{u}}
+\newcommand{\v}{\boldsymbol{v}}
+\newcommand{\w}{\boldsymbol{w}}
+\newcommand{\x}{\boldsymbol{x}}
+\newcommand{\y}{\boldsymbol{y}}\\\newcommand{\A}{\boldsymbol{A}}
+\newcommand{\B}{\boldsymbol{B}}
+\newcommand{\C}{\boldsymbol{C}}
+\newcommand{\N}{\boldsymbol{N}}\\\newcommand{\R}{\boldsymbol{\mathrm{R}}}\\\newcommand{\ld}{\lambda}
+\newcommand{\Ld}{\Lambda}
+\newcommand{\sg}{\sigma}
+\newcommand{\Sg}{\Sigma}\\\newcommand{\bb}{\begin{bmatrix}}
+\newcommand{\eb}{\end{bmatrix}}
+\newcommand{\bv}{\begin{vmatrix}}
+\newcommand{\ev}{\end{vmatrix}}\\\newcommand{\im}{^{-1}}
+\newcommand{\pr}{^{\prime}}
+\newcommand{\ppr}{^{\prime\prime}}\end{aligned}\end{align} \]</div>
+<div class="section" id="chapter-4-3-least-squares-approximations">
+<h1>Chapter 4.3 Least Squares Approximations<a class="headerlink" href="#chapter-4-3-least-squares-approximations" title="Permalink to this headline">¶</a></h1>
+<p>It often happens that <span class="math notranslate nohighlight">\(A\x=\b\)</span> has no solution.
+The usual reason is: <em>too manu equations</em>.
+The matrix <span class="math notranslate nohighlight">\(A\)</span> has more rows than columns (<span class="math notranslate nohighlight">\(m\)</span> is greater than <span class="math notranslate nohighlight">\(n\)</span>).</p>
+<p>We cannot always get the error <span class="math notranslate nohighlight">\(\e=\b-A\x\)</span> down to zero.
+When <span class="math notranslate nohighlight">\(\e\)</span> is zero, <span class="math notranslate nohighlight">\(\x\)</span> is an exact solution to <span class="math notranslate nohighlight">\(A\x=\b\)</span>.
+<em>When the length of</em> <span class="math notranslate nohighlight">\(\e\)</span> <em>is as small as possible</em>, <span class="math notranslate nohighlight">\(\wh{\x}\)</span> <em>is a least squares solution</em>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>When</strong> <span class="math notranslate nohighlight">\(A\x=\b\)</span> <strong>has no solution, multiply by</strong> <span class="math notranslate nohighlight">\(A^T\)</span> <strong>and solve</strong> <span class="math notranslate nohighlight">\(A^TA\wh{\x}=A^T\b\)</span>.</p>
+</div>
+<p>A crucial application of least squares is ftting a straight line to <span class="math notranslate nohighlight">\(m\)</span> points.
+Start with three points: <em>Find the closest line to the points</em> <span class="math notranslate nohighlight">\((0,6),(1,0),(2,0)\)</span>.</p>
+<p>No straight linge <span class="math notranslate nohighlight">\(b=C+Dt\)</span> goes through those three points.
+This 3 by 2 system has <em>no solution</em>: <span class="math notranslate nohighlight">\(\b=(6,0,0)\)</span> is not a combination of
+the columns <span class="math notranslate nohighlight">\((1,1,1)\)</span> and <span class="math notranslate nohighlight">\((0,1,2)\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(A\x=\b\)</span> is <em>not</em> solvable:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A=\bb 1&amp;0\\1&amp;1\\1&amp;2 \eb\quad \x=\bb C\\D \eb\quad \b=\bb 6\\0\\0 \eb.\end{split}\]</div>
+<p>We computed <span class="math notranslate nohighlight">\(\wh{\x}=(5,-3)\)</span>.
+<strong>Those numbers are the best</strong> <span class="math notranslate nohighlight">\(C\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(D\)</span>, <strong>so</strong> <span class="math notranslate nohighlight">\(5-3t\)</span>
+<strong>will be the bset line for the 3 points</strong>.</p>
+<div class="section" id="minimizing-the-error">
+<h2>Minimizing the Error<a class="headerlink" href="#minimizing-the-error" title="Permalink to this headline">¶</a></h2>
+<p>How do we make the error <span class="math notranslate nohighlight">\(\e=\b-A\x\)</span> as small as possible?</p>
+<p><strong>By geometry</strong>: Every <span class="math notranslate nohighlight">\(A\x\)</span> lies in the plane of the columns <span class="math notranslate nohighlight">\((1,1,1)\)</span> and <span class="math notranslate nohighlight">\((0,1,2)\)</span>.
+<em>The nearest point to</em> <span class="math notranslate nohighlight">\(\b\)</span> <em>is the projection</em> <span class="math notranslate nohighlight">\(\p\)</span>.</p>
+<blockquote>
+<div><p>The best choice for <span class="math notranslate nohighlight">\(A\x\)</span> is <span class="math notranslate nohighlight">\(\p\)</span>.
+The smallest possible error is <span class="math notranslate nohighlight">\(\e=\b-\p\)</span>, perpendicular to the columns.
+<em>The three points at heights</em> <span class="math notranslate nohighlight">\((p_1,p_2,p_3)\)</span> <em>do lie on a line</em>,
+because <span class="math notranslate nohighlight">\(\p\)</span> is in the column space of <span class="math notranslate nohighlight">\(A\)</span>.
+In fitting a straight line, <span class="math notranslate nohighlight">\(\wh{\x}\)</span> is the best choice for <span class="math notranslate nohighlight">\((C,D)\)</span>.</p>
+</div></blockquote>
+<p><strong>By algebra</strong>: Every vector <span class="math notranslate nohighlight">\(\b\)</span> splits into two parts.
+The part in the column space is <span class="math notranslate nohighlight">\(\p\)</span>.
+The perpendicular part is <span class="math notranslate nohighlight">\(\e\)</span>.
+There is an equation we cannot sove (<span class="math notranslate nohighlight">\(A\x=\b\)</span>).
+There is an equation <span class="math notranslate nohighlight">\(A\wh{\x}=\p\)</span> we can and do solve:</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[A\x=\b=\p+\e \rm{\ is\ impossible}\quad A\wh{\x}=\p \rm{\ is\ solvable}
+\quad \wh{\x} \rm{\ is\ } (A^TA)^{-1}A^T\b.\]</div>
+<p>The solution to <span class="math notranslate nohighlight">\(A\wh{\x}=\p\)</span> leaves the least possible error (which is <span class="math notranslate nohighlight">\(\e\)</span>):</p>
+<p><strong>Squared length for any</strong> <span class="math notranslate nohighlight">\(\x\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\lv A\x-\b \rv^2=\lv A\x-\p \rv^2+\lv e \rv^2.\]</div>
+<p>This is the law <span class="math notranslate nohighlight">\(c^2=a^2+b^2\)</span> for a right triangle.
+The vector <span class="math notranslate nohighlight">\(A\x-\p\)</span> in the column space is perpendicular to <span class="math notranslate nohighlight">\(\e\)</span> in the left nullspace.
+We reduce <span class="math notranslate nohighlight">\(A\x-\p\)</span> to <strong>zero</strong> by choosing <span class="math notranslate nohighlight">\(\x=\wh{\x}\)</span>.
+That leaves the smallest possible error <span class="math notranslate nohighlight">\(\e=(e_1,e_2,e_3)\)</span> which we can’t reduce.</p>
+<p>The <em>squared length</em> of <span class="math notranslate nohighlight">\(A\x-\b\)</span> is minimized:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>The least squares solution</strong> <span class="math notranslate nohighlight">\(\wh{\x}\)</span> <strong>makes</strong> <span class="math notranslate nohighlight">\(E=\lv A\x-\b \rv^2\)</span> <strong>as small as possible</strong>.</p>
+</div>
+<p>The closest line misses by distance <span class="math notranslate nohighlight">\(e_1,e_2,e_2=1,-2,1\)</span>.
+<em>Those are vertical distances</em>.
+The least squares line minimizes <span class="math notranslate nohighlight">\(E=e_1^2+e_2^2+e_3^2\)</span>.</p>
+<p>Notice that the erros <span class="math notranslate nohighlight">\(1,-2,1\)</span> add to zero.
+<em>Reason</em>: The error <span class="math notranslate nohighlight">\(\e=(e_1,e_2,e_3)\)</span> is perpendicular to the first column <span class="math notranslate nohighlight">\((1,1,1)\)</span> in <span class="math notranslate nohighlight">\(A\)</span>.
+The dot product gives <span class="math notranslate nohighlight">\(e_1+e_2+e_3=0\)</span>.</p>
+</div></blockquote>
+<p><strong>By calculus</strong>: Most functions are minimized by calculus!
+The graph bottoms out and the derivative in every direction is zero.
+Here the error function <span class="math notranslate nohighlight">\(E\)</span> to be minimized is a <em>sum of squares</em>
+<span class="math notranslate nohighlight">\(e_1^2+e_2^2+e_3^2\)</span> (the square of the error in each equation):</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[E=\lv a\x-\b \rv^2=(C+D\cd 0-6)^2+(C+D\cd 1)^2+(C+D\cd 2)^2.\]</div>
+<p>With two unknonws <span class="math notranslate nohighlight">\(C,D\)</span>, there are <em>two derivatives</em>–both zero at the minimum.
+They are “partial derivatives” because <span class="math notranslate nohighlight">\(\partial{E}/\partial{C}\)</span>
+treats <span class="math notranslate nohighlight">\(D\)</span> as constant and <span class="math notranslate nohighlight">\(\partial{E}/\partial{D}\)</span> treats
+<span class="math notranslate nohighlight">\(C\)</span> as constant:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\partial{E}/\partial{C}=2(C+D\cd 0-6)+2(C+D\cd 1)+2(C+D\cd 2)=0\\\partial{E}/\partial{D}=2(C+D\cd 0-6)(0)+2(C+D\cd 1)(1)+2(C+D\cd 2)(2)=0\\3C+3D=6\\3C+5D=0\end{aligned}\end{align} \]</div>
+<p><strong>This matrix</strong> <span class="math notranslate nohighlight">\(\bb 3&amp;3\\3&amp;5 \eb\)</span> <strong>is</strong> <span class="math notranslate nohighlight">\(A^TA\)</span>.</p>
+<p><strong>These equations are identical with</strong> <span class="math notranslate nohighlight">\(A^TA\wh{\x}=A^T\b\)</span>.
+The best <span class="math notranslate nohighlight">\(C\)</span> and <span class="math notranslate nohighlight">\(D\)</span> are the components of <span class="math notranslate nohighlight">\(\wh{\x}\)</span>.
+The equations from calculus are the same as the “normal equations” from linear algebra.
+These are the key equations of least squares:</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>The partial derivatives of</strong> <span class="math notranslate nohighlight">\(\lv A\x-\b\rv^2\)</span> <strong>are zero when</strong> <span class="math notranslate nohighlight">\(A^TA\wh{\x}=A^T\b\)</span>.</p>
+</div>
+<p>The solution is <span class="math notranslate nohighlight">\(C=5\)</span> and <span class="math notranslate nohighlight">\(D=-3\)</span>.
+Threfore <span class="math notranslate nohighlight">\(b=5-3t\)</span> is the best line.
+The errors are <span class="math notranslate nohighlight">\(1,-2,1\)</span> which are the same as components of vector <span class="math notranslate nohighlight">\(\e\)</span>.</p>
+</div></blockquote>
+</div>
+<div class="section" id="the-big-picture-for-least-squares">
+<h2>The Big Picture for Least Squares<a class="headerlink" href="#the-big-picture-for-least-squares" title="Permalink to this headline">¶</a></h2>
+<p>Refer to the textbook Page 222.</p>
+</div>
+<div class="section" id="fitting-a-straight-line">
+<h2>Fitting a Straight Line<a class="headerlink" href="#fitting-a-straight-line" title="Permalink to this headline">¶</a></h2>
+<p>Fitting a line is the clearest application of least squares.
+It starts with <span class="math notranslate nohighlight">\(m&gt;2\)</span> points, hopefully near a straigt line.
+At times <span class="math notranslate nohighlight">\(t_1,\cds,t_m\)</span> those <span class="math notranslate nohighlight">\(m\)</span> points are at heights <span class="math notranslate nohighlight">\(b_1,\cds,b_m\)</span>.
+The best line <span class="math notranslate nohighlight">\(C+Dt\)</span> misses the points by vertical distances <span class="math notranslate nohighlight">\(e_1,\cds,e_m\)</span>.
+No line is perfect, and the least squares line minimizes <span class="math notranslate nohighlight">\(E=e_1^2+\cds+e_m^2\)</span>.</p>
+<p>Now we allow <span class="math notranslate nohighlight">\(m\)</span> points (and <span class="math notranslate nohighlight">\(m\)</span> can be large).</p>
+<p>A line goes through the <span class="math notranslate nohighlight">\(m\)</span> points when we exactly solve <span class="math notranslate nohighlight">\(A\x=\b\)</span>.
+To fit the <span class="math notranslate nohighlight">\(m\)</span> points, we are trying to solve <span class="math notranslate nohighlight">\(m\)</span> equations (and we only jave two unknowns!).</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A\x=\b \quad\rm{is}\quad
+\begin{matrix}C+Dt_1=b_1\\C+Dt_2=b_2\\\vdots\\C+Dt_m=b_m\end{matrix}
+\quad\rm{with}\quad A=\bb 1&amp;t_1\\1&amp;t_2\\\vdots&amp;\vdots\\1&amp;t_m\eb.\end{split}\]</div>
+<p>When <span class="math notranslate nohighlight">\(\b\)</span> happens to lie in the column space, the points happen to lie on a line.
+In that case <span class="math notranslate nohighlight">\(\b=\p\)</span>.
+Then <span class="math notranslate nohighlight">\(A\x=\b\)</span> is solvable and the errors are <span class="math notranslate nohighlight">\(\e=(0,\cds,0)\)</span>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>The closest line</strong> <span class="math notranslate nohighlight">\(C+Dt\)</span> <strong>has heights</strong> <span class="math notranslate nohighlight">\(p_1,\cds,p_m\)</span> <strong>with errors</strong> <span class="math notranslate nohighlight">\(e_1,\cds,e_m\)</span>.
+<strong>Solve</strong> <span class="math notranslate nohighlight">\(A^TA\wh{\x}=A^T\b\)</span> <strong>for</strong> <span class="math notranslate nohighlight">\(\wh{\x}=(C,D)\)</span>.
+<strong>The errors are</strong> <span class="math notranslate nohighlight">\(\e_i=\b_i-C-Dt_i\)</span>.</p>
+</div>
+<p>Fitting points by a straight line is so important that we give the two equations
+<span class="math notranslate nohighlight">\(A^TA\wh{\x}=A^T\b\)</span>, once and for all.
+The two columns of <span class="math notranslate nohighlight">\(A\)</span> are independent (unless all times <span class="math notranslate nohighlight">\(t_i\)</span> are the same).
+So we turn to least squares and solve <span class="math notranslate nohighlight">\(A^TA\wh{\x}=A^T\b\)</span>.</p>
+<p><strong>Dot-product matrix</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A^TA=\bb 1&amp;\cds&amp;1\\t_1&amp;\cds&amp;t_m \eb\bb 1&amp;t_1\\\vds&amp;\vds\\1&amp;t_m \eb=\bb m&amp;\sum t_i\\\sum t_i&amp;\sum t_i^2\eb.\end{split}\]</div>
+<p>On the right side of the normal equation is the 2 by 1 vector <span class="math notranslate nohighlight">\(A^T\b\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A^T\b=\bb 1&amp;\cds&amp;1\\t_1&amp;\cds&amp;t_m \eb\bb b_1\\\vds\\b_m \eb=\bb \sum b_i\\\sum t_ib_i \eb.\end{split}\]</div>
+<p>In a specific problem, these numbers are given.
+The best <span class="math notranslate nohighlight">\(\wh{\x}=(C,D)\)</span> is <span class="math notranslate nohighlight">\((A^TA)^{-1}A^T\b\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The line <span class="math notranslate nohighlight">\(C+Dt\)</span> minimizes <span class="math notranslate nohighlight">\(e_1^2+\cds+e_m^2=\lv A\x-\b \rv^2\)</span> when <span class="math notranslate nohighlight">\(A^TA\wh{\x}=A^T\b\)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(A^TA\wh{\x}=A^T\b\quad\bb m&amp;\sum t_i\\\sum t_i&amp;\sum t_i^2\eb\bb C\\D\eb=\bb \sum b_i\\\sum t_ib_i \eb\)</span>.</p></li>
+</ul>
+</div>
+<p>The vertical errors at the <span class="math notranslate nohighlight">\(m\)</span> points on the line are the components of <span class="math notranslate nohighlight">\(\e=\b-\p\)</span>.
+This error vector (the <em>residual</em>) <span class="math notranslate nohighlight">\(\b-A\wh{\x}\)</span> is perpendicular to the columns of <span class="math notranslate nohighlight">\(A\)</span> (geometry).
+The error is in the nullspace of <span class="math notranslate nohighlight">\(A^T\)</span> (linear algebra).
+The best <span class="math notranslate nohighlight">\(\wh{\x}=(C,D)\)</span> minimizes the total error <span class="math notranslate nohighlight">\(E\)</span>, the sum of squares (calculus):</p>
+<div class="math notranslate nohighlight">
+\[E(\x)=\lv A\x-\b \rv^2=(C+Dt_1-b_1)^2+\cds+(C+Dt_m-b_m)^2.\]</div>
+<p>Calculus set the derivatives <span class="math notranslate nohighlight">\(\partial{E}/\partial{C}\)</span> and
+<span class="math notranslate nohighlight">\(\partial{E}/\partial{D}\)</span> to zero, and produces <span class="math notranslate nohighlight">\(A^TA\wh{\x}=A^T\b\)</span>.</p>
+<p>Other least squares problems have more than two unknowns.
+Fitting by the best parabola has <span class="math notranslate nohighlight">\(n=3\)</span> coefficients <span class="math notranslate nohighlight">\(C,D,E\)</span>.
+In general we are fitting <span class="math notranslate nohighlight">\(m\)</span> data points by <span class="math notranslate nohighlight">\(n\)</span> parameters <span class="math notranslate nohighlight">\(x_1,\cds,x_n\)</span>.
+The matrix <span class="math notranslate nohighlight">\(A\)</span> has <span class="math notranslate nohighlight">\(n\)</span> columns and <span class="math notranslate nohighlight">\(n&lt;m\)</span>.
+The derivatives of <span class="math notranslate nohighlight">\(\lv A\x=\b \rv^2\)</span> give the <span class="math notranslate nohighlight">\(n\)</span> equations <span class="math notranslate nohighlight">\(A^TA\wh{\x}=A^T\b\)</span>.
+<strong>The derivative of a square is linear</strong>.
+This is why the method of least squares is so popular.</p>
+<p><span class="math notranslate nohighlight">\(A\)</span> has <em>orthogonal columns</em> when the measurement times <span class="math notranslate nohighlight">\(t_i\)</span> add to zero.
+When the columns of <span class="math notranslate nohighlight">\(A\)</span> are orthogonal, <span class="math notranslate nohighlight">\(A^TA\)</span> will be a diagonal matrix.
+Orthogonal columns are so helpful that it is worth
+<em>shifting the times by subtracting the average time</em>
+<span class="math notranslate nohighlight">\(\wh{t}=(t_1+\cds+t_m)/m\)</span>.</p>
+</div>
+<div class="section" id="dependent-columns-in-a-what-is-widehat-boldsymbol-x">
+<h2>Dependent Columns in <span class="math notranslate nohighlight">\(A\)</span>: What is <span class="math notranslate nohighlight">\(\widehat{\boldsymbol{x}}\)</span>?<a class="headerlink" href="#dependent-columns-in-a-what-is-widehat-boldsymbol-x" title="Permalink to this headline">¶</a></h2>
+<p>In Section 7.4, the “<em>pseudoinverse</em>” of <span class="math notranslate nohighlight">\(A\)</span> will choose the <strong>shortest solution to</strong> <span class="math notranslate nohighlight">\(A\wh{\x}=\p\)</span>.</p>
+</div>
+<div class="section" id="fitting-by-a-parabola">
+<h2>Fitting by a Parabola<a class="headerlink" href="#fitting-by-a-parabola" title="Permalink to this headline">¶</a></h2>
+<p><strong>Problem</strong> Fit heights <span class="math notranslate nohighlight">\(b_1,\cds,b_m\)</span> at times <span class="math notranslate nohighlight">\(t_1,\cds,t_m\)</span> by a parabola <span class="math notranslate nohighlight">\(C+Dt+Et^2\)</span>.</p>
+<p><strong>Solution</strong> With <span class="math notranslate nohighlight">\(m&gt;3\)</span> points, the <span class="math notranslate nohighlight">\(m\)</span> equations for an exact fit are generally unsolvable:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{matrix}C+Dt_1+Et_1^2=b_1\\\vds\\C+Dt_m+Et_m^2=b_m \end{matrix}\quad
+\begin{matrix}\rm{is\ }A\x=\b\rm{\ with}\\
+\rm{the\ }m\rm{\ by\ }3\rm{\ matrix}\end{matrix}\quad
+A=\bb 1&amp;t_1&amp;t_1^2\\\vds&amp;\vds&amp;\vds\\1&amp;t_m&amp;t_m^2\eb.\end{split}\]</div>
+<p><strong>Least squares</strong>: The closest parabola <span class="math notranslate nohighlight">\(C+Dt+Et^2\)</span> choose
+<span class="math notranslate nohighlight">\(\wh{\x}=(C,D,E)\)</span> to satisfy the three normal equation
+<span class="math notranslate nohighlight">\(A^TA\wh{\x}=A^T\b\)</span>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="chap4-4.html" class="btn btn-neutral float-right" title="Chapter 4.4 Orthonormal Bases and Gram-Schmidt" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="chap4-2.html" class="btn btn-neutral float-left" title="Chapter 4.2 Projections" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Ziniu Yu.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

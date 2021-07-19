@@ -1,0 +1,349 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Chapter 7.1 Image Processing by Linear Algebra &mdash; LinearAlgebra  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapter 7.2 Bases and Matrices in the SVD" href="chap7-2.html" />
+    <link rel="prev" title="Chapter 7 The Singular Value Decomposition (SVD)" href="index7.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> LinearAlgebra
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../chap1/index1.html">Chapter 1 Introduction to Vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap2/index2.html">Chapter 2 Solving Linear Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap3/index3.html">Chapter 3 Vector Spaces and Subspaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap4/index4.html">Chapter 4 Orthogonality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap5/index5.html">Chapter 5 Determinants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap6/index6.html">Chapter 6 Eigenvalues and Eigenvectors</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index7.html">Chapter 7 The Singular Value Decomposition (SVD)</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 7.1 Image Processing by Linear Algebra</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#low-rank-images-examples">Low Rank Images (Examples)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#eigenvectors-for-the-svd">Eigenvectors for the SVD</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="chap7-2.html">Chapter 7.2 Bases and Matrices in the SVD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap7-3.html">Chapter 7.3 Principal Component Analysis (PCA by the SVD)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap7-4.html">Chapter 7.4 The Geometry of the SVD</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">LinearAlgebra</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index7.html">Chapter 7 The Singular Value Decomposition (SVD)</a> &raquo;</li>
+        
+      <li>Chapter 7.1 Image Processing by Linear Algebra</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/chap7/chap7-1.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\newcommand{\bs}{\boldsymbol}
+\newcommand{\dp}{\displaystyle}
+\newcommand{\rm}{\mathrm}
+\newcommand{\pd}{\partial}\\\newcommand{\cd}{\cdot}
+\newcommand{\cds}{\cdots}
+\newcommand{\dds}{\ddots}
+\newcommand{\vds}{\vdots}
+\newcommand{\lv}{\lVert}
+\newcommand{\rv}{\rVert}
+\newcommand{\wh}{\widehat}\\\newcommand{\0}{\boldsymbol{0}}
+\newcommand{\a}{\boldsymbol{a}}
+\newcommand{\b}{\boldsymbol{b}}
+\newcommand{\e}{\boldsymbol{e}}
+\newcommand{\i}{\boldsymbol{i}}
+\newcommand{\j}{\boldsymbol{j}}
+\newcommand{\p}{\boldsymbol{p}}
+\newcommand{\q}{\boldsymbol{q}}
+\newcommand{\u}{\boldsymbol{u}}
+\newcommand{\v}{\boldsymbol{v}}
+\newcommand{\w}{\boldsymbol{w}}
+\newcommand{\x}{\boldsymbol{x}}
+\newcommand{\y}{\boldsymbol{y}}\\\newcommand{\A}{\boldsymbol{A}}
+\newcommand{\B}{\boldsymbol{B}}
+\newcommand{\C}{\boldsymbol{C}}
+\newcommand{\N}{\boldsymbol{N}}\\\newcommand{\R}{\boldsymbol{\mathrm{R}}}\\\newcommand{\ld}{\lambda}
+\newcommand{\Ld}{\Lambda}
+\newcommand{\sg}{\sigma}
+\newcommand{\Sg}{\Sigma}\\\newcommand{\bb}{\begin{bmatrix}}
+\newcommand{\eb}{\end{bmatrix}}
+\newcommand{\bv}{\begin{vmatrix}}
+\newcommand{\ev}{\end{vmatrix}}\\\newcommand{\im}{^{-1}}
+\newcommand{\pr}{^{\prime}}
+\newcommand{\ppr}{^{\prime\prime}}\end{aligned}\end{align} \]</div>
+<div class="section" id="chapter-7-1-image-processing-by-linear-algebra">
+<h1>Chapter 7.1 Image Processing by Linear Algebra<a class="headerlink" href="#chapter-7-1-image-processing-by-linear-algebra" title="Permalink to this headline">¶</a></h1>
+<p><strong>The singular value theorem for</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>is the eigenvalue theorem for</strong> <span class="math notranslate nohighlight">\(A^TA\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(AA^T\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(A\)</span> has <em>two</em> sets of singular vectors (the eigenvectors of <span class="math notranslate nohighlight">\(A^TA\)</span> and <span class="math notranslate nohighlight">\(AA^T\)</span>).
+There is <em>one</em> set of positive singular values (because <span class="math notranslate nohighlight">\(A^TA\)</span> has the same positive eigenvalues as <span class="math notranslate nohighlight">\(AA^T\)</span>).
+<span class="math notranslate nohighlight">\(A\)</span> is often rectangular, but <span class="math notranslate nohighlight">\(A^TA\)</span> and <span class="math notranslate nohighlight">\(AA^T\)</span> are square, symmetric, and positive semidefinite.</p>
+<p><strong>The Singular Value Decomposition (SVD) separates any matrix into simple pieces</strong>.</p>
+<p>Each piece is a column vector times a row vector.
+An <span class="math notranslate nohighlight">\(m\)</span> by <span class="math notranslate nohighlight">\(n\)</span> matrix has <span class="math notranslate nohighlight">\(m\)</span> times <span class="math notranslate nohighlight">\(n\)</span> entries (a big
+number when the matrix represents an image).
+But a colkumn and a row only have <span class="math notranslate nohighlight">\(m+n\)</span> components, far less than <span class="math notranslate nohighlight">\(m\)</span> times <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<p>Think of an image as a large rectangular matrix.
+The entries <span class="math notranslate nohighlight">\(a_{ij}\)</span> tell the grayscales of all the pixels in the image.
+Major success in compression will be impossible if every <span class="math notranslate nohighlight">\(a_{ij}\)</span> is an independent random number.
+We totally depend on the fact that <em>nearby pixels generally have similar grayscales</em>.
+An edge produces a sudden jump when you cross over it.
+Cartoons are more compressible than real-world images, with edges everywhere.</p>
+<p>For a video, the number <span class="math notranslate nohighlight">\(a_{ij}\)</span> don’t change much between frames.
+<strong>We only transmit the small changes</strong>.
+This is <em>difference coding</em> in the H.264 video compression standard.
+We compress each change matrix by linear algebra (and by nonlinear
+“quantization” for an efficient step to integers in the computer).</p>
+<div class="section" id="low-rank-images-examples">
+<h2>Low Rank Images (Examples)<a class="headerlink" href="#low-rank-images-examples" title="Permalink to this headline">¶</a></h2>
+<p>For a matrix <span class="math notranslate nohighlight">\(A\)</span> has the same grayscale <span class="math notranslate nohighlight">\(g\)</span> in every entry: <span class="math notranslate nohighlight">\(d_{ij}=g\)</span>.
+When <span class="math notranslate nohighlight">\(g=1\)</span> and <span class="math notranslate nohighlight">\(m=n=6\)</span>, here is an extreme example of the central SVD dogma of image processing:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\rm{Don't\ send\ }A=\bb 1&amp;1&amp;1&amp;1&amp;1&amp;1\\1&amp;1&amp;1&amp;1&amp;1&amp;1\\1&amp;1&amp;1&amp;1&amp;1&amp;1\\1&amp;1&amp;1&amp;1&amp;1&amp;1\\1&amp;1&amp;1&amp;1&amp;1&amp;1\\1&amp;1&amp;1&amp;1&amp;1&amp;1 \eb\quad
+\rm{Send\ }A=\bb 1\\1\\1\\1\\1\\1 \eb\bb 1&amp;1&amp;1&amp;1&amp;1&amp;1 \eb.\end{split}\]</div>
+<p>If we define the all-ones vector <span class="math notranslate nohighlight">\(\x\)</span> in advance, we only have to send <strong>one number</strong>.
+That number would be the constant grayscale <span class="math notranslate nohighlight">\(g\)</span> that multiplies <span class="math notranslate nohighlight">\(\x\x^T\)</span> to produce the matrix.</p>
+<p>If there are special vectors like <span class="math notranslate nohighlight">\(\x=\)</span> <strong>ones</strong> that can usefully be
+defined in advace, then image processing can be extremely fast.
+The battle is between <strong>preselected bases</strong> (the Fourier basis allows speed-up
+for the FFT) and <strong>adaptive bases</strong> determined by the image.
+The SVD produces bases from the image itself–this is adaptive and it can be expensive.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\rm{Don't\ send\ }A=\bb a&amp;a&amp;c&amp;c&amp;e&amp;e\\a&amp;a&amp;c&amp;c&amp;e&amp;e\\a&amp;a&amp;c&amp;c&amp;e&amp;e\\a&amp;a&amp;c&amp;c&amp;e&amp;e\\a&amp;a&amp;c&amp;c&amp;e&amp;e\\a&amp;a&amp;c&amp;c&amp;e&amp;e \eb\quad
+\rm{Send\ }A=\bb 1\\1\\1\\1\\1\\1 \eb\bb a&amp;a&amp;c&amp;c&amp;e&amp;e \eb.\end{split}\]</div>
+<p>This matrix has 3 values but it still has rank 1.
+We still have one column times one row.
+But when the rank moves up to <span class="math notranslate nohighlight">\(r=2\)</span>, we need <span class="math notranslate nohighlight">\(\u_1\v_1^T+\u_2\v_2^T\)</span>.
+Here is one choice:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Embedded square</strong>: <span class="math notranslate nohighlight">\(\bb 1&amp;0\\1&amp;1 \eb\)</span> is equal to <span class="math notranslate nohighlight">\(A=\bb 1\\1 \eb\bb 1&amp;1 \eb-\bb 1\\0 \eb\bb 0&amp;1 \eb\)</span>.</p>
+</div>
+<p><strong>The SVD chooses rank one pieces in order of importance</strong>.
+If the rank of <span class="math notranslate nohighlight">\(A\)</span> is much higher than 2, as we expect for real images,
+then <span class="math notranslate nohighlight">\(A\)</span> will add up many rank one pieces.
+We want the small ones to be really small–they can be discarded with no loss to visual quality.
+Image compression becomes lossy, but good image compression is virtually undetectable by the human visual system.</p>
+</div>
+<div class="section" id="eigenvectors-for-the-svd">
+<h2>Eigenvectors for the SVD<a class="headerlink" href="#eigenvectors-for-the-svd" title="Permalink to this headline">¶</a></h2>
+<p><strong>Use the eigenvectors</strong> <span class="math notranslate nohighlight">\(\u\)</span> <strong>of</strong> <span class="math notranslate nohighlight">\(AA^T\)</span> <strong>and the eigenvectors</strong> <span class="math notranslate nohighlight">\(\v\)</span> <strong>of</strong> <span class="math notranslate nohighlight">\(A^TA\)</span>.</p>
+<p>Since <span class="math notranslate nohighlight">\(AA^T\)</span> and <span class="math notranslate nohighlight">\(A^TA\)</span> are automatically symmetric (but not usually
+equal!) the <span class="math notranslate nohighlight">\(\u\)</span>’s will be one orthogonal set and the eigenvectors
+<span class="math notranslate nohighlight">\(\v\)</span> will be another orthogonal set.
+We can and will make them all unit vectors: <span class="math notranslate nohighlight">\(\lv\u_i\rv=1\)</span> and <span class="math notranslate nohighlight">\(\lv\v_i\rv=1\)</span>.
+Then our rank 2 matrix will be <span class="math notranslate nohighlight">\(A=\sg_1\u_1\v_1^T+\sg_2\u_2\v_2^T\)</span>.
+The size of those numbers <span class="math notranslate nohighlight">\(\sg_1\)</span> and <span class="math notranslate nohighlight">\(\sg_2\)</span> will decide whether they can be ignored in compression.
+<em>We keep larger</em> <span class="math notranslate nohighlight">\(\sg\)</span>’s, <em>we discard small</em> <span class="math notranslate nohighlight">\(\sg\)</span>’s.</p>
+<p>The <span class="math notranslate nohighlight">\(\u\)</span>’s from the SVD are called <strong>left singular vectors</strong> (unit eigenvectors of <span class="math notranslate nohighlight">\(AA^T\)</span>).
+The <span class="math notranslate nohighlight">\(\v\)</span>’s are <strong>right singular vectors</strong> (unit eigenvectors of <span class="math notranslate nohighlight">\(A^TA\)</span>).
+The <span class="math notranslate nohighlight">\(\sg\)</span>’s are <strong>singular values</strong>, square roots of the equal eigenvalues of <span class="math notranslate nohighlight">\(AA^T\)</span> and <span class="math notranslate nohighlight">\(A^TA\)</span>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Choices from the SVD</strong>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(AA^T\u_i=\sg_i^2\u_i \quad A^TA\v_i=\sg_i^2\v_i \quad A\v_i=\sg_i\u_i\)</span>.</p></li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(A=\bb \\\ \u_1&amp;\u_2 \\\ \eb\bb \sg_1\\&amp;\sg_2 \eb\bb \v_1^T\\\v_2^T \eb\)</span>
+or more simply
+<span class="math notranslate nohighlight">\(A\bb \\\ \v_1&amp;\v_2 \\\ \eb=\bb \\\ \sg_1\u_1&amp;\sg_2\u_2 \\\ \eb\)</span></p>
+</div>
+<p><em>Important</em>: The key point is not that images tend to have low rank.
+<strong>No</strong>: Images mostly have full rank.
+But they do have <strong>low effective rank</strong>.
+This means: Many singular values are small and can be set to zero.
+<em>We transmit a low rank approximation</em>.</p>
+<p><strong>Visual quality can be preserved even with a big reduction in the rank</strong>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="chap7-2.html" class="btn btn-neutral float-right" title="Chapter 7.2 Bases and Matrices in the SVD" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index7.html" class="btn btn-neutral float-left" title="Chapter 7 The Singular Value Decomposition (SVD)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Ziniu Yu.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

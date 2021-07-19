@@ -90,7 +90,11 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="chap1/index1.html">Chapter 1 Introduction to Vectors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chap2/index2.html">Chapter 2 Solving Linear Equations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chap3/index3.html">Chapter 3 Vector Spacese and Subspaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap3/index3.html">Chapter 3 Vector Spaces and Subspaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap4/index4.html">Chapter 4 Orthogonality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap5/index5.html">Chapter 5 Determinants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap6/index6.html">Chapter 6 Eigenvalues and Eigenvectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap7/index7.html">Chapter 7 The Singular Value Decomposition (SVD)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="about.html">About</a></li>
 </ul>
 
@@ -162,20 +166,37 @@
   <div class="math notranslate nohighlight">
 \[ \begin{align}\begin{aligned}\newcommand{\bs}{\boldsymbol}
 \newcommand{\dp}{\displaystyle}
-\newcommand{\rm}{\mathrm}\\\newcommand{\cd}{\cdot}
+\newcommand{\rm}{\mathrm}
+\newcommand{\pd}{\partial}\\\newcommand{\cd}{\cdot}
 \newcommand{\cds}{\cdots}
+\newcommand{\dds}{\ddots}
+\newcommand{\vds}{\vdots}
 \newcommand{\lv}{\lVert}
-\newcommand{\rv}{\rVert}\\\newcommand{\0}{\boldsymbol{0}}
+\newcommand{\rv}{\rVert}
+\newcommand{\wh}{\widehat}\\\newcommand{\0}{\boldsymbol{0}}
+\newcommand{\a}{\boldsymbol{a}}
 \newcommand{\b}{\boldsymbol{b}}
 \newcommand{\e}{\boldsymbol{e}}
 \newcommand{\i}{\boldsymbol{i}}
 \newcommand{\j}{\boldsymbol{j}}
+\newcommand{\p}{\boldsymbol{p}}
+\newcommand{\q}{\boldsymbol{q}}
 \newcommand{\u}{\boldsymbol{u}}
 \newcommand{\v}{\boldsymbol{v}}
 \newcommand{\w}{\boldsymbol{w}}
 \newcommand{\x}{\boldsymbol{x}}
-\newcommand{\y}{\boldsymbol{y}}\\\newcommand{\N}{\boldsymbol{N}}\\\newcommand{\R}{\boldsymbol{\mathrm{R}}}\\\newcommand{\bb}{\begin{bmatrix}}
-\newcommand{\eb}{\end{bmatrix}}\\\newcommand{\im}{^{-1}}\end{aligned}\end{align} \]</div>
+\newcommand{\y}{\boldsymbol{y}}\\\newcommand{\A}{\boldsymbol{A}}
+\newcommand{\B}{\boldsymbol{B}}
+\newcommand{\C}{\boldsymbol{C}}
+\newcommand{\N}{\boldsymbol{N}}\\\newcommand{\R}{\boldsymbol{\mathrm{R}}}\\\newcommand{\ld}{\lambda}
+\newcommand{\Ld}{\Lambda}
+\newcommand{\sg}{\sigma}
+\newcommand{\Sg}{\Sigma}\\\newcommand{\bb}{\begin{bmatrix}}
+\newcommand{\eb}{\end{bmatrix}}
+\newcommand{\bv}{\begin{vmatrix}}
+\newcommand{\ev}{\end{vmatrix}}\\\newcommand{\im}{^{-1}}
+\newcommand{\pr}{^{\prime}}
+\newcommand{\ppr}{^{\prime\prime}}\end{aligned}\end{align} \]</div>
 <div class="section" id="linear-algebra-notes">
 <h1>Linear Algebra Notes<a class="headerlink" href="#linear-algebra-notes" title="Permalink to this headline">¶</a></h1>
 <p>Study notes of Introduction to Linear Algebra, 5th Edition by Gilbert Strang</p>
@@ -198,12 +219,40 @@
 <li class="toctree-l2"><a class="reference internal" href="chap2/chap2-7.html">Chapter 2.7 Transposes and Permutations</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="chap3/index3.html">Chapter 3 Vector Spacese and Subspaces</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="chap3/index3.html">Chapter 3 Vector Spaces and Subspaces</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="chap3/chap3-1.html">Chapter 3.1 Spaces of Vectors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="chap3/chap3-2.html">Chapter 3.2 The Nullspace of <span class="math notranslate nohighlight">\(A\)</span>: Solving <span class="math notranslate nohighlight">\(Ax = 0\)</span> and <span class="math notranslate nohighlight">\(Rx=0\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap3/chap3-2.html">Chapter 3.2 The Nullspace of <span class="math notranslate nohighlight">\(A\)</span>: Solving <span class="math notranslate nohighlight">\(A\boldsymbol{x} = 0\)</span> and <span class="math notranslate nohighlight">\(R\boldsymbol{x}=0\)</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="chap3/chap3-3.html">Chapter 3.3 The Complete Solution to <span class="math notranslate nohighlight">\(Ax=b\)</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="chap3/chap3-4.html">Chapter 3.4 Independece, Basis and Dimension</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chap3/chap3-5.html">Chapter 3.5 Dimensions of the Four Subspaces</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="chap4/index4.html">Chapter 4 Orthogonality</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="chap4/chap4-1.html">Chapter 4.1 Orthogonality of the Four Subspaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap4/chap4-2.html">Chapter 4.2 Projections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap4/chap4-3.html">Chapter 4.3 Least Squares Approximations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap4/chap4-4.html">Chapter 4.4 Orthonormal Bases and Gram-Schmidt</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="chap5/index5.html">Chapter 5 Determinants</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="chap5/chap5-1.html">Chapter 5.1 The Properties of Determinants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap5/chap5-2.html">Chapter 5.2 Permutations and Cofactors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap5/chap5-3.html">Chapter 5.3 Cramer’s Rule, Inverses, and Volumes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="chap6/index6.html">Chapter 6 Eigenvalues and Eigenvectors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="chap6/chap6-1.html">Chapter 6.1 Introduction to Eigenvalues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap6/chap6-2.html">Chapter 6.2 Diagonalizing a Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap6/chap6-3.html">Chapter 6.3 Systems of Differential Equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap6/chap6-4.html">Chapter 6.4 Symmetric Matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap6/chap6-5.html">Chapter 6.5 Positive Definite Matrices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="chap7/index7.html">Chapter 7 The Singular Value Decomposition (SVD)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="chap7/chap7-1.html">Chapter 7.1 Image Processing by Linear Algebra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap7/chap7-2.html">Chapter 7.2 Bases and Matrices in the SVD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap7/chap7-3.html">Chapter 7.3 Principal Component Analysis (PCA by the SVD)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap7/chap7-4.html">Chapter 7.4 The Geometry of the SVD</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="about.html">About</a></li>

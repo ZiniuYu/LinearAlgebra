@@ -1,0 +1,473 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Chapter 5.1 The Properties of Determinants &mdash; LinearAlgebra  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapter 5.2 Permutations and Cofactors" href="chap5-2.html" />
+    <link rel="prev" title="Chapter 5 Determinants" href="index5.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> LinearAlgebra
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../chap1/index1.html">Chapter 1 Introduction to Vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap2/index2.html">Chapter 2 Solving Linear Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap3/index3.html">Chapter 3 Vector Spaces and Subspaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap4/index4.html">Chapter 4 Orthogonality</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index5.html">Chapter 5 Determinants</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 5.1 The Properties of Determinants</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-properties-of-the-determinant">The Properties of the Determinant</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="chap5-2.html">Chapter 5.2 Permutations and Cofactors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap5-3.html">Chapter 5.3 Cramer’s Rule, Inverses, and Volumes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../chap6/index6.html">Chapter 6 Eigenvalues and Eigenvectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap7/index7.html">Chapter 7 The Singular Value Decomposition (SVD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">LinearAlgebra</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index5.html">Chapter 5 Determinants</a> &raquo;</li>
+        
+      <li>Chapter 5.1 The Properties of Determinants</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/chap5/chap5-1.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\newcommand{\bs}{\boldsymbol}
+\newcommand{\dp}{\displaystyle}
+\newcommand{\rm}{\mathrm}
+\newcommand{\pd}{\partial}\\\newcommand{\cd}{\cdot}
+\newcommand{\cds}{\cdots}
+\newcommand{\dds}{\ddots}
+\newcommand{\vds}{\vdots}
+\newcommand{\lv}{\lVert}
+\newcommand{\rv}{\rVert}
+\newcommand{\wh}{\widehat}\\\newcommand{\0}{\boldsymbol{0}}
+\newcommand{\a}{\boldsymbol{a}}
+\newcommand{\b}{\boldsymbol{b}}
+\newcommand{\e}{\boldsymbol{e}}
+\newcommand{\i}{\boldsymbol{i}}
+\newcommand{\j}{\boldsymbol{j}}
+\newcommand{\p}{\boldsymbol{p}}
+\newcommand{\q}{\boldsymbol{q}}
+\newcommand{\u}{\boldsymbol{u}}
+\newcommand{\v}{\boldsymbol{v}}
+\newcommand{\w}{\boldsymbol{w}}
+\newcommand{\x}{\boldsymbol{x}}
+\newcommand{\y}{\boldsymbol{y}}\\\newcommand{\A}{\boldsymbol{A}}
+\newcommand{\B}{\boldsymbol{B}}
+\newcommand{\C}{\boldsymbol{C}}
+\newcommand{\N}{\boldsymbol{N}}\\\newcommand{\R}{\boldsymbol{\mathrm{R}}}\\\newcommand{\ld}{\lambda}
+\newcommand{\Ld}{\Lambda}
+\newcommand{\sg}{\sigma}
+\newcommand{\Sg}{\Sigma}\\\newcommand{\bb}{\begin{bmatrix}}
+\newcommand{\eb}{\end{bmatrix}}
+\newcommand{\bv}{\begin{vmatrix}}
+\newcommand{\ev}{\end{vmatrix}}\\\newcommand{\im}{^{-1}}
+\newcommand{\pr}{^{\prime}}
+\newcommand{\ppr}{^{\prime\prime}}\end{aligned}\end{align} \]</div>
+<div class="section" id="chapter-5-1-the-properties-of-determinants">
+<h1>Chapter 5.1 The Properties of Determinants<a class="headerlink" href="#chapter-5-1-the-properties-of-determinants" title="Permalink to this headline">¶</a></h1>
+<p>The determinant of a square matrix is a single number.
+<strong>The determinant is zero when the matrix has no inverse</strong>.
+When <span class="math notranslate nohighlight">\(A\)</span> is invertible, the determinant of <span class="math notranslate nohighlight">\(A\im\)</span> is <span class="math notranslate nohighlight">\(1/(\det A)\)</span>.
+In fact the determinant leads to a formula for every entry in <span class="math notranslate nohighlight">\(A\im\)</span>.</p>
+<p>This is one use for determinants–to find formulas for inverse matrices and pivots and solutions <span class="math notranslate nohighlight">\(A\im\b\)</span>.
+For a large matrix we seldom use those formulas, because elimination is faster.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A=\bb a&amp;b\\c&amp;d \eb\rm{\ has\ inverse\ }A\im=\frac{1}{ad-bc}\bb d&amp;-b\\-c&amp;a \eb.\end{split}\]</div>
+<p>When the determinant is <span class="math notranslate nohighlight">\(ad-bc=0\)</span>, we are asked to divide by zero and we can’t–then <span class="math notranslate nohighlight">\(A\)</span> has no inverse.
+Dependent rows always lead to <span class="math notranslate nohighlight">\(\det A=0\)</span>.</p>
+<p>The determinant is also connected to the pivots.
+For a 2 by 2 matrix the pivots are <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(d-(c/a)b\)</span>.
+<strong>The product of the pivots is the determinant</strong>:</p>
+<p><strong>Product of pivots</strong>: <span class="math notranslate nohighlight">\(\dp a(d-\frac{c}{a}b)=ad-bc\)</span> <strong>which is</strong> <span class="math notranslate nohighlight">\(\det A\)</span>.</p>
+<p>Aftere a row exchange the pivots change to <span class="math notranslate nohighlight">\(c\)</span> and <span class="math notranslate nohighlight">\(b-(a/c)d\)</span>.
+Those new pivots multiply to give <span class="math notranslate nohighlight">\(bc-ad\)</span>.
+The row exchange to <span class="math notranslate nohighlight">\(\bb c&amp;d\\a&amp;b \eb\)</span> reversed the sign of the determinant.</p>
+<p>The determinant of an <span class="math notranslate nohighlight">\(n\)</span> by <span class="math notranslate nohighlight">\(n\)</span> matrix can be found in three ways:</p>
+<ol class="arabic simple">
+<li><p><strong>Pivot formula</strong>: Multiply the <span class="math notranslate nohighlight">\(n\)</span> pivots (times 1 or -1).</p></li>
+<li><p><strong>“Big” formula</strong>: Add up <span class="math notranslate nohighlight">\(n!\)</span> terms (times 1 or -1).</p></li>
+<li><p><strong>Cofactor formula</strong>: Combine <span class="math notranslate nohighlight">\(n\)</span> smaller determinants (times 1 or -1).</p></li>
+</ol>
+<p><strong>The determinant changes sign when two rows (or two columns) are exchanged</strong>.</p>
+<p>The identity matrix has determinant <span class="math notranslate nohighlight">\(+1\)</span>.
+Exchange two rows and <span class="math notranslate nohighlight">\(\det P=-1\)</span>.
+Exchange two more rows and the new permutation has <span class="math notranslate nohighlight">\(\det P=+1\)</span>.
+Half of all permutations are <em>even</em> (<span class="math notranslate nohighlight">\(\det P=1\)</span>) and half are <em>odd</em> (<span class="math notranslate nohighlight">\(\det P=-1\)</span>).
+Starting from <span class="math notranslate nohighlight">\(I\)</span>, half of the <span class="math notranslate nohighlight">\(P\)</span>’s involve an even number of exchanges and half require an odd number.
+In the 2 by 2 case, <span class="math notranslate nohighlight">\(ad\)</span> has a plus sign and <span class="math notranslate nohighlight">\(bc\)</span> has minus–coming from the row exchange:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\det \bb 1&amp;0\\0&amp;1 \eb = 1 \rm{\ and\ } \det \bb 0&amp;1\\1&amp;0 \eb = -1\end{split}\]</div>
+<div class="section" id="the-properties-of-the-determinant">
+<h2>The Properties of the Determinant<a class="headerlink" href="#the-properties-of-the-determinant" title="Permalink to this headline">¶</a></h2>
+<p><strong>The determinant is written in two ways</strong>, <span class="math notranslate nohighlight">\(\det A\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(\bv A \ev\)</span>.
+Notice: Brackets for the matrix, straight bars for its determinant.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\rm{The\ determinant\ of\ } \bb a&amp;b\\c&amp;d \eb \rm{\ is\ } \bv a&amp;b\\c&amp;d \ev = ad - bc.\end{split}\]</div>
+<p>We will check all rules with the 2 by 2 formula, but do not forget: The rules
+apply to any <span class="math notranslate nohighlight">\(n\)</span> by <span class="math notranslate nohighlight">\(n\)</span> matrix <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p><strong>1. The determinant of the</strong> <span class="math notranslate nohighlight">\(n\)</span> <strong>by</strong> <span class="math notranslate nohighlight">\(n\)</span> <strong>identity matrix is 1</strong>.</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}\bv 1&amp;0\\0&amp;1 \ev=1 \quad\rm{and}\quad \bv 1\\&amp;\ddots\\&amp;&amp;1 \ev=1.\end{split}\]</div>
+</div></blockquote>
+<p><strong>2. The determinant changes sign when two rows are exchanged</strong> (sign reversal).</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}\bv c&amp;d\\a&amp;b \ev=-\bv a&amp;b\\c&amp;d \ev.\end{split}\]</div>
+<p>We can find <span class="math notranslate nohighlight">\(\det P\)</span> for any permutation matrix.
+Just exchange rows of <span class="math notranslate nohighlight">\(I\)</span> until you reach <span class="math notranslate nohighlight">\(P\)</span>.
+Then <span class="math notranslate nohighlight">\(\det P=+1\)</span> for an <strong>even</strong> number of row exchanges and <span class="math notranslate nohighlight">\(\det P=-1\)</span> for an <strong>odd</strong> number.</p>
+</div></blockquote>
+<p><strong>3. The determinant is a linear function of each row separately</strong> (all other rows stay fixed).</p>
+<blockquote>
+<div><p>If the first row is multiplied by <span class="math notranslate nohighlight">\(t\)</span>, the determinant is multiplied by <span class="math notranslate nohighlight">\(t\)</span>.
+If first rows are added, determinants are added.
+This rule only applies when the other rows do not change!
+Notice how <span class="math notranslate nohighlight">\(c\)</span> and <span class="math notranslate nohighlight">\(d\)</span> stay the same:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Multiply row 1 by any number</strong> <span class="math notranslate nohighlight">\(t\)</span>, <span class="math notranslate nohighlight">\(\det\)</span> <strong>is multiplied by</strong> <span class="math notranslate nohighlight">\(t\)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\bv ta&amp;tb\\c&amp;d \ev=t \bv a&amp;b\\c&amp;d \ev\)</span>.</p></li>
+</ul>
+<p><strong>Add row 1 of</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>to row 1 of</strong> <span class="math notranslate nohighlight">\(A^{\pr}\)</span>, <strong>then determinants add</strong>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\bv a+a^{\pr}&amp;b+b^{\pr}\\c&amp;d \ev=\bv a&amp;b\\c&amp;d \ev+\bv a^{\pr}&amp;b^{\pr}\\c&amp;d \ev\)</span>.</p></li>
+</ul>
+</div>
+<p>In the first case, both sides are <span class="math notranslate nohighlight">\(tad-tbc\)</span>.
+Then <span class="math notranslate nohighlight">\(t\)</span> factors out.
+In the second case, both sides are <span class="math notranslate nohighlight">\(ad+a^{\pr}d-bc-b^{\pr}c\)</span>.
+These rules still apply when <span class="math notranslate nohighlight">\(A\)</span> is <span class="math notranslate nohighlight">\(n\)</span> by <span class="math notranslate nohighlight">\(n\)</span>, and <strong>one row changes</strong>.</p>
+<p>Combining multiplication and addition, we get <em>any linear combination in one row</em>.
+Row 2 for row exchanges can put that row into the first row and back again.</p>
+<p>This rule does not mean that <span class="math notranslate nohighlight">\(\det 2I=2\det I\)</span>.
+To obtain <span class="math notranslate nohighlight">\(2I\)</span> we have to multiply <em>both</em> rows by 2, and the factor 2 comes out both times:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bv 2&amp;0\\0&amp;2 \ev=2^2=4\quad\rm{and}\quad\bv t&amp;0\\0&amp;t \ev=t^2.\end{split}\]</div>
+</div></blockquote>
+<p><strong>4. If two rows of</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>are equal</strong>, <strong>then</strong> <span class="math notranslate nohighlight">\(\det A=0\)</span>.</p>
+<blockquote>
+<div><p><strong>Equal rows</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bv a&amp;b\\a&amp;b \ev=0.\end{split}\]</div>
+<p>Rule 4 follows from rule 2.
+<em>Exchange the two equal rows</em>.
+The determinant <span class="math notranslate nohighlight">\(D\)</span> is supposed to change sign.
+But also <span class="math notranslate nohighlight">\(D\)</span> has to stay the same, because the matrix is not changed.
+The only number with <span class="math notranslate nohighlight">\(-D=D\)</span> is <span class="math notranslate nohighlight">\(D=0\)</span>–this must be the determinant.</p>
+<p>A matrix with two equal rows has no inverse.
+Rule 4 makes <span class="math notranslate nohighlight">\(\det A=0\)</span>.
+But matrices can be singular and determinants can be zero without having equal rows!</p>
+</div></blockquote>
+<p><strong>5. Subtracting a multiple of one row from another row leaves</strong> <span class="math notranslate nohighlight">\(\det A\)</span> <strong>unchanged</strong>.</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(l\)</span> <strong>times row 1 from row 2</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bv a&amp;b\\c-la&amp;d-lb \ev=\bv a&amp;b\\c&amp;d \ev\end{split}\]</div>
+<p>Rule 3 (linearity) splits the left side into the right side plus another term <span class="math notranslate nohighlight">\(-l\bv a&amp;b\\c&amp;d \ev\)</span>.
+This extra term is zero by rule 4: equal rows.</p>
+<p><strong>Conclusion</strong>: <em>The determinant is not changed by the usual elimination steps from</em> <span class="math notranslate nohighlight">\(A\)</span> <em>to</em> <span class="math notranslate nohighlight">\(U\)</span>.
+Thus <span class="math notranslate nohighlight">\(\det A=\det U\)</span>.
+If we can find determinants of triangular matrices <span class="math notranslate nohighlight">\(U\)</span>, we can find determinants of all matrices <span class="math notranslate nohighlight">\(A\)</span>.
+Every row exchange reverses the sign, so always <span class="math notranslate nohighlight">\(\det A=\pm \det U\)</span>.</p>
+</div></blockquote>
+<p><strong>6. A matrix with a row of zeros has</strong> <span class="math notranslate nohighlight">\(\det A=0\)</span>.</p>
+<blockquote>
+<div><p><strong>Row of zeros</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bv 0&amp;0\\c&amp;d \ev=0\quad\rm{and}\quad\bv a&amp;b\\0&amp;0 \ev=0.\end{split}\]</div>
+</div></blockquote>
+<p><strong>7. If</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>is triangular then</strong> <span class="math notranslate nohighlight">\(\det A=\a_{11}\a_{22}\cds\a_{nn}=\)</span> <strong>product of diagonal entries</strong>.</p>
+<blockquote>
+<div><p><strong>Triangular</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bv a&amp;b\\0&amp;d \ev=ad\quad\rm{and\ also}\quad\bv  a&amp;0\\c&amp;d \ev=ad.\end{split}\]</div>
+<p>Suppose all diagonal entries are nonzero.
+Remove the off-diagonal entries by elimination!
+By rule 5 the determinant is not changed–and now the matrix is diagonal:</p>
+<p><strong>Diagonal matrix</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\det\bb a_{11}&amp;&amp;&amp;0\\&amp;a_{22}\\&amp;&amp;\ddots\\0&amp;&amp;&amp;a_{nn} \eb=(a_{11})(a_{22})\cds(a_{nn}).\end{split}\]</div>
+</div></blockquote>
+<p><strong>8. If</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>is singular then</strong> <span class="math notranslate nohighlight">\(\det A=0\)</span>. <strong>If</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>is invertible then</strong> <span class="math notranslate nohighlight">\(\det A\neq 0\)</span>.</p>
+<blockquote>
+<div><p><strong>Singular</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb a&amp;b\\c&amp;d \eb \rm{\ is\ singular\ if\ and\ only\ if\ } ad-bc=0.\end{split}\]</div>
+<p><strong>Proof</strong>:
+Elimination goes from <span class="math notranslate nohighlight">\(A\)</span> to <span class="math notranslate nohighlight">\(U\)</span>.
+If <span class="math notranslate nohighlight">\(A\)</span> is singular then <span class="math notranslate nohighlight">\(U\)</span> has a zero row.
+The rules give <span class="math notranslate nohighlight">\(\det A=\det U=0\)</span>.
+If <span class="math notranslate nohighlight">\(A\)</span> is invertible then <span class="math notranslate nohighlight">\(U\)</span> has the pivots along its diagonal.
+The product of nonzero pivots (using rule 7) gives a nonzero determinant:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Multiply pivots</strong> <span class="math notranslate nohighlight">\(\det A=\pm \det U=\pm(\rm{product\ of\ the\ pivots})\)</span>.</p>
+</div>
+<p>The pivots of a 2 by 2 matrix (if <span class="math notranslate nohighlight">\(a\neq 0\)</span>) are <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(d-(c/a)b\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bv a&amp;b\\c&amp;d \ev=\bv a&amp;b\\0&amp;d-(c/a)b \ev=ad-bc.\end{split}\]</div>
+<p><em>This is the first formula for the determinant</em>.
+The sign in <span class="math notranslate nohighlight">\(\pm\det U\)</span> depends on whether the number of row exchanges
+is even or odd: <span class="math notranslate nohighlight">\(+1\)</span> or <span class="math notranslate nohighlight">\(-1\)</span> is the determinant of the
+permutation <span class="math notranslate nohighlight">\(P\)</span> that exchanges rows.</p>
+<p>With no row exchanges, <span class="math notranslate nohighlight">\(P=I\)</span> and <span class="math notranslate nohighlight">\(\det A=\det U=\)</span> <em>product of pivots</em>.
+And <span class="math notranslate nohighlight">\(\det L=1\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\rm{If\ }PA=LU\rm{\ then\ }\det P=\det A=\det L\det U\rm{\ and\ }\det A=\pm\det U.\]</div>
+</div></blockquote>
+<p><strong>9. The determinant of</strong> <span class="math notranslate nohighlight">\(AB\)</span> <strong>is</strong> <span class="math notranslate nohighlight">\(\det A\)</span> <strong>times</strong> <span class="math notranslate nohighlight">\(\det B\)</span>: <span class="math notranslate nohighlight">\(\bv AB\ev=\bv A\ev\bv B\ev\)</span>.</p>
+<blockquote>
+<div><p><strong>Product rule</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bv a&amp;b\\c&amp;d \ev\bv p&amp;q\\r&amp;s \ev=\bv ap+br&amp;aq+bs\\cp+dr&amp;cq+ds \ev.\end{split}\]</div>
+<p>When the matrix is <span class="math notranslate nohighlight">\(A\im\)</span>, <em>this rule says that the determinant of</em> <span class="math notranslate nohighlight">\(A\im\)</span> is <span class="math notranslate nohighlight">\(1/\det A\)</span>:</p>
+<p><span class="math notranslate nohighlight">\(A\)</span> <strong>times</strong> <span class="math notranslate nohighlight">\(A\im\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[AA\im=I\quad\rm{so}\quad(\det A)(\det A\im)=\det I=1.\]</div>
+<p>For the <span class="math notranslate nohighlight">\(n\)</span> by <span class="math notranslate nohighlight">\(n\)</span> case, here is a snappy proof that <span class="math notranslate nohighlight">\(\bv AB\ev=\bv A\ev\bv B\ev\)</span>.
+When <span class="math notranslate nohighlight">\(\bv B \ev\)</span> is not zero, consider the ratio <span class="math notranslate nohighlight">\(D(A)=\bv AB \ev/\bv B \ev\)</span>.
+<em>Check that this ratio</em> <span class="math notranslate nohighlight">\(D(A)\)</span> <em>has the following properties 1,2,3</em>.
+Then <span class="math notranslate nohighlight">\(D(A)\)</span> has to be the determinant and we have <span class="math notranslate nohighlight">\(\bv AB \ev/\bv B \ev=\bv A \ev\)</span>.</p>
+<p><strong>Property 1</strong> (<em>Determinant of</em> <span class="math notranslate nohighlight">\(I\)</span>): If <span class="math notranslate nohighlight">\(A=I\)</span> then the ratio
+<span class="math notranslate nohighlight">\(D(A)\)</span> becomes <span class="math notranslate nohighlight">\(\bv B \ev/\bv B \ev=1\)</span></p>
+<p><strong>Property 2</strong> (<em>Sign reversal</em>): When two rows of <span class="math notranslate nohighlight">\(A\)</span> are exchanged, so are the same two rows of <span class="math notranslate nohighlight">\(AB\)</span>.
+Therefore <span class="math notranslate nohighlight">\(\bv AB \ev\)</span> changes sign and so does the ratio <span class="math notranslate nohighlight">\(\bv AB \ev/\bv B \ev\)</span>.</p>
+<p><strong>Property 3</strong> (<em>Linearity</em>): When row 1 of <span class="math notranslate nohighlight">\(A\)</span> is multiplied by <span class="math notranslate nohighlight">\(t\)</span>, so is row 1 of <span class="math notranslate nohighlight">\(AB\)</span>.
+This multiplies the determinant <span class="math notranslate nohighlight">\(\bv AB \ev\)</span> by <span class="math notranslate nohighlight">\(t\)</span>.
+So the ratio <span class="math notranslate nohighlight">\(\bv AB \ev/\bv B \ev\)</span> is multiplied by <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<blockquote>
+<div><p>Add row 1 of <span class="math notranslate nohighlight">\(A\)</span> to row 1 of <span class="math notranslate nohighlight">\(A^{\pr}\)</span>.
+Then row 1 of <span class="math notranslate nohighlight">\(AB\)</span> adds to row 1 of <span class="math notranslate nohighlight">\(A^{\pr}B\)</span>.
+By rule 3, determinants add.
+After dividing by <span class="math notranslate nohighlight">\(\bv B \ev\)</span>, the ratios add–as desired.</p>
+</div></blockquote>
+<p><em>Conclusion</em>: This ratio <span class="math notranslate nohighlight">\(\bv AB \ev/\bv B \ev\)</span> has the same three properties that define <span class="math notranslate nohighlight">\(\bv A \ev\)</span>.
+Therefore it equals <span class="math notranslate nohighlight">\(\bv A \ev\)</span>.
+This proves the product rule <span class="math notranslate nohighlight">\(\bv AB\ev=\bv A\ev\bv B\ev\)</span>.
+The case <span class="math notranslate nohighlight">\(\bv B \ev=0\)</span> is separate and easy, because <span class="math notranslate nohighlight">\(AB\)</span> is singular when <span class="math notranslate nohighlight">\(B\)</span> is singular.
+Then <span class="math notranslate nohighlight">\(\bv AB\ev=\bv A\ev\bv B\ev\)</span> is <span class="math notranslate nohighlight">\(0=0\)</span>.</p>
+</div></blockquote>
+<p><strong>10. The transpose</strong> <span class="math notranslate nohighlight">\(A^T\)</span> <strong>has the same determinant as</strong> <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<blockquote>
+<div><p><strong>Transpose</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bv a&amp;b\\c&amp;d \ev=\bv a&amp;c\\b&amp;d \ev\rm{\ since\ both\ sides\ equal\ }ad-bc.\end{split}\]</div>
+<p>The equation <span class="math notranslate nohighlight">\(\bv A^T \ev=\bv A \ev\)</span> becomes <span class="math notranslate nohighlight">\(0=0\)</span> when
+<span class="math notranslate nohighlight">\(A\)</span> is singular (we know that <span class="math notranslate nohighlight">\(A^T\)</span> is also singular).
+Otherwise <span class="math notranslate nohighlight">\(A\)</span> has the usual factorization <span class="math notranslate nohighlight">\(PA=LU\)</span>.
+Transposing both sides gives <span class="math notranslate nohighlight">\(A^TP^T=U^TL^T\)</span>.
+The proof of <span class="math notranslate nohighlight">\(\bv A \ev=\bv A^T \ev\)</span> comes by using rule 9 for products:</p>
+<div class="math notranslate nohighlight">
+\[\rm{Compare\ }\det P\det A=\det L\det U\rm{\ with\ }\det A^T\det P^T=\det U^T\det L^T.\]</div>
+<p>First, <span class="math notranslate nohighlight">\(\det L=\det L^T=1\)</span> (both have 1’s on the diagonal).
+Second, <span class="math notranslate nohighlight">\(\det U=\det U^T\)</span> (those triangular matrices have the same diagonal).
+Third, <span class="math notranslate nohighlight">\(\det P=\det P^T\)</span> (permutations have <span class="math notranslate nohighlight">\(P^TP=I\)</span>, so
+<span class="math notranslate nohighlight">\(\bv P^T \ev\bv P \ev =1\)</span> by rule 9; thus <span class="math notranslate nohighlight">\(\bv P \ev\)</span> and
+<span class="math notranslate nohighlight">\(\bv P^T \ev\)</span> both equal 1 or both equal -1).
+So <span class="math notranslate nohighlight">\(L,U,P\)</span> have the same determinants as <span class="math notranslate nohighlight">\(L^T,U^T,P^T\)</span> and this leaves <span class="math notranslate nohighlight">\(\det A=\det A^T\)</span>.</p>
+</div></blockquote>
+<p><strong>Important comment on columns</strong>: Every rule for the rows can apply to the
+columns (just by transposing, since <span class="math notranslate nohighlight">\(\bv A \ev=\bv A^T \ev\)</span>).
+That determinant changes sign when two columns are exchanged.
+<em>A zero column or two equal columns will make the determinant zero</em>.
+If a column is multiplied by <span class="math notranslate nohighlight">\(t\)</span>, so is the determinant.
+The determinant is a linear function of each column separately.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="chap5-2.html" class="btn btn-neutral float-right" title="Chapter 5.2 Permutations and Cofactors" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index5.html" class="btn btn-neutral float-left" title="Chapter 5 Determinants" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Ziniu Yu.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

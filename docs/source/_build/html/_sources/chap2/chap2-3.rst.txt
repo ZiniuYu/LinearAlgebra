@@ -6,8 +6,8 @@ Chapter 2.3 Elimination Using Matrices
 #. To see how each :math:`E_{ij}` is inverted by its inverse matrix :math:`E_{ij}^{-1}`.
 #. To assemble all those inverse :math:`E_{ij}^{-1}` (in the right order) into :math:`L`.
 
-Matrix times Vectors and :math:`Ax = b`
----------------------------------------
+Matrix times Vectors and :math:`A\boldsymbol{x} = \boldsymbol{b}`
+-----------------------------------------------------------------
 
 The 3 by 3 example in the previous section has the short form :math:`A\x=\b`:
 
@@ -66,7 +66,7 @@ Rows 1 and 3 stay the same:
 .. math::
 
     \bb 1&0&0 \\ -2&1&0 \\ 0&0&1 \eb \bb 2\\8\\10 \eb = \bb 2\\4\\10 \eb \quad
-    \bb 1&0&0 \\ -2&1&0 \\ 0&0&1 \eb \bb b_1\\b_2\\b_3 \eb == \bb b_1 \\b_2-2b_1\\b_3 \eb
+    \bb 1&0&0\\-2&1&0\\0&0&1 \eb\bb b_1\\b_2\\b_3 \eb=\bb b_1\\b_2-2b_1\\b_3 \eb
 
 .. note::
 

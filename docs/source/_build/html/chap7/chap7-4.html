@@ -1,0 +1,323 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Chapter 7.4 The Geometry of the SVD &mdash; LinearAlgebra  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="About" href="../about.html" />
+    <link rel="prev" title="Chapter 7.3 Principal Component Analysis (PCA by the SVD)" href="chap7-3.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> LinearAlgebra
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../chap1/index1.html">Chapter 1 Introduction to Vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap2/index2.html">Chapter 2 Solving Linear Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap3/index3.html">Chapter 3 Vector Spaces and Subspaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap4/index4.html">Chapter 4 Orthogonality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap5/index5.html">Chapter 5 Determinants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap6/index6.html">Chapter 6 Eigenvalues and Eigenvectors</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index7.html">Chapter 7 The Singular Value Decomposition (SVD)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="chap7-1.html">Chapter 7.1 Image Processing by Linear Algebra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap7-2.html">Chapter 7.2 Bases and Matrices in the SVD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap7-3.html">Chapter 7.3 Principal Component Analysis (PCA by the SVD)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 7.4 The Geometry of the SVD</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-norm-of-a-matrix">The Norm of a Matrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#polar-decomposition-a-qs">Polar Decomposition <span class="math notranslate nohighlight">\(A=QS\)</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-pseudoinverse-a">The Pseudoinverse <span class="math notranslate nohighlight">\(A^+\)</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#least-squares-with-dependent-columns">Least Squares with Dependent Columns</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">LinearAlgebra</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index7.html">Chapter 7 The Singular Value Decomposition (SVD)</a> &raquo;</li>
+        
+      <li>Chapter 7.4 The Geometry of the SVD</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/chap7/chap7-4.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\newcommand{\bs}{\boldsymbol}
+\newcommand{\dp}{\displaystyle}
+\newcommand{\rm}{\mathrm}
+\newcommand{\pd}{\partial}\\\newcommand{\cd}{\cdot}
+\newcommand{\cds}{\cdots}
+\newcommand{\dds}{\ddots}
+\newcommand{\vds}{\vdots}
+\newcommand{\lv}{\lVert}
+\newcommand{\rv}{\rVert}
+\newcommand{\wh}{\widehat}\\\newcommand{\0}{\boldsymbol{0}}
+\newcommand{\a}{\boldsymbol{a}}
+\newcommand{\b}{\boldsymbol{b}}
+\newcommand{\e}{\boldsymbol{e}}
+\newcommand{\i}{\boldsymbol{i}}
+\newcommand{\j}{\boldsymbol{j}}
+\newcommand{\p}{\boldsymbol{p}}
+\newcommand{\q}{\boldsymbol{q}}
+\newcommand{\u}{\boldsymbol{u}}
+\newcommand{\v}{\boldsymbol{v}}
+\newcommand{\w}{\boldsymbol{w}}
+\newcommand{\x}{\boldsymbol{x}}
+\newcommand{\y}{\boldsymbol{y}}\\\newcommand{\A}{\boldsymbol{A}}
+\newcommand{\B}{\boldsymbol{B}}
+\newcommand{\C}{\boldsymbol{C}}
+\newcommand{\N}{\boldsymbol{N}}\\\newcommand{\R}{\boldsymbol{\mathrm{R}}}\\\newcommand{\ld}{\lambda}
+\newcommand{\Ld}{\Lambda}
+\newcommand{\sg}{\sigma}
+\newcommand{\Sg}{\Sigma}\\\newcommand{\bb}{\begin{bmatrix}}
+\newcommand{\eb}{\end{bmatrix}}
+\newcommand{\bv}{\begin{vmatrix}}
+\newcommand{\ev}{\end{vmatrix}}\\\newcommand{\im}{^{-1}}
+\newcommand{\pr}{^{\prime}}
+\newcommand{\ppr}{^{\prime\prime}}\end{aligned}\end{align} \]</div>
+<div class="section" id="chapter-7-4-the-geometry-of-the-svd">
+<h1>Chapter 7.4 The Geometry of the SVD<a class="headerlink" href="#chapter-7-4-the-geometry-of-the-svd" title="Permalink to this headline">¶</a></h1>
+<p>The SVD separates a matrix into three steps: <span class="math notranslate nohighlight">\((\)</span><strong>orthogonal</strong><span class="math notranslate nohighlight">\()\times(\)</span><strong>diagonal</strong><span class="math notranslate nohighlight">\()\times(\)</span><strong>orthogonal</strong><span class="math notranslate nohighlight">\()\)</span>.
+Ordinary words can express the geometry behind it: <span class="math notranslate nohighlight">\((\)</span><strong>rotation</strong><span class="math notranslate nohighlight">\()\times(\)</span><strong>stretching</strong><span class="math notranslate nohighlight">\()\times(\)</span><strong>rotation</strong><span class="math notranslate nohighlight">\()\)</span>.
+<span class="math notranslate nohighlight">\(U\Sg V^T\x\)</span> starts with the rotation to <span class="math notranslate nohighlight">\(V^T\x\)</span>.
+Then <span class="math notranslate nohighlight">\(\Sg\)</span> stretches that vector to <span class="math notranslate nohighlight">\(\Sg V^T\x\)</span>, and <span class="math notranslate nohighlight">\(U\)</span> rotates to <span class="math notranslate nohighlight">\(A\x=U\Sg V^T\x\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb a&amp;b\\c&amp;d \eb=\bb \cos\theta&amp;-\sin\theta\\\sin\theta&amp;\cos\theta \eb
+\bb \sg_1\\&amp;\sg_2 \eb\bb \cos\phi&amp;\sin\phi\\-\sin\phi&amp;\cos\phi \eb=U\Sg V^T.\end{split}\]</div>
+<p>The four numbers <span class="math notranslate nohighlight">\(a,b,c,d\)</span> in the matrix <span class="math notranslate nohighlight">\(A\)</span> led to four numbers <span class="math notranslate nohighlight">\(\theta,\sg_1,\sg_2,\phi\)</span> in its SVD.</p>
+<ol class="arabic simple">
+<li><p><strong>The norm</strong> <span class="math notranslate nohighlight">\(\lv A\rv\)</span> <strong>of a matrix</strong>–its maximum growth factor.</p></li>
+<li><p><strong>The polar decomposition</strong> <span class="math notranslate nohighlight">\(A=QS\)</span>–orthogonal <span class="math notranslate nohighlight">\(Q\)</span> times positive definite <span class="math notranslate nohighlight">\(S\)</span>.</p></li>
+<li><p><strong>The pseudoinverse</strong> <span class="math notranslate nohighlight">\(A^+\)</span>–the best inverse when the matrix <span class="math notranslate nohighlight">\(A\)</span> is not invertible.</p></li>
+</ol>
+<div class="section" id="the-norm-of-a-matrix">
+<h2>The Norm of a Matrix<a class="headerlink" href="#the-norm-of-a-matrix" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>The norm</strong> <span class="math notranslate nohighlight">\(\lv A\rv\)</span> <strong>is the largest ratio</strong>
+<span class="math notranslate nohighlight">\(\dp \frac{\lv A\x\rv}{\lv\x\rv}\)</span>:
+<span class="math notranslate nohighlight">\(\dp\lv A\rv=\max_{\x\neq\0}\frac{\lv A\x\rv}{\lv\x\rv}=\sg_1\)</span></p>
+</div>
+<p>Two valuable properties of that number norm(<span class="math notranslate nohighlight">\(A\)</span>) come directly from its denifition:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p><strong>Triangle inequality</strong>: <span class="math notranslate nohighlight">\(\lv A+B \rv\leq\lv A \rv+\lv B\rv\)</span>.</p></li>
+<li><p><strong>Product inequality</strong>: <span class="math notranslate nohighlight">\(\lv AB \rv\leq\lv A \rv\lv B \rv\)</span>.</p></li>
+</ul>
+</div>
+<p><strong>For vectors</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\lv(A+B)\x\rv\leq\lv A\x\rv+\lv B\x\rv\leq\lv A \rv\lv\x\rv+\lv B\rv\lv\x\rv.\]</div>
+<p>Divide this by <span class="math notranslate nohighlight">\(\lv\x\rv\)</span>.
+Take the maximum over all <span class="math notranslate nohighlight">\(\x\)</span>.
+Then <span class="math notranslate nohighlight">\(\lv A+B \rv\leq\lv A \rv+\lv B \rv\)</span>.</p>
+<p>The product inequality comes quickly from <span class="math notranslate nohighlight">\(\lv AB\x \rv\leq\lv A\rv\lv B\x\rv\leq\lv A\rv\lv B\rv\lv \x\rv\)</span>.
+Again divide by <span class="math notranslate nohighlight">\(\lv \x \rv\)</span>.
+Take the maximum over all <span class="math notranslate nohighlight">\(\x\)</span>.
+The result is <span class="math notranslate nohighlight">\(\lv AB \rv\leq\lv A\rv\lv B\rv\)</span>.</p>
+<p><strong>The closet rank</strong> <span class="math notranslate nohighlight">\(k\)</span> <strong>matrix to</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>is</strong> <span class="math notranslate nohighlight">\(A_k=\sg_1\u_1\v_1^T+\cds+\sg_k\u_k\v_k^T\)</span>.</p>
+<p>This is the key fact in matrix approximation: The Eckart-Young-Mirsky Theorem
+says that <span class="math notranslate nohighlight">\(\lv A-B \rv\leq\lv A-A_k\rv=\sg_{k+1}\)</span> <strong>for all matrices</strong>
+<span class="math notranslate nohighlight">\(B\)</span> <strong>of rank</strong> <span class="math notranslate nohighlight">\(k\)</span>.</p>
+<p>The <span class="math notranslate nohighlight">\(\v\)</span>’s and <span class="math notranslate nohighlight">\(\u\)</span>’s give orthonormal bases for the four
+fundamental subspaces, and the <em>first</em> <span class="math notranslate nohighlight">\(k\)</span> <span class="math notranslate nohighlight">\(\v\)</span><em>’s and</em> <span class="math notranslate nohighlight">\(\u\)</span>
+<em>‘s and</em> <span class="math notranslate nohighlight">\(\sg\)</span><em>’s</em> give the best matrix approximation to <span class="math notranslate nohighlight">\(A\)</span>.</p>
+</div>
+<div class="section" id="polar-decomposition-a-qs">
+<h2>Polar Decomposition <span class="math notranslate nohighlight">\(A=QS\)</span><a class="headerlink" href="#polar-decomposition-a-qs" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="the-pseudoinverse-a">
+<h2>The Pseudoinverse <span class="math notranslate nohighlight">\(A^+\)</span><a class="headerlink" href="#the-pseudoinverse-a" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="least-squares-with-dependent-columns">
+<h2>Least Squares with Dependent Columns<a class="headerlink" href="#least-squares-with-dependent-columns" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../about.html" class="btn btn-neutral float-right" title="About" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="chap7-3.html" class="btn btn-neutral float-left" title="Chapter 7.3 Principal Component Analysis (PCA by the SVD)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Ziniu Yu.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

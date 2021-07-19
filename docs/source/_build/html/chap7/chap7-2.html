@@ -1,0 +1,502 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Chapter 7.2 Bases and Matrices in the SVD &mdash; LinearAlgebra  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapter 7.3 Principal Component Analysis (PCA by the SVD)" href="chap7-3.html" />
+    <link rel="prev" title="Chapter 7.1 Image Processing by Linear Algebra" href="chap7-1.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> LinearAlgebra
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../chap1/index1.html">Chapter 1 Introduction to Vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap2/index2.html">Chapter 2 Solving Linear Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap3/index3.html">Chapter 3 Vector Spaces and Subspaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap4/index4.html">Chapter 4 Orthogonality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap5/index5.html">Chapter 5 Determinants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap6/index6.html">Chapter 6 Eigenvalues and Eigenvectors</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index7.html">Chapter 7 The Singular Value Decomposition (SVD)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="chap7-1.html">Chapter 7.1 Image Processing by Linear Algebra</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 7.2 Bases and Matrices in the SVD</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#proof-of-the-svd">Proof of the SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#an-example-of-the-svd">An Example of the SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#an-extreme-matrix">An Extreme Matrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sigular-value-stability-versus-eigenvalue-instability">Sigular Value Stability versus Eigenvalue Instability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#singular-vectors-of-a-and-eigenvectors-of-s-a-ta">Singular Vectors of <span class="math notranslate nohighlight">\(A\)</span> and Eigenvectors of <span class="math notranslate nohighlight">\(S=A^TA\)</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#computing-the-eigenvalues-of-s-and-singular-values-of-a">Computing the Eigenvalues of <span class="math notranslate nohighlight">\(S\)</span> and Singular Values of <span class="math notranslate nohighlight">\(A\)</span></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="chap7-3.html">Chapter 7.3 Principal Component Analysis (PCA by the SVD)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap7-4.html">Chapter 7.4 The Geometry of the SVD</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">LinearAlgebra</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index7.html">Chapter 7 The Singular Value Decomposition (SVD)</a> &raquo;</li>
+        
+      <li>Chapter 7.2 Bases and Matrices in the SVD</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/chap7/chap7-2.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\newcommand{\bs}{\boldsymbol}
+\newcommand{\dp}{\displaystyle}
+\newcommand{\rm}{\mathrm}
+\newcommand{\pd}{\partial}\\\newcommand{\cd}{\cdot}
+\newcommand{\cds}{\cdots}
+\newcommand{\dds}{\ddots}
+\newcommand{\vds}{\vdots}
+\newcommand{\lv}{\lVert}
+\newcommand{\rv}{\rVert}
+\newcommand{\wh}{\widehat}\\\newcommand{\0}{\boldsymbol{0}}
+\newcommand{\a}{\boldsymbol{a}}
+\newcommand{\b}{\boldsymbol{b}}
+\newcommand{\e}{\boldsymbol{e}}
+\newcommand{\i}{\boldsymbol{i}}
+\newcommand{\j}{\boldsymbol{j}}
+\newcommand{\p}{\boldsymbol{p}}
+\newcommand{\q}{\boldsymbol{q}}
+\newcommand{\u}{\boldsymbol{u}}
+\newcommand{\v}{\boldsymbol{v}}
+\newcommand{\w}{\boldsymbol{w}}
+\newcommand{\x}{\boldsymbol{x}}
+\newcommand{\y}{\boldsymbol{y}}\\\newcommand{\A}{\boldsymbol{A}}
+\newcommand{\B}{\boldsymbol{B}}
+\newcommand{\C}{\boldsymbol{C}}
+\newcommand{\N}{\boldsymbol{N}}\\\newcommand{\R}{\boldsymbol{\mathrm{R}}}\\\newcommand{\ld}{\lambda}
+\newcommand{\Ld}{\Lambda}
+\newcommand{\sg}{\sigma}
+\newcommand{\Sg}{\Sigma}\\\newcommand{\bb}{\begin{bmatrix}}
+\newcommand{\eb}{\end{bmatrix}}
+\newcommand{\bv}{\begin{vmatrix}}
+\newcommand{\ev}{\end{vmatrix}}\\\newcommand{\im}{^{-1}}
+\newcommand{\pr}{^{\prime}}
+\newcommand{\ppr}{^{\prime\prime}}\end{aligned}\end{align} \]</div>
+<div class="section" id="chapter-7-2-bases-and-matrices-in-the-svd">
+<h1>Chapter 7.2 Bases and Matrices in the SVD<a class="headerlink" href="#chapter-7-2-bases-and-matrices-in-the-svd" title="Permalink to this headline">¶</a></h1>
+<p><span class="math notranslate nohighlight">\(A\)</span> is any <span class="math notranslate nohighlight">\(m\)</span> by <span class="math notranslate nohighlight">\(n\)</span> matrix, square or rectangular.
+Its rank is <span class="math notranslate nohighlight">\(r\)</span>.
+We will daigonalize this <span class="math notranslate nohighlight">\(A\)</span>, but not by <span class="math notranslate nohighlight">\(X\im AX\)</span>.
+The eigenvectors in <span class="math notranslate nohighlight">\(X\)</span> have three big problems: They are usually not
+orthogonal, there are not always enough eigenvectors, and <span class="math notranslate nohighlight">\(A\x=\ld\x\)</span>
+requires <span class="math notranslate nohighlight">\(A\)</span> to be a square matrix.
+The <strong>singular vectors</strong> of <span class="math notranslate nohighlight">\(A\)</span> solve all those problems in a perfect way.</p>
+<p>We want from the SVD are <strong>the right bases for the four subspaces</strong>.
+The steps to find those basis vectors will be described <strong>in order of importance</strong>.</p>
+<p>The price we pay is to have <strong>two sets of singular vectors</strong>, <span class="math notranslate nohighlight">\(\u\)</span>’s and <span class="math notranslate nohighlight">\(\v\)</span>’s.
+The <span class="math notranslate nohighlight">\(\u\)</span>’s are in <span class="math notranslate nohighlight">\(\R^m\)</span> and the <span class="math notranslate nohighlight">\(\v\)</span>’s are in <span class="math notranslate nohighlight">\(\R^n\)</span>.
+They will be the columns of an <span class="math notranslate nohighlight">\(m\)</span> by <span class="math notranslate nohighlight">\(m\)</span> matrix <span class="math notranslate nohighlight">\(\bs{U}\)</span> and
+an <span class="math notranslate nohighlight">\(n\)</span> by <span class="math notranslate nohighlight">\(n\)</span> matrix <span class="math notranslate nohighlight">\(\bs{V}\)</span>.</p>
+<p><strong>Using vectors</strong>: The <span class="math notranslate nohighlight">\(\u\)</span>’s and <span class="math notranslate nohighlight">\(\v\)</span>’s give bases for the four fundamental subspaces:</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\u_1,\cds,\u_r\)</span> is an orthonormal basis for the <strong>column space</strong></p></li>
+<li><p><span class="math notranslate nohighlight">\(\u_{r+1},\cds,\u_m\)</span> is an orthonormal basis for the <strong>left nullspace</strong> <span class="math notranslate nohighlight">\(\N(A^T)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\v_1,\cds,\v_r\)</span> is an orthonormal basis for the <strong>row space</strong></p></li>
+<li><p><span class="math notranslate nohighlight">\(\v_{r+1},\cds,\v_n\)</span> is an orthonormal basis for the <strong>nullspace</strong> <span class="math notranslate nohighlight">\(\N(A)\)</span>.</p></li>
+</ul>
+</div>
+<p>More than just orthogonality, these basis vectors diagonalize the matrix <span class="math notranslate nohighlight">\(A\)</span>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>“</strong><span class="math notranslate nohighlight">\(A\)</span> <strong>is diagonalized”</strong>: <span class="math notranslate nohighlight">\(A\v_1=\sg_1\u_1\quad A\v_2=\sg_2\u_2\quad\cds\quad A\v_r=\sg_r\u_r\)</span>.</p>
+</div>
+<p>Those <strong>singular values</strong> <span class="math notranslate nohighlight">\(\sg_1\)</span> <strong>to</strong> <span class="math notranslate nohighlight">\(\sg_r\)</span> will be positive
+numbers: <span class="math notranslate nohighlight">\(\sg_i\)</span> <em>is the length of</em> <span class="math notranslate nohighlight">\(A\v_i\)</span>.
+The <span class="math notranslate nohighlight">\(\sg\)</span>’s go into a diagonal matrix that is otherwise zero.
+That matrix is <span class="math notranslate nohighlight">\(\Sg\)</span>.</p>
+</div></blockquote>
+<p><strong>Using matrices</strong>: Since the <span class="math notranslate nohighlight">\(\u\)</span>’s are orthonormal, the matrix
+<span class="math notranslate nohighlight">\(U_r\)</span> with those <span class="math notranslate nohighlight">\(r\)</span> columns has <span class="math notranslate nohighlight">\(U_r^TU_r=I\)</span>.
+Since the <span class="math notranslate nohighlight">\(\v\)</span>’s are orthonormal, the matrix <span class="math notranslate nohighlight">\(V_r\)</span> has <span class="math notranslate nohighlight">\(V_r^TV_r=I\)</span>.
+Then the equations <span class="math notranslate nohighlight">\(A\v_i=\sg_i\u_i\)</span> tell us column by column that <span class="math notranslate nohighlight">\(AV_r=U_r\Sg_r\)</span>:</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}AV_r=U_r\Sg_r\quad A\bb \\\ \v_1&amp;\cds&amp;v_r \\\ \eb=\bb \\\ \u_1&amp;\cds&amp;\u_r \\\ \eb\bb \sg_1\\&amp;\dds\\&amp;&amp;\sg_r \eb.\end{split}\]</div>
+<p>Those <span class="math notranslate nohighlight">\(\v\)</span>’s and <span class="math notranslate nohighlight">\(\u\)</span>’s account for the row space and column space of <span class="math notranslate nohighlight">\(A\)</span>.
+We have <span class="math notranslate nohighlight">\(n-r\)</span> more <span class="math notranslate nohighlight">\(\v\)</span>’s and <span class="math notranslate nohighlight">\(m-r\)</span> more <span class="math notranslate nohighlight">\(\u\)</span>’s, from
+the nullspace <span class="math notranslate nohighlight">\(\N(A)\)</span> and the left nullspace <span class="math notranslate nohighlight">\(\N(A^T)\)</span>.
+They are automatically orthogonal to the first <span class="math notranslate nohighlight">\(\v\)</span>’s and <span class="math notranslate nohighlight">\(\u\)</span>’s
+(because the whole nullspace are orthogonal).
+We now include all the <span class="math notranslate nohighlight">\(\v\)</span>’s and <span class="math notranslate nohighlight">\(\u\)</span>’s in <span class="math notranslate nohighlight">\(V\)</span> and <span class="math notranslate nohighlight">\(U\)</span>, so these matrices become <em>square</em>.
+<strong>We still have</strong> <span class="math notranslate nohighlight">\(AV=U\Sg\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}AV=U\Sg\quad A\bb \\\ \v_1\ \cds\ \v_r\ \cds\ \v_n \\\ \eb=
+\bb \\\ \u_1\ \cds\ \u_r\ \cds\ \u_m \\\ \eb\bb \sg_1\\&amp;\dds\\&amp;&amp;\sg_r&amp;&amp; \\\ \eb.\end{split}\]</div>
+<p>The new <span class="math notranslate nohighlight">\(\Sg\)</span> is <span class="math notranslate nohighlight">\(m\)</span> by <span class="math notranslate nohighlight">\(n\)</span>.
+It is just the <span class="math notranslate nohighlight">\(r\)</span> by <span class="math notranslate nohighlight">\(r\)</span> matrix with <span class="math notranslate nohighlight">\(m-r\)</span> extra zero rows and <span class="math notranslate nohighlight">\(n-r\)</span> new zero columns.
+The real change is in the shapes of <span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(V\)</span>.
+Those are square matrices and <span class="math notranslate nohighlight">\(V\im=V^T\)</span>.
+So <span class="math notranslate nohighlight">\(AV=U\Sg\)</span> becomes <span class="math notranslate nohighlight">\(A=U\Sg V^T\)</span>.
+This is the <strong>Singular Value Decomposition</strong>.
+I can multiply columns <span class="math notranslate nohighlight">\(\u_i\sg_i\)</span> from <span class="math notranslate nohighlight">\(U\Sg\)</span> by rows of <span class="math notranslate nohighlight">\(V^T\)</span>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>SVD</strong>: <span class="math notranslate nohighlight">\(A=U\Sg V^T=\u_1\sg_1\v_1^T+\cds+\u_r\sg_r\v_r^T\)</span>.</p>
+</div>
+<p>We will see that each <span class="math notranslate nohighlight">\(\sg_i^2\)</span> is an eigenvalue of <span class="math notranslate nohighlight">\(A^TA\)</span> and also <span class="math notranslate nohighlight">\(AA^T\)</span>.
+When we put the singular values in descending order,
+<span class="math notranslate nohighlight">\(\sg_1\geq\sg_2\geq\cds\sg_r&gt;0\)</span>, the splitting gives the <span class="math notranslate nohighlight">\(r\)</span>
+rank-one pieces of <span class="math notranslate nohighlight">\(A\)</span> <strong>in order of importance</strong>.</p>
+</div></blockquote>
+<p>When is <span class="math notranslate nohighlight">\(A=U\Sg V^T\)</span> (singular values) the <em>same</em> as <span class="math notranslate nohighlight">\(X\Ld X\im\)</span> (eigenvalues)?</p>
+<p><span class="math notranslate nohighlight">\(A\)</span> needs orthonormal eigenvalues to allow <span class="math notranslate nohighlight">\(X=U=V\)</span>.
+<span class="math notranslate nohighlight">\(A\)</span> also needs eigenvalues <span class="math notranslate nohighlight">\(\ld\geq 0\)</span> if <span class="math notranslate nohighlight">\(\Ld=\Sg\)</span>.
+So <span class="math notranslate nohighlight">\(A\)</span> must be a <strong>positive semidefinite (or difinite) symmetric matrix</strong>.
+Only then will <span class="math notranslate nohighlight">\(A=X\Ld X\im\)</span> which is also <span class="math notranslate nohighlight">\(Q\Ld Q^T\)</span> coincide with <span class="math notranslate nohighlight">\(A=U\Ld V^T\)</span>.</p>
+<div class="section" id="proof-of-the-svd">
+<h2>Proof of the SVD<a class="headerlink" href="#proof-of-the-svd" title="Permalink to this headline">¶</a></h2>
+<p>We need to show how those <span class="math notranslate nohighlight">\(\u\)</span>’s and <span class="math notranslate nohighlight">\(\v\)</span>’s can be constructed.
+The <span class="math notranslate nohighlight">\(\v\)</span>’s will be <strong>orthonormal eigenvectors of</strong> <span class="math notranslate nohighlight">\(A^TA\)</span>.
+This must be true because we are aiming for</p>
+<div class="math notranslate nohighlight">
+\[A^TA=(U\Sg V^T)^T(U\Sg V)^T=V\Sg^TU^TU\Sg V^T=V\Sg^T\Sg V^T.\]</div>
+<p>On the right you see the eigenvector matrix <span class="math notranslate nohighlight">\(V\)</span> for the symmetric positive (semi) definite matrix <span class="math notranslate nohighlight">\(A^TA\)</span>.
+And (<span class="math notranslate nohighlight">\(\Sg^T\Sg\)</span>) must be the eigenvalue matrix of (<span class="math notranslate nohighlight">\(A^TA\)</span>): <em>Each</em> <span class="math notranslate nohighlight">\(\sg^2\)</span> <em>is</em> <span class="math notranslate nohighlight">\(\ld(A^TA)\)</span>.</p>
+<p>Now <span class="math notranslate nohighlight">\(A\v_i=\sg_i\u_i\)</span> tells us the unit vectors <span class="math notranslate nohighlight">\(\u_1\)</span> to <span class="math notranslate nohighlight">\(\u_r\)</span>.
+This is the key equation.
+The essential point–the whole reason that the SVD succeeds–is that those unit
+vectors <span class="math notranslate nohighlight">\(\u_1\)</span> to <span class="math notranslate nohighlight">\(\u_r\)</span> are automatically orthogonal to each other
+(<em>because the</em> <span class="math notranslate nohighlight">\(\v\)</span>’s <em>are orthogonal</em>):</p>
+<p><strong>Key step</strong> <span class="math notranslate nohighlight">\(i\neq j\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\u_i^T\u_j=\left(\frac{A\v_i}{\sg_i}\right)^T\left(\frac{A\v_j}{\sg_j}\right)
+=\frac{\v_i^TA^TA\v_j}{\sg_i\sg_j}=\frac{\sg_j^2}{\sg_i\sg_j}\v_i^T\v_j
+=\bs{\rm{zero}}.\]</div>
+<p>The <span class="math notranslate nohighlight">\(\v\)</span>’s are eigenvectors of <span class="math notranslate nohighlight">\(A^TA\)</span> (symmetric).
+They are orthogonal and now the <span class="math notranslate nohighlight">\(\u\)</span>’s are also orthogonal.
+<em>Actually those</em> <span class="math notranslate nohighlight">\(\u\)</span>’s <em>will be eigenvectors of</em> <span class="math notranslate nohighlight">\(AA^T\)</span>.</p>
+<p>Finally we complete the <span class="math notranslate nohighlight">\(\v\)</span>’s and <span class="math notranslate nohighlight">\(\u\)</span>’s to <span class="math notranslate nohighlight">\(n\)</span> <span class="math notranslate nohighlight">\(\v\)</span>’s
+and <span class="math notranslate nohighlight">\(m\)</span> <span class="math notranslate nohighlight">\(\u\)</span>’s with any orthonormal bases for the nullspace
+<span class="math notranslate nohighlight">\(\N(A)\)</span> and <span class="math notranslate nohighlight">\(\N(A^T)\)</span>.
+We have found <span class="math notranslate nohighlight">\(V\)</span> and <span class="math notranslate nohighlight">\(\Sg\)</span> and <span class="math notranslate nohighlight">\(U\)</span> in <span class="math notranslate nohighlight">\(A=U\Sg V^T\)</span>.</p>
+</div>
+<div class="section" id="an-example-of-the-svd">
+<h2>An Example of the SVD<a class="headerlink" href="#an-example-of-the-svd" title="Permalink to this headline">¶</a></h2>
+<p>For a rank 2 matrix <span class="math notranslate nohighlight">\(A=\bb 3&amp;0\\4&amp;5 \eb\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A^TA=\bb 25&amp;20\\20&amp;25 \eb\quad AA^T=\bb 9&amp;12\\12&amp;41 \eb.\end{split}\]</div>
+<p>Those have the same trace 50 and the same eigenvalues <span class="math notranslate nohighlight">\(\sg_1^2=45\)</span> and <span class="math notranslate nohighlight">\(\sg_2^2=5\)</span>.
+The square roots are <span class="math notranslate nohighlight">\(\sg_1=\sqrt{45}\)</span> and <span class="math notranslate nohighlight">\(\sg_2=\sqrt{5}\)</span>.
+Then <span class="math notranslate nohighlight">\(\sg_1\sg_2=15\)</span> and this is t he determinant of <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p><strong>Right singular vectors</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\v_1=\frac{1}{\sqrt{2}}\bb 1\\1 \eb\quad\v_2=\frac{1}{\sqrt{2}}\bb -1\\1 \eb.\end{split}\]</div>
+<p><strong>Left singular vectors</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\u_i=\frac{A\v_i}{\sg_i}.\]</div>
+<p>Now compute <span class="math notranslate nohighlight">\(A\v_1\)</span> and <span class="math notranslate nohighlight">\(A\v_2\)</span> which will be
+<span class="math notranslate nohighlight">\(\sg_1\u_1=\sqrt{45}\u_1\)</span> and <span class="math notranslate nohighlight">\(\sg_2\u_2=\sqrt{5}\u_2\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\begin{split}A\v_1=\frac{3}{\sqrt{2}}\bb 1\\3 \eb=\sqrt{45}\frac{1}{\sqrt{10}}\bb 1\\3 \eb=\sg_1\u_1\end{split}\\\begin{split}A\v_2=\frac{1}{\sqrt{2}}\bb -3\\1 \eb=\sqrt{5}\frac{1}{\sqrt{10}}\bb -3\\1 \eb=\sg_2\u_2\end{split}\end{aligned}\end{align} \]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(\dp U=\frac{1}{\sqrt{10}}\bb 1&amp;-3\\3&amp;1 \eb\quad
+\Sg=\bb \sqrt{45}\\&amp;\sqrt{5} \eb\quad V=\frac{1}{\sqrt{2}}\bb 1&amp;-1\\1&amp;1 \eb\)</span>.</p>
+</div>
+<p><span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(V\)</span> contain orthonormal bases for the column space and the
+row space (both spaces are just <span class="math notranslate nohighlight">\(\R^2\)</span>).
+The matrix <span class="math notranslate nohighlight">\(A\)</span> splits into a combination of two rank-one matrices, columns times rows:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\sg_1\u_1\v_1^T+\sg_2\u_2\v_2^T=\frac{\sqrt{45}}{\sqrt{20}}\bb 1&amp;1\\3&amp;3 \eb+
+\frac{\sqrt{5}}{\sqrt{20}}\bb 3&amp;-3\\-1&amp;1 \eb=\bb 3&amp;0\\4&amp;5 \eb=A.\end{split}\]</div>
+</div>
+<div class="section" id="an-extreme-matrix">
+<h2>An Extreme Matrix<a class="headerlink" href="#an-extreme-matrix" title="Permalink to this headline">¶</a></h2>
+<p>The matrix <span class="math notranslate nohighlight">\(A\)</span> is badly lopsided (strictly triangular).
+All its eigenvalues are zero with the only eigenvector <span class="math notranslate nohighlight">\((1,0,0,0)\)</span>.
+The singular values are <span class="math notranslate nohighlight">\(\sg=3,2,1\)</span> and singular vectors are columns of <span class="math notranslate nohighlight">\(I\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A=\bb 0&amp;1&amp;0&amp;0\\0&amp;0&amp;2&amp;0\\0&amp;0&amp;0&amp;3\\0&amp;0&amp;0&amp;0 \eb.\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(A^TA\)</span> and <span class="math notranslate nohighlight">\(AA^T\)</span> are diagonal:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A^TA=\bb 0&amp;0&amp;0&amp;0\\0&amp;1&amp;0&amp;0\\0&amp;0&amp;4&amp;0\\0&amp;0&amp;0&amp;9 \eb \quad AA^T=\bb 1&amp;0&amp;0&amp;0\\0&amp;4&amp;0&amp;0\\0&amp;0&amp;9&amp;0\\0&amp;0&amp;0&amp;0 \eb.\end{split}\]</div>
+<p>The eigenvectors (<span class="math notranslate nohighlight">\(\u\)</span>’s for <span class="math notranslate nohighlight">\(AA^T\)</span> and <span class="math notranslate nohighlight">\(\v\)</span>’s for <span class="math notranslate nohighlight">\(A^TA\)</span>)
+go in decreasing order <span class="math notranslate nohighlight">\(\sg_1^2&gt;\sg_2^2&gt;\sg_3^2\)</span> of the eigenvalues.
+Those eigenvalues are <span class="math notranslate nohighlight">\(\sg^2=9,4,1\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}U=\bb 0&amp;0&amp;1&amp;0\\0&amp;1&amp;0&amp;0\\1&amp;0&amp;0&amp;0\\0&amp;0&amp;0&amp;1\eb\quad\Sg=\bb 3\\&amp;2\\&amp;&amp;1\\&amp;&amp;&amp;0 \eb
+\quad V=\bb 0&amp;0&amp;0&amp;1\\0&amp;0&amp;1&amp;0\\0&amp;1&amp;0&amp;0\\1&amp;0&amp;0&amp;0 \eb.\end{split}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(A=U\Sg V^T=3\u_1\v_1^T+2\u_2\v_2^T+1\u_3\v_3^T\)</span>.</p>
+</div>
+<p><em>Note</em>: Removing the zero row of <span class="math notranslate nohighlight">\(A\)</span> (now <span class="math notranslate nohighlight">\(3\times 4\)</span>) just removes
+the last row of <span class="math notranslate nohighlight">\(\Sg\)</span> and also the last row and column of <span class="math notranslate nohighlight">\(U\)</span>.
+Then <span class="math notranslate nohighlight">\((3\times 4)=U\Sg V^T=(3\times 3)(3\times 4)(4\times 4)\)</span>.
+The SVD is totally adapted to rectangular matrices.</p>
+</div>
+<div class="section" id="sigular-value-stability-versus-eigenvalue-instability">
+<h2>Sigular Value Stability versus Eigenvalue Instability<a class="headerlink" href="#sigular-value-stability-versus-eigenvalue-instability" title="Permalink to this headline">¶</a></h2>
+<p><strong>The singular values of any matrix are stable</strong>.</p>
+</div>
+<div class="section" id="singular-vectors-of-a-and-eigenvectors-of-s-a-ta">
+<h2>Singular Vectors of <span class="math notranslate nohighlight">\(A\)</span> and Eigenvectors of <span class="math notranslate nohighlight">\(S=A^TA\)</span><a class="headerlink" href="#singular-vectors-of-a-and-eigenvectors-of-s-a-ta" title="Permalink to this headline">¶</a></h2>
+<p>We have proved the SVD <em>all at once</em>.
+The singular vectors <span class="math notranslate nohighlight">\(\v_i\)</span> are the eigenvectors <span class="math notranslate nohighlight">\(\q_i\)</span> of <span class="math notranslate nohighlight">\(S=A^TA\)</span>.
+The eigenvalues <span class="math notranslate nohighlight">\(\ld_i\)</span> of <span class="math notranslate nohighlight">\(S\)</span> are the same as <span class="math notranslate nohighlight">\(\sg_i^2\)</span> for <span class="math notranslate nohighlight">\(A\)</span>.
+The rank <span class="math notranslate nohighlight">\(r\)</span> of <span class="math notranslate nohighlight">\(S\)</span> equals the rank of <span class="math notranslate nohighlight">\(A\)</span>.
+The expansions in eigenvectors and singular vectors are perfectly parallel.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p><strong>Symmetric</strong> <span class="math notranslate nohighlight">\(S\)</span>: <span class="math notranslate nohighlight">\(S=Q\Ld Q^T=\ld_1\q_1\q_1^T+\ld_2\q_2\q_2^T+\cds+\ld_r\q_r\q_r^T\)</span>.</p></li>
+<li><p><strong>Any matrix</strong> <span class="math notranslate nohighlight">\(A\)</span>: <span class="math notranslate nohighlight">\(A=U\Sg V^T=\sg_1\u_1\v_1^T+\sg_2\u_2\v_2^T+\cds+\sg_r\u_r\v_r^T\)</span>.</p></li>
+</ul>
+</div>
+<p>The <span class="math notranslate nohighlight">\(\q\)</span>’s are orthonormal, the <span class="math notranslate nohighlight">\(\u\)</span>’s are orthonormal, the <span class="math notranslate nohighlight">\(\v\)</span>’s are orthonormal.</p>
+<p>If <span class="math notranslate nohighlight">\(\ld\)</span> is a <em>double</em> eigenvalue of <span class="math notranslate nohighlight">\(S\)</span>, we can and must find <em>two</em> orthonormal eigenvectors.
+We want to understand the eigenvalues <span class="math notranslate nohighlight">\(\ld\)</span> (of <span class="math notranslate nohighlight">\(S\)</span>) and the singular
+values <span class="math notranslate nohighlight">\(\sg\)</span> (of <span class="math notranslate nohighlight">\(A\)</span>) <strong>one at a time instead of all at once</strong>.</p>
+<p>Start with the larget eigenvalue <span class="math notranslate nohighlight">\(\ld_1\)</span> of <span class="math notranslate nohighlight">\(S\)</span>.
+It solves this problem”</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\dp\ld_1=\rm{maximum\ ratio\ }\frac{\x^TS\x}{\x^T\x}\)</span>.
+The winning vector is <span class="math notranslate nohighlight">\(\x_1=\q_1\)</span> with <span class="math notranslate nohighlight">\(S\q_1=\ld_1\q_1\)</span>.</p>
+<p>Compare with the largest singular value <span class="math notranslate nohighlight">\(\sg_1\)</span> of <span class="math notranslate nohighlight">\(A\)</span>.
+It solves this problem:</p>
+<p><span class="math notranslate nohighlight">\(\dp\sg_1=\rm{maximum\ ratio\ }\frac{\lv A\x \rv}{\lv\x\rv}\)</span>.
+The winning vector is <span class="math notranslate nohighlight">\(\x=\v_1\)</span> with <span class="math notranslate nohighlight">\(A\v_1=\sg_1\u_1\)</span>.</p>
+</div></blockquote>
+<p>This “one at a time approach” applies also to <span class="math notranslate nohighlight">\(\ld_2\)</span> and <span class="math notranslate nohighlight">\(\sg_2\)</span>.
+But not all <span class="math notranslate nohighlight">\(\x\)</span>’s are allowed:</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\dp\ld_2=\rm{maximum\ ratio\ }\frac{\x^TS\x}{\x^T\x}\)</span> among all <span class="math notranslate nohighlight">\(\x\)</span>’s with <span class="math notranslate nohighlight">\(\q_A^T\x=0\)</span>.
+<span class="math notranslate nohighlight">\(\x=\q_2\)</span> will win.</p>
+<p><span class="math notranslate nohighlight">\(\dp\sg_2=\rm{maximum\ ratio\ }\frac{\lv A\x \rv}{\lv\x\rv}\)</span> among all <span class="math notranslate nohighlight">\(\x\)</span>’s with <span class="math notranslate nohighlight">\(\v_1^T\x=0\)</span>.
+<span class="math notranslate nohighlight">\(\x=\v_2\)</span> will win.</p>
+</div></blockquote>
+<p>When <span class="math notranslate nohighlight">\(S=A^TA\)</span> we find <span class="math notranslate nohighlight">\(\ld_1=\sg_1^2\)</span> and <span class="math notranslate nohighlight">\(\ld_2=\sg_2^2\)</span>.</p>
+<p>Start with the ratio <span class="math notranslate nohighlight">\(r(\x)=\x^TS\x/\x^T\x\)</span>.
+This is called the <em>Rayleigh quotient</em>.
+To maximize <span class="math notranslate nohighlight">\(r(\x)\)</span>, set its partial derivatives to zero: <span class="math notranslate nohighlight">\(\pd r/\pd x_i=0\)</span> for <span class="math notranslate nohighlight">\(i=1,\cds,n\)</span>.
+Those derivatives are messy and here is the result: one vector equation for the winning <span class="math notranslate nohighlight">\(\x\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\rm{The\ derivatives\ of\ }r(\x)=\frac{\x^TS\x}{\x^T\x}\rm{\ are\ zero\ when\ }S\x=r(\x)\x\]</div>
+<p>So the winning <span class="math notranslate nohighlight">\(\x\)</span> is an eigenvector of <span class="math notranslate nohighlight">\(S\)</span>.
+The maximum ratio <span class="math notranslate nohighlight">\(r(\x)\)</span> is the largest eigenvalue <span class="math notranslate nohighlight">\(\ld_1\)</span> of <span class="math notranslate nohighlight">\(S\)</span>.
+Notice the connection to <span class="math notranslate nohighlight">\(S=A^TA\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\rm{Maximizing\ }\frac{\lv A\x \rv}{\lv\x\rv}\rm{\ also\ maximizes\ }\left(
+\frac{\lv A\x \rv}{\lv\x\rv}\right)^2=\frac{\x^TA^TA\x}{\x^T\x}=
+\frac{\x^TS\x}{\x^T\x}\]</div>
+<p>So the winning <span class="math notranslate nohighlight">\(\x=\v_1\)</span> is the same as the top eigenvector <span class="math notranslate nohighlight">\(\q_1\)</span> of <span class="math notranslate nohighlight">\(S=A^TA\)</span>.</p>
+<p>Now we explain why <span class="math notranslate nohighlight">\(\q_1\)</span> and <span class="math notranslate nohighlight">\(v_2\)</span> are the winning vectors.</p>
+<p>Start with any orthogoonal matrix <span class="math notranslate nohighlight">\(Q_1\)</span> that has <span class="math notranslate nohighlight">\(\q_1\)</span> in its first column.
+The other <span class="math notranslate nohighlight">\(n-1\)</span> orthonormal columns just have to be orthogonal to <span class="math notranslate nohighlight">\(\q_1\)</span>.
+Then use <span class="math notranslate nohighlight">\(S\q_1=\ld_1\q_1\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}SQ_1=S\bb \q_1\ \q_2\ \cds\ \q_n \eb=\bb \q_1\ \q_2\ \cds\ \q_n \eb
+\bb \ld_1&amp;\w_T\\\0&amp;S_{n-1} \eb=Q_1\bb \ld_1&amp;\w^T\\\0&amp;S_{n-1} \eb.\end{split}\]</div>
+<p>Multiply by <span class="math notranslate nohighlight">\(Q_1^T\)</span>, remember <span class="math notranslate nohighlight">\(Q_1^TQ_1=I\)</span>, and recognize that <span class="math notranslate nohighlight">\(Q_1^TSQ_1\)</span> is symmetric like <span class="math notranslate nohighlight">\(S\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\rm{The\ symmetry\ of\ }Q_1^TSQ_1=\bb \ld_1&amp;\w^T\\\0&amp;S_{n-1} \eb
+\rm{\ forces\ }\w=\0\rm{\ and\ }S_{n-1}^T=S_{n-1}.\end{split}\]</div>
+<p>The requirement <span class="math notranslate nohighlight">\(\q_1^T\x=0\)</span> has reduced the maximum problem to size <span class="math notranslate nohighlight">\(n-1\)</span>.
+The largest eigenvalue of <span class="math notranslate nohighlight">\(S_{n-1}\)</span> will be the <em>second largest</em> for <span class="math notranslate nohighlight">\(S\)</span>.
+It is <span class="math notranslate nohighlight">\(\ld_2\)</span>.
+The winning vector will be the eigenvector <span class="math notranslate nohighlight">\(\q_2\)</span> with <span class="math notranslate nohighlight">\(S\q_2=\ld_2\q_2\)</span>.</p>
+<p>Use induction to produce all the eigenvectors <span class="math notranslate nohighlight">\(\q_1,\cds,\q_n\)</span> and their eigenvalues <span class="math notranslate nohighlight">\(\ld_1,\cds,\ld_n\)</span>.
+The Spectiral Theorem <span class="math notranslate nohighlight">\(S=Q\Ld Q^T\)</span> is proved even with repeated eigenvalues.
+All symmetric matrices can be diagonalized.</p>
+</div>
+<div class="section" id="computing-the-eigenvalues-of-s-and-singular-values-of-a">
+<h2>Computing the Eigenvalues of <span class="math notranslate nohighlight">\(S\)</span> and Singular Values of <span class="math notranslate nohighlight">\(A\)</span><a class="headerlink" href="#computing-the-eigenvalues-of-s-and-singular-values-of-a" title="Permalink to this headline">¶</a></h2>
+<p>The first idea is <strong>to produce zeros in</strong> <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(S\)</span>
+<strong>without changing any</strong> <span class="math notranslate nohighlight">\(\sg\)</span>’s and <span class="math notranslate nohighlight">\(\ld\)</span>’s.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="chap7-3.html" class="btn btn-neutral float-right" title="Chapter 7.3 Principal Component Analysis (PCA by the SVD)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="chap7-1.html" class="btn btn-neutral float-left" title="Chapter 7.1 Image Processing by Linear Algebra" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Ziniu Yu.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

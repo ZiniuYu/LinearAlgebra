@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Chapter 3.2 The Nullspace of \(A\): Solving \(Ax = 0\) and \(Rx=0\) &mdash; LinearAlgebra  documentation</title>
+  <title>Chapter 3.2 The Nullspace of \(A\): Solving \(A\boldsymbol{x} = 0\) and \(R\boldsymbol{x}=0\) &mdash; LinearAlgebra  documentation</title>
   
 
   
@@ -91,13 +91,14 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../chap1/index1.html">Chapter 1 Introduction to Vectors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../chap2/index2.html">Chapter 2 Solving Linear Equations</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index3.html">Chapter 3 Vector Spacese and Subspaces</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index3.html">Chapter 3 Vector Spaces and Subspaces</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="chap3-1.html">Chapter 3.1 Spaces of Vectors</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 3.2 The Nullspace of <span class="math notranslate nohighlight">\(A\)</span>: Solving <span class="math notranslate nohighlight">\(Ax = 0\)</span> and <span class="math notranslate nohighlight">\(Rx=0\)</span></a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 3.2 The Nullspace of <span class="math notranslate nohighlight">\(A\)</span>: Solving <span class="math notranslate nohighlight">\(A\boldsymbol{x} = 0\)</span> and <span class="math notranslate nohighlight">\(R\boldsymbol{x}=0\)</span></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#pivot-columns-and-free-columns">Pivot Columns and Free columns</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#the-reduced-row-echelon-form-r">The Reduced Row Echelon Form <span class="math notranslate nohighlight">\(R\)</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#the-rank-of-a-matrix">The Rank of a Matrix</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#rank-one">Rank One</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#elimination-the-big-picture">Elimination: The Big Picture</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="chap3-3.html">Chapter 3.3 The Complete Solution to <span class="math notranslate nohighlight">\(Ax=b\)</span></a></li>
@@ -105,6 +106,10 @@
 <li class="toctree-l2"><a class="reference internal" href="chap3-5.html">Chapter 3.5 Dimensions of the Four Subspaces</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../chap4/index4.html">Chapter 4 Orthogonality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap5/index5.html">Chapter 5 Determinants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap6/index6.html">Chapter 6 Eigenvalues and Eigenvectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap7/index7.html">Chapter 7 The Singular Value Decomposition (SVD)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
 </ul>
 
@@ -154,9 +159,9 @@
     
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
-          <li><a href="index3.html">Chapter 3 Vector Spacese and Subspaces</a> &raquo;</li>
+          <li><a href="index3.html">Chapter 3 Vector Spaces and Subspaces</a> &raquo;</li>
         
-      <li>Chapter 3.2 The Nullspace of <span class="math notranslate nohighlight">\(A\)</span>: Solving <span class="math notranslate nohighlight">\(Ax = 0\)</span> and <span class="math notranslate nohighlight">\(Rx=0\)</span></li>
+      <li>Chapter 3.2 The Nullspace of <span class="math notranslate nohighlight">\(A\)</span>: Solving <span class="math notranslate nohighlight">\(A\boldsymbol{x} = 0\)</span> and <span class="math notranslate nohighlight">\(R\boldsymbol{x}=0\)</span></li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -178,22 +183,39 @@
   <div class="math notranslate nohighlight">
 \[ \begin{align}\begin{aligned}\newcommand{\bs}{\boldsymbol}
 \newcommand{\dp}{\displaystyle}
-\newcommand{\rm}{\mathrm}\\\newcommand{\cd}{\cdot}
+\newcommand{\rm}{\mathrm}
+\newcommand{\pd}{\partial}\\\newcommand{\cd}{\cdot}
 \newcommand{\cds}{\cdots}
+\newcommand{\dds}{\ddots}
+\newcommand{\vds}{\vdots}
 \newcommand{\lv}{\lVert}
-\newcommand{\rv}{\rVert}\\\newcommand{\0}{\boldsymbol{0}}
+\newcommand{\rv}{\rVert}
+\newcommand{\wh}{\widehat}\\\newcommand{\0}{\boldsymbol{0}}
+\newcommand{\a}{\boldsymbol{a}}
 \newcommand{\b}{\boldsymbol{b}}
 \newcommand{\e}{\boldsymbol{e}}
 \newcommand{\i}{\boldsymbol{i}}
 \newcommand{\j}{\boldsymbol{j}}
+\newcommand{\p}{\boldsymbol{p}}
+\newcommand{\q}{\boldsymbol{q}}
 \newcommand{\u}{\boldsymbol{u}}
 \newcommand{\v}{\boldsymbol{v}}
 \newcommand{\w}{\boldsymbol{w}}
 \newcommand{\x}{\boldsymbol{x}}
-\newcommand{\y}{\boldsymbol{y}}\\\newcommand{\N}{\boldsymbol{N}}\\\newcommand{\R}{\boldsymbol{\mathrm{R}}}\\\newcommand{\bb}{\begin{bmatrix}}
-\newcommand{\eb}{\end{bmatrix}}\\\newcommand{\im}{^{-1}}\end{aligned}\end{align} \]</div>
-<div class="section" id="chapter-3-2-the-nullspace-of-a-solving-ax-0-and-rx-0">
-<h1>Chapter 3.2 The Nullspace of <span class="math notranslate nohighlight">\(A\)</span>: Solving <span class="math notranslate nohighlight">\(Ax = 0\)</span> and <span class="math notranslate nohighlight">\(Rx=0\)</span><a class="headerlink" href="#chapter-3-2-the-nullspace-of-a-solving-ax-0-and-rx-0" title="Permalink to this headline">¶</a></h1>
+\newcommand{\y}{\boldsymbol{y}}\\\newcommand{\A}{\boldsymbol{A}}
+\newcommand{\B}{\boldsymbol{B}}
+\newcommand{\C}{\boldsymbol{C}}
+\newcommand{\N}{\boldsymbol{N}}\\\newcommand{\R}{\boldsymbol{\mathrm{R}}}\\\newcommand{\ld}{\lambda}
+\newcommand{\Ld}{\Lambda}
+\newcommand{\sg}{\sigma}
+\newcommand{\Sg}{\Sigma}\\\newcommand{\bb}{\begin{bmatrix}}
+\newcommand{\eb}{\end{bmatrix}}
+\newcommand{\bv}{\begin{vmatrix}}
+\newcommand{\ev}{\end{vmatrix}}\\\newcommand{\im}{^{-1}}
+\newcommand{\pr}{^{\prime}}
+\newcommand{\ppr}{^{\prime\prime}}\end{aligned}\end{align} \]</div>
+<div class="section" id="chapter-3-2-the-nullspace-of-a-solving-a-boldsymbol-x-0-and-r-boldsymbol-x-0">
+<h1>Chapter 3.2 The Nullspace of <span class="math notranslate nohighlight">\(A\)</span>: Solving <span class="math notranslate nohighlight">\(A\boldsymbol{x} = 0\)</span> and <span class="math notranslate nohighlight">\(R\boldsymbol{x}=0\)</span><a class="headerlink" href="#chapter-3-2-the-nullspace-of-a-solving-a-boldsymbol-x-0-and-r-boldsymbol-x-0" title="Permalink to this headline">¶</a></h1>
 <p>For a <span class="math notranslate nohighlight">\(m\)</span> by <span class="math notranslate nohighlight">\(n\)</span> matrix, one immediate solution to <span class="math notranslate nohighlight">\(A\x=\bs{0}\)</span> is <span class="math notranslate nohighlight">\(\x=\bs{0}\)</span>.
 For invertible matrices this is the only solution.
 For other non-invertible matrices, there are nonzero solutions to <span class="math notranslate nohighlight">\(A\x=\bs{0}\)</span>.
@@ -336,9 +358,55 @@ Then the equation <span class="math notranslate nohighlight">\(A\x=\0\)</span> h
 <p><strong>DEFINITION OF RANK</strong>: The rank of <span class="math notranslate nohighlight">\(A\)</span> is the number of pivots.
 This number is <span class="math notranslate nohighlight">\(r\)</span>.</p>
 </div>
+<p><strong>Every “free column” is a combination of earlier pivot columns</strong>.</p>
 </div>
 <div class="section" id="rank-one">
 <h2>Rank One<a class="headerlink" href="#rank-one" title="Permalink to this headline">¶</a></h2>
+<p>Matrices of <strong>rank one</strong> have only <em>one pivot</em>.
+<em>Every row is a multiple of the pivot row</em>.</p>
+<p><strong>Rank one matrix</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A=\bb 1&amp;3&amp;10\\2&amp;6&amp;20\\3&amp;9&amp;30 \eb\rightarrow R=\bb 1&amp;3&amp;10\\0&amp;0&amp;0\\0&amp;0&amp;0 \eb.\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(A =\)</span> <strong>column times row</strong> <span class="math notranslate nohighlight">\(= \u\v^T\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb 1&amp;3&amp;10\\2&amp;6&amp;20\\3&amp;9&amp;30 \eb=\bb 1\\2\\3 \eb\bb 1&amp;3&amp;10 \eb.\end{split}\]</div>
+<p>With rank one <span class="math notranslate nohighlight">\(A\x=\0\)</span> is easy to understand.
+That equation <span class="math notranslate nohighlight">\(\u(\v^T\x)=\0\)</span> leads us to <span class="math notranslate nohighlight">\(\v^t\x=0\)</span>.
+All vectors <span class="math notranslate nohighlight">\(\x\)</span> in the nullspace must be orthogonal to <span class="math notranslate nohighlight">\(\v\)</span> in the row space.
+This is the geometry when <span class="math notranslate nohighlight">\(r=1\)</span>:
+<em>row space = line</em>, <em>null space = perpendcular plane</em>.</p>
+<p>The second definition of rank: <strong>the number of independent rows</strong>.
+This is also <strong>the number of independent columns</strong>.</p>
+<p>The third definition of rank: <strong>the “dimention” of the column space</strong>.
+It is also <strong>the dimension of the row space</strong>.
+<span class="math notranslate nohighlight">\(n-r\)</span> is <strong>the dimension of the nullspace</strong>.</p>
+<p><strong>Every</strong> <span class="math notranslate nohighlight">\(m\)</span> <strong>by</strong> <span class="math notranslate nohighlight">\(n\)</span> <strong>matrix of rank</strong> <span class="math notranslate nohighlight">\(r\)</span> <strong>reduces to</strong>
+(<span class="math notranslate nohighlight">\(m\)</span> by <span class="math notranslate nohighlight">\(r\)</span>) <strong>times</strong> (<span class="math notranslate nohighlight">\(r\)</span> by <span class="math notranslate nohighlight">\(n\)</span>):</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(A=(\rm{pivot\ columns\ of\ }A) (\rm{first\ }r\rm{\ rows\ of\ }R)=(\bs{\rm{COL}})(\bs{\rm{ROW}})\)</span>.</p>
+</div>
+</div>
+<div class="section" id="elimination-the-big-picture">
+<h2>Elimination: The Big Picture<a class="headerlink" href="#elimination-the-big-picture" title="Permalink to this headline">¶</a></h2>
+<p><strong>Question 1 Is this column a combination of previous columns?</strong></p>
+<p>If the column contains a pivot, the answer is no.
+Pivot columns are “independent” of previous columns.
+If column 4 has no pivot, it is a combination of columns 1, 2, 3.</p>
+<p><strong>Question 2 Is this row a combination of previous rows?</strong></p>
+<p>If the row contains a pivot, th answer is no.
+Pivot rows are “independent” of previous rows.
+If row 3 ends up with no pivot, it is a zero row and it is moved to the bottom of <span class="math notranslate nohighlight">\(R\)</span>.</p>
+<p>In other words, <span class="math notranslate nohighlight">\(R\)</span> <strong>tells us the special solutions to</strong> <span class="math notranslate nohighlight">\(A\x=\0\)</span>.
+<span class="math notranslate nohighlight">\(R\)</span> reveals a “basis” for three fundamental subspaces:</p>
+<blockquote>
+<div><p>The <strong>column space</strong> of <span class="math notranslate nohighlight">\(A\)</span>–choose the pivot columns of <span class="math notranslate nohighlight">\(A\)</span> as a basis.</p>
+<p>The <strong>row space</strong> of <span class="math notranslate nohighlight">\(A\)</span>–choose the nonzero rows of <span class="math notranslate nohighlight">\(R\)</span> as a basis.</p>
+<p>The <strong>nullspace</strong> of <span class="math notranslate nohighlight">\(A\)</span>–choose the speial solutions to <span class="math notranslate nohighlight">\(R\x=\0\)</span> (and <span class="math notranslate nohighlight">\(A\x=\0\)</span>).</p>
+</div></blockquote>
+<p>We learn from elimination the single most important number–<strong>the rank</strong> <span class="math notranslate nohighlight">\(\bs{r}\)</span>.
+That number counts the pivot columns and the pivot rows.
+Then <span class="math notranslate nohighlight">\(n-r\)</span> counts the free columns and the special solutions.</p>
 </div>
 </div>
 
