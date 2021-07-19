@@ -303,3 +303,6 @@ All symmetric matrices can be diagonalized.
 
 Computing the Eigenvalues of :math:`S` and Singular Values of :math:`A`
 -----------------------------------------------------------------------
+
+The first idea is **to produce zeros in** :math:`A` and :math:`S` 
+**without changing any** :math:`\sg`'s and :math:`\ld`'s.

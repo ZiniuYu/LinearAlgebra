@@ -100,7 +100,18 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index7.html">Chapter 7 The Singular Value Decomposition (SVD)</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="chap7-1.html">Chapter 7.1 Image Processing by Linear Algebra</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chap7-2.html">Chapter 7.2 Bases and Matrices in the SVD</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 7.3 Principal Component Analysis (PCA by the SVD)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 7.3 Principal Component Analysis (PCA by the SVD)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-essentials-of-principal-component-analysis-pca">The Essentials of Principal Component Analysis (PCA)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#perpendicular-least-squares">Perpendicular Least Squares</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-sample-correlation-matrix">The Sample Correlation Matrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#genetic-variation-in-europe">Genetic Variation in Europe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#eigenfaces">Eigenfaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#applications-of-eigenfaces">Applications of Eigenfaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#model-order-reduction">Model Order Reduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#searching-the-web">Searching the Web</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pca-in-finance-the-dynamics-of-interest-rates">PCA in Finance: The Dynamics of Interest Rates</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="chap7-4.html">Chapter 7.4 The Geometry of the SVD</a></li>
 </ul>
 </li>
@@ -210,6 +221,98 @@
 \newcommand{\ppr}{^{\prime\prime}}\end{aligned}\end{align} \]</div>
 <div class="section" id="chapter-7-3-principal-component-analysis-pca-by-the-svd">
 <h1>Chapter 7.3 Principal Component Analysis (PCA by the SVD)<a class="headerlink" href="#chapter-7-3-principal-component-analysis-pca-by-the-svd" title="Permalink to this headline">¶</a></h1>
+<p>For eaech of <span class="math notranslate nohighlight">\(n\)</span> samples we are measuring <span class="math notranslate nohighlight">\(m\)</span> variables.
+The data matrix <span class="math notranslate nohighlight">\(A_0\)</span> has <span class="math notranslate nohighlight">\(n\)</span> columns and <span class="math notranslate nohighlight">\(m\)</span> rows.</p>
+<p>Graphically, the columns of <span class="math notranslate nohighlight">\(A_0\)</span> are <span class="math notranslate nohighlight">\(n\)</span> points in <span class="math notranslate nohighlight">\(\R^m\)</span>.
+After we subtract the average of each row to reach <span class="math notranslate nohighlight">\(A\)</span>, the <span class="math notranslate nohighlight">\(n\)</span>
+points are often clustered along a line orr close to a plane (or other low-
+dimensional subspace of <span class="math notranslate nohighlight">\(\R^m\)</span>).</p>
+<p><strong>Sample covariance matrix</strong>:</p>
+<div class="math notranslate nohighlight">
+\[S=\frac{AA^T}{n-1}.\]</div>
+<p><span class="math notranslate nohighlight">\(A\)</span> shows the distance <span class="math notranslate nohighlight">\(a_{ij}-\mu_i\)</span> from each measurement to the row average <span class="math notranslate nohighlight">\(\mu_i\)</span>.</p>
+<p><strong>The SVD of</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>(centered data) shows the dominant direction in the scatter plot.</strong></p>
+<div class="section" id="the-essentials-of-principal-component-analysis-pca">
+<h2>The Essentials of Principal Component Analysis (PCA)<a class="headerlink" href="#the-essentials-of-principal-component-analysis-pca" title="Permalink to this headline">¶</a></h2>
+<p>PCA gives a way to understand a data plot in dimension <span class="math notranslate nohighlight">\(m =\)</span> the number of measured variables.
+<em>The crucial connection to linear algebra</em> is in the singular values and singular vectors of <span class="math notranslate nohighlight">\(A\)</span>.
+Those come from the eigenvalues <span class="math notranslate nohighlight">\(\ld=\sg^2\)</span> and the eigenvectors
+<span class="math notranslate nohighlight">\(\u\)</span> of the sample covariance matrix <span class="math notranslate nohighlight">\(S=AA^T/(n-1)\)</span>.</p>
+<ul>
+<li><p>The total variance in the data is the sum of all eigenvalues and of sample variances <span class="math notranslate nohighlight">\(s^2\)</span>:</p>
+<p><strong>Total variance</strong> <span class="math notranslate nohighlight">\(T=\sg^2_1+\cds+\sg^2_m=s^2_1+\cds+s^2_m=\)</span> <strong>trace</strong> (<em>diagonal sum</em>).</p>
+</li>
+<li><p>The first eigenvector <span class="math notranslate nohighlight">\(\u_1\)</span> of <span class="math notranslate nohighlight">\(S\)</span> points in the most significant direction of the data.
+That direction accounts for (or <em>explains</em>) a fraction <span class="math notranslate nohighlight">\(\sg^2_1/T\)</span> of the total variance.</p></li>
+<li><p>The next eigenvector <span class="math notranslate nohighlight">\(\u_2\)</span> (orthogonal to <span class="math notranslate nohighlight">\(\u_1\)</span>) accounts for a smaller fraction <span class="math notranslate nohighlight">\(\sg^2_2/T\)</span>.</p></li>
+<li><p>Stop when those fractions are small.
+You have the <span class="math notranslate nohighlight">\(R\)</span> directions that explain most of the data.
+The <span class="math notranslate nohighlight">\(n\)</span> data points are very near an <span class="math notranslate nohighlight">\(R\)</span>-dimensional subspace with basis <span class="math notranslate nohighlight">\(\u_1\)</span> to <span class="math notranslate nohighlight">\(\u_R\)</span>.
+These <span class="math notranslate nohighlight">\(u\)</span>’s are the <strong>princpal components</strong> in <span class="math notranslate nohighlight">\(m\)</span>-dimensional space.</p></li>
+<li><p><span class="math notranslate nohighlight">\(R\)</span> is the “effective rank” of <span class="math notranslate nohighlight">\(A\)</span>.
+The true rank <span class="math notranslate nohighlight">\(r\)</span> is probably <span class="math notranslate nohighlight">\(m\)</span> or <span class="math notranslate nohighlight">\(n\)</span>: full rank matrix.</p></li>
+</ul>
+</div>
+<div class="section" id="perpendicular-least-squares">
+<h2>Perpendicular Least Squares<a class="headerlink" href="#perpendicular-least-squares" title="Permalink to this headline">¶</a></h2>
+<p><strong>The sum of squared distances from the points to the line is a minimum</strong>.</p>
+<p><strong>Proof</strong>: Separate each column <span class="math notranslate nohighlight">\(\a_j\)</span> into its components along the <span class="math notranslate nohighlight">\(u_1\)</span> line and <span class="math notranslate nohighlight">\(u_2\)</span> line:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Right triangles</strong> <span class="math notranslate nohighlight">\(\dp\sum_{j=1}^n\lv\a_j\rv^2=\sum_{j=1}^n|\a_j^T\u_1|^2+\sum_{j=1}^n|\a_j^T\u_2|^2\)</span>.</p></li>
+</ul>
+<p>The sum on the left is fixed by the data points <span class="math notranslate nohighlight">\(\a_j\)</span> (columns of <span class="math notranslate nohighlight">\(A\)</span>).
+The first sum on the right is <span class="math notranslate nohighlight">\(\u_1^TAA^T\u_1\)</span>.
+So when we maximize that sum in PCA by choosing the eigenvector <span class="math notranslate nohighlight">\(\u_1\)</span>, we minimize the second sum.
+That second sum (squared distances from the data points to the best line) is
+a minimum for perpendicular least squares.</p>
+</div></blockquote>
+</div>
+<div class="section" id="the-sample-correlation-matrix">
+<h2>The Sample Correlation Matrix<a class="headerlink" href="#the-sample-correlation-matrix" title="Permalink to this headline">¶</a></h2>
+<p>If scaling is a problem, <strong>we change from covariance matrix</strong> <span class="math notranslate nohighlight">\(S\)</span> <strong>to correlation matrix</strong> <span class="math notranslate nohighlight">\(C\)</span>:</p>
+<blockquote>
+<div><p>A diagonal matrix <span class="math notranslate nohighlight">\(D\)</span> rescales <span class="math notranslate nohighlight">\(A\)</span>.
+Each row of <span class="math notranslate nohighlight">\(DA\)</span> has length <span class="math notranslate nohighlight">\(\sqrt{n-1}\)</span>.
+<strong>The sample correlation matrix</strong> <span class="math notranslate nohighlight">\(C=DAA^TD/(n-1)\)</span> <strong>has 1’s on its diagonal</strong>.</p>
+</div></blockquote>
+</div>
+<div class="section" id="genetic-variation-in-europe">
+<h2>Genetic Variation in Europe<a class="headerlink" href="#genetic-variation-in-europe" title="Permalink to this headline">¶</a></h2>
+<p>The first singular vectors of genetic variation SNP matrix almost reproduce a map of Europe.</p>
+</div>
+<div class="section" id="eigenfaces">
+<h2>Eigenfaces<a class="headerlink" href="#eigenfaces" title="Permalink to this headline">¶</a></h2>
+<p><strong>PCA provides a mechanism to recognize geometric/photometric similarity through algebraic means</strong>.</p>
+</div>
+<div class="section" id="applications-of-eigenfaces">
+<h2>Applications of Eigenfaces<a class="headerlink" href="#applications-of-eigenfaces" title="Permalink to this headline">¶</a></h2>
+<p>The first commercial use of PCA face recognition was for law enforcement and security.</p>
+</div>
+<div class="section" id="model-order-reduction">
+<h2>Model Order Reduction<a class="headerlink" href="#model-order-reduction" title="Permalink to this headline">¶</a></h2>
+<p><strong>A reduced model tries to identify important states of the system</strong>.</p>
+</div>
+<div class="section" id="searching-the-web">
+<h2>Searching the Web<a class="headerlink" href="#searching-the-web" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>The site may be an <strong>autority</strong>: <em>Links come in</em> from many sites.
+Especially from hubs.</p></li>
+<li><p>The site may be a <strong>hub</strong>: <em>Links go out</em> to many sites in the list.
+Especially to authorities.</p></li>
+</ol>
+<ul class="simple">
+<li><p><strong>Authority/Hub</strong>: <span class="math notranslate nohighlight">\(\x_i^1/y_i^1=\)</span> Add up <span class="math notranslate nohighlight">\(\y_j^0/x_j^0\)</span> for all
+links <strong>into</strong> <span class="math notranslate nohighlight">\(i/\)</span> <strong>out from</strong> <span class="math notranslate nohighlight">\(i\)</span>.</p></li>
+<li><p><strong>Authority</strong>: <span class="math notranslate nohighlight">\(\x^2=A^T\y^1=A^TA\x^0\)</span>.</p></li>
+<li><p><strong>Hub</strong>: <span class="math notranslate nohighlight">\(\y^2=A\x^1=AA^T\y^0\)</span>.</p></li>
+</ul>
+<p><strong>When we take powers, the largest eigenvalues</strong> <span class="math notranslate nohighlight">\(\sg_1^2\)</span> <strong>begins to dominate</strong>.</p>
+</div>
+<div class="section" id="pca-in-finance-the-dynamics-of-interest-rates">
+<h2>PCA in Finance: The Dynamics of Interest Rates<a class="headerlink" href="#pca-in-finance-the-dynamics-of-interest-rates" title="Permalink to this headline">¶</a></h2>
+<p>The application of PCA is the <strong>yield cur for treasury securities</strong>.</p>
+</div>
 </div>
 
 

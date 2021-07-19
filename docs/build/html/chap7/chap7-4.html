@@ -101,7 +101,13 @@
 <li class="toctree-l2"><a class="reference internal" href="chap7-1.html">Chapter 7.1 Image Processing by Linear Algebra</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chap7-2.html">Chapter 7.2 Bases and Matrices in the SVD</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chap7-3.html">Chapter 7.3 Principal Component Analysis (PCA by the SVD)</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 7.4 The Geometry of the SVD</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 7.4 The Geometry of the SVD</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-norm-of-a-matrix">The Norm of a Matrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#polar-decomposition-a-qs">Polar Decomposition <span class="math notranslate nohighlight">\(A=QS\)</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-pseudoinverse-a">The Pseudoinverse <span class="math notranslate nohighlight">\(A^+\)</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#least-squares-with-dependent-columns">Least Squares with Dependent Columns</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
@@ -210,6 +216,45 @@
 \newcommand{\ppr}{^{\prime\prime}}\end{aligned}\end{align} \]</div>
 <div class="section" id="chapter-7-4-the-geometry-of-the-svd">
 <h1>Chapter 7.4 The Geometry of the SVD<a class="headerlink" href="#chapter-7-4-the-geometry-of-the-svd" title="Permalink to this headline">¶</a></h1>
+<p>The SVD separates a matrix into three steps: <span class="math notranslate nohighlight">\((\)</span><strong>orthogonal</strong><span class="math notranslate nohighlight">\()\times(\)</span><strong>diagonal</strong><span class="math notranslate nohighlight">\()\times(\)</span><strong>orthogonal</strong><span class="math notranslate nohighlight">\()\)</span>.
+Ordinary words can express the geometry behind it: <span class="math notranslate nohighlight">\((\)</span><strong>rotation</strong><span class="math notranslate nohighlight">\()\times(\)</span><strong>stretching</strong><span class="math notranslate nohighlight">\()\times(\)</span><strong>rotation</strong><span class="math notranslate nohighlight">\()\)</span>.
+<span class="math notranslate nohighlight">\(U\Sg V^T\x\)</span> starts with the rotation to <span class="math notranslate nohighlight">\(V^T\x\)</span>.
+Then <span class="math notranslate nohighlight">\(\Sg\)</span> stretches that vector to <span class="math notranslate nohighlight">\(\Sg V^T\x\)</span>, and <span class="math notranslate nohighlight">\(U\)</span> rotates to <span class="math notranslate nohighlight">\(A\x=U\Sg V^T\x\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb a&amp;b\\c&amp;d \eb=\bb \cos\theta&amp;-\sin\theta\\\sin\theta&amp;\cos\theta \eb
+\bb \sg_1\\&amp;\sg_2 \eb\bb \cos\phi&amp;\sin\phi\\-\sin\phi&amp;\cos\phi \eb=U\Sg V^T.\end{split}\]</div>
+<p>The four numbers <span class="math notranslate nohighlight">\(a,b,c,d\)</span> in the matrix <span class="math notranslate nohighlight">\(A\)</span> led to four numbers <span class="math notranslate nohighlight">\(\theta,\sg_1,\sg_2,\phi\)</span> in its SVD.</p>
+<ol class="arabic simple">
+<li><p><strong>The norm</strong> <span class="math notranslate nohighlight">\(\lv A\rv\)</span> <strong>of a matrix</strong>–its maximum growth factor.</p></li>
+<li><p><strong>The polar decomposition</strong> <span class="math notranslate nohighlight">\(A=QS\)</span>–orthogonal <span class="math notranslate nohighlight">\(Q\)</span> times positive definite <span class="math notranslate nohighlight">\(S\)</span>.</p></li>
+<li><p><strong>The pseudoinverse</strong> <span class="math notranslate nohighlight">\(A^+\)</span>–the best inverse when the matrix <span class="math notranslate nohighlight">\(A\)</span> is not invertible.</p></li>
+</ol>
+<div class="section" id="the-norm-of-a-matrix">
+<h2>The Norm of a Matrix<a class="headerlink" href="#the-norm-of-a-matrix" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>The norm</strong> <span class="math notranslate nohighlight">\(\lv A\rv\)</span> <strong>is the largest ratio</strong>
+<span class="math notranslate nohighlight">\(\dp \frac{\lv A\x\rv}{\lv\x\rv}\)</span>:
+<span class="math notranslate nohighlight">\(\dp\lv A\rv=\max_{\x\neq\0}\frac{\lv A\x\rv}{\lv\x\rv}=\sg_1\)</span></p>
+</div>
+<p>Two valuable properties of that number norm(<span class="math notranslate nohighlight">\(A\)</span>) come directly from its denifition:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p><strong>Triangle inequality</strong>: <span class="math notranslate nohighlight">\(\lv A+B \rv\leq\lv A \rv+\lv B\rv\)</span>.</p></li>
+<li><p><strong>Product inequality</strong>: <span class="math notranslate nohighlight">\(\lv AB \rv\leq\lv A \rv\lv B \rv\)</span>.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="polar-decomposition-a-qs">
+<h2>Polar Decomposition <span class="math notranslate nohighlight">\(A=QS\)</span><a class="headerlink" href="#polar-decomposition-a-qs" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="the-pseudoinverse-a">
+<h2>The Pseudoinverse <span class="math notranslate nohighlight">\(A^+\)</span><a class="headerlink" href="#the-pseudoinverse-a" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="least-squares-with-dependent-columns">
+<h2>Least Squares with Dependent Columns<a class="headerlink" href="#least-squares-with-dependent-columns" title="Permalink to this headline">¶</a></h2>
+</div>
 </div>
 
 
