@@ -42,7 +42,9 @@
     
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapter 8.3 The Search for a Good Basis" href="chap8-3.html" />
+    <link rel="prev" title="Chapter 8.1 The Idea of a Linear Transformation" href="chap8-1.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -88,7 +90,7 @@
             
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../chap1/index1.html">Chapter 1 Introduction to Vectors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../chap2/index2.html">Chapter 2 Solving Linear Equations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../chap3/index3.html">Chapter 3 Vector Spaces and Subspaces</a></li>
@@ -96,6 +98,17 @@
 <li class="toctree-l1"><a class="reference internal" href="../chap5/index5.html">Chapter 5 Determinants</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../chap6/index6.html">Chapter 6 Eigenvalues and Eigenvectors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../chap7/index7.html">Chapter 7 The Singular Value Decomposition (SVD)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index8.html">Chapter 8 Linear Transformations</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="chap8-1.html">Chapter 8.1 The Idea of a Linear Transformation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 8.2 The Matrix of a Linear Transformation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#change-of-basis">Change of Basis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#construction-of-the-matrix">Construction of the Matrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#matrix-products-ab-match-transformations-ts">Matrix Products <span class="math notranslate nohighlight">\(AB\)</span> Match Transformations <span class="math notranslate nohighlight">\(TS\)</span></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="chap8-3.html">Chapter 8.3 The Search for a Good Basis</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
 </ul>
 
@@ -144,6 +157,8 @@
   <ul class="wy-breadcrumbs">
     
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index8.html">Chapter 8 Linear Transformations</a> &raquo;</li>
         
       <li>Chapter 8.2 The Matrix of a Linear Transformation</li>
     
@@ -201,6 +216,50 @@
 \newcommand{\ppr}{^{\prime\prime}}\end{aligned}\end{align} \]</div>
 <div class="section" id="chapter-8-2-the-matrix-of-a-linear-transformation">
 <h1>Chapter 8.2 The Matrix of a Linear Transformation<a class="headerlink" href="#chapter-8-2-the-matrix-of-a-linear-transformation" title="Permalink to this headline">¶</a></h1>
+<p>For ordinary column vectors, the input <span class="math notranslate nohighlight">\(\v\)</span> is in <span class="math notranslate nohighlight">\(\bs{V}=\R^n\)</span> and
+the output <span class="math notranslate nohighlight">\(T(\v)\)</span> is in <span class="math notranslate nohighlight">\(\bs{W}=\R^m\)</span>.
+The matrix <span class="math notranslate nohighlight">\(A\)</span> for this transformation will be <span class="math notranslate nohighlight">\(m\)</span> by <span class="math notranslate nohighlight">\(n\)</span>.
+Our choice of bases in <span class="math notranslate nohighlight">\(\bs{V}\)</span> and <span class="math notranslate nohighlight">\(\bs{W}\)</span> will decide <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p>All vector spaces <span class="math notranslate nohighlight">\(\bs{V}\)</span> and <span class="math notranslate nohighlight">\(\bs{W}\)</span> have bases.
+Each choice of those bases leads to a matrix for <span class="math notranslate nohighlight">\(T\)</span>.
+When the input basis is different from the output basis, the matrix for
+<span class="math notranslate nohighlight">\(T(\v)=\v\)</span> will not be the identity <span class="math notranslate nohighlight">\(I\)</span>.
+It will be the “change of basis matrix”.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Suppose we know <span class="math notranslate nohighlight">\(T(\v)\)</span> for the input basis vectors <span class="math notranslate nohighlight">\(\v_1\)</span> to <span class="math notranslate nohighlight">\(\v_n\)</span>.
+Columns <span class="math notranslate nohighlight">\(1\)</span> to <span class="math notranslate nohighlight">\(n\)</span> of the matrix will contain those outputs <span class="math notranslate nohighlight">\(T(\v_1)\)</span> to <span class="math notranslate nohighlight">\(T(\v_n)\)</span>.
+<span class="math notranslate nohighlight">\(A\)</span> times <span class="math notranslate nohighlight">\(c =\)</span> matrix times vector <span class="math notranslate nohighlight">\(=\)</span> combination of those <span class="math notranslate nohighlight">\(n\)</span> columns.
+<span class="math notranslate nohighlight">\(Ac\)</span> is the correct combination <span class="math notranslate nohighlight">\(c_1T(\v_1)+\cds+c_nT(\v_n)=T(\v)\)</span>.</p>
+</div>
+<p><strong>Reason</strong>: Every <span class="math notranslate nohighlight">\(\v\)</span> is a unique combination <span class="math notranslate nohighlight">\(c_1\v_1+\cds+c_n\v_n\)</span> of the basis vectors <span class="math notranslate nohighlight">\(\v_j\)</span>.
+Since <span class="math notranslate nohighlight">\(T\)</span> is a linear transformation, <span class="math notranslate nohighlight">\(T(\v)\)</span> must be
+<strong>the same combination</strong> <span class="math notranslate nohighlight">\(c_1T(\v_1)+\cds+c_nT(\v_n)\)</span> <strong>of the outputs</strong>
+<span class="math notranslate nohighlight">\(T(\v_j)\)</span> <strong>in the columns</strong>.</p>
+<div class="section" id="change-of-basis">
+<h2>Change of Basis<a class="headerlink" href="#change-of-basis" title="Permalink to this headline">¶</a></h2>
+<p>Suppose the input space <span class="math notranslate nohighlight">\(\bs{V}=\R^2\)</span> is also the output space <span class="math notranslate nohighlight">\(\bs{W}=\R^2\)</span>.
+<em>Suppose that</em> <span class="math notranslate nohighlight">\(T(\v)=\v\)</span> <em>is the identity transformation</em>.
+The matrix is <span class="math notranslate nohighlight">\(I\)</span> only when the input basis is the same as the output basis.</p>
+<p>For this special case <span class="math notranslate nohighlight">\(T(\v)=\v\)</span>, call the matrix <span class="math notranslate nohighlight">\(B\)</span> instead of <span class="math notranslate nohighlight">\(A\)</span>.
+We are just changing basis from the <span class="math notranslate nohighlight">\(\v\)</span>’s to the <span class="math notranslate nohighlight">\(\w\)</span>’s.
+Each <span class="math notranslate nohighlight">\(\v\)</span> is a combination of <span class="math notranslate nohighlight">\(\w_1\)</span> and <span class="math notranslate nohighlight">\(\w_2\)</span>.</p>
+<p><strong>Input basis</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb \\\ \v_1&amp;\v_2 \\\ \eb=\bb 3&amp;6\\3&amp;8 \eb\end{split}\]</div>
+<p><strong>Output basis</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb \\\ \w_1&amp;\w_2 \\\ \eb=\bb 3&amp;0\\1&amp;2 \eb\end{split}\]</div>
+<p><strong>Change of basis</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{matrix} \v_1=1\w_1+1\w_2\\ \v_2=2\w_1+3\w_2\end{matrix}\end{split}\]</div>
+</div>
+<div class="section" id="construction-of-the-matrix">
+<h2>Construction of the Matrix<a class="headerlink" href="#construction-of-the-matrix" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="matrix-products-ab-match-transformations-ts">
+<h2>Matrix Products <span class="math notranslate nohighlight">\(AB\)</span> Match Transformations <span class="math notranslate nohighlight">\(TS\)</span><a class="headerlink" href="#matrix-products-ab-match-transformations-ts" title="Permalink to this headline">¶</a></h2>
+</div>
 </div>
 
 
@@ -208,6 +267,10 @@
            
           </div>
           <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="chap8-3.html" class="btn btn-neutral float-right" title="Chapter 8.3 The Search for a Good Basis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="chap8-1.html" class="btn btn-neutral float-left" title="Chapter 8.1 The Idea of a Linear Transformation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
 
   <hr/>
 

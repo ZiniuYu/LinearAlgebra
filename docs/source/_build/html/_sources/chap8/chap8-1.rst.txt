@@ -44,7 +44,10 @@ Linearity: **Equally spaced points go to equally spaced poitns**.
     **in a basis, then you know** :math:`T(\u)` **for every vector** :math:`\u`
     **in the space**.
 
-
+*The Fundamental Theorem of Calculus says that integration is the (pseudo)inverse of differentiation*.
+For linear algebra, the matrix :math:`A^+` is the (pseudo)inverse of the matrix :math:`A`.
+The derivative of a constant function is zero.
+That zero is on the diagonal of :math:`A^+A`.
 
 Examples of Transformations (mostly linear)
 -------------------------------------------

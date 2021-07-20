@@ -216,3 +216,12 @@ Table of Eigenvalues and Eigenvectors
     * - **Projection**: :math:`P=P^2=P^T`
       - :math:`\ld=1;0`
       - column space; nullspace
+    * - **Plane Rotation**: **cosine-sine**
+      - :math:`e^{i\th}` and :math:`e^{-i\th}`
+      - :math:`\x=(1,i)` and :math:`(1,-i)`
+    * - **Reflection**: :math:`I-2\u\u^T`
+      - :math:`\ld=-1;1,\cds,1`
+      - :math:`\u`; whole plane :math:`\u^{\perp}`
+    * - **Rank One**: :math:`\u\v^T`
+      - :math:`\ld=\v^T\u;0,\cds,0`
+      - :math:`\u`; whole plane :math:`\v^{\perp}`

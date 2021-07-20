@@ -6,7 +6,7 @@
 Linear Algebra Notes
 ====================
 
-Study notes o   chap7-4f Introduction to Linear Algebra, 5th Edition by Gilbert Strang
+Study notes of Introduction to Linear Algebra, 5th Edition by Gilbert Strang
 
 
 .. toctree::

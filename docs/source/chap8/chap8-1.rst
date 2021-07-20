@@ -44,17 +44,27 @@ Linearity: **Equally spaced points go to equally spaced poitns**.
     **in a basis, then you know** :math:`T(\u)` **for every vector** :math:`\u`
     **in the space**.
 
-
+*The Fundamental Theorem of Calculus says that integration is the (pseudo)inverse of differentiation*.
+For linear algebra, the matrix :math:`A^+` is the (pseudo)inverse of the matrix :math:`A`.
+The derivative of a constant function is zero.
+That zero is on the diagonal of :math:`A^+A`.
+Calculus wouldn't be calculus without that 1-dimensional nullspace of :math:`T=d/dx`.
 
 Examples of Transformations (mostly linear)
 -------------------------------------------
 
+**All linear transformations from** :math:`V=R^n` **to** :math:`W=R^m` **are produced by matrices**.
 
+For a matrix, the column space contains all outputs :math:`A\v`.
+The nullspace contains all inputs for which :math:`A\v=\0`.
 
-
-
-
-
+    * **Range of** :math:`T =` set of *all outputs* :math:`T(\v)`.
+      Range corresponds to column space.
+    
+    * **Kernel of** :math:`T =` set of *all inputs for which* :math:`T(\v)=\0`.
+      Kernel corresponds to nullspace.
 
 Linear Transformations of the Plane
 -----------------------------------
+
+Refer to the textbook Page 406.
