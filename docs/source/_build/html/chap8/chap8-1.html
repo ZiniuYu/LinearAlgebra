@@ -216,8 +216,41 @@
 \newcommand{\ppr}{^{\prime\prime}}\end{aligned}\end{align} \]</div>
 <div class="section" id="chapter-8-1-the-idea-of-a-linear-transformation">
 <h1>Chapter 8.1 The Idea of a Linear Transformation<a class="headerlink" href="#chapter-8-1-the-idea-of-a-linear-transformation" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A <strong>transformation</strong> <span class="math notranslate nohighlight">\(T\)</span> assigns an output <span class="math notranslate nohighlight">\(T(\v)\)</span> to each input vector <span class="math notranslate nohighlight">\(\v\)</span> in <span class="math notranslate nohighlight">\(\bs{V}\)</span>.
+The transformation is <strong>linear</strong> if it meets these requirements for all <span class="math notranslate nohighlight">\(\v\)</span> and <span class="math notranslate nohighlight">\(\w\)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(T(\v+\w)=T(\v)+T(\w)\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(T(c\v)=cT(\v)\)</span> for all <span class="math notranslate nohighlight">\(c\)</span>.</p></li>
+</ul>
+</div>
+<p>If the input is <span class="math notranslate nohighlight">\(\v=\0\)</span>, the output must be <span class="math notranslate nohighlight">\(T(\v)=\0\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Linear transformation</strong>: <span class="math notranslate nohighlight">\(T(c\v+d\w)\)</span> <strong>must equal</strong> <span class="math notranslate nohighlight">\(cT(\v)+dT(\w)\)</span>.</p>
+</div>
+<p><strong>Shift is not linear</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\v+\w+\u_0\quad\rm{is\ not}\quad T(\v)+T(\w)=(\v+\u_0)+(\w+\u_0).\]</div>
+<p>The exception is when <span class="math notranslate nohighlight">\(\u_0=\0\)</span>.
+The transformation reduces to <span class="math notranslate nohighlight">\(T(\v)=\v\)</span>.
+This is the <strong>identity transformation</strong>.</p>
+<p>The linear-plus-shift transformation <span class="math notranslate nohighlight">\(T(\v)=A\v+\u_0\)</span> is called “<em>affine</em>”.</p>
 <div class="section" id="lines-to-lines-triangles-to-triangles-basis-tells-all">
 <h2>Lines to Lines, Triangles to Triangles, Basis Tells All<a class="headerlink" href="#lines-to-lines-triangles-to-triangles-basis-tells-all" title="Permalink to this headline">¶</a></h2>
+<p>Linearity: <strong>Equally spaced points go to equally spaced poitns</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Linearity</strong>: <span class="math notranslate nohighlight">\(\u=c_1\v_1+c_2\v_2+\cds+c_n\v_n\)</span> <strong>must transform to</strong>
+<span class="math notranslate nohighlight">\(T(\u)=c_1T(\v_1)+c_2T(\v_2)+\cds+c_nT(\v_n)\)</span>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Suppose you know</strong> <span class="math notranslate nohighlight">\(T(\v)\)</span> <strong>for all vectors</strong> <span class="math notranslate nohighlight">\(\v_1,\cds,\v_n\)</span>
+<strong>in a basis, then you know</strong> <span class="math notranslate nohighlight">\(T(\u)\)</span> <strong>for every vector</strong> <span class="math notranslate nohighlight">\(\u\)</span>
+<strong>in the space</strong>.</p>
+</div>
 </div>
 <div class="section" id="examples-of-transformations-mostly-linear">
 <h2>Examples of Transformations (mostly linear)<a class="headerlink" href="#examples-of-transformations-mostly-linear" title="Permalink to this headline">¶</a></h2>
