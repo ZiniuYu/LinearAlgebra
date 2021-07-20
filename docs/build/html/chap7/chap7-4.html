@@ -208,7 +208,8 @@
 \newcommand{\N}{\boldsymbol{N}}\\\newcommand{\R}{\boldsymbol{\mathrm{R}}}\\\newcommand{\ld}{\lambda}
 \newcommand{\Ld}{\Lambda}
 \newcommand{\sg}{\sigma}
-\newcommand{\Sg}{\Sigma}\\\newcommand{\bb}{\begin{bmatrix}}
+\newcommand{\Sg}{\Sigma}
+\newcommand{\th}{\theta}\\\newcommand{\bb}{\begin{bmatrix}}
 \newcommand{\eb}{\end{bmatrix}}
 \newcommand{\bv}{\begin{vmatrix}}
 \newcommand{\ev}{\end{vmatrix}}\\\newcommand{\im}{^{-1}}
@@ -245,15 +246,89 @@ Then <span class="math notranslate nohighlight">\(\Sg\)</span> stretches that ve
 <li><p><strong>Product inequality</strong>: <span class="math notranslate nohighlight">\(\lv AB \rv\leq\lv A \rv\lv B \rv\)</span>.</p></li>
 </ul>
 </div>
+<p><strong>For vectors</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\lv(A+B)\x\rv\leq\lv A\x\rv+\lv B\x\rv\leq\lv A \rv\lv\x\rv+\lv B\rv\lv\x\rv.\]</div>
+<p>Divide this by <span class="math notranslate nohighlight">\(\lv\x\rv\)</span>.
+Take the maximum over all <span class="math notranslate nohighlight">\(\x\)</span>.
+Then <span class="math notranslate nohighlight">\(\lv A+B \rv\leq\lv A \rv+\lv B \rv\)</span>.</p>
+<p>The product inequality comes quickly from <span class="math notranslate nohighlight">\(\lv AB\x \rv\leq\lv A\rv\lv B\x\rv\leq\lv A\rv\lv B\rv\lv \x\rv\)</span>.
+Again divide by <span class="math notranslate nohighlight">\(\lv \x \rv\)</span>.
+Take the maximum over all <span class="math notranslate nohighlight">\(\x\)</span>.
+The result is <span class="math notranslate nohighlight">\(\lv AB \rv\leq\lv A\rv\lv B\rv\)</span>.</p>
+<p><strong>The closet rank</strong> <span class="math notranslate nohighlight">\(k\)</span> <strong>matrix to</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>is</strong> <span class="math notranslate nohighlight">\(A_k=\sg_1\u_1\v_1^T+\cds+\sg_k\u_k\v_k^T\)</span>.</p>
+<p>This is the key fact in matrix approximation: The Eckart-Young-Mirsky Theorem
+says that <span class="math notranslate nohighlight">\(\lv A-B \rv\leq\lv A-A_k\rv=\sg_{k+1}\)</span> <strong>for all matrices</strong>
+<span class="math notranslate nohighlight">\(B\)</span> <strong>of rank</strong> <span class="math notranslate nohighlight">\(k\)</span>.</p>
+<p>The <span class="math notranslate nohighlight">\(\v\)</span>’s and <span class="math notranslate nohighlight">\(\u\)</span>’s give orthonormal bases for the four
+fundamental subspaces, and the <em>first</em> <span class="math notranslate nohighlight">\(k\)</span> <span class="math notranslate nohighlight">\(\v\)</span><em>‘s and</em> <span class="math notranslate nohighlight">\(\u\)</span>
+<em>‘s and</em> <span class="math notranslate nohighlight">\(\sg\)</span><em>‘s</em> give the best matrix approximation to <span class="math notranslate nohighlight">\(A\)</span>.</p>
 </div>
 <div class="section" id="polar-decomposition-a-qs">
 <h2>Polar Decomposition <span class="math notranslate nohighlight">\(A=QS\)</span><a class="headerlink" href="#polar-decomposition-a-qs" title="Permalink to this headline">¶</a></h2>
+<p><strong>Every complex number</strong> <span class="math notranslate nohighlight">\(x+iy\)</span> <strong>has the polar form</strong> <span class="math notranslate nohighlight">\(re^{i\th}\)</span>.
+A number <span class="math notranslate nohighlight">\(r\geq 0\)</span> multiplies a number <span class="math notranslate nohighlight">\(e^{i\th}\)</span> on the unit circle.
+We have <span class="math notranslate nohighlight">\(x+iy=r\cos\th+ir\sin\th=r(\cos\th+i\sin\th)=re^{i\th}\)</span>.
+Think of these numbers as 1 by 1 matrices.
+Then <span class="math notranslate nohighlight">\(e^{i\th}\)</span> is an orthogonal matrix <span class="math notranslate nohighlight">\(Q\)</span> and <span class="math notranslate nohighlight">\(r\geq 0\)</span> is a
+<em>positive semidefinite matrix</em> (call it <span class="math notranslate nohighlight">\(S\)</span>).
+The <strong>polar decomposition</strong> extends the same idea to <span class="math notranslate nohighlight">\(n\)</span> by <span class="math notranslate nohighlight">\(n\)</span>
+matrices: orthogonal times positive semidefinite, <span class="math notranslate nohighlight">\(A=QS\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Every real square matrix can be factored into <span class="math notranslate nohighlight">\(A=QS\)</span>, where <span class="math notranslate nohighlight">\(Q\)</span>
+is <strong>orthogonal</strong> and <span class="math notranslate nohighlight">\(S\)</span> is <strong>symmetric positive semidefinite</strong>.
+If <span class="math notranslate nohighlight">\(A\)</span> is invertible, <span class="math notranslate nohighlight">\(S\)</span> is positive definite.</p>
+</div>
+<p>For the proof we just insert <span class="math notranslate nohighlight">\(V^TV=I\)</span> into the middle of the SVD:</p>
+<p><strong>Polar decomposition</strong>:</p>
+<div class="math notranslate nohighlight">
+\[A=U\Sg V^T=(UV^T)(V\Sg V^T)=(Q)(S).\]</div>
+<p>If <span class="math notranslate nohighlight">\(A\)</span> is invertible then <span class="math notranslate nohighlight">\(Sg\)</span> and <span class="math notranslate nohighlight">\(S\)</span> are also invertible.
+<span class="math notranslate nohighlight">\(S\)</span> <strong>is the symmetric positive definite square root of</strong> <span class="math notranslate nohighlight">\(A^TA\)</span>, because <span class="math notranslate nohighlight">\(S^2=V\Sg^2V^T=A^TA\)</span>.
+So the eigenvalues of <span class="math notranslate nohighlight">\(S\)</span> are the singular values of <span class="math notranslate nohighlight">\(A\)</span>.
+The eigenvectors of <span class="math notranslate nohighlight">\(S\)</span> are the singular vectors <span class="math notranslate nohighlight">\(\v\)</span> of <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p>There is also a polar decomposition <span class="math notranslate nohighlight">\(A=KQ\)</span> in the reverse order.
+<span class="math notranslate nohighlight">\(Q\)</span> is the same but now <span class="math notranslate nohighlight">\(K=U\Sg U^T\)</span>.
+Then <span class="math notranslate nohighlight">\(K\)</span> is the symmetric positive definite square root of <span class="math notranslate nohighlight">\(AA^T\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(Q=UV^T\)</span> is the <strong>nearest orthogonal matrix</strong> to <span class="math notranslate nohighlight">\(A\)</span>.
+This <span class="math notranslate nohighlight">\(Q\)</span> makes the norm <span class="math notranslate nohighlight">\(\lv Q-A \rv\)</span> as small as possible.
+That corresponds to the fact that <span class="math notranslate nohighlight">\(e^{i\th}\)</span> is the nearsest number on the unit circle to <span class="math notranslate nohighlight">\(re^{i\th}\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>The nearest singular matrix</strong> <span class="math notranslate nohighlight">\(A_0\)</span> <strong>to</strong> <span class="math notranslate nohighlight">\(A\)</span>
+<strong>comes by changing the smallest</strong> <span class="math notranslate nohighlight">\(\sg_{\min}\)</span> <strong>to zero</strong>.</p>
+</div>
 </div>
 <div class="section" id="the-pseudoinverse-a">
 <h2>The Pseudoinverse <span class="math notranslate nohighlight">\(A^+\)</span><a class="headerlink" href="#the-pseudoinverse-a" title="Permalink to this headline">¶</a></h2>
+<p><strong>Pseudoinverse of</strong> <span class="math notranslate nohighlight">\(A\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A^+=V\Sg^+U^T=\bb \\\ \v_1\cds\v_r\cds\v_n \\\ \eb
+\bb \sg_1^{-1}\\&amp;\dds\\&amp;&amp;\sg_r^{-1}\\&amp;&amp;&amp; \eb
+\bb \\\ \u_1\cds\u_r\cds\u_m \\\ \eb^T.\end{split}\]</div>
+<p>The <strong>pseudoinverse</strong> <span class="math notranslate nohighlight">\(A^+\)</span> is an <span class="math notranslate nohighlight">\(n\)</span> by <span class="math notranslate nohighlight">\(m\)</span> matrix.
+If <span class="math notranslate nohighlight">\(A^{-1}\)</span> exists, than <span class="math notranslate nohighlight">\(A^+\)</span> is the same as <span class="math notranslate nohighlight">\(A^{-1}\)</span>.
+In that case <span class="math notranslate nohighlight">\(m=n=r\)</span> and we are inverting <span class="math notranslate nohighlight">\(U\Sg V^T\)</span> to get <span class="math notranslate nohighlight">\(V\Sg^{-1}U^T\)</span>.
+The new symbol <span class="math notranslate nohighlight">\(A^+\)</span> is needed when <span class="math notranslate nohighlight">\(r&lt;m\)</span> or <span class="math notranslate nohighlight">\(r&lt;n\)</span>.
+Then <span class="math notranslate nohighlight">\(A\)</span> has no two-sided inverse, but it has a <em>pseudo</em>inverse <span class="math notranslate nohighlight">\(A^+\)</span> with that same rank <span class="math notranslate nohighlight">\(r\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[A^+\u_i=\frac{1}{\sg_i}\v_i\quad\rm{for\ }i\leq r\quad\rm{and}\quad A^+\u_i=\0\quad\rm{for\ }i&gt;r.\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Trying for</strong> <span class="math notranslate nohighlight">\(AA\im=A\im A=I\)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(AA^+=\)</span> projection matrix onto the column space of <span class="math notranslate nohighlight">\(A\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(A^+A=\)</span> projection matrix onto the row space of <span class="math notranslate nohighlight">\(A\)</span>.</p></li>
+</ul>
+</div>
 </div>
 <div class="section" id="least-squares-with-dependent-columns">
 <h2>Least Squares with Dependent Columns<a class="headerlink" href="#least-squares-with-dependent-columns" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(\x^+=A^+\b=(1,1)\)</span> <strong>is the shortest solution to</strong> <span class="math notranslate nohighlight">\(A^TA\wh{\x}=A^T\b\)</span> and <span class="math notranslate nohighlight">\(A\wh{\x}=\p\)</span>.</p>
+</div>
 </div>
 </div>
 

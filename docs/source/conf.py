@@ -94,6 +94,7 @@ rst_prolog = r'''
     \newcommand{\Ld}{\Lambda}
     \newcommand{\sg}{\sigma}
     \newcommand{\Sg}{\Sigma}
+    \newcommand{\th}{\theta}
 
     \newcommand{\bb}{\begin{bmatrix}}
     \newcommand{\eb}{\end{bmatrix}}
