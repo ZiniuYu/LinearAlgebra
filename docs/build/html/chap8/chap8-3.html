@@ -101,7 +101,13 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index8.html">Chapter 8 Linear Transformations</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="chap8-1.html">Chapter 8.1 The Idea of a Linear Transformation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chap8-2.html">Chapter 8.2 The Matrix of a Linear Transformation</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 8.3 The Search for a Good Basis</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 8.3 The Search for a Good Basis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-jordan-form">The Jordan Form</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bases-for-function-space">Bases for Function Space</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#orthogonal-bases-for-function-space">Orthogonal Bases for Function Space</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#legendre-polynomials-and-chebyshev-polynomials">Legendre Polynomials and Chebyshev Polynomials</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
@@ -211,6 +217,95 @@
 \newcommand{\ppr}{^{\prime\prime}}\end{aligned}\end{align} \]</div>
 <div class="section" id="chapter-8-3-the-search-for-a-good-basis">
 <h1>Chapter 8.3 The Search for a Good Basis<a class="headerlink" href="#chapter-8-3-the-search-for-a-good-basis" title="Permalink to this headline">¶</a></h1>
+<p>The input basis vectors will be the columns of <span class="math notranslate nohighlight">\(B_{\rm{in}}\)</span>.
+The output basis vectors will be the columnso f <span class="math notranslate nohighlight">\(B_{\rm{out}}\)</span>.</p>
+<p><strong>Pure algebra</strong>: If <span class="math notranslate nohighlight">\(A\)</span> is the matrix for a transformation <span class="math notranslate nohighlight">\(T\)</span> in
+the standard basis, then <span class="math notranslate nohighlight">\(B\im_{\rm{out}}AB_{\rm{in}}\)</span> is the matrix in
+the new bases.</p>
+<p>The standard basis vectors are the <em>columns of the identity</em>:
+<span class="math notranslate nohighlight">\(B_{\rm{in}}=I_{n\times n}\)</span> and <span class="math notranslate nohighlight">\(B_{\rm{out}}=I_{m\times m}\)</span>.
+Now we are choosing special bases to make the matrix clearer and simpler than <span class="math notranslate nohighlight">\(A\)</span>.
+When <span class="math notranslate nohighlight">\(B_{\rm{in}}=B_{\rm{out}}=B\)</span>, the square matrix <span class="math notranslate nohighlight">\(B\im AB\)</span> is <em>similar</em> to <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p><strong>Applied algebra</strong>: Applications are allabout choosing good bases.</p>
+<blockquote>
+<div><p><strong>1.</strong> <span class="math notranslate nohighlight">\(B_{\rm{in}}=B_{\rm{out}}=\)</span> <strong>eigenvector matrix</strong> <span class="math notranslate nohighlight">\(X\)</span>.</p>
+<blockquote>
+<div><p>Then <span class="math notranslate nohighlight">\(X\im AX=\)</span> <strong>eigenvalues in</strong> <span class="math notranslate nohighlight">\(\Ld\)</span>.
+This choice requires <span class="math notranslate nohighlight">\(A\)</span> to be a square matrix with <span class="math notranslate nohighlight">\(n\)</span> independent eigenvectors.
+We get <span class="math notranslate nohighlight">\(\Ld\)</span> when <span class="math notranslate nohighlight">\(B_{\rm{in}}=B_{\rm{out}}\)</span> is the eigenvector matrix <span class="math notranslate nohighlight">\(X\)</span>.</p>
+</div></blockquote>
+<p><strong>2.</strong> <span class="math notranslate nohighlight">\(B_{\rm{in}}=V\)</span> and <span class="math notranslate nohighlight">\(B_{\rm{out}}=U\)</span>: <strong>singular vectors of</strong> <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<blockquote>
+<div><p>Then <span class="math notranslate nohighlight">\(U\im AV=\)</span> <strong>diagonal</strong> <span class="math notranslate nohighlight">\(\Sg\)</span>.
+<span class="math notranslate nohighlight">\(\Sg\)</span> is the singular matrix (with <span class="math notranslate nohighlight">\(\sg_1,\cds,\sg_r\)</span> on its
+diagonal) when <span class="math notranslate nohighlight">\(B_{\rm{in}}\)</span> and <span class="math notranslate nohighlight">\(B_{\rm{out}}\)</span> are the
+singular vector matrices <span class="math notranslate nohighlight">\(V\)</span> and <span class="math notranslate nohighlight">\(U\)</span>.
+Recall that those columns of <span class="math notranslate nohighlight">\(B_{\rm{in}}\)</span> and <span class="math notranslate nohighlight">\(B_{\rm{out}}\)</span>
+are orthonormal eigenvectors of <span class="math notranslate nohighlight">\(A^TA\)</span> and <span class="math notranslate nohighlight">\(AA^T\)</span>.
+Then <span class="math notranslate nohighlight">\(A=U\Sg V^T\)</span> gives <span class="math notranslate nohighlight">\(\Sg=U\im AV\)</span>.</p>
+</div></blockquote>
+<p><strong>3.</strong> <span class="math notranslate nohighlight">\(B_{\rm{in}}=B_{\rm{out}}=\)</span> <strong>generalized eigenvectors of</strong> <span class="math notranslate nohighlight">\(A\)</span>.
+Then <span class="math notranslate nohighlight">\(B\im AB=\)</span> <strong>Jordan form</strong> <span class="math notranslate nohighlight">\(J\)</span>.</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(A\)</span> is a square matrix but it may only have <span class="math notranslate nohighlight">\(s\)</span> independent eigenvectors.
+(If <span class="math notranslate nohighlight">\(s=n\)</span> then <span class="math notranslate nohighlight">\(B\)</span> is <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(J\)</span> is <span class="math notranslate nohighlight">\(\Ld\)</span>.)
+In all cases Jordan constructed <span class="math notranslate nohighlight">\(n-s\)</span> additional “generalized”
+eigenvectors, aiming to make the Jordan form <span class="math notranslate nohighlight">\(J\)</span>
+<em>as diagonal as possible</em>:</p>
+<blockquote>
+<div><ol class="lowerroman simple">
+<li><p>There are <span class="math notranslate nohighlight">\(s\)</span> square blocks along the diagonal of <span class="math notranslate nohighlight">\(J\)</span>.</p></li>
+<li><p>Each block has one eigenvalue <span class="math notranslate nohighlight">\(\ld\)</span>, one eigenvector, and 1’s above the diagonal.</p></li>
+</ol>
+</div></blockquote>
+<p>The good case has <span class="math notranslate nohighlight">\(n\)</span> <span class="math notranslate nohighlight">\(1\times 1\)</span> blocks, each containing an eigenvalue.
+Then <span class="math notranslate nohighlight">\(J\)</span> is <span class="math notranslate nohighlight">\(\Ld\)</span> (diagonal).</p>
+</div></blockquote>
+</div></blockquote>
+<div class="section" id="the-jordan-form">
+<h2>The Jordan Form<a class="headerlink" href="#the-jordan-form" title="Permalink to this headline">¶</a></h2>
+<p>For every <span class="math notranslate nohighlight">\(A\)</span>, we want to choose <span class="math notranslate nohighlight">\(B\)</span> so that <span class="math notranslate nohighlight">\(B\im AB\)</span> is as <strong>nearly diagonal as possible</strong>.
+When <span class="math notranslate nohighlight">\(A\)</span> has a full set of <span class="math notranslate nohighlight">\(n\)</span> eigenvectors, they go into the columns of <span class="math notranslate nohighlight">\(B\)</span>.
+Then <span class="math notranslate nohighlight">\(B=X\)</span>.
+The matrix <span class="math notranslate nohighlight">\(X\im AX\)</span> is diagonal.
+This is the Jordan form of <span class="math notranslate nohighlight">\(A\)</span>–when <span class="math notranslate nohighlight">\(A\)</span> can be diagonalized.
+In the general case, eigenvectors are missing and <span class="math notranslate nohighlight">\(\Ld\)</span> can’t be reached.</p>
+<p>Suppose <span class="math notranslate nohighlight">\(A\)</span> has <span class="math notranslate nohighlight">\(s\)</span> independent eigenvectors.
+Then it is similar to a Jordan matrix with <span class="math notranslate nohighlight">\(s\)</span> blocks.
+Each block has an <em>eigenvalue on the diagonal with</em> 1’s <em>just above it</em>.
+This block accounts for exactly one eigenvector of <span class="math notranslate nohighlight">\(A\)</span>.
+Then <span class="math notranslate nohighlight">\(B\)</span> contains generalized eigenvectors as well as ordinary eigenvectors.</p>
+<p>When there are <span class="math notranslate nohighlight">\(n\)</span> eigenvectors, all <span class="math notranslate nohighlight">\(n\)</span> blocks will be 1 by 1.
+In that case <span class="math notranslate nohighlight">\(J=\Ld\)</span>.</p>
+<p>The Jordan form solves the diefferential equation <span class="math notranslate nohighlight">\(d\u/dt=A\u\)</span> for <strong>any square matrix</strong> <span class="math notranslate nohighlight">\(A=BJB\im\)</span>.
+The solution <span class="math notranslate nohighlight">\(e^{At}\u(0)\)</span> becomes <span class="math notranslate nohighlight">\(\u(t)=Be^{Jt}B\im\u(0)\)</span>.
+<span class="math notranslate nohighlight">\(J\)</span> is triangular and its matrix exponential <span class="math notranslate nohighlight">\(e^{Jt}\)</span> involves
+<span class="math notranslate nohighlight">\(e^{\ld t}\)</span> times powers <span class="math notranslate nohighlight">\(1,t,\cds,t^{s-1}\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Jordan form</strong>: If <span class="math notranslate nohighlight">\(A\)</span> has <span class="math notranslate nohighlight">\(s\)</span> independent eigenvectors, it is
+similar to a matrix <span class="math notranslate nohighlight">\(J\)</span> that has <span class="math notranslate nohighlight">\(s\)</span> Jordan blocks
+<span class="math notranslate nohighlight">\(J_1,\cds,J_s\)</span> on its diagonal.
+Some matrix <span class="math notranslate nohighlight">\(B\)</span> puts <span class="math notranslate nohighlight">\(A\)</span> into Jordan form:</p>
+<ul class="simple">
+<li><p><strong>Jordan form</strong>: <span class="math notranslate nohighlight">\(B\im AB=\bb J_1\\&amp;\dds\\&amp;&amp;J_s \eb=J\)</span>.</p></li>
+</ul>
+<p>Each block <span class="math notranslate nohighlight">\(J_i\)</span> has one eigenvalue <span class="math notranslate nohighlight">\(\ld_i\)</span>, one eigenvector, and <span class="math notranslate nohighlight">\(1\)</span>’s just above the diagonal:</p>
+<ul class="simple">
+<li><p><strong>Jordan block</strong>: <span class="math notranslate nohighlight">\(J_i=\bb \ld_1&amp;1\\&amp;\cd &amp;\cd\\&amp;&amp;\cd &amp;1\\&amp;&amp;&amp;\ld_i \eb\)</span>.</p></li>
+</ul>
+<p><strong>Matrices are similar if they share the same Jordan form</strong> <span class="math notranslate nohighlight">\(J\)</span>–<strong>not otherwise</strong>.</p>
+</div>
+</div>
+<div class="section" id="bases-for-function-space">
+<h2>Bases for Function Space<a class="headerlink" href="#bases-for-function-space" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="orthogonal-bases-for-function-space">
+<h2>Orthogonal Bases for Function Space<a class="headerlink" href="#orthogonal-bases-for-function-space" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="legendre-polynomials-and-chebyshev-polynomials">
+<h2>Legendre Polynomials and Chebyshev Polynomials<a class="headerlink" href="#legendre-polynomials-and-chebyshev-polynomials" title="Permalink to this headline">¶</a></h2>
+</div>
 </div>
 
 

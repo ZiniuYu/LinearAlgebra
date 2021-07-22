@@ -136,13 +136,57 @@ But if you differentiate before integrating, the constant term is lost.
 Matrix Products :math:`AB` Match Transformations :math:`TS`
 -----------------------------------------------------------
 
+When we apply the transformation :math:`T` to the output from :math:`S`, we get 
+:math:`TS` by this rule: :math:`(TS)(\u)` *is defined to be* :math:`T(S(\u))`.
+The output :math:`S(\u)` becomes the input to :math:`T`.
 
+When we apply the matrix :math:`A` to the output from :math:`B`, we multiply
+:math:`AB` by this rule: :math:`(AB)(\x)` is defined to be :math:`A(B\x)`.
+The output :math:`B\x` becomes the input to :math:`A`.
+**Matrix multiplication gives the correct matrix** :math:`AB` **to represent** :math:`TS`.
 
+.. note::
 
+    **Multiplication**: The linear transformation :math:`TS` starts with any 
+    vector :math:`\u` in :math:`\bs{\rm{U}}`, goes to :math:`S(\u)` in 
+    :math:`\bs{\rm{V}}` and then to :math:`T(S(\u))` in :math:`\bs{\rm{W}}`.
+    The matrix :math:`AB` starts with any :math:`\x` in :math:`\R^p`, goes to
+    :math:`B\x` in :math:`\R^n` and tehn to :math:`AB\x` in :math:`\R^m`.
+    **The matrix** :math:`AB` **correctly represents** :math:`TS`:
 
+    * :math:`TS: \bs{\rm{U}}\rightarrow\bs{\rm{V}}\rightarrow\bs{\rm{W}}\quad`
+      :math:`AB: (m\rm{\ by\ }n)(n\rm{\ by\ }p)=(m\rm{\ by\ }p)`
 
-
-
+**Product of transfromations** :math:`TS` **mathces product of matrices** :math:`AB`.
 
 Choosing the Best Bases
 -----------------------
+
+**Choose bases that diagonalize the matrix**.
+With the standard basis (the columns of :math:`I`) our transformation :math:`T` 
+produces some matrix :math:`A`--probably not diagonal.
+That same :math:`T` is represented by different matrices when we choose different bases.
+The two greate choices are eigenvectors and singular vectors:
+
+    **Eigenvectors**: If :math:`T` transforms :math:`\R^n` to :math:`\R^n`, its matrix :math:`A` is square.
+    But using the standard basis, that matrix :math:`A` is probably not diagonal.
+    If there are :math:`n` independent eigenvectors, *choose those as the input and output basis*.
+    In this good basis, **the matrix for** :math:`T` **is the diagonal eigenvalue matrix** :math:`\Ld`.
+
+.. note::
+
+    :math:`A_{\rm{new}}=B\im AB` **in the new basis of** :math:`\b`
+    \ **'s is similar to** :math:`A` **in the standard basis**:
+    
+    * :math:`A_{\b\rm{'s\ to\ }\b\rm{'s}}=B\im_{\rm{standard\ to\ }\b\rm{'s}}A_{\rm{standard}}B_{\b\rm{'s\ to\ standard}}`
+
+Finally we allow *different spaces* :math:`V` *and* :math:`W`, *and different bases* :math:`\v`'s and :math:`\w`'s.
+
+    **Singular vectors**: The SVD says that :math:`U\im AV=\Sg`.
+    The right singular vectors :math:`\v_1,\cds,\v_n` will be the input basis.
+    The left singular vectors :math:`\u_1,\cds,\u_m` will be the output basis.
+    By the rule for matrix multiplication, the matrix for the same 
+    transformation in these new bases is :math:`B\im_{\rm{out}}AB_{\rm{in}}=U\im AV=\Sg`.
+
+:math:`\Sg` is "**isometric**" to :math:`A`: :math:`C=Q_1\im AQ_2` 
+*is isometric to* :math:`A` *if*` :math:`Q_1` *and* :math:`Q_2` *are orthogonal*.

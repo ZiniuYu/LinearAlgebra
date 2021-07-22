@@ -324,9 +324,59 @@ But if you differentiate before integrating, the constant term is lost.
 </div>
 <div class="section" id="matrix-products-ab-match-transformations-ts">
 <h2>Matrix Products <span class="math notranslate nohighlight">\(AB\)</span> Match Transformations <span class="math notranslate nohighlight">\(TS\)</span><a class="headerlink" href="#matrix-products-ab-match-transformations-ts" title="Permalink to this headline">¶</a></h2>
+<p>When we apply the transformation <span class="math notranslate nohighlight">\(T\)</span> to the output from <span class="math notranslate nohighlight">\(S\)</span>, we get
+<span class="math notranslate nohighlight">\(TS\)</span> by this rule: <span class="math notranslate nohighlight">\((TS)(\u)\)</span> <em>is defined to be</em> <span class="math notranslate nohighlight">\(T(S(\u))\)</span>.
+The output <span class="math notranslate nohighlight">\(S(\u)\)</span> becomes the input to <span class="math notranslate nohighlight">\(T\)</span>.</p>
+<p>When we apply the matrix <span class="math notranslate nohighlight">\(A\)</span> to the output from <span class="math notranslate nohighlight">\(B\)</span>, we multiply
+<span class="math notranslate nohighlight">\(AB\)</span> by this rule: <span class="math notranslate nohighlight">\((AB)(\x)\)</span> is defined to be <span class="math notranslate nohighlight">\(A(B\x)\)</span>.
+The output <span class="math notranslate nohighlight">\(B\x\)</span> becomes the input to <span class="math notranslate nohighlight">\(A\)</span>.
+<strong>Matrix multiplication gives the correct matrix</strong> <span class="math notranslate nohighlight">\(AB\)</span> <strong>to represent</strong> <span class="math notranslate nohighlight">\(TS\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Multiplication</strong>: The linear transformation <span class="math notranslate nohighlight">\(TS\)</span> starts with any
+vector <span class="math notranslate nohighlight">\(\u\)</span> in <span class="math notranslate nohighlight">\(\bs{\rm{U}}\)</span>, goes to <span class="math notranslate nohighlight">\(S(\u)\)</span> in
+<span class="math notranslate nohighlight">\(\bs{\rm{V}}\)</span> and then to <span class="math notranslate nohighlight">\(T(S(\u))\)</span> in <span class="math notranslate nohighlight">\(\bs{\rm{W}}\)</span>.
+The matrix <span class="math notranslate nohighlight">\(AB\)</span> starts with any <span class="math notranslate nohighlight">\(\x\)</span> in <span class="math notranslate nohighlight">\(\R^p\)</span>, goes to
+<span class="math notranslate nohighlight">\(B\x\)</span> in <span class="math notranslate nohighlight">\(\R^n\)</span> and tehn to <span class="math notranslate nohighlight">\(AB\x\)</span> in <span class="math notranslate nohighlight">\(\R^m\)</span>.
+<strong>The matrix</strong> <span class="math notranslate nohighlight">\(AB\)</span> <strong>correctly represents</strong> <span class="math notranslate nohighlight">\(TS\)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(TS: \bs{\rm{U}}\rightarrow\bs{\rm{V}}\rightarrow\bs{\rm{W}}\quad\)</span>
+<span class="math notranslate nohighlight">\(AB: (m\rm{\ by\ }n)(n\rm{\ by\ }p)=(m\rm{\ by\ }p)\)</span></p></li>
+</ul>
+</div>
+<p><strong>Product of transfromations</strong> <span class="math notranslate nohighlight">\(TS\)</span> <strong>mathces product of matrices</strong> <span class="math notranslate nohighlight">\(AB\)</span>.</p>
 </div>
 <div class="section" id="choosing-the-best-bases">
 <h2>Choosing the Best Bases<a class="headerlink" href="#choosing-the-best-bases" title="Permalink to this headline">¶</a></h2>
+<p><strong>Choose bases that diagonalize the matrix</strong>.
+With the standard basis (the columns of <span class="math notranslate nohighlight">\(I\)</span>) our transformation <span class="math notranslate nohighlight">\(T\)</span>
+produces some matrix <span class="math notranslate nohighlight">\(A\)</span>–probably not diagonal.
+That same <span class="math notranslate nohighlight">\(T\)</span> is represented by different matrices when we choose different bases.
+The two greate choices are eigenvectors and singular vectors:</p>
+<blockquote>
+<div><p><strong>Eigenvectors</strong>: If <span class="math notranslate nohighlight">\(T\)</span> transforms <span class="math notranslate nohighlight">\(\R^n\)</span> to <span class="math notranslate nohighlight">\(\R^n\)</span>, its matrix <span class="math notranslate nohighlight">\(A\)</span> is square.
+But using the standard basis, that matrix <span class="math notranslate nohighlight">\(A\)</span> is probably not diagonal.
+If there are <span class="math notranslate nohighlight">\(n\)</span> independent eigenvectors, <em>choose those as the input and output basis</em>.
+In this good basis, <strong>the matrix for</strong> <span class="math notranslate nohighlight">\(T\)</span> <strong>is the diagonal eigenvalue matrix</strong> <span class="math notranslate nohighlight">\(\Ld\)</span>.</p>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(A_{\rm{new}}=B\im AB\)</span> <strong>in the new basis of</strong> <span class="math notranslate nohighlight">\(\b\)</span>
+<strong>‘s is similar to</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>in the standard basis</strong>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(A_{\b\rm{'s\ to\ }\b\rm{'s}}=B\im_{\rm{standard\ to\ }\b\rm{'s}}A_{\rm{standard}}B_{\b\rm{'s\ to\ standard}}\)</span></p></li>
+</ul>
+</div>
+<p>Finally we allow <em>different spaces</em> <span class="math notranslate nohighlight">\(V\)</span> <em>and</em> <span class="math notranslate nohighlight">\(W\)</span>, <em>and different bases</em> <span class="math notranslate nohighlight">\(\v\)</span>’s and <span class="math notranslate nohighlight">\(\w\)</span>’s.</p>
+<blockquote>
+<div><p><strong>Singular vectors</strong>: The SVD says that <span class="math notranslate nohighlight">\(U\im AV=\Sg\)</span>.
+The right singular vectors <span class="math notranslate nohighlight">\(\v_1,\cds,\v_n\)</span> will be the input basis.
+The left singular vectors <span class="math notranslate nohighlight">\(\u_1,\cds,\u_m\)</span> will be the output basis.
+By the rule for matrix multiplication, the matrix for the same
+transformation in these new bases is <span class="math notranslate nohighlight">\(B\im_{\rm{out}}AB_{\rm{in}}=U\im AV=\Sg\)</span>.</p>
+</div></blockquote>
+<p><span class="math notranslate nohighlight">\(\Sg\)</span> is “<strong>isometric</strong>” to <span class="math notranslate nohighlight">\(A\)</span>: <span class="math notranslate nohighlight">\(C=Q_1\im AQ_2\)</span>
+<em>is isometric to</em> <span class="math notranslate nohighlight">\(A\)</span> <em>if*` :math:`Q_1` *and</em> <span class="math notranslate nohighlight">\(Q_2\)</span> <em>are orthogonal</em>.</p>
 </div>
 </div>
 
