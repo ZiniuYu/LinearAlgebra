@@ -245,3 +245,29 @@ Here we are projecting the function :math:`f(x)` onto the line in function space
 
 Legendre Polynomials and Chebyshev Polynomials
 ----------------------------------------------
+
+The Legendre polynomials are the result of applying the Gram-Schmidt idea.
+The plan is to orthogonalize the powers :math:`1,x,x^2,\cds`.
+
+.. math::
+
+    \frac{(x^2,1)}{(1,1)}=\frac{\int x^2dx}{\int 1dx}=\frac{2/3}{2}=\frac{1}{3}
+
+Gram-Schmidt gives :math:`\dp x^2-\frac{1}{3}=` **Legendre**.
+
+.. math::
+
+    \frac{(x^3,x)}{(x,x)}=\frac{\int x^4dx}{\int x^2dx}=\frac{2/5}{2/3}=\frac{3}{5}
+
+Gram-Schmidt gives :math:`\dp x^3-\frac{3}{5}x=` **Legendre**
+
+The Chebyshev polynomials :math:`1,x,2x^2-1,4x^3-3x` are connected to :math:`1,\cos\th,\cos 2\th,\cos 3\th`.
+The connection of Chebyshev to Fourier appears when we set :math:`x=\cos\th`:
+
+.. note::
+
+    **Chebyshev to Fourier**:
+
+    * :math:`\begin{matrix} 2x^2-1=2(\cos\th)^2-1=\cos 2\th\\4x^3-3x=4(\cos\th)^3-3(\cos\th)=\cos 3\th \end{matrix}`.
+
+The :math:`n^{\rm{th}}` degree Chebyshev polynomial :math:`T_n(x)` converts to Fourier's :math:`\cos n\th=T_n(\cos\th)`.

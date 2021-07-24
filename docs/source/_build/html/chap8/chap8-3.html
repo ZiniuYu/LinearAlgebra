@@ -13,8 +13,6 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -31,11 +29,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -101,7 +99,13 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index8.html">Chapter 8 Linear Transformations</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="chap8-1.html">Chapter 8.1 The Idea of a Linear Transformation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chap8-2.html">Chapter 8.2 The Matrix of a Linear Transformation</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 8.3 The Search for a Good Basis</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 8.3 The Search for a Good Basis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-jordan-form">The Jordan Form</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bases-for-function-space">Bases for Function Space</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#orthogonal-bases-for-function-space">Orthogonal Bases for Function Space</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#legendre-polynomials-and-chebyshev-polynomials">Legendre Polynomials and Chebyshev Polynomials</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
@@ -211,6 +215,206 @@
 \newcommand{\ppr}{^{\prime\prime}}\end{aligned}\end{align} \]</div>
 <div class="section" id="chapter-8-3-the-search-for-a-good-basis">
 <h1>Chapter 8.3 The Search for a Good Basis<a class="headerlink" href="#chapter-8-3-the-search-for-a-good-basis" title="Permalink to this headline">¶</a></h1>
+<p>The input basis vectors will be the columns of <span class="math notranslate nohighlight">\(B_{\rm{in}}\)</span>.
+The output basis vectors will be the columnso f <span class="math notranslate nohighlight">\(B_{\rm{out}}\)</span>.</p>
+<p><strong>Pure algebra</strong>: If <span class="math notranslate nohighlight">\(A\)</span> is the matrix for a transformation <span class="math notranslate nohighlight">\(T\)</span> in
+the standard basis, then <span class="math notranslate nohighlight">\(B\im_{\rm{out}}AB_{\rm{in}}\)</span> is the matrix in
+the new bases.</p>
+<p>The standard basis vectors are the <em>columns of the identity</em>:
+<span class="math notranslate nohighlight">\(B_{\rm{in}}=I_{n\times n}\)</span> and <span class="math notranslate nohighlight">\(B_{\rm{out}}=I_{m\times m}\)</span>.
+Now we are choosing special bases to make the matrix clearer and simpler than <span class="math notranslate nohighlight">\(A\)</span>.
+When <span class="math notranslate nohighlight">\(B_{\rm{in}}=B_{\rm{out}}=B\)</span>, the square matrix <span class="math notranslate nohighlight">\(B\im AB\)</span> is <em>similar</em> to <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p><strong>Applied algebra</strong>: Applications are allabout choosing good bases.</p>
+<p><strong>1.</strong> <span class="math notranslate nohighlight">\(B_{\rm{in}}=B_{\rm{out}}=\)</span> <strong>eigenvector matrix</strong> <span class="math notranslate nohighlight">\(X\)</span>.</p>
+<blockquote>
+<div><p>Then <span class="math notranslate nohighlight">\(X\im AX=\)</span> <strong>eigenvalues in</strong> <span class="math notranslate nohighlight">\(\Ld\)</span>.
+This choice requires <span class="math notranslate nohighlight">\(A\)</span> to be a square matrix with <span class="math notranslate nohighlight">\(n\)</span> independent eigenvectors.
+We get <span class="math notranslate nohighlight">\(\Ld\)</span> when <span class="math notranslate nohighlight">\(B_{\rm{in}}=B_{\rm{out}}\)</span> is the eigenvector matrix <span class="math notranslate nohighlight">\(X\)</span>.</p>
+</div></blockquote>
+<p><strong>2.</strong> <span class="math notranslate nohighlight">\(B_{\rm{in}}=V\)</span> and <span class="math notranslate nohighlight">\(B_{\rm{out}}=U\)</span>: <strong>singular vectors of</strong> <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<blockquote>
+<div><p>Then <span class="math notranslate nohighlight">\(U\im AV=\)</span> <strong>diagonal</strong> <span class="math notranslate nohighlight">\(\Sg\)</span>.
+<span class="math notranslate nohighlight">\(\Sg\)</span> is the singular matrix (with <span class="math notranslate nohighlight">\(\sg_1,\cds,\sg_r\)</span> on its
+diagonal) when <span class="math notranslate nohighlight">\(B_{\rm{in}}\)</span> and <span class="math notranslate nohighlight">\(B_{\rm{out}}\)</span> are the
+singular vector matrices <span class="math notranslate nohighlight">\(V\)</span> and <span class="math notranslate nohighlight">\(U\)</span>.
+Recall that those columns of <span class="math notranslate nohighlight">\(B_{\rm{in}}\)</span> and <span class="math notranslate nohighlight">\(B_{\rm{out}}\)</span>
+are orthonormal eigenvectors of <span class="math notranslate nohighlight">\(A^TA\)</span> and <span class="math notranslate nohighlight">\(AA^T\)</span>.
+Then <span class="math notranslate nohighlight">\(A=U\Sg V^T\)</span> gives <span class="math notranslate nohighlight">\(\Sg=U\im AV\)</span>.</p>
+</div></blockquote>
+<p><strong>3.</strong> <span class="math notranslate nohighlight">\(B_{\rm{in}}=B_{\rm{out}}=\)</span> <strong>generalized eigenvectors of</strong> <span class="math notranslate nohighlight">\(A\)</span>.
+Then <span class="math notranslate nohighlight">\(B\im AB=\)</span> <strong>Jordan form</strong> <span class="math notranslate nohighlight">\(J\)</span>.</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(A\)</span> is a square matrix but it may only have <span class="math notranslate nohighlight">\(s\)</span> independent eigenvectors.
+(If <span class="math notranslate nohighlight">\(s=n\)</span> then <span class="math notranslate nohighlight">\(B\)</span> is <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(J\)</span> is <span class="math notranslate nohighlight">\(\Ld\)</span>.)
+In all cases Jordan constructed <span class="math notranslate nohighlight">\(n-s\)</span> additional “generalized”
+eigenvectors, aiming to make the Jordan form <span class="math notranslate nohighlight">\(J\)</span>
+<em>as diagonal as possible</em>:</p>
+<blockquote>
+<div><ol class="lowerroman simple">
+<li><p>There are <span class="math notranslate nohighlight">\(s\)</span> square blocks along the diagonal of <span class="math notranslate nohighlight">\(J\)</span>.</p></li>
+<li><p>Each block has one eigenvalue <span class="math notranslate nohighlight">\(\ld\)</span>, one eigenvector, and 1’s above the diagonal.</p></li>
+</ol>
+</div></blockquote>
+<p>The good case has <span class="math notranslate nohighlight">\(n\)</span> <span class="math notranslate nohighlight">\(1\times 1\)</span> blocks, each containing an eigenvalue.
+Then <span class="math notranslate nohighlight">\(J\)</span> is <span class="math notranslate nohighlight">\(\Ld\)</span> (diagonal).</p>
+</div></blockquote>
+<div class="section" id="the-jordan-form">
+<h2>The Jordan Form<a class="headerlink" href="#the-jordan-form" title="Permalink to this headline">¶</a></h2>
+<p>For every <span class="math notranslate nohighlight">\(A\)</span>, we want to choose <span class="math notranslate nohighlight">\(B\)</span> so that <span class="math notranslate nohighlight">\(B\im AB\)</span> is as <strong>nearly diagonal as possible</strong>.
+When <span class="math notranslate nohighlight">\(A\)</span> has a full set of <span class="math notranslate nohighlight">\(n\)</span> eigenvectors, they go into the columns of <span class="math notranslate nohighlight">\(B\)</span>.
+Then <span class="math notranslate nohighlight">\(B=X\)</span>.
+The matrix <span class="math notranslate nohighlight">\(X\im AX\)</span> is diagonal.
+This is the Jordan form of <span class="math notranslate nohighlight">\(A\)</span>–when <span class="math notranslate nohighlight">\(A\)</span> can be diagonalized.
+In the general case, eigenvectors are missing and <span class="math notranslate nohighlight">\(\Ld\)</span> can’t be reached.</p>
+<p>Suppose <span class="math notranslate nohighlight">\(A\)</span> has <span class="math notranslate nohighlight">\(s\)</span> independent eigenvectors.
+Then it is similar to a Jordan matrix with <span class="math notranslate nohighlight">\(s\)</span> blocks.
+Each block has an <em>eigenvalue on the diagonal with</em> 1’s <em>just above it</em>.
+This block accounts for exactly one eigenvector of <span class="math notranslate nohighlight">\(A\)</span>.
+Then <span class="math notranslate nohighlight">\(B\)</span> contains generalized eigenvectors as well as ordinary eigenvectors.</p>
+<p>When there are <span class="math notranslate nohighlight">\(n\)</span> eigenvectors, all <span class="math notranslate nohighlight">\(n\)</span> blocks will be 1 by 1.
+In that case <span class="math notranslate nohighlight">\(J=\Ld\)</span>.</p>
+<p>The Jordan form solves the diefferential equation <span class="math notranslate nohighlight">\(d\u/dt=A\u\)</span> for <strong>any square matrix</strong> <span class="math notranslate nohighlight">\(A=BJB\im\)</span>.
+The solution <span class="math notranslate nohighlight">\(e^{At}\u(0)\)</span> becomes <span class="math notranslate nohighlight">\(\u(t)=Be^{Jt}B\im\u(0)\)</span>.
+<span class="math notranslate nohighlight">\(J\)</span> is triangular and its matrix exponential <span class="math notranslate nohighlight">\(e^{Jt}\)</span> involves
+<span class="math notranslate nohighlight">\(e^{\ld t}\)</span> times powers <span class="math notranslate nohighlight">\(1,t,\cds,t^{s-1}\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Jordan form</strong>: If <span class="math notranslate nohighlight">\(A\)</span> has <span class="math notranslate nohighlight">\(s\)</span> independent eigenvectors, it is
+similar to a matrix <span class="math notranslate nohighlight">\(J\)</span> that has <span class="math notranslate nohighlight">\(s\)</span> Jordan blocks
+<span class="math notranslate nohighlight">\(J_1,\cds,J_s\)</span> on its diagonal.
+Some matrix <span class="math notranslate nohighlight">\(B\)</span> puts <span class="math notranslate nohighlight">\(A\)</span> into Jordan form:</p>
+<ul class="simple">
+<li><p><strong>Jordan form</strong>: <span class="math notranslate nohighlight">\(B\im AB=\bb J_1\\&amp;\dds\\&amp;&amp;J_s \eb=J\)</span>.</p></li>
+</ul>
+<p>Each block <span class="math notranslate nohighlight">\(J_i\)</span> has one eigenvalue <span class="math notranslate nohighlight">\(\ld_i\)</span>, one eigenvector, and <span class="math notranslate nohighlight">\(1\)</span>’s just above the diagonal:</p>
+<ul class="simple">
+<li><p><strong>Jordan block</strong>: <span class="math notranslate nohighlight">\(J_i=\bb \ld_1&amp;1\\&amp;\cd &amp;\cd\\&amp;&amp;\cd &amp;1\\&amp;&amp;&amp;\ld_i \eb\)</span>.</p></li>
+</ul>
+<p><strong>Matrices are similar if they share the same Jordan form</strong> <span class="math notranslate nohighlight">\(J\)</span>–<strong>not otherwise</strong>.</p>
+</div>
+<p><strong>Question</strong>: Find the eigenvalues and all possible Jordan forms if <span class="math notranslate nohighlight">\(A^2=\)</span> zero matrix.</p>
+<p><strong>Answer</strong>: The eigenvalues must all be zero, because <span class="math notranslate nohighlight">\(A\x=\ld\x\)</span> leads to <span class="math notranslate nohighlight">\(A^2\x=\ld^2\x=0\x\)</span>.
+The Jordan form of <span class="math notranslate nohighlight">\(A\)</span> has <span class="math notranslate nohighlight">\(J^2=0\)</span> because <span class="math notranslate nohighlight">\(J^2=(B\im AB)(B\im AB)=B\im A^2B=0\)</span>.
+Every block in <span class="math notranslate nohighlight">\(J\)</span> has <span class="math notranslate nohighlight">\(\ld=0\)</span> on the diagonal.
+Look at <span class="math notranslate nohighlight">\(J^2_k\)</span> for block sizes <span class="math notranslate nohighlight">\(1,2,3\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb 0 \eb^2=\bb 0 \eb\quad\bb 0&amp;1\\0&amp;0 \eb^2=\bb 0&amp;0\\0&amp;0 \eb\quad
+\bb 0&amp;1&amp;0\\0&amp;0&amp;1\\0&amp;0&amp;0 \eb^2=\bb 0&amp;0&amp;1\\0&amp;0&amp;0\\0&amp;0&amp;0 \eb.\end{split}\]</div>
+<p>Conclusion: If <span class="math notranslate nohighlight">\(J^2=0\)</span> then all block sizes must be 1 or 2.
+<span class="math notranslate nohighlight">\(J^2\)</span> is not zero for 3 by 3.</p>
+<p>The rank of <span class="math notranslate nohighlight">\(J\)</span> (and <span class="math notranslate nohighlight">\(A\)</span>) will be the total number of 1’s.
+<strong>The maximum rank is</strong> <span class="math notranslate nohighlight">\(n/2\)</span>.
+This happens when there are <span class="math notranslate nohighlight">\(n/2\)</span> blocks, each of size 2 and rank 1.</p>
+<p><strong>4.</strong> <span class="math notranslate nohighlight">\(B_{\rm{in}}=B_{\rm{out}}=\)</span> <strong>Fourier matrix</strong> <span class="math notranslate nohighlight">\(F\)</span>.
+<strong>Then</strong> <span class="math notranslate nohighlight">\(F\x\)</span> <strong>is a Discrete Fourier Transform of</strong> <span class="math notranslate nohighlight">\(\x\)</span>.</p>
+<blockquote>
+<div><p>We are starting with the eigenvectors <span class="math notranslate nohighlight">\((1,\ld,\ld^2,\ld^3)\)</span> and
+finding the matrices that have those eigenvectors:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\rm{If\ }\ld^4=1\rm{\ then}\quad
+P\x=\bb 0&amp;1&amp;0&amp;0\\0&amp;0&amp;1&amp;0\\0&amp;0&amp;0&amp;1\\1&amp;0&amp;0&amp;0\eb
+\bb 1\\\ld\\\ld^2\\\ld^3 \eb=\ld\bb 1\\\ld\\\ld^2\\\ld^3 \eb=\ld\x.\end{split}\]</div>
+<p><strong>The eigenvector matrix</strong> <span class="math notranslate nohighlight">\(F\)</span> <strong>diagonalizes the permutation matrix</strong> <span class="math notranslate nohighlight">\(P\)</span>:</p>
+<ul class="simple">
+<li><p><strong>Eigenvalue matrix</strong> <span class="math notranslate nohighlight">\(\Ld\)</span>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb 1\\&amp;i\\&amp;&amp;-1\\&amp;&amp;&amp;-i \eb\end{split}\]</div>
+<ul class="simple">
+<li><p><strong>Eigenvector matrix is Fourier matrix</strong> <span class="math notranslate nohighlight">\(F\)</span>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb 1&amp;1&amp;1&amp;1\\1&amp;i&amp;-1&amp;-i\\1&amp;i^2&amp;1&amp;(-i)^2\\1&amp;i^3&amp;-1&amp;(-i)^3 \eb.\end{split}\]</div>
+</div></blockquote>
+<div class="math notranslate nohighlight">
+\[\begin{split}P^2\x=\bb 0&amp;1&amp;0&amp;0\\0&amp;0&amp;1&amp;0\\0&amp;0&amp;0&amp;1\\1&amp;0&amp;0&amp;0\eb
+\bb 1\\\ld\\\ld^2\\\ld^3 \eb=\ld^2\bb 1\\\ld\\\ld^2\\\ld^3 \eb=\ld^2\x
+\rm{\ when\ }\ld^4=1.\end{split}\]</div>
+<p>The fourth power is special because <span class="math notranslate nohighlight">\(P^4=I\)</span>.
+If <span class="math notranslate nohighlight">\(P\)</span> and <span class="math notranslate nohighlight">\(P^2\)</span> and <span class="math notranslate nohighlight">\(P^3\)</span> and <span class="math notranslate nohighlight">\(P^4=I\)</span> have the same
+eigenvector matrix <span class="math notranslate nohighlight">\(F\)</span>, so does any combination
+<span class="math notranslate nohighlight">\(C=c_1P+c_2P^2+c_3P^3+c_0I\)</span>:</p>
+<ul class="simple">
+<li><p><strong>Circulant matrix</strong>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}C=\bb c_0&amp;\bs{c_1}&amp;c_2&amp;c_3\\c_3&amp;c_0&amp;\bs{c_1}&amp;c_2\\c_2&amp;c_3&amp;c_0&amp;\bs{c_1}\\\bs{c_1}&amp;c_2&amp;c_3&amp;c_0 \eb\end{split}\]</div>
+<ul class="simple">
+<li><p><strong>The four eigenvalues of</strong> <span class="math notranslate nohighlight">\(C\)</span> <strong>are given by the Fourier transform</strong> <span class="math notranslate nohighlight">\(F\bs{c}\)</span>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}F\bs{c}=\bb 1&amp;1&amp;1&amp;1\\1&amp;i&amp;-1&amp;-i\\1&amp;-1&amp;1&amp;-1\\1&amp;-i&amp;-1&amp;i \eb
+\bb c_0\\c_1\\c_2\\c_3 \eb=\bb c_0+c_1+c_2+c_3\\c_0+ic_1-c_2-ic_3\\
+c_0-c_1+c_2-c_3\\c_0-ic_1-c_2+ic_3 \eb.\end{split}\]</div>
+<p>Notice that <strong>circulant matrices have constant diagonals</strong>.
+Constancy down the diagonals is a crucial property of <span class="math notranslate nohighlight">\(C\)</span>.
+It corresponds to <em>constant coefficients</em> in a differential equation.</p>
+<blockquote>
+<div><p>The equation <span class="math notranslate nohighlight">\(\dp\frac{d^2u}{dt^2}=-u\)</span> is solved by <span class="math notranslate nohighlight">\(u=c_0\cos t+c_1\sin t\)</span>.</p>
+<p>The equation <span class="math notranslate nohighlight">\(\dp\frac{d^2u}{dt^2}=tu\)</span> cannot be solved by elementary functions.</p>
+</div></blockquote>
+</div>
+<div class="section" id="bases-for-function-space">
+<h2>Bases for Function Space<a class="headerlink" href="#bases-for-function-space" title="Permalink to this headline">¶</a></h2>
+<p>If we had vectors instead of functions, the test for a good basis would look at <span class="math notranslate nohighlight">\(B^TB\)</span>.
+This matrix contains all inner products between the basis vectors (columns of <span class="math notranslate nohighlight">\(B\)</span>).
+<em>The basis is orthonormal when</em> <span class="math notranslate nohighlight">\(B^TB=I\)</span>.
+That is best possible.
+But the basis <span class="math notranslate nohighlight">\(1,x,x^2,\cds\)</span> produces the evil <strong>Hilbert matrix</strong>:
+<span class="math notranslate nohighlight">\(B^TB\)</span> has an enormous ratio between its largest and smallest eigenvalues.</p>
+<p><em>Note</em>: Now the columns of <span class="math notranslate nohighlight">\(B\)</span> are functions instead of vectors.
+We still use <span class="math notranslate nohighlight">\(B^TB\)</span> to test for independence.
+So we need to know the dot product (inner product is a better name) of two
+functions–those are the numbers in <span class="math notranslate nohighlight">\(B^TB\)</span>.
+The inner product of functions will integrate instead of adding:</p>
+<blockquote>
+<div><p>Inner product <span class="math notranslate nohighlight">\((\bs{f},\bs{g})=\int f(x)g(x)dx\)</span></p>
+<p>Comlex inner product <span class="math notranslate nohighlight">\((\bs{f},\bs{g})=\int\bar{f(x)}g(x)dx\)</span>, <span class="math notranslate nohighlight">\(\bar{f}=\)</span> complex conjugate</p>
+<p>Weighted inner product <span class="math notranslate nohighlight">\((\bs{f},\bs{g})_w=\int w(x)\bar{f(x)}g(x)dx\)</span>, <span class="math notranslate nohighlight">\(w=\)</span> weight functions</p>
+</div></blockquote>
+<p>When the integrals go from <span class="math notranslate nohighlight">\(x=0\)</span> to <span class="math notranslate nohighlight">\(x=1\)</span>, the inner product of <span class="math notranslate nohighlight">\(x^i\)</span> with <span class="math notranslate nohighlight">\(x^j\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[\int^1_0 x^ix^jdx=\frac{x^{i+j+1}}{i+j+1}\bigg]^{x=1}_{x=0}=\frac{1}{i+j+1}=
+\rm{\ entries\ of\ Hilbert\ matrix\ }B^TB\]</div>
+<p>By changing to the symmetric interval from <span class="math notranslate nohighlight">\(x=-1\)</span> to <span class="math notranslate nohighlight">\(x=1\)</span>, we
+immediately have <em>orthogonality between all even functions and all odd functions</em>:</p>
+<p><strong>Interval [-1, 1]</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\int^1_{-1}x^2x^5dx=0\quad\int^1_{-1}\bs{\rm{even}}(x)\bs{\rm{odd}}(x)dx=0.\]</div>
+</div>
+<div class="section" id="orthogonal-bases-for-function-space">
+<h2>Orthogonal Bases for Function Space<a class="headerlink" href="#orthogonal-bases-for-function-space" title="Permalink to this headline">¶</a></h2>
+<p>Here are the three leading even-odd bases for theoretical and numerical computations:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>5.</strong> The <strong>Fourier basis</strong>: <span class="math notranslate nohighlight">\(1,\sin x,\cos x,\sin 2x,\cos 2x,\cds\)</span></p>
+<p><strong>6.</strong> The <strong>Legendre basis</strong>: <span class="math notranslate nohighlight">\(1,x,x^2-\frac{1}{3},x^3-\frac{3}{5}x,\cds\)</span></p>
+<p><strong>7.</strong> The <strong>Chebyshev basis</strong>: <span class="math notranslate nohighlight">\(1,x,2x^2-1,4x^3-3x,\cds\)</span></p>
+</div>
+<p>The Fourier basis functions (sines and cosines) are all <em>periodic</em>.
+They repeat over every <span class="math notranslate nohighlight">\(2\pi\)</span> inteval because <span class="math notranslate nohighlight">\(\cos(x+2\pi)=\cos x\)</span> and <span class="math notranslate nohighlight">\(\sin(x+2\pi)=\sin x\)</span>.
+This basis is also <em>orthogonal</em>.
+Every sine and cosine is orthogonal to every other sine and cosine.
+The sine-cosine basis is also <em>excellent for approximation</em>.</p>
+<p>The <em>Fourier transform</em> onnects <span class="math notranslate nohighlight">\(f(x)\)</span> to the coefficient <span class="math notranslate nohighlight">\(a_k\)</span> and <span class="math notranslate nohighlight">\(b_k\)</span> in its Fourier series:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Fourier series</strong>: <span class="math notranslate nohighlight">\(f(x)=a_0+b_1\sin x+a_1\cos x+b_2\sin 2x+a_2\cos 2x+\cds\)</span></p>
+</div>
+<p>We see that <strong>function space is infinite-dimensional</strong>.
+It takes infinitely many basis functions to capture perfectly a typical <span class="math notranslate nohighlight">\(f(x)\)</span>.
+But the formula for each coefficient (for example <span class="math notranslate nohighlight">\(a_3\)</span>) is just like the
+formula <span class="math notranslate nohighlight">\(\b^T\a/\a^T\a\)</span> for projecting a vector <span class="math notranslate nohighlight">\(\b\)</span> onto the line
+through <span class="math notranslate nohighlight">\(\a\)</span>.</p>
+<p>Here we are projecting the function <span class="math notranslate nohighlight">\(f(x)\)</span> onto the line in function space through <span class="math notranslate nohighlight">\(\cos 3x\)</span>:</p>
+<p><strong>Fourier coefficient</strong>:</p>
+<div class="math notranslate nohighlight">
+\[a_3=\frac{(f(x),\cos 3x)}{(\cos 3x,\cos 3x)}=\frac{\int f(x)\cos 3xdx}{\int \cos 3x\cos 3xdx}.\]</div>
+<p><strong>Fourier series is just linear algebra in function space</strong>.</p>
+</div>
+<div class="section" id="legendre-polynomials-and-chebyshev-polynomials">
+<h2>Legendre Polynomials and Chebyshev Polynomials<a class="headerlink" href="#legendre-polynomials-and-chebyshev-polynomials" title="Permalink to this headline">¶</a></h2>
+</div>
 </div>
 
 

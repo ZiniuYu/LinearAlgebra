@@ -13,8 +13,6 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -31,18 +29,20 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapter 8.3 The Search for a Good Basis" href="chap8-3.html" />
+    <link rel="prev" title="Chapter 8.1 The Idea of a Linear Transformation" href="chap8-1.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -88,7 +88,7 @@
             
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../chap1/index1.html">Chapter 1 Introduction to Vectors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../chap2/index2.html">Chapter 2 Solving Linear Equations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../chap3/index3.html">Chapter 3 Vector Spaces and Subspaces</a></li>
@@ -96,6 +96,18 @@
 <li class="toctree-l1"><a class="reference internal" href="../chap5/index5.html">Chapter 5 Determinants</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../chap6/index6.html">Chapter 6 Eigenvalues and Eigenvectors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../chap7/index7.html">Chapter 7 The Singular Value Decomposition (SVD)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index8.html">Chapter 8 Linear Transformations</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="chap8-1.html">Chapter 8.1 The Idea of a Linear Transformation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 8.2 The Matrix of a Linear Transformation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#change-of-basis">Change of Basis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#construction-of-the-matrix">Construction of the Matrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#matrix-products-ab-match-transformations-ts">Matrix Products <span class="math notranslate nohighlight">\(AB\)</span> Match Transformations <span class="math notranslate nohighlight">\(TS\)</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#choosing-the-best-bases">Choosing the Best Bases</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="chap8-3.html">Chapter 8.3 The Search for a Good Basis</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
 </ul>
 
@@ -144,6 +156,8 @@
   <ul class="wy-breadcrumbs">
     
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index8.html">Chapter 8 Linear Transformations</a> &raquo;</li>
         
       <li>Chapter 8.2 The Matrix of a Linear Transformation</li>
     
@@ -201,6 +215,167 @@
 \newcommand{\ppr}{^{\prime\prime}}\end{aligned}\end{align} \]</div>
 <div class="section" id="chapter-8-2-the-matrix-of-a-linear-transformation">
 <h1>Chapter 8.2 The Matrix of a Linear Transformation<a class="headerlink" href="#chapter-8-2-the-matrix-of-a-linear-transformation" title="Permalink to this headline">¶</a></h1>
+<p>For ordinary column vectors, the input <span class="math notranslate nohighlight">\(\v\)</span> is in <span class="math notranslate nohighlight">\(\bs{\rm{V}}=\R^n\)</span> and
+the output <span class="math notranslate nohighlight">\(T(\v)\)</span> is in <span class="math notranslate nohighlight">\(\bs{\rm{W}}=\R^m\)</span>.
+The matrix <span class="math notranslate nohighlight">\(A\)</span> for this transformation will be <span class="math notranslate nohighlight">\(m\)</span> by <span class="math notranslate nohighlight">\(n\)</span>.
+Our choice of bases in <span class="math notranslate nohighlight">\(\bs{\rm{V}}\)</span> and <span class="math notranslate nohighlight">\(\bs{\rm{W}}\)</span> will decide <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p>All vector spaces <span class="math notranslate nohighlight">\(\bs{\rm{V}}\)</span> and <span class="math notranslate nohighlight">\(\bs{\rm{W}}\)</span> have bases.
+Each choice of those bases leads to a matrix for <span class="math notranslate nohighlight">\(T\)</span>.
+When the input basis is different from the output basis, the matrix for
+<span class="math notranslate nohighlight">\(T(\v)=\v\)</span> will not be the identity <span class="math notranslate nohighlight">\(I\)</span>.
+It will be the “change of basis matrix”.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Suppose we know <span class="math notranslate nohighlight">\(T(\v)\)</span> for the input basis vectors <span class="math notranslate nohighlight">\(\v_1\)</span> to <span class="math notranslate nohighlight">\(\v_n\)</span>.
+Columns <span class="math notranslate nohighlight">\(1\)</span> to <span class="math notranslate nohighlight">\(n\)</span> of the matrix will contain those outputs <span class="math notranslate nohighlight">\(T(\v_1)\)</span> to <span class="math notranslate nohighlight">\(T(\v_n)\)</span>.
+<span class="math notranslate nohighlight">\(A\)</span> times <span class="math notranslate nohighlight">\(c =\)</span> matrix times vector <span class="math notranslate nohighlight">\(=\)</span> combination of those <span class="math notranslate nohighlight">\(n\)</span> columns.
+<span class="math notranslate nohighlight">\(Ac\)</span> is the correct combination <span class="math notranslate nohighlight">\(c_1T(\v_1)+\cds+c_nT(\v_n)=T(\v)\)</span>.</p>
+</div>
+<p><strong>Reason</strong>: Every <span class="math notranslate nohighlight">\(\v\)</span> is a unique combination <span class="math notranslate nohighlight">\(c_1\v_1+\cds+c_n\v_n\)</span> of the basis vectors <span class="math notranslate nohighlight">\(\v_j\)</span>.
+Since <span class="math notranslate nohighlight">\(T\)</span> is a linear transformation, <span class="math notranslate nohighlight">\(T(\v)\)</span> must be
+<strong>the same combination</strong> <span class="math notranslate nohighlight">\(c_1T(\v_1)+\cds+c_nT(\v_n)\)</span> <strong>of the outputs</strong>
+<span class="math notranslate nohighlight">\(T(\v_j)\)</span> <strong>in the columns</strong>.</p>
+<div class="section" id="change-of-basis">
+<h2>Change of Basis<a class="headerlink" href="#change-of-basis" title="Permalink to this headline">¶</a></h2>
+<p>Suppose the input space <span class="math notranslate nohighlight">\(\bs{\rm{V}}=\R^2\)</span> is also the output space <span class="math notranslate nohighlight">\(\bs{\rm{W}}=\R^2\)</span>.
+<em>Suppose that</em> <span class="math notranslate nohighlight">\(T(\v)=\v\)</span> <em>is the identity transformation</em>.
+The matrix is <span class="math notranslate nohighlight">\(I\)</span> only when the input basis is the same as the output basis.</p>
+<p>For this special case <span class="math notranslate nohighlight">\(T(\v)=\v\)</span>, call the matrix <span class="math notranslate nohighlight">\(B\)</span> instead of <span class="math notranslate nohighlight">\(A\)</span>.
+We are just changing basis from the <span class="math notranslate nohighlight">\(\v\)</span>’s to the <span class="math notranslate nohighlight">\(\w\)</span>’s.
+Each <span class="math notranslate nohighlight">\(\v\)</span> is a combination of <span class="math notranslate nohighlight">\(\w_1\)</span> and <span class="math notranslate nohighlight">\(\w_2\)</span>.</p>
+<p><strong>Input basis</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb \\\ \v_1&amp;\v_2 \\\ \eb=\bb 3&amp;6\\3&amp;8 \eb\end{split}\]</div>
+<p><strong>Output basis</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb \\\ \w_1&amp;\w_2 \\\ \eb=\bb 3&amp;0\\1&amp;2 \eb\end{split}\]</div>
+<p><strong>Change of basis</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{matrix} \v_1=1\w_1+1\w_2\\ \v_2=2\w_1+3\w_2\end{matrix}\end{split}\]</div>
+<p>We apply the identity transformation <span class="math notranslate nohighlight">\(T\)</span> to each input basis vector: <span class="math notranslate nohighlight">\(T(\v_1)=\v_1\)</span> and <span class="math notranslate nohighlight">\(T(\v_2)=\v_2\)</span>.
+<strong>Then we write those outputs</strong> <span class="math notranslate nohighlight">\(\v_1\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(\v_2\)</span>
+<strong>in the output basis</strong> <span class="math notranslate nohighlight">\(\w_1\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(\w_2\)</span>.
+<span class="math notranslate nohighlight">\(WB=V\)</span> so <span class="math notranslate nohighlight">\(B=W\im V\)</span>.</p>
+<p><strong>Matrix</strong> <span class="math notranslate nohighlight">\(B\)</span> <strong>for change of basis</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb \\\ \w_1&amp;\w_2 \\\ \eb\bb \\\ B \\\ \eb=\bb \\\ \v_1&amp;\v_2 \\\ \eb\quad
+\rm{is}\quad\bb 3&amp;0\\1&amp;2 \eb\bb 1&amp;2\\1&amp;3 \eb=\bb 3&amp;6\\3&amp;8 \eb.\end{split}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When the input basis is in the columns of a matrix <span class="math notranslate nohighlight">\(V\)</span>, and the output
+basis is in the columns of <span class="math notranslate nohighlight">\(W\)</span>, the change of basis matrix for
+<span class="math notranslate nohighlight">\(T=I\)</span> is <span class="math notranslate nohighlight">\(B=W\im V\)</span>.</p>
+</div>
+<p><strong>The key</strong>: Suppose the same vector <span class="math notranslate nohighlight">\(\u\)</span> is written in the input basis of
+<span class="math notranslate nohighlight">\(\v\)</span>’s and the output basis of <span class="math notranslate nohighlight">\(\w\)</span>’s.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{matrix}\u=c_1\v_1+\cds+c_n\v_n\\\u=d_1\w_1+\cds+d_n\w_n\end{matrix}
+\rm{\ is\ }\bb \\\ \v_1\cds\v_n \\\ \eb\bb c_1\\\vds\\c_n \eb=
+\bb \\\ \w_1\cds\w_n \\\ \eb\bb d_1\\\vds\\d_n \eb\rm{\ and\ }
+V\bs{c}=W\bs{d}.\end{split}\]</div>
+<p>The coefficients <span class="math notranslate nohighlight">\(\bs{d}\)</span> in the new basis of <span class="math notranslate nohighlight">\(\w\)</span>’s are <span class="math notranslate nohighlight">\(\bs{d}=W\im V\bs{c}\)</span>.
+Then <span class="math notranslate nohighlight">\(B\)</span> is <span class="math notranslate nohighlight">\(W\im V\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\bb x\\y \eb\)</span> in the standard basis has coefficients
+<span class="math notranslate nohighlight">\(\bb \\\ \w_1&amp;\w_2\\\ \eb\im\bb x\\y \eb\)</span> in the <span class="math notranslate nohighlight">\(\w_1,\w_2\)</span> basis.</p>
+</div>
+<div class="section" id="construction-of-the-matrix">
+<h2>Construction of the Matrix<a class="headerlink" href="#construction-of-the-matrix" title="Permalink to this headline">¶</a></h2>
+<p>Suppose <span class="math notranslate nohighlight">\(T\)</span> transforms the space <span class="math notranslate nohighlight">\(\bs{\rm{V}}\)</span> (<span class="math notranslate nohighlight">\(n\)</span>
+-dimensional) to the space <span class="math notranslate nohighlight">\(\bs{\rm{W}}\)</span> (<span class="math notranslate nohighlight">\(m\)</span>-dimensional).
+We choose a basis <span class="math notranslate nohighlight">\(\v_1,\cds,\v_n\)</span> for <span class="math notranslate nohighlight">\(\bs{\rm{V}}\)</span> and we choose a
+basis <span class="math notranslate nohighlight">\(\w_1,\cds,\w_m\)</span> for <span class="math notranslate nohighlight">\(\bs{\rm{W}}\)</span>.
+The matrix <span class="math notranslate nohighlight">\(A\)</span> will be <span class="math notranslate nohighlight">\(m\)</span> by <span class="math notranslate nohighlight">\(n\)</span>.
+To find the first column of <span class="math notranslate nohighlight">\(A\)</span>, apply <span class="math notranslate nohighlight">\(T\)</span> to the first basis vector <span class="math notranslate nohighlight">\(\v_1\)</span>.
+The output <span class="math notranslate nohighlight">\(T(\v_1)\)</span> is in <span class="math notranslate nohighlight">\(\bs{\rm{W}}\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(T(\v_1)\)</span> <strong>is a combination</strong> <span class="math notranslate nohighlight">\(a_{11}\w_1+\cds+a_{m1}\w_m\)</span>
+<strong>of the output basis for</strong> <span class="math notranslate nohighlight">\(\bs{\rm{W}}\)</span>.</p>
+</div>
+<p><em>These numbers*</em> <span class="math notranslate nohighlight">\(\a_{11},\cds,\a_{m1}\)</span> <em>go into the first column of</em> <span class="math notranslate nohighlight">\(A\)</span>.
+Transforming <span class="math notranslate nohighlight">\(\v_!\)</span> to <span class="math notranslate nohighlight">\(T(\v_1)\)</span> matches multiplying <span class="math notranslate nohighlight">\((1,0,\cds,0)\)</span> by <span class="math notranslate nohighlight">\(A\)</span>.
+It yields that first column of the matrix.
+When <span class="math notranslate nohighlight">\(T\)</span> is the derivative and the first basis vector is 1, its derivative is <span class="math notranslate nohighlight">\(T(\v_1)=\0\)</span>.
+So for the derivative matrix below, the first column of <span class="math notranslate nohighlight">\(A\)</span> is all zero.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Key rule</strong>: The <span class="math notranslate nohighlight">\(j\)</span>th column of <span class="math notranslate nohighlight">\(A\)</span> is found by applying
+<span class="math notranslate nohighlight">\(T\)</span> to the <span class="math notranslate nohighlight">\(j\)</span>th basis vector <span class="math notranslate nohighlight">\(\v_j\)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(T(\v_j)=\)</span> combination of output basis vectors <span class="math notranslate nohighlight">\(=a_{1j}\w_1+\cds+a_{mj}\w_m\)</span>.</p></li>
+</ul>
+</div>
+<p>These numbers <span class="math notranslate nohighlight">\(a_{ij}\)</span> go into <span class="math notranslate nohighlight">\(A\)</span>.
+<em>The matrix is constructed to get the basis vectors right</em>.
+<strong>Then linearity gets all other vectors right</strong>.
+Every <span class="math notranslate nohighlight">\(\v\)</span> is a combination <span class="math notranslate nohighlight">\(c_1\v_1+\cds+c_n\v_n\)</span>, and <span class="math notranslate nohighlight">\(T(\v)\)</span> is a combination of the <span class="math notranslate nohighlight">\(\w\)</span>’s.
+When <span class="math notranslate nohighlight">\(A\)</span> multiplies the vector <span class="math notranslate nohighlight">\(\bs{c}=(c_1,\cds,c_n)\)</span> in the
+<span class="math notranslate nohighlight">\(\v\)</span> combination, <span class="math notranslate nohighlight">\(A\bs{c}\)</span> produces the coefficients in the
+<span class="math notranslate nohighlight">\(T(\v)\)</span> combination.
+This is because matrix multiplication (combining columns) is linear like <span class="math notranslate nohighlight">\(T\)</span>.</p>
+<p>The matrix <span class="math notranslate nohighlight">\(A\)</span> tells us what <span class="math notranslate nohighlight">\(T\)</span> does.
+Every linear transformation from <span class="math notranslate nohighlight">\(\bs{\rm{V}}\)</span> to <span class="math notranslate nohighlight">\(\bs{\rm{W}}\)</span> can be converted to a matrix.
+This matrix depends on the bases.</p>
+<p>If you integrate a function and then differentiate, you get back to the start.
+But if you differentiate before integrating, the constant term is lost.
+<strong>If we differentiate and then integrate, we can multiply their matrices</strong> <span class="math notranslate nohighlight">\(A^+A\)</span>.</p>
+</div>
+<div class="section" id="matrix-products-ab-match-transformations-ts">
+<h2>Matrix Products <span class="math notranslate nohighlight">\(AB\)</span> Match Transformations <span class="math notranslate nohighlight">\(TS\)</span><a class="headerlink" href="#matrix-products-ab-match-transformations-ts" title="Permalink to this headline">¶</a></h2>
+<p>When we apply the transformation <span class="math notranslate nohighlight">\(T\)</span> to the output from <span class="math notranslate nohighlight">\(S\)</span>, we get
+<span class="math notranslate nohighlight">\(TS\)</span> by this rule: <span class="math notranslate nohighlight">\((TS)(\u)\)</span> <em>is defined to be</em> <span class="math notranslate nohighlight">\(T(S(\u))\)</span>.
+The output <span class="math notranslate nohighlight">\(S(\u)\)</span> becomes the input to <span class="math notranslate nohighlight">\(T\)</span>.</p>
+<p>When we apply the matrix <span class="math notranslate nohighlight">\(A\)</span> to the output from <span class="math notranslate nohighlight">\(B\)</span>, we multiply
+<span class="math notranslate nohighlight">\(AB\)</span> by this rule: <span class="math notranslate nohighlight">\((AB)(\x)\)</span> is defined to be <span class="math notranslate nohighlight">\(A(B\x)\)</span>.
+The output <span class="math notranslate nohighlight">\(B\x\)</span> becomes the input to <span class="math notranslate nohighlight">\(A\)</span>.
+<strong>Matrix multiplication gives the correct matrix</strong> <span class="math notranslate nohighlight">\(AB\)</span> <strong>to represent</strong> <span class="math notranslate nohighlight">\(TS\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Multiplication</strong>: The linear transformation <span class="math notranslate nohighlight">\(TS\)</span> starts with any
+vector <span class="math notranslate nohighlight">\(\u\)</span> in <span class="math notranslate nohighlight">\(\bs{\rm{U}}\)</span>, goes to <span class="math notranslate nohighlight">\(S(\u)\)</span> in
+<span class="math notranslate nohighlight">\(\bs{\rm{V}}\)</span> and then to <span class="math notranslate nohighlight">\(T(S(\u))\)</span> in <span class="math notranslate nohighlight">\(\bs{\rm{W}}\)</span>.
+The matrix <span class="math notranslate nohighlight">\(AB\)</span> starts with any <span class="math notranslate nohighlight">\(\x\)</span> in <span class="math notranslate nohighlight">\(\R^p\)</span>, goes to
+<span class="math notranslate nohighlight">\(B\x\)</span> in <span class="math notranslate nohighlight">\(\R^n\)</span> and tehn to <span class="math notranslate nohighlight">\(AB\x\)</span> in <span class="math notranslate nohighlight">\(\R^m\)</span>.
+<strong>The matrix</strong> <span class="math notranslate nohighlight">\(AB\)</span> <strong>correctly represents</strong> <span class="math notranslate nohighlight">\(TS\)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(TS: \bs{\rm{U}}\rightarrow\bs{\rm{V}}\rightarrow\bs{\rm{W}}\quad\)</span>
+<span class="math notranslate nohighlight">\(AB: (m\rm{\ by\ }n)(n\rm{\ by\ }p)=(m\rm{\ by\ }p)\)</span></p></li>
+</ul>
+</div>
+<p><strong>Product of transfromations</strong> <span class="math notranslate nohighlight">\(TS\)</span> <strong>mathces product of matrices</strong> <span class="math notranslate nohighlight">\(AB\)</span>.</p>
+</div>
+<div class="section" id="choosing-the-best-bases">
+<h2>Choosing the Best Bases<a class="headerlink" href="#choosing-the-best-bases" title="Permalink to this headline">¶</a></h2>
+<p><strong>Choose bases that diagonalize the matrix</strong>.
+With the standard basis (the columns of <span class="math notranslate nohighlight">\(I\)</span>) our transformation <span class="math notranslate nohighlight">\(T\)</span>
+produces some matrix <span class="math notranslate nohighlight">\(A\)</span>–probably not diagonal.
+That same <span class="math notranslate nohighlight">\(T\)</span> is represented by different matrices when we choose different bases.
+The two greate choices are eigenvectors and singular vectors:</p>
+<blockquote>
+<div><p><strong>Eigenvectors</strong>: If <span class="math notranslate nohighlight">\(T\)</span> transforms <span class="math notranslate nohighlight">\(\R^n\)</span> to <span class="math notranslate nohighlight">\(\R^n\)</span>, its matrix <span class="math notranslate nohighlight">\(A\)</span> is square.
+But using the standard basis, that matrix <span class="math notranslate nohighlight">\(A\)</span> is probably not diagonal.
+If there are <span class="math notranslate nohighlight">\(n\)</span> independent eigenvectors, <em>choose those as the input and output basis</em>.
+In this good basis, <strong>the matrix for</strong> <span class="math notranslate nohighlight">\(T\)</span> <strong>is the diagonal eigenvalue matrix</strong> <span class="math notranslate nohighlight">\(\Ld\)</span>.</p>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(A_{\rm{new}}=B\im AB\)</span> <strong>in the new basis of</strong> <span class="math notranslate nohighlight">\(\b\)</span>
+<strong>‘s is similar to</strong> <span class="math notranslate nohighlight">\(A\)</span> <strong>in the standard basis</strong>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(A_{\b\rm{'s\ to\ }\b\rm{'s}}=B\im_{\rm{standard\ to\ }\b\rm{'s}}A_{\rm{standard}}B_{\b\rm{'s\ to\ standard}}\)</span></p></li>
+</ul>
+</div>
+<p>Finally we allow <em>different spaces</em> <span class="math notranslate nohighlight">\(V\)</span> <em>and</em> <span class="math notranslate nohighlight">\(W\)</span>, <em>and different bases</em> <span class="math notranslate nohighlight">\(\v\)</span>’s and <span class="math notranslate nohighlight">\(\w\)</span>’s.</p>
+<blockquote>
+<div><p><strong>Singular vectors</strong>: The SVD says that <span class="math notranslate nohighlight">\(U\im AV=\Sg\)</span>.
+The right singular vectors <span class="math notranslate nohighlight">\(\v_1,\cds,\v_n\)</span> will be the input basis.
+The left singular vectors <span class="math notranslate nohighlight">\(\u_1,\cds,\u_m\)</span> will be the output basis.
+By the rule for matrix multiplication, the matrix for the same
+transformation in these new bases is <span class="math notranslate nohighlight">\(B\im_{\rm{out}}AB_{\rm{in}}=U\im AV=\Sg\)</span>.</p>
+</div></blockquote>
+<p><span class="math notranslate nohighlight">\(\Sg\)</span> is “<strong>isometric</strong>” to <span class="math notranslate nohighlight">\(A\)</span>: <span class="math notranslate nohighlight">\(C=Q_1\im AQ_2\)</span>
+<em>is isometric to</em> <span class="math notranslate nohighlight">\(A\)</span> <em>if*` :math:`Q_1` *and</em> <span class="math notranslate nohighlight">\(Q_2\)</span> <em>are orthogonal</em>.</p>
+</div>
 </div>
 
 
@@ -208,6 +383,10 @@
            
           </div>
           <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="chap8-3.html" class="btn btn-neutral float-right" title="Chapter 8.3 The Search for a Good Basis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="chap8-1.html" class="btn btn-neutral float-left" title="Chapter 8.1 The Idea of a Linear Transformation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
 
   <hr/>
 

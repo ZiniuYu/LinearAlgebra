@@ -13,8 +13,6 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -31,11 +29,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -254,13 +252,26 @@ This is the <strong>identity transformation</strong>.</p>
 <p><em>The Fundamental Theorem of Calculus says that integration is the (pseudo)inverse of differentiation</em>.
 For linear algebra, the matrix <span class="math notranslate nohighlight">\(A^+\)</span> is the (pseudo)inverse of the matrix <span class="math notranslate nohighlight">\(A\)</span>.
 The derivative of a constant function is zero.
-That zero is on the diagonal of <span class="math notranslate nohighlight">\(A^+A\)</span>.</p>
+That zero is on the diagonal of <span class="math notranslate nohighlight">\(A^+A\)</span>.
+Calculus wouldn’t be calculus without that 1-dimensional nullspace of <span class="math notranslate nohighlight">\(T=d/dx\)</span>.</p>
 </div>
 <div class="section" id="examples-of-transformations-mostly-linear">
 <h2>Examples of Transformations (mostly linear)<a class="headerlink" href="#examples-of-transformations-mostly-linear" title="Permalink to this headline">¶</a></h2>
+<p><strong>All linear transformations from</strong> <span class="math notranslate nohighlight">\(V=R^n\)</span> <strong>to</strong> <span class="math notranslate nohighlight">\(W=R^m\)</span> <strong>are produced by matrices</strong>.</p>
+<p>For a matrix, the column space contains all outputs <span class="math notranslate nohighlight">\(A\v\)</span>.
+The nullspace contains all inputs for which <span class="math notranslate nohighlight">\(A\v=\0\)</span>.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Range of</strong> <span class="math notranslate nohighlight">\(T =\)</span> set of <em>all outputs</em> <span class="math notranslate nohighlight">\(T(\v)\)</span>.
+Range corresponds to column space.</p></li>
+<li><p><strong>Kernel of</strong> <span class="math notranslate nohighlight">\(T =\)</span> set of <em>all inputs for which</em> <span class="math notranslate nohighlight">\(T(\v)=\0\)</span>.
+Kernel corresponds to nullspace.</p></li>
+</ul>
+</div></blockquote>
 </div>
 <div class="section" id="linear-transformations-of-the-plane">
 <h2>Linear Transformations of the Plane<a class="headerlink" href="#linear-transformations-of-the-plane" title="Permalink to this headline">¶</a></h2>
+<p>Refer to the textbook Page 406.</p>
 </div>
 </div>
 
