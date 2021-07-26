@@ -13,6 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -29,11 +31,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -98,10 +100,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../chap7/index7.html">Chapter 7 The Singular Value Decomposition (SVD)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../chap8/index8.html">Chapter 8 Linear Transformations</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index9.html">Chapter 9 Complex Vectors and Matrices</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 9.1 Complex Numbers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#the-complex-plane">The Complex Plane</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#the-polar-form-re-i-theta">The Polar Form <span class="math notranslate nohighlight">\(re^{i\theta}\)</span></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#powers-and-products-polar-form">Powers and Products: Polar Form</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 9.1 Complex Numbers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-complex-plane">The Complex Plane</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-polar-form-re-i-theta">The Polar Form <span class="math notranslate nohighlight">\(re^{i\theta}\)</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#powers-and-products-polar-form">Powers and Products: Polar Form</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="chap9-2.html">Chapter 9.2 Hermitian and Unitary Matrices</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chap9-3.html">Chapter 9.3 The Fast Fourier Transform</a></li>
 </ul>
@@ -225,9 +229,8 @@ Multiplication uses <span class="math notranslate nohighlight">\(i^2=-1\)</span>
 </div>
 <p>The <strong>real part</strong> is <span class="math notranslate nohighlight">\(a=\Re (a+bi)\)</span>.
 The <strong>imagenary part</strong> is <span class="math notranslate nohighlight">\(b=\Im (a+bi)\)</span>.</p>
-</div>
 <div class="section" id="the-complex-plane">
-<h1>The Complex Plane<a class="headerlink" href="#the-complex-plane" title="Permalink to this headline">¶</a></h1>
+<h2>The Complex Plane<a class="headerlink" href="#the-complex-plane" title="Permalink to this headline">¶</a></h2>
 <p>Complex numbers correspond to points in a plane.
 Real numbers go along the <span class="math notranslate nohighlight">\(x\)</span> axis.
 Plane imaginary numbers are on the <span class="math notranslate nohighlight">\(y\)</span> axis.
@@ -260,10 +263,65 @@ The product of <span class="math notranslate nohighlight">\(z\)</span> times <sp
 <strong>On the unit circle</strong>, <span class="math notranslate nohighlight">\(1/z\)</span> <strong>equals</strong> <span class="math notranslate nohighlight">\(\bar{z}\)</span>.</p>
 </div>
 <div class="section" id="the-polar-form-re-i-theta">
-<h1>The Polar Form <span class="math notranslate nohighlight">\(re^{i\theta}\)</span><a class="headerlink" href="#the-polar-form-re-i-theta" title="Permalink to this headline">¶</a></h1>
+<h2>The Polar Form <span class="math notranslate nohighlight">\(re^{i\theta}\)</span><a class="headerlink" href="#the-polar-form-re-i-theta" title="Permalink to this headline">¶</a></h2>
+<p>The square root of <span class="math notranslate nohighlight">\(a^2+b^2\)</span> is <span class="math notranslate nohighlight">\(|z|\)</span>.
+This is the <strong>absolute value</strong> (or <strong>modulus</strong>) of the number <span class="math notranslate nohighlight">\(z=a+ib\)</span>.
+The square root <span class="math notranslate nohighlight">\(|z|\)</span> is also written <span class="math notranslate nohighlight">\(r\)</span>, because it is the distance from <span class="math notranslate nohighlight">\(0\)</span> to <span class="math notranslate nohighlight">\(z\)</span>.
+<strong>The real number</strong> <span class="math notranslate nohighlight">\(r\)</span> <strong>in the polar form gives the size of the complex number</strong> <span class="math notranslate nohighlight">\(z\)</span>:</p>
+<blockquote>
+<div><p>The absolute value of <span class="math notranslate nohighlight">\(z=a+ib\)</span> is <span class="math notranslate nohighlight">\(|z|=\sqrt{a^2+b^2}\)</span>.
+<strong>This is called</strong> <span class="math notranslate nohighlight">\(r\)</span>.</p>
+</div></blockquote>
+<p><strong>The angle doubles when the number is squared</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>The number</strong> <span class="math notranslate nohighlight">\(z=a+ib\)</span> <strong>is also</strong> <span class="math notranslate nohighlight">\(z=r\cos\th+ir\sin\th\)</span>.
+<strong>Tis is</strong> <span class="math notranslate nohighlight">\(re^{i\th}\)</span>.</p>
+</div>
+<p><em>Note</em>: <span class="math notranslate nohighlight">\(\cos\th+i\sin\th\)</span> <strong>has absolute value</strong> <span class="math notranslate nohighlight">\(r=1\)</span> <strong>because</strong> <span class="math notranslate nohighlight">\(\cos^2\th+\sin^2\th=1\)</span>.
+Thus <span class="math notranslate nohighlight">\(\cos\th+i\sin\th\)</span> lies on the circle of radius 1–<em>the unit circle</em>.</p>
+<p><strong>If</strong> <span class="math notranslate nohighlight">\(z\)</span> <strong>is at angle</strong> <span class="math notranslate nohighlight">\(\th\)</span>, <strong>its conjugate</strong> <span class="math notranslate nohighlight">\(\bar{z}\)</span>
+<strong>is at</strong> <span class="math notranslate nohighlight">\(2\pi-\th\)</span> <strong>and also at</strong> <span class="math notranslate nohighlight">\(-\th\)</span>.
+<span class="math notranslate nohighlight">\(1=e^0=e^{2\pi i}\)</span>.</p>
 </div>
 <div class="section" id="powers-and-products-polar-form">
-<h1>Powers and Products: Polar Form<a class="headerlink" href="#powers-and-products-polar-form" title="Permalink to this headline">¶</a></h1>
+<h2>Powers and Products: Polar Form<a class="headerlink" href="#powers-and-products-polar-form" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>The</strong> <span class="math notranslate nohighlight">\(n\)</span><strong>th power of</strong> <span class="math notranslate nohighlight">\(z=r(\cos\th+i\sin\th)\)</span> <strong>is</strong> <span class="math notranslate nohighlight">\(z^n=r^n(\cos n\th+i\sin n\th)\)</span>.</p>
+</div>
+<p>To multiply <span class="math notranslate nohighlight">\(z\)</span> times <span class="math notranslate nohighlight">\(z\pr\)</span>, <strong>multiply</strong> <span class="math notranslate nohighlight">\(r\)</span><strong>‘s and add angles</strong>:</p>
+<div class="math notranslate nohighlight">
+\[r(\cos\th+i\sin\th)\rm{\ times\ }r\pr(\cos\th\pr+i\sin\th\pr)=rr\pr(\cos(\th+\th\pr)+i\sin(\th+\th\pr)).\]</div>
+<p>One way to understand this is by trigonometry.</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}(\cos\th+i\sin\th)\times(\cos\th+i\sin\th)=\cos^2\th+i^2\sin^2\th+2i\sin\th\cos\th\\=\cos^2\th-\sin^2\th+i2\sin\th\cos\th=\cos 2\th+i\sin 2\th\end{aligned}\end{align} \]</div>
+<p>The second way to understand the rule for <span class="math notranslate nohighlight">\(z^n\)</span> is by Euler’s Formula</p>
+<div class="math notranslate nohighlight">
+\[e^x=1+x+\frac{1}{2}x^2+\frac{1}{6}x^3+\cds\rm{\ becomes\ }
+e^{i\th}=1+i\th+\frac{1}{2}i^2\th^2+\frac{1}{6}i^3\th^3+\cds\]</div>
+<p>Write <span class="math notranslate nohighlight">\(-1\)</span> for <span class="math notranslate nohighlight">\(i^2\)</span> to see <span class="math notranslate nohighlight">\(1-\frac{1}{2}\th^2\)</span>.
+<strong>The complex number</strong> <span class="math notranslate nohighlight">\(e^{i\th}\)</span> <strong>is</strong> <span class="math notranslate nohighlight">\(\cos\th+i\sin\th\)</span></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Euler’s Formula</strong>: <span class="math notranslate nohighlight">\(e^{i\th}=\cos\th+i\sin\th\)</span> gives <span class="math notranslate nohighlight">\(z=r\cos\th+ir\sin\th=re^{i\th}\)</span>.</p>
+</div>
+<p>The special choice <span class="math notranslate nohighlight">\(\th=2\pi\)</span> gives <span class="math notranslate nohighlight">\(\cos 2\pi+i\sin 2\pi\)</span> which is 1.
+Somehow the infinite series <span class="math notranslate nohighlight">\(e^{2\pi i}=1+2\pi i+\frac{1}{2}(2\pi i)^2+\cds\)</span> adds up to 1.</p>
+<p>The powers <span class="math notranslate nohighlight">\((re^{i\th})^n\)</span> are equal to <span class="math notranslate nohighlight">\(r^ne^{in\th}\)</span>.
+They stay on the unit circle when <span class="math notranslate nohighlight">\(r=1\)</span> and <span class="math notranslate nohighlight">\(r^n=1\)</span>.
+Then we find <span class="math notranslate nohighlight">\(n\)</span> different numbers whose <span class="math notranslate nohighlight">\(n\)</span>th powers equal 1:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Set</strong> <span class="math notranslate nohighlight">\(w=e^{2\pi i/n}\)</span>.
+<strong>The</strong> <span class="math notranslate nohighlight">\(n\)</span><strong>th powers of</strong> <span class="math notranslate nohighlight">\(1,w,w^2,\cds,w^{n-1}\)</span> <strong>all equal 1</strong>.</p>
+</div>
+<p>Those are the <span class="math notranslate nohighlight">\(n\)</span>th roots of 1.
+They solve the equation <span class="math notranslate nohighlight">\(z^n=1\)</span>.
+They are equally spaced around the unit circle, where the full <span class="math notranslate nohighlight">\(2\pi\)</span> is divided by <span class="math notranslate nohighlight">\(n\)</span>.
+Multiply their angles by <span class="math notranslate nohighlight">\(n\)</span> to take <span class="math notranslate nohighlight">\(n\)</span>th powers.
+That gives <span class="math notranslate nohighlight">\(w^n=e^{2\pi i}\)</span> which is 1.</p>
+</div>
 </div>
 
 
