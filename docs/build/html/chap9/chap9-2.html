@@ -13,8 +13,6 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -31,11 +29,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -300,6 +298,22 @@ Its eigenvectors are complex and orthonormal.
 <p><strong>Unitary matrix that diagonalizes</strong> <span class="math notranslate nohighlight">\(S\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}Q=\frac{1}{\sqrt{3}}\bb 1&amp;1-i\\1+i&amp;-i \eb.\end{split}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Every matrix</strong> <span class="math notranslate nohighlight">\(Q\)</span> <strong>with orthonormal columns has</strong> <span class="math notranslate nohighlight">\(Q^HQ=I\)</span>.</p>
+<p><strong>If</strong> <span class="math notranslate nohighlight">\(Q\)</span> <strong>is square, it is a unitary matrix</strong>.
+<strong>Then</strong> <span class="math notranslate nohighlight">\(Q^H=Q\im\)</span>.</p>
+</div>
+<p>Suppose <span class="math notranslate nohighlight">\(Q\)</span> (with orthonormal columns) multiplies any <span class="math notranslate nohighlight">\(\bs{z}\)</span>.
+The vector length stays the same, because <span class="math notranslate nohighlight">\(\bs{z}^HQ^HQ\bs{z}=\bs{z}^H\bs{z}\)</span>.
+If <span class="math notranslate nohighlight">\(\bs{z}\)</span> is an eigenvector of <span class="math notranslate nohighlight">\(Q\)</span> we learn something more:
+<strong>The eigenvalues of unitary (and orthogonal) matrices</strong> <span class="math notranslate nohighlight">\(Q\)</span>
+<strong>all have absolute value</strong> <span class="math notranslate nohighlight">\(|\ld|=1\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>If</strong> <span class="math notranslate nohighlight">\(Q\)</span> <strong>is unitary then</strong> <span class="math notranslate nohighlight">\(\lv Q\bs{z}\rv=\lv\bs{z}\rv\)</span>.
+<strong>Therefore</strong> <span class="math notranslate nohighlight">\(Q\bs{z}=\ld\bs{z}\)</span> <strong>leads to</strong> <span class="math notranslate nohighlight">\(|\ld|=1\)</span>.</p>
+</div>
 </div>
 </div>
 

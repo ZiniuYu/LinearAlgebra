@@ -108,3 +108,21 @@ A **unitary matrix** :math:`Q` is a (complex) square matrix that has **orthonorm
 .. math::
 
     Q=\frac{1}{\sqrt{3}}\bb 1&1-i\\1+i&-i \eb.
+
+.. note::
+
+    **Every matrix** :math:`Q` **with orthonormal columns has** :math:`Q^HQ=I`.
+
+    **If** :math:`Q` **is square, it is a unitary matrix**.
+    **Then** :math:`Q^H=Q\im`.
+
+Suppose :math:`Q` (with orthonormal columns) multiplies any :math:`\bs{z}`.
+The vector length stays the same, because :math:`\bs{z}^HQ^HQ\bs{z}=\bs{z}^H\bs{z}`.
+If :math:`\bs{z}` is an eigenvector of :math:`Q` we learn something more:
+**The eigenvalues of unitary (and orthogonal) matrices** :math:`Q`
+**all have absolute value** :math:`|\ld|=1`.
+
+.. note::
+
+    **If** :math:`Q` **is unitary then** :math:`\lv Q\bs{z}\rv=\lv\bs{z}\rv`.
+    **Therefore** :math:`Q\bs{z}=\ld\bs{z}` **leads to** :math:`|\ld|=1`.
