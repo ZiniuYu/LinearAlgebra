@@ -13,6 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -29,11 +31,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -215,8 +217,60 @@
 \newcommand{\ppr}{^{\prime\prime}}\end{aligned}\end{align} \]</div>
 <div class="section" id="chapter-9-3-the-fast-fourier-transform">
 <h1>Chapter 9.3 The Fast Fourier Transform<a class="headerlink" href="#chapter-9-3-the-fast-fourier-transform" title="Permalink to this headline">¶</a></h1>
+<p><strong>We want to multiply quickly by</strong> <span class="math notranslate nohighlight">\(F\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(F\im\)</span>, <strong>the Fourier matrix and its inverse</strong>.
+This is achieved by the Fast Fourier Transform.
+An ordinary product <span class="math notranslate nohighlight">\(F\bs{c}\)</span> uses <span class="math notranslate nohighlight">\(n^2\)</span> multiplications (<span class="math notranslate nohighlight">\(F\)</span> has <span class="math notranslate nohighlight">\(n^2\)</span> entries).
+The FFT needs only <span class="math notranslate nohighlight">\(n\)</span> times <span class="math notranslate nohighlight">\(\frac{1}{2}\log_2n\)</span>.</p>
 <div class="section" id="roots-of-unity-and-the-fourier-matrix">
 <h2>Roots of Unity and the Fourier Matrix<a class="headerlink" href="#roots-of-unity-and-the-fourier-matrix" title="Permalink to this headline">¶</a></h2>
+<p>The solutions <span class="math notranslate nohighlight">\(z\)</span> of <span class="math notranslate nohighlight">\(z^1\)</span> are the <span class="math notranslate nohighlight">\(n\)</span>th roots of unity.
+They are <span class="math notranslate nohighlight">\(n\)</span> evenly spaced points around the unit circle in the complex plane.</p>
+<p><strong>Fourier matrix</strong> <span class="math notranslate nohighlight">\(n=4\)</span>, <span class="math notranslate nohighlight">\(w=i\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}F=\bb 1&amp;1&amp;1&amp;1\\1&amp;w&amp;w^2&amp;w^3\\1&amp;w^2&amp;w^4&amp;w^6\\1&amp;w^3&amp;w^6&amp;w^9 \eb=
+\bb 1&amp;1&amp;1&amp;1\\1&amp;i&amp;i^2&amp;i^3\\1&amp;i^2&amp;i^4&amp;i^6\\1&amp;i^3&amp;i^6&amp;i^9 \eb.\end{split}\]</div>
+<p>The matrix is symmetric (<span class="math notranslate nohighlight">\(F=F^T\)</span>).
+It is <em>not</em> Hermitian.
+Its main diagonal is not real.
+But <span class="math notranslate nohighlight">\(\frac{1}{2}F\)</span> is a <strong>unitary matrix</strong>, which means that <span class="math notranslate nohighlight">\((\frac{1}{2}F^H)(\frac{1}{2}F)=I\)</span>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>The columns of</strong> <span class="math notranslate nohighlight">\(F\)</span> <strong>give</strong> <span class="math notranslate nohighlight">\(F^HF=4I\)</span>.
+<strong>Its inverse is</strong> <span class="math notranslate nohighlight">\(\frac{1}{4}F^H\)</span> <strong>which is</strong> <span class="math notranslate nohighlight">\(F\im=\frac{1}{4}\bar{F}\)</span>.</p>
+</div>
+<p>Every column has length <span class="math notranslate nohighlight">\(\sqrt{n}\)</span>. So the unitary matrices are
+<span class="math notranslate nohighlight">\(Q=F/\sqrt{n}\)</span> and <span class="math notranslate nohighlight">\(Q\im=\bar{F}/\sqrt{n}\)</span>.
+We avoid <span class="math notranslate nohighlight">\(\sqrt{n}\)</span> and just use <span class="math notranslate nohighlight">\(F\)</span> and <span class="math notranslate nohighlight">\(F\im=\bar{F}/n\)</span>.
+The main point is to multiply <span class="math notranslate nohighlight">\(F\)</span> times <span class="math notranslate nohighlight">\(c_0,c_1,c_2,c_3\)</span>:</p>
+<p><strong>4-point Fourier series</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb y_0\\y_1\\y_2\\y_3 \eb=F\bs{c}=\bb 1&amp;1&amp;1&amp;1\\1&amp;w&amp;w^2&amp;w^3\\1&amp;w^2&amp;w^4&amp;w^6\\
+1&amp;w^3&amp;w^6&amp;w^9 \eb\bb c_0\\c_1\\c_2\\c_3 \eb.\end{split}\]</div>
+<p>The first output <span class="math notranslate nohighlight">\(y_0=c_0+c_1+c_2+c_3\)</span> is the value of the Fourier series <span class="math notranslate nohighlight">\(\sum c_ke^{ikx}\)</span> at <span class="math notranslate nohighlight">\(x=0\)</span>.
+<em>The second output is the alue of that series</em> <span class="math notranslate nohighlight">\(\sum c_ke^{ikx}\)</span> at <span class="math notranslate nohighlight">\(x=2\pi/4\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[y_1=c_0+c_1e^{i2\pi/4}+c_2e^{i4\pi/4}+c_3e^{i6\pi/4}=c_0+c_1w+c_2w^2+c_3w^3.\]</div>
+<p>The third and fourth outputs <span class="math notranslate nohighlight">\(y_2\)</span> and <span class="math notranslate nohighlight">\(y_3\)</span> are the values of
+<span class="math notranslate nohighlight">\(\sum c_ke^{ikx}\)</span> at <span class="math notranslate nohighlight">\(x=4\pi/4\)</span> and <span class="math notranslate nohighlight">\(x=6\pi/4\)</span>.
+These are <em>finite</em> Fourier series!
+<em>They contain</em> <span class="math notranslate nohighlight">\(n=4\)</span> <em>terms and they are evaluated at</em> <span class="math notranslate nohighlight">\(n=4\)</span> <em>points</em>.
+Those points <span class="math notranslate nohighlight">\(x=0,2\pi/4,4\pi/4,6\pi/4\)</span> are equally spaced.</p>
+<p>We follow the convention that <span class="math notranslate nohighlight">\(j\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(k\)</span> <strong>go from</strong> <span class="math notranslate nohighlight">\(0\)</span>
+<strong>to</strong> <span class="math notranslate nohighlight">\(n-1\)</span> (instead of <span class="math notranslate nohighlight">\(1\)</span> to <span class="math notranslate nohighlight">\(n\)</span>).</p>
+<p>The <span class="math notranslate nohighlight">\(n\)</span> by <span class="math notranslate nohighlight">\(n\)</span> Fourier matrix contains powers of <span class="math notranslate nohighlight">\(w=e^{2\pi i/n}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}F_n\bs{c}=\bb 1&amp;1&amp;1&amp;\cd&amp;1\\1&amp;w&amp;w^2&amp;\cd&amp;w^{n-1}\\1&amp;w^2&amp;w^4&amp;\cd&amp;w^{2(n-1)}\\
+\cd&amp;\cd&amp;\cd&amp;\cd&amp;\cd\\1&amp;w^{n-1}&amp;w^{2(n-1)}&amp;\cd&amp;w^{(n-1)^2} \eb
+\bb c_0\\c_1\\c_2\\\cd\\c_{n-1} \eb=\bb y_0\\y_1\\y_2\\\cd\\y_{n-1} \eb=\y.\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(F_n\)</span> is symmetric but not Hermitian.
+<strong>Its columns are orthogonal</strong>, and <span class="math notranslate nohighlight">\(F_n\bar{F}_n=nI\)</span>.
+<em>Then</em> <span class="math notranslate nohighlight">\(F\im_n\)</span> <em>is</em> <span class="math notranslate nohighlight">\(\bar{F}_n/n\)</span>.
+The inverse contains powers of <span class="math notranslate nohighlight">\(\bar{w}_n=e^{-2\pi i/n}\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>The entry in</strong> row <span class="math notranslate nohighlight">\(j\)</span>, column <span class="math notranslate nohighlight">\(k\)</span> <strong>is</strong> <span class="math notranslate nohighlight">\(w^{jk}\)</span>.
+<strong>Row zero and column zero contain</strong> <span class="math notranslate nohighlight">\(w^0=1\)</span>.</p>
+</div>
 </div>
 <div class="section" id="one-step-of-the-fast-fourier-transform">
 <h2>One Step of the Fast Fourier Transform<a class="headerlink" href="#one-step-of-the-fast-fourier-transform" title="Permalink to this headline">¶</a></h2>
