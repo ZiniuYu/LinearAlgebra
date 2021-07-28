@@ -271,12 +271,69 @@ The inverse contains powers of <span class="math notranslate nohighlight">\(\bar
 <p><strong>The entry in</strong> row <span class="math notranslate nohighlight">\(j\)</span>, column <span class="math notranslate nohighlight">\(k\)</span> <strong>is</strong> <span class="math notranslate nohighlight">\(w^{jk}\)</span>.
 <strong>Row zero and column zero contain</strong> <span class="math notranslate nohighlight">\(w^0=1\)</span>.</p>
 </div>
+<p>When a function <span class="math notranslate nohighlight">\(f(x)\)</span> has period <span class="math notranslate nohighlight">\(2\pi\)</span>, and we change <span class="math notranslate nohighlight">\(x\)</span> to
+<span class="math notranslate nohighlight">\(e^{i\th}\)</span>, the function is defined around the unit circle (where
+<span class="math notranslate nohighlight">\(z=\e^{i\th}\)</span>).
+The Discrete Fourier Transform is the same as interpolation.
+Find the polynomial <span class="math notranslate nohighlight">\(p(z)=c_0+c_1z+\cds+c_{n-1}z^{n-1}\)</span> that matches <span class="math notranslate nohighlight">\(n\)</span> values <span class="math notranslate nohighlight">\(f_0,\cds,f_{n-1}\)</span>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Interpolation</strong>: Find <span class="math notranslate nohighlight">\(c_0,\cds,c_{n-1}\)</span> so that <span class="math notranslate nohighlight">\(p(z)=f\)</span> at <span class="math notranslate nohighlight">\(n\)</span> points <span class="math notranslate nohighlight">\(z=1,\cds,w^{n-1}\)</span>.</p>
+</div>
+<p>The Fourier matrix is the Vandermonde matrix for interpolation at those <span class="math notranslate nohighlight">\(n\)</span> special points.</p>
 </div>
 <div class="section" id="one-step-of-the-fast-fourier-transform">
 <h2>One Step of the Fast Fourier Transform<a class="headerlink" href="#one-step-of-the-fast-fourier-transform" title="Permalink to this headline">¶</a></h2>
+<p><strong>The key idea of FFT is to connect</strong> <span class="math notranslate nohighlight">\(F_n\)</span> <strong>with the half-size Fourier matrix</strong> <span class="math notranslate nohighlight">\(F_{n/2}\)</span>.
+Assume that <span class="math notranslate nohighlight">\(n\)</span> is a power of 2.
+We will connect <span class="math notranslate nohighlight">\(F_4\)</span> to <strong>two copies of</strong> <span class="math notranslate nohighlight">\(F_2\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}F_4=\bb 1&amp;1&amp;1&amp;1\\1&amp;i&amp;i^2&amp;i^3\\1&amp;i^2&amp;i^4&amp;i^6\\1&amp;i^3&amp;i^6&amp;i^9 \eb\quad\rm{and}
+\quad\bb \\\ &amp;F_2\\&amp;&amp;F_2&amp; \\\ \eb=\bb 1&amp;1\\1&amp;i^2\\&amp;&amp;1&amp;1\\&amp;&amp;1&amp;i^2 \eb\end{split}\]</div>
+<p><strong>Factors for FFT</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}F_4=\bb 1&amp;&amp;1\\&amp;1&amp;&amp;i\\1&amp;&amp;-1\\&amp;1&amp;&amp;-i \eb\bb 1&amp;1\\1&amp;i^2\\&amp;&amp;1&amp;1\\&amp;&amp;1&amp;i^2 \eb\bb 1\\&amp;&amp;1\\&amp;1\\&amp;&amp;&amp;1 \eb.\end{split}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(F_{1024}=\bb I_{512}&amp;D_{512}\\I_{512}&amp;-D_{512}\eb\bb F_{512}\\&amp;F_{512}\eb\bb\rm{even-odd}\\\rm{permutation}\eb\)</span>.</p>
+</div>
+<p><span class="math notranslate nohighlight">\(I_{512}\)</span> is the identity matrix.
+<span class="math notranslate nohighlight">\(D_{512}\)</span> is the diagonal matrix with entries <span class="math notranslate nohighlight">\((1,w,\cds,w^{511})\)</span>.
+The two copies of <span class="math notranslate nohighlight">\(F_{512}\)</span> use the 512th root of unity (which is nothing but <span class="math notranslate nohighlight">\(w^2\)</span>).
+The permutation matrix separates the incoming vector <span class="math notranslate nohighlight">\(\bs{c}\)</span> into its
+even and odd parts <span class="math notranslate nohighlight">\(\bs{c}\pr=(c_0,c_2,\cds,c_{1022})\)</span> and
+<span class="math notranslate nohighlight">\(\bs{c}\ppr=(c_1,c_3,\cds,c_{1023})\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>One step of the FFT</strong>: <strong>Set</strong> <span class="math notranslate nohighlight">\(m=\frac{1}{2}n\)</span>.
+The first <span class="math notranslate nohighlight">\(m\)</span> and last <span class="math notranslate nohighlight">\(n\)</span> components of <span class="math notranslate nohighlight">\(\y=F_n\bs{c}\)</span>
+combine the half-size transform <span class="math notranslate nohighlight">\(\y\pr=F_m\bs{c}\pr\)</span> and
+<span class="math notranslate nohighlight">\(\y\ppr=F_m\bs{c}\ppr\)</span>.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(y_j=y_j\pr+(w_n)^jy_j\ppr,j=0,\cds,m-1\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(y_{j+m}=y_j\pr-(w_n)^jy_j\ppr,j=0,\cds,m-1\)</span>.</p></li>
+</ul>
+<p>Split <span class="math notranslate nohighlight">\(\bs{c}\)</span> into <span class="math notranslate nohighlight">\(\bs{c}\pr\)</span> and <span class="math notranslate nohighlight">\(\bs{c}\ppr\)</span>,
+transform them by <span class="math notranslate nohighlight">\(F_m\)</span> into <span class="math notranslate nohighlight">\(\y\pr\)</span> and <span class="math notranslate nohighlight">\(\y\ppr\)</span>,
+then reconstructs <span class="math notranslate nohighlight">\(\y\)</span>.</p>
+</div>
+<p>Those formulas come from separating <span class="math notranslate nohighlight">\(c_0,\cds,c_{n-1}\)</span> into even
+<span class="math notranslate nohighlight">\(c_{2k}\)</span> and odd <span class="math notranslate nohighlight">\(c_{2k+1}\)</span>: <span class="math notranslate nohighlight">\(w\)</span> is <span class="math notranslate nohighlight">\(w_n\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\y=\bs{Fc}\quad y_j=\sum_0^{n-1}w^{jk}c_k=\sum_0^{m-1}w^{2jk}c_{2k}+
+\sum_0^{m-1}w^{j(2k+1)}c_{2k+1}\rm{\ with\ }m=\frac{1}{2}n.\]</div>
+<p>The even <span class="math notranslate nohighlight">\(c\)</span>’s go into <span class="math notranslate nohighlight">\(\bs{c}\pr=(c_0,c_2,\cds)\)</span> and the odd
+<span class="math notranslate nohighlight">\(c\)</span>’s go into <span class="math notranslate nohighlight">\(\bs{c}\ppr=(c_1,c_3,\cds,)\)</span>.
+Then come the transforms <span class="math notranslate nohighlight">\(F_mc\pr\)</span> and <span class="math notranslate nohighlight">\(F_mc\ppr\)</span>.
+<strong>The key is</strong> <span class="math notranslate nohighlight">\(w_n^2=w_m\)</span>.
+This gives <span class="math notranslate nohighlight">\(w_n^{2jk}=w_m^{jk}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[y_j=\sum(w_m)^{jk}c_k\pr+(w_n)^j\sum(w_m)^{jk}c_k\ppr=y_j\pr+(w_n)^jy_j\ppr.\]</div>
+<p>For <span class="math notranslate nohighlight">\(j\geq m\)</span>, the minus sign comes from factoring out <span class="math notranslate nohighlight">\((w_n)^m=-1\)</span> from <span class="math notranslate nohighlight">\((w_n)^j\)</span>.</p>
 </div>
 <div class="section" id="the-full-fft-by-recursion">
 <h2>The Full FFT by Recursion<a class="headerlink" href="#the-full-fft-by-recursion" title="Permalink to this headline">¶</a></h2>
+<p><strong>The final count for size</strong> <span class="math notranslate nohighlight">\(n=2^l\)</span> <strong>is reduced from</strong> <span class="math notranslate nohighlight">\(n^2\)</span> <strong>to</strong> <span class="math notranslate nohighlight">\(\frac{1}{2}nl\)</span>.</p>
 </div>
 </div>
 
