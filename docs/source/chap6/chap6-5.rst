@@ -190,7 +190,7 @@ Table of Eigenvalues and Eigenvectors
 -------------------------------------
 
 .. list-table:: 
-    :widths: 40 25 35
+    :widths: 45 20 30
 
     * - **Symmetric**: :math:`S^T=S=Q\Ld Q^T`
       - real eigenvalues
@@ -212,7 +212,7 @@ Table of Eigenvalues and Eigenvectors
       - steady state :math:`\x>0`
     * - **Similar**: :math:`A=BCB\im`
       - :math:`\ld(A)=\ld(C)`
-      - :math:`B` times eigenvector of :math:`C`\
+      - :math:`B` times eigenvector of :math:`C`
     * - **Projection**: :math:`P=P^2=P^T`
       - :math:`\ld=1;0`
       - column space; nullspace
@@ -225,3 +225,36 @@ Table of Eigenvalues and Eigenvectors
     * - **Rank One**: :math:`\u\v^T`
       - :math:`\ld=\v^T\u;0,\cds,0`
       - :math:`\u`; whole plane :math:`\v^{\perp}`
+    * - **Inverse**: :math:`A\im`
+      - :math:`1/\ld(A)`
+      - keep eigenvectors of :math:`A`
+    * - **Shift**: :math:`A+cI`
+      - :math:`\ld(A)+c`
+      - keep eigenvectors of :math:`A`
+    * - **Stable Powers**: :math:`A^n\rightarrow 0`
+      - all :math:`|\ld|<1`
+      - any eigenvectors
+    * - **Stable Exponential**: :math:`e^{At}\rightarrow 0`
+      - all :math:`\Re \ld<0`
+      - any eigenvectors
+    * - **Cyclic Permutation**: :math:`P_{i,i+1}=1;P_{n1}=1`
+      - :math:`\ld_k=e^{2\pi ik/n}=` roots of 1
+      - :math:`\x_k=(1,\ld_k,\cds,\ld_k^{n-1})`
+    * - **Circulant**: :math:`c_0I+c_1I+\cds`
+      - :math:`\ld_k=c_0+c_1e^{2\pi ik/n}+\cds`
+      - :math:`\x_k=(1,\ld_k,\cds,\ld_k^{n-1})`
+    * - **Tridiagonal**: :math:`-1,2,-1` on diagonals
+      - :math:`\ld_k=2-2\cos\frac{k\pi}{n+1}`
+      - :math:`x_k=(\sin\frac{k\pi}{n+1},\sin\frac{2k\pi}{n+1},\cds)`
+    * - **Diagonalizable**: :math:`A=X\Ld X\im`
+      - diagonal of :math:`\Ld`
+      - columns of :math:`X` are independent
+    * - **Schur**: :math:`A=QTQ\im`
+      - diagonal of triangular :math:`T`
+      - columns of :math:`Q` if :math:`A^TA=AA^T`
+    * - **Jordan**: :math:`A=BJB\im`
+      - digonal of :math:`J`
+      - each block gives 1 eigenvector
+    * - **SVD**: :math:`A=U\Sg V^T`
+      - :math:`r` singular values in :math:`\Sg`
+      - eigenvectors of :math:`A^TA, AA^T` in :math:`V,U`

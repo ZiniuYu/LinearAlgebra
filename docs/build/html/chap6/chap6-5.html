@@ -375,9 +375,9 @@ For <span class="math notranslate nohighlight">\(F(x,y,z)\)</span> the matrix <s
 <h2>Table of Eigenvalues and Eigenvectors<a class="headerlink" href="#table-of-eigenvalues-and-eigenvectors" title="Permalink to this headline">¶</a></h2>
 <table class="colwidths-given docutils align-default">
 <colgroup>
-<col style="width: 40%" />
-<col style="width: 25%" />
-<col style="width: 35%" />
+<col style="width: 47%" />
+<col style="width: 21%" />
+<col style="width: 32%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><strong>Symmetric</strong>: <span class="math notranslate nohighlight">\(S^T=S=Q\Ld Q^T\)</span></p></td>
@@ -423,6 +423,50 @@ For <span class="math notranslate nohighlight">\(F(x,y,z)\)</span> the matrix <s
 <tr class="row-odd"><td><p><strong>Rank One</strong>: <span class="math notranslate nohighlight">\(\u\v^T\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\ld=\v^T\u;0,\cds,0\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\u\)</span>; whole plane <span class="math notranslate nohighlight">\(\v^{\perp}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Inverse</strong>: <span class="math notranslate nohighlight">\(A\im\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(1/\ld(A)\)</span></p></td>
+<td><p>keep eigenvectors of <span class="math notranslate nohighlight">\(A\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Shift</strong>: <span class="math notranslate nohighlight">\(A+cI\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\ld(A)+c\)</span></p></td>
+<td><p>keep eigenvectors of <span class="math notranslate nohighlight">\(A\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Stable Powers</strong>: <span class="math notranslate nohighlight">\(A^n\rightarrow 0\)</span></p></td>
+<td><p>all <span class="math notranslate nohighlight">\(|\ld|&lt;1\)</span></p></td>
+<td><p>any eigenvectors</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Stable Exponential</strong>: <span class="math notranslate nohighlight">\(e^{At}\rightarrow 0\)</span></p></td>
+<td><p>all <span class="math notranslate nohighlight">\(\Re \ld&lt;0\)</span></p></td>
+<td><p>any eigenvectors</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Cyclic Permutation</strong>: <span class="math notranslate nohighlight">\(P_{i,i+1}=1;P_{n1}=1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\ld_k=e^{2\pi ik/n}=\)</span> roots of 1</p></td>
+<td><p><span class="math notranslate nohighlight">\(\x_k=(1,\ld_k,\cds,\ld_k^{n-1})\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Circulant</strong>: <span class="math notranslate nohighlight">\(c_0I+c_1I+\cds\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\ld_k=c_0+c_1e^{2\pi ik/n}+\cds\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\x_k=(1,\ld_k,\cds,\ld_k^{n-1})\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Tridiagonal</strong>: <span class="math notranslate nohighlight">\(-1,2,-1\)</span> on diagonals</p></td>
+<td><p><span class="math notranslate nohighlight">\(\ld_k=2-2\cos\frac{k\pi}{n+1}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(x_k=(\sin\frac{k\pi}{n+1},\sin\frac{2k\pi}{n+1},\cds)\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Diagonalizable</strong>: <span class="math notranslate nohighlight">\(A=X\Ld X\im\)</span></p></td>
+<td><p>diagonal of <span class="math notranslate nohighlight">\(\Ld\)</span></p></td>
+<td><p>columns of <span class="math notranslate nohighlight">\(X\)</span> are independent</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Schur</strong>: <span class="math notranslate nohighlight">\(A=QTQ\im\)</span></p></td>
+<td><p>diagonal of triangular <span class="math notranslate nohighlight">\(T\)</span></p></td>
+<td><p>columns of <span class="math notranslate nohighlight">\(Q\)</span> if <span class="math notranslate nohighlight">\(A^TA=AA^T\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Jordan</strong>: <span class="math notranslate nohighlight">\(A=BJB\im\)</span></p></td>
+<td><p>digonal of <span class="math notranslate nohighlight">\(J\)</span></p></td>
+<td><p>each block gives 1 eigenvector</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>SVD</strong>: <span class="math notranslate nohighlight">\(A=U\Sg V^T\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(r\)</span> singular values in <span class="math notranslate nohighlight">\(\Sg\)</span></p></td>
+<td><p>eigenvectors of <span class="math notranslate nohighlight">\(A^TA, AA^T\)</span> in <span class="math notranslate nohighlight">\(V,U\)</span></p></td>
 </tr>
 </tbody>
 </table>
