@@ -43,7 +43,7 @@
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="&lt;no title&gt;" href="chap12-2.html" />
+    <link rel="next" title="Chapter 12.2 Covariance Matrices and Joint Probabilities" href="chap12-2.html" />
     <link rel="prev" title="Chapter 12 Linear Algebra in Probability &amp; Statistics" href="index12.html" /> 
 </head>
 
@@ -101,7 +101,18 @@
 <li class="toctree-l1"><a class="reference internal" href="../chap8/index8.html">Chapter 8 Linear Transformations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../chap9/index9.html">Chapter 9 Complex Vectors and Matrices</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index12.html">Chapter 12 Linear Algebra in Probability &amp; Statistics</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 12.1 Mean, Variance, and Probability</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 12.1 Mean, Variance, and Probability</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#variance-around-the-mean">Variance (around the mean)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#continuous-probability-distributions">Continuous Probability Distributions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mean-and-variance-of-p-x">Mean and Variance of <span class="math notranslate nohighlight">\(p(x)\)</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#normal-distribution-bell-shaped-curve">Normal Distribution: Bell-shaped Curve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#n-coin-flips-and-n-rightarrow-infty"><span class="math notranslate nohighlight">\(N\)</span> Coin Flips and <span class="math notranslate nohighlight">\(N\rightarrow \infty\)</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#monte-carlo-estimation-methods">Monte Carlo Estimation Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#review-three-formulas-for-the-mean-and-the-variance">Review: Three Formulas for the Mean and the Variance</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="chap12-2.html">Chapter 12.2 Covariance Matrices and Joint Probabilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chap12-3.html">Chapter 12.3 Multivariate Gaussian and Weighted Least Squares</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
@@ -211,6 +222,118 @@
 \newcommand{\ppr}{^{\prime\prime}}\end{aligned}\end{align} \]</div>
 <div class="section" id="chapter-12-1-mean-variance-and-probability">
 <h1>Chapter 12.1 Mean, Variance, and Probability<a class="headerlink" href="#chapter-12-1-mean-variance-and-probability" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>The <strong>mean</strong> is the <em>average value</em> or expected value.</p></li>
+<li><p>The <strong>variance</strong> <span class="math notranslate nohighlight">\(\sg^2\)</span> measures the average <em>squared distance</em> from the mean <span class="math notranslate nohighlight">\(m\)</span>.</p></li>
+<li><p>The <strong>probabilities</strong> of <span class="math notranslate nohighlight">\(n\)</span> different outcomes are positive numbers <span class="math notranslate nohighlight">\(p_1,\cds,p_n\)</span> adding to 1.</p></li>
+</ul>
+<p>The sample mean starts with <span class="math notranslate nohighlight">\(N\)</span> samples <span class="math notranslate nohighlight">\(x_1,\cds,\x_N\)</span> from a completed trial.
+Their mean is the <em>average</em> of the <span class="math notranslate nohighlight">\(N\)</span> observed samples:</p>
+<p><strong>Sample mean</strong>: <span class="math notranslate nohighlight">\(\dp m=\mu=\frac{1}{N}(x_1+x_2+\cds+x_N)\)</span>.</p>
+<p>The <strong>expected value of</strong> <span class="math notranslate nohighlight">\(\x\)</span> starts with the probabilities <span class="math notranslate nohighlight">\(p_1,\cds,p_n\)</span> of <span class="math notranslate nohighlight">\(x_1,\cds,x_n\)</span>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Expected value</strong>: <span class="math notranslate nohighlight">\(m=\rm{E}[x]=p_1x_1+p_2x_2+\cds+p_nx_n\)</span>.</p>
+</div>
+<p>This is <span class="math notranslate nohighlight">\(\p\cd\x\)</span>.
+Notice that <span class="math notranslate nohighlight">\(m=\bs{E}[x]\)</span> tells us what to expect, <span class="math notranslate nohighlight">\(m=\mu\)</span> tells us what we got.</p>
+<div class="section" id="variance-around-the-mean">
+<h2>Variance (around the mean)<a class="headerlink" href="#variance-around-the-mean" title="Permalink to this headline">¶</a></h2>
+<p>The <strong>variance</strong> <span class="math notranslate nohighlight">\(\sg^2\)</span> measures expected distance (squared) from the expected mean <span class="math notranslate nohighlight">\(\bs{E}[x]\)</span>.
+The <strong>sample variance</strong> <span class="math notranslate nohighlight">\(S^2\)</span> measures actual distance (squared) from the sample mean.
+The square root is the <strong>standard deviation</strong> <span class="math notranslate nohighlight">\(\sg\)</span> <strong>or</strong> <span class="math notranslate nohighlight">\(S\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Sample variance</strong>: <span class="math notranslate nohighlight">\(\dp S^2=\frac{1}{N-1}[(x_1-m)^2+\cds+(x_N-m)^2]\)</span>.</p>
+</div>
+<p>Statisticians divide by math:<cite>N-1</cite> and not <span class="math notranslate nohighlight">\(N\)</span> so that <span class="math notranslate nohighlight">\(S^2\)</span> is an unbiased estimate of <span class="math notranslate nohighlight">\(\sg^2\)</span>.
+One degree of freedom is already accounted for in the sample mean.</p>
+<p>An important identity comes from splitting each <span class="math notranslate nohighlight">\((x-m)^2\)</span> into <span class="math notranslate nohighlight">\(x^2-2mx+m^2\)</span>:</p>
+<p>sum of <span class="math notranslate nohighlight">\((x_i-m)^2=(\)</span>sum of <span class="math notranslate nohighlight">\(x_i^2)-2m(\)</span>sum of <span class="math notranslate nohighlight">\(x_i)+(\)</span>sum of <span class="math notranslate nohighlight">\(m^2)\)</span></p>
+<p><span class="math notranslate nohighlight">\(=(\)</span>sum of <span class="math notranslate nohighlight">\(x_i^2)-2m(Nm)+Nm^2=(\)</span>sum of <span class="math notranslate nohighlight">\(x_i^2)-Nm^2\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Variance</strong>: <span class="math notranslate nohighlight">\(\sg^2=\rm{E}[(x=m)^2]=p_1(x_1-m)^2+\cds+p_n(x_n-m)^2\)</span>.</p>
+</div>
+</div>
+<div class="section" id="continuous-probability-distributions">
+<h2>Continuous Probability Distributions<a class="headerlink" href="#continuous-probability-distributions" title="Permalink to this headline">¶</a></h2>
+<p><span class="math notranslate nohighlight">\(F=\)</span> <strong>integral of</strong> <span class="math notranslate nohighlight">\(p\)</span>: <strong>Probability of</strong> <span class="math notranslate nohighlight">\(\dp a\leq x\leq b=\int_a^b p(x)dx=F(b)-F(a)\)</span>.</p>
+</div>
+<div class="section" id="mean-and-variance-of-p-x">
+<h2>Mean and Variance of <span class="math notranslate nohighlight">\(p(x)\)</span><a class="headerlink" href="#mean-and-variance-of-p-x" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Mean</strong>: <span class="math notranslate nohighlight">\(\dp m=\rm{E}[x]=\int xp(x)dx\)</span>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Variance</strong>: <span class="math notranslate nohighlight">\(\dp\sg^2=\rm{E}[(x-m)^2]=\int p(x)(x-m)^2dx\)</span>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Uniform distribution for</strong> <span class="math notranslate nohighlight">\(0\leq x\leq a\)</span>; <strong>Density</strong>
+<span class="math notranslate nohighlight">\(\dp p(x)=\frac{1}{a}\)</span>; <strong>Cumulative</strong> <span class="math notranslate nohighlight">\(\dp F(x)=\frac{x}{a}\)</span>:</p>
+<ul class="simple">
+<li><p><strong>Mean</strong>: <span class="math notranslate nohighlight">\(\dp m=\frac{a}{2}\)</span> halfway</p></li>
+<li><p><strong>Variance</strong>: <span class="math notranslate nohighlight">\(\dp \sg^2=\int_0^a\frac{1}{a}\left(x-\frac{a}{2}\right)^2dx=\frac{a^2}{12}\)</span>.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="normal-distribution-bell-shaped-curve">
+<h2>Normal Distribution: Bell-shaped Curve<a class="headerlink" href="#normal-distribution-bell-shaped-curve" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Central Limit Theorem (informal)</strong>: The average of <span class="math notranslate nohighlight">\(N\)</span> samples of
+“any” probability distribution approaches a normal distribution as
+<span class="math notranslate nohighlight">\(N\rightarrow\infty\)</span>.</p>
+</div>
+<p>The standard normal distribution is symmetric around <span class="math notranslate nohighlight">\(x=0\)</span>, so its mean value is <span class="math notranslate nohighlight">\(m=0\)</span>.
+It is chosen to have a standard variance <span class="math notranslate nohighlight">\(\sg^2=1\)</span>.
+It is called <span class="math notranslate nohighlight">\(\bs{\rm{N}}(0,1)\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Standard normal distribution</strong>: <span class="math notranslate nohighlight">\(\dp p(x)=\frac{1}{\sqrt{2\pi}}e^{-x^2/2}\)</span></p>
+</div>
+<ul class="simple">
+<li><p><strong>Total probability</strong> <span class="math notranslate nohighlight">\(=1\)</span>:
+<span class="math notranslate nohighlight">\(\dp \int_{-\infty}^{\infty}p(x)dx=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}e^{-x^2/2}dx=1\)</span></p></li>
+<li><p><strong>Mean</strong> <span class="math notranslate nohighlight">\(\rm{E}[x]=0\)</span>: <span class="math notranslate nohighlight">\(\dp m=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}xe^{-x^2/2}dx=0\)</span></p></li>
+<li><p><strong>Variance</strong> <span class="math notranslate nohighlight">\(\rm{E}[x^2]=1\)</span>: <span class="math notranslate nohighlight">\(\dp\sg^2=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}(x-0)^2e^{-x^2/2}dx=1\)</span></p></li>
+</ul>
+<p>The probability that a random sample falls between <span class="math notranslate nohighlight">\(-\sg\)</span> and <span class="math notranslate nohighlight">\(\sg\)</span>
+is <span class="math notranslate nohighlight">\(F(\sg)-F(-\sg)\approx\frac{2}{3}\)</span>.
+This is because <span class="math notranslate nohighlight">\(\int_{-\sg}^{\sg}p(x)dx\)</span> equals
+<span class="math notranslate nohighlight">\(\int_{-\infty}^{\sg}p(x)dx-\int_{-\infty}^{-\sg}p(x)dx=F(\sg)-F(-\sg)\)</span>.</p>
+<p>Similarly, the probability that a random <span class="math notranslate nohighlight">\(x\)</span> lies between <span class="math notranslate nohighlight">\(-2\sg\)</span>
+and <span class="math notranslate nohighlight">\(2\sg\)</span> is <span class="math notranslate nohighlight">\(F(2\sg)-F(-2\sg)\approx 0.95\)</span>.</p>
+<p>The normal distribution with any mean <span class="math notranslate nohighlight">\(m\)</span> and standard deviation
+<span class="math notranslate nohighlight">\(\sg\)</span> comes by shifting and stretching the standard
+<span class="math notranslate nohighlight">\(\bs{\rm{N}}(0,1)\)</span>.
+<strong>Shift</strong> <span class="math notranslate nohighlight">\(x\)</span> <strong>to</strong> <span class="math notranslate nohighlight">\(x-m\)</span>.
+<strong>Stretch</strong> <span class="math notranslate nohighlight">\(x-m\)</span> <strong>to</strong> <span class="math notranslate nohighlight">\((x-m)/\sg\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Gaussian density</strong> <span class="math notranslate nohighlight">\(p(x)\)</span>; <strong>Normal distribution</strong> <span class="math notranslate nohighlight">\(\bs{\rm{N}}(m,\sg)\)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\dp p(x)=\frac{1}{\sg\sqrt{2\pi}}e^{-(x-m)^2/2\sg^2}\)</span></p></li>
+</ul>
+</div>
+<p>The integral of <span class="math notranslate nohighlight">\(p(x)\)</span> is <span class="math notranslate nohighlight">\(F(x)\)</span>–the probability that a random sample will fall below <span class="math notranslate nohighlight">\(x\)</span>.
+The differential <span class="math notranslate nohighlight">\(p(x)dx=F(x+dx)-F(x)\)</span> is the probability that a random
+sample will fall between <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x+dx\)</span>.
+There is no simple formula to integrate <span class="math notranslate nohighlight">\(e^{-x^2/2}\)</span>, so this cumulative
+distribution <span class="math notranslate nohighlight">\(F(x)\)</span> is computed and tabulated very carefully.</p>
+</div>
+<div class="section" id="n-coin-flips-and-n-rightarrow-infty">
+<h2><span class="math notranslate nohighlight">\(N\)</span> Coin Flips and <span class="math notranslate nohighlight">\(N\rightarrow \infty\)</span><a class="headerlink" href="#n-coin-flips-and-n-rightarrow-infty" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="monte-carlo-estimation-methods">
+<h2>Monte Carlo Estimation Methods<a class="headerlink" href="#monte-carlo-estimation-methods" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="review-three-formulas-for-the-mean-and-the-variance">
+<h2>Review: Three Formulas for the Mean and the Variance<a class="headerlink" href="#review-three-formulas-for-the-mean-and-the-variance" title="Permalink to this headline">¶</a></h2>
+</div>
 </div>
 
 
@@ -219,7 +342,7 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="chap12-2.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="chap12-2.html" class="btn btn-neutral float-right" title="Chapter 12.2 Covariance Matrices and Joint Probabilities" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
         <a href="index12.html" class="btn btn-neutral float-left" title="Chapter 12 Linear Algebra in Probability &amp; Statistics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
