@@ -13,8 +13,6 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -31,11 +29,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -327,9 +325,68 @@ distribution <span class="math notranslate nohighlight">\(F(x)\)</span> is compu
 </div>
 <div class="section" id="n-coin-flips-and-n-rightarrow-infty">
 <h2><span class="math notranslate nohighlight">\(N\)</span> Coin Flips and <span class="math notranslate nohighlight">\(N\rightarrow \infty\)</span><a class="headerlink" href="#n-coin-flips-and-n-rightarrow-infty" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Linearity</strong>: <span class="math notranslate nohighlight">\(x_{\rm{new}}=ax_{\rm{old}}+b\)</span> has
+<span class="math notranslate nohighlight">\(m_{\rm{new}}=am_{\rm{old}}+b\)</span> and
+<span class="math notranslate nohighlight">\(\sg_{\rm{new}}^2=a^2\sg_{\rm{\old}}^2\)</span>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Shafted and scaled</strong>: <span class="math notranslate nohighlight">\(\dp X=\frac{x-m}{\sg}=\frac{x-\frac{1}{2}N}{\sqrt{N}/2}\)</span></p>
+<ul class="simple">
+<li><p><strong>Subtracting</strong> <span class="math notranslate nohighlight">\(m\)</span> <strong>is “centering” or “detrending”</strong>.
+<strong>The mean of</strong> <span class="math notranslate nohighlight">\(X\)</span> <strong>is zero</strong>.</p></li>
+<li><p><strong>Dividing by</strong> <span class="math notranslate nohighlight">\(\sg\)</span> <strong>is “normalizing” or “standardizing”</strong>.
+<strong>The variance of</strong> <span class="math notranslate nohighlight">\(X\)</span> <strong>is 1</strong>.</p></li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The center probability <span class="math notranslate nohighlight">\(\dp\bigg(\frac{N}{2}\)</span> heads,
+<span class="math notranslate nohighlight">\(\dp\frac{N}{2}\)</span> tails<span class="math notranslate nohighlight">\(\bigg)\)</span> is
+<span class="math notranslate nohighlight">\(\dp\frac{1}{2^N}\frac{N!}{(N/2)!(N/2)!}\)</span>.</p>
+</div>
+<p>For large <span class="math notranslate nohighlight">\(N\)</span>, Stirling’s formula <span class="math notranslate nohighlight">\(\sqrt{2\pi N}(N/e)^N\)</span> is a close approximation to <span class="math notranslate nohighlight">\(N!\)</span>/
+Use Stirling for <span class="math notranslate nohighlight">\(N\)</span> and twice for <span class="math notranslate nohighlight">\(N/2\)</span>:</p>
+<p><strong>Limit of coin-flip Center probability</strong>:</p>
+<div class="math notranslate nohighlight">
+\[p_{N/2}\approx\frac{1}{2^N}\frac{\sqrt{2\pi N}(N/e)^N}{\pi N(N/2e)^N}=
+\frac{\sqrt{2}}{\sqrt{\pi N}}=\frac{1}{\sqrt{2\pi}\sg}.\]</div>
 </div>
 <div class="section" id="monte-carlo-estimation-methods">
 <h2>Monte Carlo Estimation Methods<a class="headerlink" href="#monte-carlo-estimation-methods" title="Permalink to this headline">¶</a></h2>
+<p>Applied mathematics has moved to <strong>accepting uncertainty in the inputs and estimating the variance in the outputs</strong>.
+<strong>Monte Carlo method</strong> approximates an expected value <span class="math notranslate nohighlight">\(\rm{E}[x]\)</span> by a sample average <span class="math notranslate nohighlight">\((x_1+\cds+x_N)/N\)</span>.</p>
+<p>Each sample comes from a set of data <span class="math notranslate nohighlight">\(b_k\)</span>.
+<em>Monte Carlo randomly chooses this data</em> <span class="math notranslate nohighlight">\(b_k\)</span>, <em>it computes the outputs</em>
+<span class="math notranslate nohighlight">\(x_k\)</span>, <em>and then it averages those</em> <span class="math notranslate nohighlight">\(x\)</span>’s.
+Decent accuracy for <span class="math notranslate nohighlight">\(\rm{E}[x]\)</span> often requires many samples <span class="math notranslate nohighlight">\(b\)</span> and huge computing cost.
+The error in approimating <span class="math notranslate nohighlight">\(\rm{E}[x]\)</span> by <span class="math notranslate nohighlight">\((x_1+\cds+x_N)/N\)</span> is normally of order <span class="math notranslate nohighlight">\(1/\sqrt{N}\)</span>.
+<em>Slow improvements as</em> <span class="math notranslate nohighlight">\(N\)</span> <em>increases</em>.</p>
+<p>Suppose it is much simpler to simulate another variable <span class="math notranslate nohighlight">\(y(b)\)</span> close to <span class="math notranslate nohighlight">\(x(b)\)</span>.
+Then use <span class="math notranslate nohighlight">\(N\)</span> computationis of <span class="math notranslate nohighlight">\(y(b_k)\)</span> and only <span class="math notranslate nohighlight">\(N^*&lt;N\)</span>
+computations of <span class="math notranslate nohighlight">\(x(b_k)\)</span> to estimate <span class="math notranslate nohighlight">\(rm{E}[x]\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>2-level Monte Carlo</strong>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\dp \rm{E}[x]\approx\frac{1}{N}\sum_1^N y(b_k)+\frac{1}{N^*}\sum_1^{N^*}[x(b_k)-y(b_k)]\)</span>.</p></li>
+</ul>
+</div>
+<p>The idea is that <span class="math notranslate nohighlight">\(x-y\)</span> has a smaller variance <span class="math notranslate nohighlight">\(\sg^*\)</span> than the original <span class="math notranslate nohighlight">\(x\)</span>/
+Therefore <span class="math notranslate nohighlight">\(N^*\)</span> can be smaller than <span class="math notranslate nohighlight">\(N\)</span>, with the same accuracy for <span class="math notranslate nohighlight">\(\rm{E}[x]\)</span>.
+We do <span class="math notranslate nohighlight">\(N\)</span> cheap simulations to find the <span class="math notranslate nohighlight">\(y\)</span>’s.
+Those cost <span class="math notranslate nohighlight">\(C\)</span> each.
+We only do <span class="math notranslate nohighlight">\(N^*\)</span> expensive simulations involving <span class="math notranslate nohighlight">\(x\)</span>’s.
+Those cost <span class="math notranslate nohighlight">\(C^*\)</span> each.
+The total computing cost is <span class="math notranslate nohighlight">\(NC+N^*C^*\)</span>.</p>
+<p>Calculus minimizes the overall variance for a fixed total cost.
+The optimal ratio <span class="math notranslate nohighlight">\(N^*/N\)</span> is <span class="math notranslate nohighlight">\(\sqrt{C/C^*}\sg^*/\sg\)</span>.
+Three-level Monte Carlo would simulate <span class="math notranslate nohighlight">\(x,y\)</span> and <span class="math notranslate nohighlight">\(z\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\rm{E}[x]\approx\frac{1}{N}\sum_1^N z(b_k)+\frac{1}{N^*}\sum_1^{N^*}[y(b_k)-
+z(b_k)]+\frac{1}{N^{**}}\sum_1^{N^{**}}[x(b_k)-y(b_k)].\]</div>
 </div>
 <div class="section" id="review-three-formulas-for-the-mean-and-the-variance">
 <h2>Review: Three Formulas for the Mean and the Variance<a class="headerlink" href="#review-three-formulas-for-the-mean-and-the-variance" title="Permalink to this headline">¶</a></h2>

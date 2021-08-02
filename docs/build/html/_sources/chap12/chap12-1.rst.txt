@@ -123,24 +123,77 @@ distribution :math:`F(x)` is computed and tabulated very carefully.
 :math:`N` Coin Flips and :math:`N\rightarrow \infty`
 ----------------------------------------------------
 
+.. note::
 
+    **Linearity**: :math:`x_{\rm{new}}=ax_{\rm{old}}+b` has 
+    :math:`m_{\rm{new}}=am_{\rm{old}}+b` and 
+    :math:`\sg_{\rm{new}}^2=a^2\sg_{\rm{\old}}^2`.
 
+.. note::
 
+    **Shafted and scaled**: :math:`\dp X=\frac{x-m}{\sg}=\frac{x-\frac{1}{2}N}{\sqrt{N}/2}`
 
+    * **Subtracting** :math:`m` **is "centering" or "detrending"**. 
+      **The mean of** :math:`X` **is zero**.
+    
+    * **Dividing by** :math:`\sg` **is "normalizing" or "standardizing"**.
+      **The variance of** :math:`X` **is 1**.
 
+.. note::
 
+    The center probability :math:`\dp\bigg(\frac{N}{2}` heads, 
+    :math:`\dp\frac{N}{2}` tails\ :math:`\bigg)` is
+    :math:`\dp\frac{1}{2^N}\frac{N!}{(N/2)!(N/2)!}`.
 
+For large :math:`N`, Stirling's formula :math:`\sqrt{2\pi N}(N/e)^N` is a close approximation to :math:`N!`/
+Use Stirling for :math:`N` and twice for :math:`N/2`:
+
+**Limit of coin-flip Center probability**:
+
+.. math::
+
+    p_{N/2}\approx\frac{1}{2^N}\frac{\sqrt{2\pi N}(N/e)^N}{\pi N(N/2e)^N}=
+    \frac{\sqrt{2}}{\sqrt{\pi N}}=\frac{1}{\sqrt{2\pi}\sg}.
 
 Monte Carlo Estimation Methods
 ------------------------------
 
+Applied mathematics has moved to **accepting uncertainty in the inputs and estimating the variance in the outputs**.
+**Monte Carlo method** approximates an expected value :math:`\rm{E}[x]` by a sample average :math:`(x_1+\cds+x_N)/N`.
 
+Each sample comes from a set of data :math:`b_k`.
+*Monte Carlo randomly chooses this data* :math:`b_k`, *it computes the outputs* 
+:math:`x_k`, *and then it averages those* :math:`x`'s.
+Decent accuracy for :math:`\rm{E}[x]` often requires many samples :math:`b` and huge computing cost.
+The error in approimating :math:`\rm{E}[x]` by :math:`(x_1+\cds+x_N)/N` is normally of order :math:`1/\sqrt{N}`.
+*Slow improvements as* :math:`N` *increases*.
 
+Suppose it is much simpler to simulate another variable :math:`y(b)` close to :math:`x(b)`.
+Then use :math:`N` computationis of :math:`y(b_k)` and only :math:`N^*<N` 
+computations of :math:`x(b_k)` to estimate :math:`rm{E}[x]`.
 
+.. note::
 
+    **2-level Monte Carlo**:
 
+    * :math:`\dp \rm{E}[x]\approx\frac{1}{N}\sum_1^N y(b_k)+\frac{1}{N^*}\sum_1^{N^*}[x(b_k)-y(b_k)]`.
 
+The idea is that :math:`x-y` has a smaller variance :math:`\sg^*` than the original :math:`x`/
+Therefore :math:`N^*` can be smaller than :math:`N`, with the same accuracy for :math:`\rm{E}[x]`.
+We do :math:`N` cheap simulations to find the :math:`y`'s.
+Those cost :math:`C` each.
+We only do :math:`N^*` expensive simulations involving :math:`x`'s.
+Those cost :math:`C^*` each.
+The total computing cost is :math:`NC+N^*C^*`.
 
+Calculus minimizes the overall variance for a fixed total cost.
+The optimal ratio :math:`N^*/N` is :math:`\sqrt{C/C^*}\sg^*/\sg`.
+Three-level Monte Carlo would simulate :math:`x,y` and :math:`z`:
+
+.. math::
+
+    \rm{E}[x]\approx\frac{1}{N}\sum_1^N z(b_k)+\frac{1}{N^*}\sum_1^{N^*}[y(b_k)-
+    z(b_k)]+\frac{1}{N^{**}}\sum_1^{N^{**}}[x(b_k)-y(b_k)].
 
 Review: Three Formulas for the Mean and the Variance
 ----------------------------------------------------
