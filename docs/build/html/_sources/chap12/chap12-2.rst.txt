@@ -78,7 +78,7 @@ That matrix :math:`V_{ij}` has rank 1.
 .. math::
 
     \bb (x_i-m_1)^2&(x_i-m_1)(y_j-m_2)\\(x_i-m_1)(y_j-m_2)&(y_j-m_2)^2\eb=
-    \bb x_i-m_1\\y_j-m_2 \eb\bb x_i-m_1 y_j-m_2 \eb.
+    \bb x_i-m_1\\y_j-m_2 \eb\bb x_i-m_1&y_j-m_2 \eb.
 
 *Every matrix* :math:`UU^T` *is positive semidefinite*.
 Sothe whole matrix :math:`V` (combining these matrices :math:`UU^T` with weights 
@@ -96,16 +96,75 @@ Sothe whole matrix :math:`V` (combining these matrices :math:`UU^T` with weights
     
     =c^T\rm{E}[(\X-\bar{\X})(\X-\bar{\X})]c=c^TVc
 
+*The variance of* :math:`c^T\X` *can never be negative*.
+So :math:`c^TVc\geq 0`.
+*The covariance matrix* :math:`V` *is therefore positive semidefinite by the energy test* :math:`c^TVc\geq 0`.
+
+:math:`V` equals :math:`Q\Ld Q^T` with eigenvalues :math:`\ld_i\geq 0` and 
+orthonormal eigenvectors :math:`\q_1` to :math:`\q_M`.
+**Diagonalizing the covariance matrix means finding** :math:`M` 
+**independent experiments as combinations of the original** :math:`M`
+**experiments**.
+
+.. note::
+
+    **Covariance matrix**: :math:`\dp V=\iiint p(x,y,z)UU^Tdxdydz` with 
+    :math:`U=\bb x-\bar{x}\\y-\bar{y}\\z-\bar{z} \eb`.
+
+* **Independent variables** :math:`x,y,z`: :math:`p(x,y,z)=p_1(x)p_2(y)p_3(z)`.
+
+* **Dependeent variables** :math:`x,y,z`: :math:`p(x,y,z)=0` except when :math:`cy+dy+ez=0`.
+
 The Mean and Variance of :math:`z=x+y`
 --------------------------------------
 
+**The sample mean of** :math:`z=x+y` **is clearly** :math:`m_z=m_x+m_y`:
 
+.. note::
 
+    **Mean of sum = Sum of means**: 
+    
+    * :math:`\dp\frac{1}{N}\sum_1^N(x_i+y_i)=\frac{1}{N}\sum_1^Nx_i+\frac{1}{N}\sum_1^Ny_i`.
 
+.. math::
 
+    \rm{E}[x+y]=\sum_i\sum_j p_{ij}(x_i+y_j)=\sum_i\sum_j p_{ij}x_i+\sum_i\sum_j p_{ij}y_j.
 
+    \sum_i\sum_j p_{ij}x_i=\sum_i(p_{i1}+\cds+p_{iN})x_i=\sum_i p_ix_i=\rm{E}[x]
 
+    \sum_i\sum_j p_{ij}y_j=\sum_j(p_{1j}+\cds+p_{nj})y_j=\sum_j p_jy_j=\rm{E}[y]
 
+.. math::
+
+    \sg_z^2&=\sum\sum p_{ij}(x_i+y_j-m_x-m_y)^2
+
+    &=\sum\sum p_{ij}(x_I-m_x)^2+\sum\sum p_{ij}(y_j-m_y)^2+2\sum\sum p_{ij}(x_i-m_x)(y_j-m_y)
+
+**The variance of** :math:`z=x+y` **is** :math:`\sg_z^2=\sg_x^2+\sg_y^2+2\sg_{xy}`.
 
 The Covariance Matrix for :math:`Z=AX`
 --------------------------------------
+
+.. note::
+
+    **The covariance matrix of** :math:`Z=AX` **is** :math:`V_Z=AV_XA^T`.
+
+The Correlation :math:`\rho`
+----------------------------
+
+**The new** :math:`X=x/\rho_x` **and** :math:`Y=y/\rho_y` **have variance** :math:`\sg_X^2=\sg_Y^2=1`.
+**The correlation of** :math:`x` **and** :math:`y` **is the covariance of** :math:`X` **and** :math:`Y`.
+
+.. note::
+
+    **Correlation**: :math:`\dp\rho_{xy}=\frac{\sg_{xy}}{\sg_x\sg_y}=` 
+    **covariance of** :math:`\dp\frac{x}{\sg_x}` **and** 
+    :math:`\dp\frac{y}{\rho_y}`.
+    Always :math:`-1\leq\rho_{xy}\leq 1`.
+
+Zero covariance gives zero correlation.
+*Independent random variables produce* :math:`\rho_{xy}=0`.
+
+Since :math:`\sg_{xy}^2\leq\sg_x^2\sg_y^2`, then :math:`\rho_{xy}^2\leq 1`.
+Correlation near :math:`\rho=+1` means strong dependence in the same direction.
+Negative correlation means that :math:`y` tends to be below its mean when :math:`x` is above its mean.

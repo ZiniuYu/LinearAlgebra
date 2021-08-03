@@ -13,8 +13,6 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -31,11 +29,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -106,6 +104,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#the-covariance-matrix-v-is-positive-semidefinite">The Covariance Matrix <span class="math notranslate nohighlight">\(V\)</span> is Positive Semidefinite</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#the-mean-and-variance-of-z-x-y">The Mean and Variance of <span class="math notranslate nohighlight">\(z=x+y\)</span></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#the-covariance-matrix-for-z-ax">The Covariance Matrix for <span class="math notranslate nohighlight">\(Z=AX\)</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-correlation-rho">The Correlation <span class="math notranslate nohighlight">\(\rho\)</span></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="chap12-3.html">Chapter 12.3 Multivariate Gaussian and Weighted Least Squares</a></li>
@@ -274,7 +273,7 @@ Each term <span class="math notranslate nohighlight">\((X_i-\bar{\X})(X_i-\bar{\
 That matrix <span class="math notranslate nohighlight">\(V_{ij}\)</span> has rank 1.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\bb (x_i-m_1)^2&amp;(x_i-m_1)(y_j-m_2)\\(x_i-m_1)(y_j-m_2)&amp;(y_j-m_2)^2\eb=
-\bb x_i-m_1\\y_j-m_2 \eb\bb x_i-m_1 y_j-m_2 \eb.\end{split}\]</div>
+\bb x_i-m_1\\y_j-m_2 \eb\bb x_i-m_1&amp;y_j-m_2 \eb.\end{split}\]</div>
 <p><em>Every matrix</em> <span class="math notranslate nohighlight">\(UU^T\)</span> <em>is positive semidefinite</em>.
 Sothe whole matrix <span class="math notranslate nohighlight">\(V\)</span> (combining these matrices <span class="math notranslate nohighlight">\(UU^T\)</span> with weights
 <span class="math notranslate nohighlight">\(p_{ij}\geq 0\)</span>) is <strong>at least semidefinite</strong>.</p>
@@ -285,12 +284,63 @@ Sothe whole matrix <span class="math notranslate nohighlight">\(V\)</span> (comb
 </div>
 <div class="math notranslate nohighlight">
 \[ \begin{align}\begin{aligned}\rm{Variance\ of\ }c^T\X=\rm{E}[(c^T\X-c^T\bar{\X})(c^T\X-c^T\bar{\X})^T]\\=c^T\rm{E}[(\X-\bar{\X})(\X-\bar{\X})]c=c^TVc\end{aligned}\end{align} \]</div>
+<p><em>The variance of</em> <span class="math notranslate nohighlight">\(c^T\X\)</span> <em>can never be negative</em>.
+So <span class="math notranslate nohighlight">\(c^TVc\geq 0\)</span>.
+<em>The covariance matrix</em> <span class="math notranslate nohighlight">\(V\)</span> <em>is therefore positive semidefinite by the energy test</em> <span class="math notranslate nohighlight">\(c^TVc\geq 0\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(V\)</span> equals <span class="math notranslate nohighlight">\(Q\Ld Q^T\)</span> with eigenvalues <span class="math notranslate nohighlight">\(\ld_i\geq 0\)</span> and
+orthonormal eigenvectors <span class="math notranslate nohighlight">\(\q_1\)</span> to <span class="math notranslate nohighlight">\(\q_M\)</span>.
+<strong>Diagonalizing the covariance matrix means finding</strong> <span class="math notranslate nohighlight">\(M\)</span>
+<strong>independent experiments as combinations of the original</strong> <span class="math notranslate nohighlight">\(M\)</span>
+<strong>experiments</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Covariance matrix</strong>: <span class="math notranslate nohighlight">\(\dp V=\iiint p(x,y,z)UU^Tdxdydz\)</span> with
+<span class="math notranslate nohighlight">\(U=\bb x-\bar{x}\\y-\bar{y}\\z-\bar{z} \eb\)</span>.</p>
+</div>
+<ul class="simple">
+<li><p><strong>Independent variables</strong> <span class="math notranslate nohighlight">\(x,y,z\)</span>: <span class="math notranslate nohighlight">\(p(x,y,z)=p_1(x)p_2(y)p_3(z)\)</span>.</p></li>
+<li><p><strong>Dependeent variables</strong> <span class="math notranslate nohighlight">\(x,y,z\)</span>: <span class="math notranslate nohighlight">\(p(x,y,z)=0\)</span> except when <span class="math notranslate nohighlight">\(cy+dy+ez=0\)</span>.</p></li>
+</ul>
 </div>
 <div class="section" id="the-mean-and-variance-of-z-x-y">
 <h2>The Mean and Variance of <span class="math notranslate nohighlight">\(z=x+y\)</span><a class="headerlink" href="#the-mean-and-variance-of-z-x-y" title="Permalink to this headline">¶</a></h2>
+<p><strong>The sample mean of</strong> <span class="math notranslate nohighlight">\(z=x+y\)</span> <strong>is clearly</strong> <span class="math notranslate nohighlight">\(m_z=m_x+m_y\)</span>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Mean of sum = Sum of means</strong>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\dp\frac{1}{N}\sum_1^N(x_i+y_i)=\frac{1}{N}\sum_1^Nx_i+\frac{1}{N}\sum_1^Ny_i\)</span>.</p></li>
+</ul>
+</div>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\rm{E}[x+y]=\sum_i\sum_j p_{ij}(x_i+y_j)=\sum_i\sum_j p_{ij}x_i+\sum_i\sum_j p_{ij}y_j.\\\sum_i\sum_j p_{ij}x_i=\sum_i(p_{i1}+\cds+p_{iN})x_i=\sum_i p_ix_i=\rm{E}[x]\\\sum_i\sum_j p_{ij}y_j=\sum_j(p_{1j}+\cds+p_{nj})y_j=\sum_j p_jy_j=\rm{E}[y]\end{aligned}\end{align} \]</div>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\sg_z^2&amp;=\sum\sum p_{ij}(x_i+y_j-m_x-m_y)^2\\&amp;=\sum\sum p_{ij}(x_I-m_x)^2+\sum\sum p_{ij}(y_j-m_y)^2+2\sum\sum p_{ij}(x_i-m_x)(y_j-m_y)\end{aligned}\end{align} \]</div>
+<p><strong>The variance of</strong> <span class="math notranslate nohighlight">\(z=x+y\)</span> <strong>is</strong> <span class="math notranslate nohighlight">\(\sg_z^2=\sg_x^2+\sg_y^2+2\sg_{xy}\)</span>.</p>
 </div>
 <div class="section" id="the-covariance-matrix-for-z-ax">
 <h2>The Covariance Matrix for <span class="math notranslate nohighlight">\(Z=AX\)</span><a class="headerlink" href="#the-covariance-matrix-for-z-ax" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>The covariance matrix of</strong> <span class="math notranslate nohighlight">\(Z=AX\)</span> <strong>is</strong> <span class="math notranslate nohighlight">\(V_Z=AV_XA^T\)</span>.</p>
+</div>
+</div>
+<div class="section" id="the-correlation-rho">
+<h2>The Correlation <span class="math notranslate nohighlight">\(\rho\)</span><a class="headerlink" href="#the-correlation-rho" title="Permalink to this headline">¶</a></h2>
+<p><strong>The new</strong> <span class="math notranslate nohighlight">\(X=x/\rho_x\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(Y=y/\rho_y\)</span> <strong>have variance</strong> <span class="math notranslate nohighlight">\(\sg_X^2=\sg_Y^2=1\)</span>.
+<strong>The correlation of</strong> <span class="math notranslate nohighlight">\(x\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(y\)</span> <strong>is the covariance of</strong> <span class="math notranslate nohighlight">\(X\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(Y\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Correlation</strong>: <span class="math notranslate nohighlight">\(\dp\rho_{xy}=\frac{\sg_{xy}}{\sg_x\sg_y}=\)</span>
+<strong>covariance of</strong> <span class="math notranslate nohighlight">\(\dp\frac{x}{\sg_x}\)</span> <strong>and</strong>
+<span class="math notranslate nohighlight">\(\dp\frac{y}{\rho_y}\)</span>.
+Always <span class="math notranslate nohighlight">\(-1\leq\rho_{xy}\leq 1\)</span>.</p>
+</div>
+<p>Zero covariance gives zero correlation.
+<em>Independent random variables produce</em> <span class="math notranslate nohighlight">\(\rho_{xy}=0\)</span>.</p>
+<p>Since <span class="math notranslate nohighlight">\(\sg_{xy}^2\leq\sg_x^2\sg_y^2\)</span>, then <span class="math notranslate nohighlight">\(\rho_{xy}^2\leq 1\)</span>.
+Correlation near <span class="math notranslate nohighlight">\(\rho=+1\)</span> means strong dependence in the same direction.
+Negative correlation means that <span class="math notranslate nohighlight">\(y\)</span> tends to be below its mean when <span class="math notranslate nohighlight">\(x\)</span> is above its mean.</p>
 </div>
 </div>
 
