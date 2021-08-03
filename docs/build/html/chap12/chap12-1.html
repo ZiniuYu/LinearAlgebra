@@ -13,6 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -29,11 +31,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -366,7 +368,7 @@ The error in approimating <span class="math notranslate nohighlight">\(\rm{E}[x]
 <em>Slow improvements as</em> <span class="math notranslate nohighlight">\(N\)</span> <em>increases</em>.</p>
 <p>Suppose it is much simpler to simulate another variable <span class="math notranslate nohighlight">\(y(b)\)</span> close to <span class="math notranslate nohighlight">\(x(b)\)</span>.
 Then use <span class="math notranslate nohighlight">\(N\)</span> computationis of <span class="math notranslate nohighlight">\(y(b_k)\)</span> and only <span class="math notranslate nohighlight">\(N^*&lt;N\)</span>
-computations of <span class="math notranslate nohighlight">\(x(b_k)\)</span> to estimate <span class="math notranslate nohighlight">\(rm{E}[x]\)</span>.</p>
+computations of <span class="math notranslate nohighlight">\(x(b_k)\)</span> to estimate <span class="math notranslate nohighlight">\(\rm{E}[x]\)</span>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><strong>2-level Monte Carlo</strong>:</p>
@@ -390,6 +392,35 @@ z(b_k)]+\frac{1}{N^{**}}\sum_1^{N^{**}}[x(b_k)-y(b_k)].\]</div>
 </div>
 <div class="section" id="review-three-formulas-for-the-mean-and-the-variance">
 <h2>Review: Three Formulas for the Mean and the Variance<a class="headerlink" href="#review-three-formulas-for-the-mean-and-the-variance" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ol class="arabic">
+<li><p><strong>Samples</strong> <span class="math notranslate nohighlight">\(X_1\)</span> <strong>to</strong> <span class="math notranslate nohighlight">\(X_N\)</span>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\dp m=\frac{X_1+\cds+X_N}{N}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\dp S^2=\frac{(X_1-m)^2+\cds+(X_N-m)^2}{N-1}\)</span></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><span class="math notranslate nohighlight">\(n\)</span> <strong>possible outputs with probabilities</strong> <span class="math notranslate nohighlight">\(p_i\)</span>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\dp m=\sum_1^np_ix_i\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\dp \sg^2=\sum_1^np_i(x_i-m)^2\)</span></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>Range of outputs with probability density</strong>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\dp m=\int xp(x)dx\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\dp \sg^2=\int(x-m)^2p(x)dx\)</span></p></li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+</div>
 </div>
 </div>
 

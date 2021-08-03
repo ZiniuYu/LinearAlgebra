@@ -170,7 +170,7 @@ The error in approimating :math:`\rm{E}[x]` by :math:`(x_1+\cds+x_N)/N` is norma
 
 Suppose it is much simpler to simulate another variable :math:`y(b)` close to :math:`x(b)`.
 Then use :math:`N` computationis of :math:`y(b_k)` and only :math:`N^*<N` 
-computations of :math:`x(b_k)` to estimate :math:`rm{E}[x]`.
+computations of :math:`x(b_k)` to estimate :math:`\rm{E}[x]`.
 
 .. note::
 
@@ -197,3 +197,23 @@ Three-level Monte Carlo would simulate :math:`x,y` and :math:`z`:
 
 Review: Three Formulas for the Mean and the Variance
 ----------------------------------------------------
+
+.. note::
+
+    #. **Samples** :math:`X_1` **to** :math:`X_N`:
+
+        * :math:`\dp m=\frac{X_1+\cds+X_N}{N}`
+
+        * :math:`\dp S^2=\frac{(X_1-m)^2+\cds+(X_N-m)^2}{N-1}`
+
+    #. :math:`n` **possible outputs with probabilities** :math:`p_i`:
+
+        * :math:`\dp m=\sum_1^np_ix_i`
+
+        * :math:`\dp \sg^2=\sum_1^np_i(x_i-m)^2`
+
+    #. **Range of outputs with probability density**:
+
+        * :math:`\dp m=\int xp(x)dx`
+
+        * :math:`\dp \sg^2=\int(x-m)^2p(x)dx`
