@@ -102,7 +102,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../chap9/index9.html">Chapter 9 Complex Vectors and Matrices</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index12.html">Chapter 12 Linear Algebra in Probability &amp; Statistics</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="chap12-1.html">Chapter 12.1 Mean, Variance, and Probability</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 12.2 Covariance Matrices and Joint Probabilities</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 12.2 Covariance Matrices and Joint Probabilities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-covariance-matrix-v-is-positive-semidefinite">The Covariance Matrix <span class="math notranslate nohighlight">\(V\)</span> is Positive Semidefinite</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-mean-and-variance-of-z-x-y">The Mean and Variance of <span class="math notranslate nohighlight">\(z=x+y\)</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-covariance-matrix-for-z-ax">The Covariance Matrix for <span class="math notranslate nohighlight">\(Z=AX\)</span></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="chap12-3.html">Chapter 12.3 Multivariate Gaussian and Weighted Least Squares</a></li>
 </ul>
 </li>
@@ -201,7 +206,8 @@
 \newcommand{\y}{\boldsymbol{y}}\\\newcommand{\A}{\boldsymbol{A}}
 \newcommand{\B}{\boldsymbol{B}}
 \newcommand{\C}{\boldsymbol{C}}
-\newcommand{\N}{\boldsymbol{N}}\\\newcommand{\R}{\boldsymbol{\mathrm{R}}}\\\newcommand{\ld}{\lambda}
+\newcommand{\N}{\boldsymbol{N}}
+\newcommand{\X}{\boldsymbol{X}}\\\newcommand{\R}{\boldsymbol{\mathrm{R}}}\\\newcommand{\ld}{\lambda}
 \newcommand{\Ld}{\Lambda}
 \newcommand{\sg}{\sigma}
 \newcommand{\Sg}{\Sigma}
@@ -213,6 +219,79 @@
 \newcommand{\ppr}{^{\prime\prime}}\end{aligned}\end{align} \]</div>
 <div class="section" id="chapter-12-2-covariance-matrices-and-joint-probabilities">
 <h1>Chapter 12.2 Covariance Matrices and Joint Probabilities<a class="headerlink" href="#chapter-12-2-covariance-matrices-and-joint-probabilities" title="Permalink to this headline">¶</a></h1>
+<p><span class="math notranslate nohighlight">\(p_{ij}=\)</span> <strong>Probability that experiment 1 produces</strong> <span class="math notranslate nohighlight">\(x_i\)</span> <strong>and experiment 2 produces</strong> <span class="math notranslate nohighlight">\(y_j\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Covariance</strong>: <span class="math notranslate nohighlight">\(\dp\sg_{12}=\sum_{\rm{all}}\sum_{i,j}p_{ij}(x_i-m_1)(y_j-m_2)\)</span>.</p>
+</div>
+<p><strong>Probability matrix</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}P=\bb p_{11}&amp;p_{12}\\p_{21}&amp;p_{22} \eb\end{split}\]</div>
+<p>Notice the row sums <span class="math notranslate nohighlight">\(p_i\)</span> and column sums <span class="math notranslate nohighlight">\(P_i\)</span> and the total sum = 1.
+Those numbers <span class="math notranslate nohighlight">\(p_1,p_2\)</span> and <span class="math notranslate nohighlight">\(P_1,P_2\)</span> are called the <strong>marginals</strong> of the matrix <span class="math notranslate nohighlight">\(P\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Zero covariance</strong> <span class="math notranslate nohighlight">\(\sg_{12}\)</span> <strong>for independent trials</strong>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(V=\bb \sg_1^2&amp;0\\0&amp;\sg_2^2 \eb=\)</span> <strong>diagonal covariance matrix</strong>.</p></li>
+</ul>
+</div>
+<p>Independent experiments have <span class="math notranslate nohighlight">\(\sg_{12}=0\)</span> because every <span class="math notranslate nohighlight">\(p_{ij}=(p_i)(p_j)\)</span> in equation:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\sg_{12}=\sum_i\sum_j(p_i)(p_j)(x_i-m_1)(y_j-m_2)=\\\bigg[\sum_i(p_i)(x_i-m_1)\bigg]\bigg[\sum_j(p_j)(y_j-m_2)\bigg]=[0][0].\end{aligned}\end{align} \]</div>
+<p><strong>Always</strong> <span class="math notranslate nohighlight">\(\sg_1^2\sg_2^2\geq\sg_{12}^2\)</span>.
+Thus <span class="math notranslate nohighlight">\(\sg_{12}\)</span> is <em>between</em> <span class="math notranslate nohighlight">\(-\sg_1\sg_2\)</span> <em>and</em> <span class="math notranslate nohighlight">\(\sg_1\sg_2\)</span>.
+The covariance matrix <span class="math notranslate nohighlight">\(V\)</span> is <strong>positive (semi)definite</strong>.
+This is an important fact about <span class="math notranslate nohighlight">\(M\)</span> by <span class="math notranslate nohighlight">\(M\)</span> covariance matrices for <span class="math notranslate nohighlight">\(M\)</span> experiments.</p>
+<p>Note that the <strong>sample covariance matrix</strong> <span class="math notranslate nohighlight">\(S\)</span> from <span class="math notranslate nohighlight">\(N\)</span> trials is certainly semidefinite.
+Every new sample <span class="math notranslate nohighlight">\(X\)</span> contributes to the <strong>sample mean</strong> <span class="math notranslate nohighlight">\(\bar{\X}\)</span> and to <span class="math notranslate nohighlight">\(S\)</span>.
+Each term <span class="math notranslate nohighlight">\((X_i-\bar{\X})(X_i-\bar{\X})^T\)</span> is positive semidefinite and we just add to reach <span class="math notranslate nohighlight">\(S\)</span>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(\dp\bar{\X}=\frac{X_1+\cds+X_N}{N}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\dp S=\frac{(X_1-\bar{\X})(X_1-\bar{\X})^T+\cds+(X_N-\bar{\X})(X_N-\bar{\X})^T}{N-1}\)</span></p>
+</div>
+<div class="section" id="the-covariance-matrix-v-is-positive-semidefinite">
+<h2>The Covariance Matrix <span class="math notranslate nohighlight">\(V\)</span> is Positive Semidefinite<a class="headerlink" href="#the-covariance-matrix-v-is-positive-semidefinite" title="Permalink to this headline">¶</a></h2>
+<p><strong>Total probability (all pairs) is 1</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\sum_{\rm{all}}\sum_{i,j}p_{ij}=1.\]</div>
+<p><strong>Row sum</strong> <span class="math notranslate nohighlight">\(p_i\)</span> <strong>of</strong> <span class="math notranslate nohighlight">\(P\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\sum_{j=1}^np_{ij}=\rm{probability\ }p_i\rm{\ of\ }x_i\rm{\ in\ experiment\ 1}.\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Covariance matrix</strong> <span class="math notranslate nohighlight">\(V=\Sg\Sg V_{ij}\)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\dp V=\sum_{\rm{all}}\sum_{i,j}p_{ij}\bb (x_i-m_1)^2&amp;(x_i-m_1)(y_j-m_2)\\(x_i-m_1)(y_j-m_2)&amp;(y_j-m_2)^2\eb\)</span>.</p></li>
+</ul>
+</div>
+<div class="math notranslate nohighlight">
+\[V_{11}=\sum_{\rm{all}}\sum_{i,j}p_{ij}(x_j-m_1)^2=\sum_{\rm{all\ }i}(\rm{probability\ of\ }x_i)(x_i-m_1)^2=\sg_1^2.\]</div>
+<p>The matrix <span class="math notranslate nohighlight">\(V_{ij}\)</span> for each pair of outcomes <span class="math notranslate nohighlight">\(i,j\)</span> is <strong>positive semidefinite</strong>.
+<span class="math notranslate nohighlight">\(V_{ij}\)</span> has diagonal entries <span class="math notranslate nohighlight">\(p_{ij}(x_i-m_1)^2\geq 0\)</span> and
+<span class="math notranslate nohighlight">\(p_{ij}(y_j-m_2)^2\geq 0\)</span> and <span class="math notranslate nohighlight">\(\det(V_{ij})=0\)</span>.
+That matrix <span class="math notranslate nohighlight">\(V_{ij}\)</span> has rank 1.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb (x_i-m_1)^2&amp;(x_i-m_1)(y_j-m_2)\\(x_i-m_1)(y_j-m_2)&amp;(y_j-m_2)^2\eb=
+\bb x_i-m_1\\y_j-m_2 \eb\bb x_i-m_1 y_j-m_2 \eb.\end{split}\]</div>
+<p><em>Every matrix</em> <span class="math notranslate nohighlight">\(UU^T\)</span> <em>is positive semidefinite</em>.
+Sothe whole matrix <span class="math notranslate nohighlight">\(V\)</span> (combining these matrices <span class="math notranslate nohighlight">\(UU^T\)</span> with weights
+<span class="math notranslate nohighlight">\(p_{ij}\geq 0\)</span>) is <strong>at least semidefinite</strong>.</p>
+<p><strong>The covariance matrix</strong> <span class="math notranslate nohighlight">\(V\)</span> <strong>is positive definite unless the experiments are dependent</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Covariance matrix</strong>: :math:<a href="#id1"><span class="problematic" id="id2">`</span></a>V=rm{E}[(X-bar{X})(X-bar{X})^T]</p>
+</div>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\rm{Variance\ of\ }c^T\X=\rm{E}[(c^T\X-c^T\bar{\X})(c^T\X-c^T\bar{\X})^T]\\=c^T\rm{E}[(\X-\bar{\X})(\X-\bar{\X})]c=c^TVc\end{aligned}\end{align} \]</div>
+</div>
+<div class="section" id="the-mean-and-variance-of-z-x-y">
+<h2>The Mean and Variance of <span class="math notranslate nohighlight">\(z=x+y\)</span><a class="headerlink" href="#the-mean-and-variance-of-z-x-y" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="the-covariance-matrix-for-z-ax">
+<h2>The Covariance Matrix for <span class="math notranslate nohighlight">\(Z=AX\)</span><a class="headerlink" href="#the-covariance-matrix-for-z-ax" title="Permalink to this headline">¶</a></h2>
+</div>
 </div>
 
 

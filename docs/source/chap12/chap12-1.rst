@@ -127,7 +127,7 @@ distribution :math:`F(x)` is computed and tabulated very carefully.
 
     **Linearity**: :math:`x_{\rm{new}}=ax_{\rm{old}}+b` has 
     :math:`m_{\rm{new}}=am_{\rm{old}}+b` and 
-    :math:`\sg_{\rm{new}}^2=a^2\sg_{\rm{\old}}^2`.
+    :math:`\sg_{\rm{new}}^2=a^2\sg_{\rm{old}}^2`.
 
 .. note::
 
