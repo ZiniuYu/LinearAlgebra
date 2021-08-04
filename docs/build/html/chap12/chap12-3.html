@@ -13,6 +13,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
 
   
   
@@ -29,11 +31,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -101,7 +103,14 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index12.html">Chapter 12 Linear Algebra in Probability &amp; Statistics</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="chap12-1.html">Chapter 12.1 Mean, Variance, and Probability</a></li>
 <li class="toctree-l2"><a class="reference internal" href="chap12-2.html">Chapter 12.2 Covariance Matrices and Joint Probabilities</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 12.3 Multivariate Gaussian and Weighted Least Squares</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Chapter 12.3 Multivariate Gaussian and Weighted Least Squares</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#two-dimensional-gaussians">Two-dimensional Gaussians</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#non-independent-x-and-y">Non-independent <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#weighted-least-squares">Weighted Least Squares</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-variance-in-the-estimated-widehat-x">The Variance in the Estimated <span class="math notranslate nohighlight">\(\widehat{x}\)</span></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-kalman-filter">The Kalman Filter</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
@@ -212,6 +221,130 @@
 \newcommand{\ppr}{^{\prime\prime}}\end{aligned}\end{align} \]</div>
 <div class="section" id="chapter-12-3-multivariate-gaussian-and-weighted-least-squares">
 <h1>Chapter 12.3 Multivariate Gaussian and Weighted Least Squares<a class="headerlink" href="#chapter-12-3-multivariate-gaussian-and-weighted-least-squares" title="Permalink to this headline">¶</a></h1>
+<p><strong>Mean</strong> <span class="math notranslate nohighlight">\(m\)</span> <strong>and variance</strong> <span class="math notranslate nohighlight">\(\sg^2\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[p(x)=\frac{1}{\sqrt{2\pi}\sg}e^{-(x-m)^2/2\sg^2}.\]</div>
+<div class="math notranslate nohighlight">
+\[\int_{-\infty}^\infty p(x)dx=1\quad\rm{and}\quad
+\int_{m-\sg}^{m+\sg}p(x)dx=\frac{1}{\sqrt{2\pi}}\int_{-1}^1e^{-X^2/2}dX
+\approx\frac{2}{3}.\]</div>
+<p>Every Gaussian turns into a <strong>standard Gaussian</strong> <span class="math notranslate nohighlight">\(p(x)\)</span> with mean <span class="math notranslate nohighlight">\(m=0\)</span> and variance <span class="math notranslate nohighlight">\(\sg^2=1\)</span>.
+<strong>The standard ormal distribution</strong> <span class="math notranslate nohighlight">\(N(0,1)\)</span> <strong>has</strong> <span class="math notranslate nohighlight">\(\dp p(x)=\frac{1}{\sqrt{2\pi}}e^{-x^2/2}\)</span>.</p>
+<p>Integrating <span class="math notranslate nohighlight">\(p(x)\)</span> from <span class="math notranslate nohighlight">\(-\infty\)</span> to <span class="math notranslate nohighlight">\(x\)</span> gives the cumulative
+distribution <span class="math notranslate nohighlight">\(F(x)\)</span>: the probability that a random sample is below
+<span class="math notranslate nohighlight">\(x\)</span>.
+The probability will be <span class="math notranslate nohighlight">\(F=\frac{1}{2}\)</span> at <span class="math notranslate nohighlight">\(x=0\)</span>.</p>
+<div class="section" id="two-dimensional-gaussians">
+<h2>Two-dimensional Gaussians<a class="headerlink" href="#two-dimensional-gaussians" title="Permalink to this headline">¶</a></h2>
+<p><strong>Independent</strong> <span class="math notranslate nohighlight">\(x\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(y\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[p(x,y)=\frac{1}{2\pi\sg_1\sg_2}e^{-(x-m_1)^2/2\sg_1^2}e^{-(y-m_2)^2/2\sg_2^2}.\]</div>
+<p>The covariance of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> will be <span class="math notranslate nohighlight">\(\sg_{12}=0\)</span>.
+The covariance matrix <span class="math notranslate nohighlight">\(V\)</span> will be <em>diagonal</em>.</p>
+<p>Notice that the two exponents can be combined into
+<span class="math notranslate nohighlight">\(-\frac{1}{2}(\x-\bs{m})^TV\im(\x-\bs{m})\)</span> with <span class="math notranslate nohighlight">\(V\im\)</span> in the middle:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}-\frac{(x-m_1)^2}{2\sg_1^2}-\frac{(y-m_2)^2}{2\sg_2^2}=-\frac{1}{2}
+\bb x-m_1&amp;y-m_2 \eb\bb \sg_1^2&amp;0\\0&amp;\sg_2^2 \eb\im\bb x-m_1\\y-m_2 \eb.\end{split}\]</div>
+</div>
+<div class="section" id="non-independent-x-and-y">
+<h2>Non-independent <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span><a class="headerlink" href="#non-independent-x-and-y" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Multivariate Gaussian probability distribution</strong>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\dp p(\x)=\frac{1}{(\sqrt{2\pi})^M\sqrt{\det V}}e^{-(\x-\bs{m})^TV\im(\x-\bs{m})/2}\)</span>.</p></li>
+</ul>
+</div>
+<div class="math notranslate nohighlight">
+\[X=\x-\bs{m}\quad(\x-\bs{m})^TV\im(\x-\bs{m})=X^TQ\Ld\im Q^TX=Y^T\Ld\im Y.\]</div>
+<p>Notice that the combinations <span class="math notranslate nohighlight">\(Y=Q^TX=Q^T(\x-\bs{m})\)</span> are statistically independent.
+<em>Their covariance matrix</em> <span class="math notranslate nohighlight">\(\Ld\)</span> <em>is diagonal</em>.</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\int\cds\int e^{-Y^T\Ld\im Y/2}dY=
+\bigg(\int_{-\infty}^{\infty}e^{y_1^2/2\ld_1}dy_1\bigg)\cds
+\bigg(\int_{-\infty}^{\infty}e^{y_M^2/2\ld_M}dy_M\bigg)\\=(\sqrt{2\pi\ld_1})\cds(\sqrt{2\pi\ld_M})=(\sqrt{2\pi})^M\sqrt{\det V}.\end{aligned}\end{align} \]</div>
+<p><strong>Vector</strong> <span class="math notranslate nohighlight">\(\bs{m}\)</span> <strong>of means</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\int\cds\int\x p(\x)d\x=(m_1,m_2,\cds)=\bs{m}.\]</div>
+<p><strong>Covariance matrix</strong> <span class="math notranslate nohighlight">\(V\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\int\cds\int(\x-\bs{m})p(\x)(\x-\bs{m})^Td\x=V.\]</div>
+</div>
+<div class="section" id="weighted-least-squares">
+<h2>Weighted Least Squares<a class="headerlink" href="#weighted-least-squares" title="Permalink to this headline">¶</a></h2>
+<p>The good measure of error is <span class="math notranslate nohighlight">\(E=(\b-A\x)^TV\im(\b-A\x)\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Weighted least squares</strong>: <span class="math notranslate nohighlight">\(A^TV\im A\wh{\x}=A^TV\im\b\)</span>.</p>
+</div>
+<p>The most important examples have <span class="math notranslate nohighlight">\(m\)</span> <em>independent</em> errors in <span class="math notranslate nohighlight">\(\b\)</span>.
+Those errors have variances <span class="math notranslate nohighlight">\(\ld_1^2,\cds,\ld_m^2\)</span>.
+By independence, <span class="math notranslate nohighlight">\(V\)</span> is a diagonal matrix.
+The good weights <span class="math notranslate nohighlight">\(1/\ld_1^2,\cds,1/\ld_m^2\)</span> come from <span class="math notranslate nohighlight">\(V\im\)</span>.
+<em>We are weighting the errors in</em> <span class="math notranslate nohighlight">\(\b\)</span> <em>to have</em> <strong>variance = 1</strong>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Weighted least squares; Independent errors in</strong> <span class="math notranslate nohighlight">\(\b\)</span>:</p>
+<ul class="simple">
+<li><p>Minimize <span class="math notranslate nohighlight">\(\dp E=\sum_{i=1}^m\frac{(\b-A\x)_i^2}{\sg_i^2}\)</span>.</p></li>
+</ul>
+</div>
+<ol class="arabic simple">
+<li><p>Start with <span class="math notranslate nohighlight">\(A\x=\b\)</span> (<span class="math notranslate nohighlight">\(m\)</span> equations, <span class="math notranslate nohighlight">\(n\)</span> unknonws, <span class="math notranslate nohighlight">\(m&gt;n\)</span> no solution)</p></li>
+<li><p>Each right side <span class="math notranslate nohighlight">\(b_i\)</span> has mean zero and variance <span class="math notranslate nohighlight">\(\sg_i^2\)</span>.
+The <span class="math notranslate nohighlight">\(b_i\)</span> are independent.</p></li>
+<li><p>Divide the <span class="math notranslate nohighlight">\(i\)</span>th equation by <span class="math notranslate nohighlight">\(\sg_i\)</span> to have variance = 1 for every <span class="math notranslate nohighlight">\(b_i/\sg_i\)</span>.</p></li>
+<li><p>That division turns <span class="math notranslate nohighlight">\(A\x=\b\)</span> into <span class="math notranslate nohighlight">\(V^{-1/2}A\x=V^{-1/2}\b\)</span> with
+<span class="math notranslate nohighlight">\(V^{-1/2}=\rm{diag}(1/\sg_1,\cds,1/\sg_m)\)</span>.</p></li>
+<li><p>Ordinary least squares on those weighted equations has
+<span class="math notranslate nohighlight">\(A\rightarrow V^{-1/2}A\)</span> and <span class="math notranslate nohighlight">\(\b\rightarrow V^{-1/2}\b\)</span>.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\((V^{-1/2}A)^T(V^{-1/2}A)\wh{\x}=(V^{-1/2}A)^TV^{-1/2}\b\)</span> is <span class="math notranslate nohighlight">\(A^TV\im A\wh{\x}=A^TV\im\b\)</span>.</p>
+</div>
+</div>
+<div class="section" id="the-variance-in-the-estimated-widehat-x">
+<h2>The Variance in the Estimated <span class="math notranslate nohighlight">\(\widehat{x}\)</span><a class="headerlink" href="#the-variance-in-the-estimated-widehat-x" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Variance-covariance matrix</strong> <span class="math notranslate nohighlight">\(W\)</span> <strong>for</strong> <span class="math notranslate nohighlight">\(\wh{\x}\)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\rm{E}[(\wh{\x}-\x)(\wh{\x}-\x)^T]=(A^TV\im A)\im\)</span>.</p></li>
+</ul>
+</div>
+<p>The smallest possible variance comes from the best possible weighting, which is <span class="math notranslate nohighlight">\(V\im\)</span>.</p>
+<p><strong>If</strong> <span class="math notranslate nohighlight">\(\b\)</span> <strong>has covariance matrix</strong> <span class="math notranslate nohighlight">\(V\)</span>, <strong>then</strong>
+<span class="math notranslate nohighlight">\(\wh{\x}=L\b\)</span> <strong>has covariance matrix</strong> <span class="math notranslate nohighlight">\(LVL^T\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[LVL^T=(A^TV\im A)\im A^TV\im\quad V\quad V\im A(A^TV\im A)\im=(A^TV\im A)\im\]</div>
+</div>
+<div class="section" id="the-kalman-filter">
+<h2>The Kalman Filter<a class="headerlink" href="#the-kalman-filter" title="Permalink to this headline">¶</a></h2>
+<p>The <span class="math notranslate nohighlight">\(\wh{\x}_k\)</span> will be our best least squares estimate of the latest
+solution <span class="math notranslate nohighlight">\(\x_k\)</span> to the <strong>whole history of observation equations and</strong>
+<strong>update equations (state equations) up to time</strong> <span class="math notranslate nohighlight">\(k\)</span>.</p>
+<p><strong>OLD</strong>: <span class="math notranslate nohighlight">\(A_0\x_0=\b_0\)</span> leads to the weighted equation <span class="math notranslate nohighlight">\(A_0^TV_0\im A_0\wh{\x}_0=A_0^TV_0\im\b_0\)</span>.</p>
+<p><strong>NEW</strong>: <span class="math notranslate nohighlight">\(\bb A_0\\A_1 \eb\wh{\x}_1=\bb \b_0\\b_1 \eb\)</span> leads to the
+following weighted equation for <span class="math notranslate nohighlight">\(\wh{\x}_1\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bb A_0^T&amp;A_1^T \eb\bb V_0\im\\&amp;V_1\im \eb\bb A_0\\A_1 \eb\wh{\x}_1=
+\bb A_0^T&amp;A_1^T \eb\bb V_0\im\\&amp;V_1\im \eb\bb \b_0\\\b_1 \eb.\end{split}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Kalman update gives</strong> <span class="math notranslate nohighlight">\(\wh{\x}_1\)</span> <strong>from</strong> <span class="math notranslate nohighlight">\(\wh{\x}_0\)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\wh{\x}_1=\wh{\x}_0+K_1(\b_1-A_1\wh{\x}_0)\)</span>.</p></li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Covariance</strong> <span class="math notranslate nohighlight">\(W_1\)</span> <strong>of errors in</strong> <span class="math notranslate nohighlight">\(\wh{\x}_1\)</span>:
+<span class="math notranslate nohighlight">\(W_1\im=W_0\im+A_1^TV_1\im A_1\)</span>.</p>
+<p><strong>Kalman gain matrix</strong> <span class="math notranslate nohighlight">\(K_1\)</span>: <span class="math notranslate nohighlight">\(K_1=W_1A_1^TV_1\im\)</span>.</p>
+</div>
+</div>
 </div>
 
 
